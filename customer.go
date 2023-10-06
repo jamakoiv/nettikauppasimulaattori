@@ -1,5 +1,9 @@
 package nettikauppasimulaattori
 
+// TODO: Break into separate files:
+// customers.go, orders.go, products.go, run.go etc.
+
+
 import (
 	"context"
 	"errors"
@@ -200,8 +204,9 @@ func (order *Order) String() string {
     return str
 }
 
-//func (o *Order) Send(client bigquery.Client) {
 func (order *Order) Send(ctx context.Context, client *bigquery.Client) error {
+    // TODO: Break creating the SQL-queries into separate functions.
+    // TODO: Store project_id etc in separate config-file.
 
     project_id := "nettikauppasimulaattori"
     dataset_id := "store_operational"
