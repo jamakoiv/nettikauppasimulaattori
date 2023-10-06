@@ -24,10 +24,32 @@ type PubSubMessage struct {
 
 // Define google cloud functions entry-point.
 func init() {
-	functions.CloudEvent("gFunctionsEntry", gFunctionsEntry)
+	functions.CloudEvent("Run", Run)
 }
 
-func gFunctionsEntry(ctx context.Context, ev event.Event) error {
+func Run(ctx context.Context, ev event.Event) error {
+    project_id := "nettikauppasimulaattori"
+
+    client, err := bigquery.NewClient(ctx, project_id)
+    if err != nil { 
+        slog.Error("Error creating BigQuery-client.") 
+        return err
+    }
+    defer client.Close()
+
+    for _, customer := range Customers {
+        order, err := customer.Shop(Products)
+        if err == nil {
+            slog.Debug(fmt.Sprint(order))
+            err := order.Send(ctx, client)
+            if err != nil { 
+                slog.Error(fmt.Sprintf("Error in sending order: %v", err))
+            }
+        } else {
+            // fmt.Println(err)
+            continue
+        }
+    }
 
     return nil
 }
@@ -219,29 +241,4 @@ func (order *Order) Send(ctx context.Context, client *bigquery.Client) error {
     }
 
     return nil
-}
-
-
-
-func Run() {
-    project_id := "nettikauppasimulaattori"
-
-    ctx := context.Background()
-    client, err := bigquery.NewClient(ctx, project_id)
-    if err != nil { slog.Error("Error creating BigQuery-client.") }
-    defer client.Close()
-
-    for _, customer := range Customers {
-        order, err := customer.Shop(Products)
-        if err == nil {
-            slog.Debug(fmt.Sprint(order))
-            err := order.Send(ctx, client)
-            if err != nil { 
-                slog.Error(fmt.Sprintf("Error in sending order: %v", err))
-            }
-        } else {
-            // fmt.Println(err)
-            continue
-        }
-    }
 }
