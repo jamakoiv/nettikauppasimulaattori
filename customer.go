@@ -1,13 +1,35 @@
-package main
+package nettikauppasimulaattori
 
 import (
-    "fmt"
-    "time"
-    "errors"
-    "math"
-    "math/rand"
-    //"cloud.google.com/go/bigquery"
+	"errors"
+	"fmt"
+	"math"
+	"math/rand"
+	"time"
+	"context"
+
+	//"cloud.google.com/go/bigquery"
+	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
+	"github.com/cloudevents/sdk-go/v2/event"
 )
+
+type MessagePublishedData struct {
+	Message PubSubMessage
+}
+type PubSubMessage struct {
+	Data []byte `json:"data"`
+}
+
+// Define google cloud functions entry-point.
+func init() {
+	functions.CloudEvent("gFunctionsEntry", gFunctionsEntry)
+}
+
+func gFunctionsEntry(ctx context.Context, ev event.Event) error {
+
+    return nil
+}
+
 
 type Customer struct {
     id int
@@ -158,9 +180,7 @@ func (o *Order) Send() {
 
 }
 
-
-func main() {
-    
+func Run() {
     for _, customer := range Customers {
         order, err := customer.Shop(Products)
         if err == nil {
