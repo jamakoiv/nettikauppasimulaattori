@@ -32,6 +32,7 @@ func init() {
 }
 
 func Run(ctx context.Context, ev event.Event) error {
+    // TODO: Project_id hardcoded in two different places :(
     project_id := "nettikauppasimulaattori"
 
     client, err := bigquery.NewClient(ctx, project_id)
