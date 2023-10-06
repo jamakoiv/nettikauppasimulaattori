@@ -1,16 +1,18 @@
 package nettikauppasimulaattori
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	"math"
 	"math/rand"
+	"strings"
 	"time"
-	"context"
 
-	//"cloud.google.com/go/bigquery"
+	"cloud.google.com/go/bigquery"
 	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
 	"github.com/cloudevents/sdk-go/v2/event"
+	"golang.org/x/exp/slog"
 )
 
 type MessagePublishedData struct {
@@ -136,8 +138,8 @@ func (customer *Customer) Shop(products []Product) (*Order, error) {
 
     order := new(Order)
     order.init()
-    order.customer_id = customer.id
 
+    // Check if customer wants to shop at this time.
     if !(rand.Float64() < customer.ChanceToShop()) {
         return order, errors.New("Order empty.")
     }
@@ -148,13 +150,14 @@ func (customer *Customer) Shop(products []Product) (*Order, error) {
         order.AddItem(products[rand.Intn(len(products))])
     }
     order.status = ORDER_PENDING
+    order.customer_id = customer.id
 
     return order, nil
 }
 
 
 func (order *Order) init() {
-    order.id = rand.Uint64()  // Foolishly hope we don't get two same order IDs.
+    order.id = uint64(rand.Uint32())  // Foolishly hope we don't get two same order IDs.
     order.status = ORDER_EMPTY
     order.delivery_type = rand.Intn(2)
 }
@@ -176,16 +179,66 @@ func (order *Order) String() string {
 }
 
 //func (o *Order) Send(client bigquery.Client) {
-func (o *Order) Send() {
+func (order *Order) Send(ctx context.Context, client *bigquery.Client) error {
 
+    project_id := "nettikauppasimulaattori"
+    dataset_id := "store_operational"
+    orders_table_id := "orders"
+    order_items_table_id := "order_items"
+
+    slog.Info(fmt.Sprintf("Sending order %d to BigQuery.", order.id))
+
+    // TODO: guard against malicious inputs.
+    order_sql := fmt.Sprintf("INSERT INTO `%s.%s.%s` VALUES ", 
+        project_id, dataset_id, orders_table_id)
+    order_sql = fmt.Sprintf("%s (%d, %d, %d, %d)", 
+        order_sql, order.id, order.customer_id, order.delivery_type, order.status)
+
+    items_sql := fmt.Sprintf("INSERT INTO `%s.%s.%s` VALUES ", 
+        project_id, dataset_id, order_items_table_id)
+
+    for _, item := range order.items {
+        items_sql = fmt.Sprintf("%s (%d, %d),", items_sql, order.id, item.id)
+    }
+    items_sql = strings.TrimSuffix(items_sql, ",")
+
+    slog.Debug(order_sql)
+    slog.Debug(items_sql)
+
+    queries := [2]string{order_sql, items_sql}
+    for _, sql := range queries {
+        q := client.Query(sql)
+        // q.WriteDisposition = "WRITE_APPEND" // Error with "INSERT INTO..." statement.
+
+        job, err := q.Run(ctx)
+        if err != nil { return err }
+
+        status, err := job.Wait(ctx)
+        if err != nil { return err }
+        if status.Err() != nil { return status.Err() }
+    }
+
+    return nil
 }
 
+
+
 func Run() {
+    project_id := "nettikauppasimulaattori"
+
+    ctx := context.Background()
+    client, err := bigquery.NewClient(ctx, project_id)
+    if err != nil { slog.Error("Error creating BigQuery-client.") }
+    defer client.Close()
+
     for _, customer := range Customers {
         order, err := customer.Shop(Products)
         if err == nil {
-            fmt.Println(order)
-            order.Send()
+            slog.Debug(fmt.Sprint(order))
+            err := order.Send(ctx, client)
+            if err != nil { 
+                slog.Error(fmt.Sprintf("Error in sending order: %v", err))
+            }
         } else {
             // fmt.Println(err)
             continue
