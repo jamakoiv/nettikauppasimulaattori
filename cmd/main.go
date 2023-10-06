@@ -1,7 +1,7 @@
 package main
 
 import (
-	"nettikauppasimulaattori"
+	"nettikauppasimulaattori.piste"
 	"os"
 
 	"golang.org/x/exp/slog"
@@ -15,5 +15,6 @@ func main() {
 	slog.SetDefault(slog.New(logger))
 	logLevel.Set(slog.LevelDebug)
 
+	// TODO: Create dummy bigquery.Client for testing.
 	nettikauppasimulaattori.Run()
 }

@@ -1,4 +1,4 @@
-module nettikauppasimulaattori
+module nettikauppasimulaattori.piste
 
 go 1.21
 
