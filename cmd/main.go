@@ -1,8 +1,11 @@
 package main
 
 import (
-	"nettikauppasimulaattori.piste"
+	"context"
 	"os"
+
+	"github.com/cloudevents/sdk-go/v2/event"
+	"nettikauppasimulaattori.piste"
 
 	"golang.org/x/exp/slog"
 )
@@ -15,6 +18,8 @@ func main() {
 	slog.SetDefault(slog.New(logger))
 	logLevel.Set(slog.LevelDebug)
 
-	// TODO: Create dummy bigquery.Client for testing.
-	nettikauppasimulaattori.Run()
+	ctx := context.Background()
+	ev := event.Event{}
+
+	nettikauppasimulaattori.Run(ctx, ev)
 }
