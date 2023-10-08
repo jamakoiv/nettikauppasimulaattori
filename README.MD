@@ -1,6 +1,7 @@
 
 Add simulated orders from simulated customers into google BigQuery-table.
 
+TODO: Create option for selecting if we want to upload orders from local test-runs.
 
 
 

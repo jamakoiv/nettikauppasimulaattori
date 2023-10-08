@@ -10,7 +10,6 @@ import (
 	"fmt"
 	"math"
 	"math/rand"
-	"strings"
 	"time"
 
 	"cloud.google.com/go/bigquery"
@@ -82,38 +81,20 @@ type Product struct {
     vat float64
 }
 
-type Order struct {
-    id uint64
-    customer_id int
-    items []Product
-    delivery_type int
-    status int
-}
-
-const (
-    ORDER_PENDING = iota
-    ORDER_SHIPPED = iota
-    ORDER_EMPTY = iota
-)
-
-const (
-    SHIP_TO_CUSTOMER = iota
-    COLLECT_FROM_STORE = iota
-)
 
 
 var Customers = []Customer{
-    {10,  "Erkki",    "Nyrhinen"   , 6,  150, 0.10 },
-    {11,  "Jaana",    "Lahtinen"   , 7,  150, 0.20 },   
+    {10,  "Erkki",    "Nyrhinen"   , 6,  150, 0.15 },
+    {11,  "Jaana",    "Lahtinen"   , 7,  150, 0.25 },   
     {12,  "Toni",     "Kuusisto"   , 8,  150, 0.10 },    
     {13,  "Tero",     "Teronen"    , 9,  150, 0.20 },    
-    {14,  "Liisa",    "Peronen"    , 9,  150, 0.20 },     
+    {14,  "Liisa",    "Peronen"    , 9,  150, 0.25 },     
     {22,  "Laura",    "Mukka"      , 12, 150, 0.10 },       
-    {24,  "Sakari",   "Herkola"    , 12, 150, 0.10 },
+    {24,  "Sakari",   "Herkola"    , 12, 150, 0.15 },
     {31,  "Kalevi",   "Sorsa"      , 12, 150, 0.20 },     
-    {33,  "Mauno",    "Koivisto"   , 14, 150, 0.10 },  
-    {34,  "Tarja",    "Kekkonen"   , 14, 150, 0.20 },   
-    {120, "Hertta",   "Kuusisto"   , 14, 150, 0.10 },  
+    {33,  "Mauno",    "Koivisto"   , 14, 150, 0.05 },  
+    {34,  "Tarja",    "Kekkonen"   , 14, 150, 0.30 },   
+    {120, "Hertta",   "Kuusisto"   , 14, 150, 0.15 },  
     {121, "Sari",     "Jokunen"    , 14, 150, 0.20 },      
     {122, "Kaarina",  "Erkylä"     , 17, 150, 0.10 },    
     {123, "Pasi",     "Sarasti"    , 17, 150, 0.20 },
@@ -122,17 +103,17 @@ var Customers = []Customer{
     {202, "Mirva",    "Holma"      , 18, 150, 0.20 },
     {203, "Sari",     "Karjalainen", 18, 150, 0.20 },
     {204, "Teija",    "Laakso"     , 18, 150, 0.30 },
-    {205, "Mika",     "Rampa"      , 20, 150, 0.10 },
+    {205, "Mika",     "Rampa"      , 20, 150, 0.05 },
     {206, "Antti",    "Vettenranta", 20, 150, 0.20 },
     {207, "Anri",     "Lindström"  , 20, 150, 0.10 },
     {208, "Taina",    "Vilkuna"    , 20, 150, 0.20 },
     {209, "Sami",     "Turunen"    , 21, 150, 0.10 },
     {210, "Marjo",    "Tiirikka"   , 21, 150, 0.20 },
     {211, "Jirina",   "Alanko"     , 21, 150, 0.20 },
-    {212, "Kasper",   "Kukkonen"   , 21, 150, 0.10 },
+    {212, "Kasper",   "Kukkonen"   , 21, 150, 0.05 },
     {213, "Karina",   "Tiihonen"   , 22, 150, 0.10 },
     {214, "Pauliina", "Kampuri"    , 22, 150, 0.20 },
-    {215, "Nelli",    "Numminen"   , 22, 150, 0.20 },
+    {215, "Nelli",    "Numminen"   , 22, 150, 0.25 },
     {216, "Anna",     "Schroderus" , 22, 150, 0.20 },
     {217, "Sabrina",  "Bqain"      , 23, 150, 0.10 },  
     {218, "Tara",     "Junker"     , 23, 150, 0.10 },
@@ -211,76 +192,4 @@ func (customer *Customer) Shop(products []Product) (*Order, error) {
 }
 
 
-func (order *Order) init() {
-    order.id = uint64(rand.Uint32())  // Foolishly hope we don't get two same order IDs.
-    order.status = ORDER_EMPTY
-    order.delivery_type = rand.Intn(2)
-}
 
-func (order *Order) AddItem(item Product) {
-    order.items = append(order.items, item) 
-}
-
-// Satisfy Stringer-interface.
-func (order *Order) String() string {
-    if order.status == ORDER_EMPTY { return "" }
-
-    var str string = fmt.Sprintf("Order %v\n--------------\n", order.id)
-
-    for _, item := range order.items {
-        str = str + fmt.Sprintf("%v: %v\n", order.customer_id, item.name)
-    }
-    return str
-}
-
-func Now2SQLDatetime() string {
-    // Return current time as SQL Datetime.
-    t := time.Now()
-    return fmt.Sprintf("%d-%d-%d %d:%d:%d",
-        t.Year(), t.Month(), t.Day(),
-        t.Hour(), t.Minute(), t.Second())
-}
-
-func (order *Order) Send(ctx context.Context, client *bigquery.Client) error {
-    // TODO: Break creating the SQL-queries into separate functions.
-    // TODO: Store project_id etc in separate config-file.
-
-    project_id := "nettikauppasimulaattori"
-    dataset_id := "store_operational"
-    orders_table_id := "orders"
-    order_items_table_id := "order_items"
-
-
-    // TODO: guard against malicious inputs.
-    order_sql := fmt.Sprintf("INSERT INTO `%s.%s.%s` VALUES ", 
-        project_id, dataset_id, orders_table_id)
-    order_sql = fmt.Sprintf("%s (%d, %d, %d, %d, \"%s\")", 
-        order_sql, order.id, order.customer_id, 
-        order.delivery_type, order.status, Now2SQLDatetime())
-
-    items_sql := fmt.Sprintf("INSERT INTO `%s.%s.%s` VALUES ", 
-        project_id, dataset_id, order_items_table_id)
-
-    for _, item := range order.items {
-        items_sql = fmt.Sprintf("%s (%d, %d),", items_sql, order.id, item.id)
-    }
-    items_sql = strings.TrimSuffix(items_sql, ",")
-
-    // slog.Debug(order_sql)
-    // slog.Debug(items_sql)
-
-    queries := [2]string{order_sql, items_sql}
-    for _, sql := range queries {
-        q := client.Query(sql)
-        // q.WriteDisposition = "WRITE_APPEND" // Error with "INSERT INTO..." statement.
-
-        job, err := q.Run(ctx)
-        if err != nil { return err }
-
-        status, err := job.Wait(ctx)
-        if err != nil { return err }
-        if status.Err() != nil { return status.Err() }
-    }
-
-    return nil
-}
