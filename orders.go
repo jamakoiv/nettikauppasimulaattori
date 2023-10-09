@@ -6,6 +6,7 @@ import (
     "context"
     "time"
     "strings"
+    "log/slog"
 
     "cloud.google.com/go/bigquery"
 )
@@ -31,9 +32,19 @@ const (     // Values for Order.delivery_type.
 )
 
 
-func Now2SQLDatetime() string {
+func Now2SQLDatetime(timezone string) string {
     // Return current time as SQL Datetime.
-    t := time.Now()
+    var t time.Time
+    tz, err := time.LoadLocation(timezone)
+
+    if err != nil {
+        err_str := fmt.Sprintf("Error getting timezone 'time.LoadLocation(%s'): %s", timezone, err)
+        slog.Error(err_str)
+        t = time.Now()
+    } else {
+        t = time.Now().In(tz)
+    }
+
     return fmt.Sprintf("%d-%d-%d %d:%d:%d",
         t.Year(), t.Month(), t.Day(),
         t.Hour(), t.Minute(), t.Second())
@@ -71,13 +82,14 @@ func (order *Order) Send(ctx context.Context, client *bigquery.Client) error {
     orders_table_id := "orders"
     order_items_table_id := "order_items"
 
+    log_timezone := "Europe/Helsinki"
 
     // TODO: guard against malicious inputs.
     order_sql := fmt.Sprintf("INSERT INTO `%s.%s.%s` VALUES ", 
         project_id, dataset_id, orders_table_id)
     order_sql = fmt.Sprintf("%s (%d, %d, %d, %d, \"%s\")", 
         order_sql, order.id, order.customer_id, 
-        order.delivery_type, order.status, Now2SQLDatetime())
+        order.delivery_type, order.status, Now2SQLDatetime(log_timezone))
 
     items_sql := fmt.Sprintf("INSERT INTO `%s.%s.%s` VALUES ", 
         project_id, dataset_id, order_items_table_id)

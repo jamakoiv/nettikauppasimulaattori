@@ -190,6 +190,3 @@ func (customer *Customer) Shop(products []Product) (*Order, error) {
 
     return order, nil
 }
-
-
-
