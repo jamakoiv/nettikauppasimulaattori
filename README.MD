@@ -1,6 +1,31 @@
 
-Add simulated orders from simulated customers into google BigQuery-table.
+Program for simulating an internet store. Includes a simple program for simulating customers 
+who place orders to the store, and workers who ship the orders.
 
+Includes automated scripts for plotting daily/weekly/montly sales and profits
+and projections for weekly and monthly sales. Save graphs to google-cloud-storage.
+
+Automated back-up of operational database to google-cloud-storage.
+Weekly.
+
+The customer/worker program is run on google cloud functions 
+and orders are sent to BigQuery tables. Analysis and backup are also
+run on GC functions. Timing is done via GC schedule (cron) and Pub/Sub.
+
+
+The project in BigQuery contains saved SQL-queries for creating the necessary tables.
+Datasets must be added manually.
+
+
+TODO: Refactor simulation program to separate files.
+TODO: Create the workers-part to the simulation program.
+
+TODO: Create a settings-file for BigQuery credentials, dataset- & table-ids etc.
+
+TODO: Create the analysis-scripts.
+TODO: Create the backup-scripts.
+
+TODO: Create tests...
 TODO: Create option for selecting if we want to upload orders from local test-runs.
 
 
@@ -8,35 +33,42 @@ TODO: Create option for selecting if we want to upload orders from local test-ru
 Table schemas in BigQuery (Data type in []):
 -------------------------------------------------
 
-table:	customers
-columns:	id [int], 
-			first_name [string], 
-			last_name [string], 
-			most_active [int], 
-			price_point [int],
+In dataset `store_operational`
 
-table:	products
-columns:	id [int],
-			name [string],
-			wholesale_price [int],
-			price [int],
-			vat [float]
+	table:	customers
+	columns:	id			[int]
+				first_name	[string]
+				last_name	[string]
 
-table:	orders
-columns:	id [int],
-			customer_id [int],
-			delivery_type [int],
-			status [int],
+	table:	products
+	columns:	id				[int]
+				name			[string]
+				wholesale_price [int]
+				price			[int]
+				vat				[float]
 
-table:	order_items
-columns:	order_id [int],
-			product_id [int],
+	table:	orders
+	columns:	id				[int]
+				customer_id		[int]
+				delivery_type	[int]
+				status			[int]
 
-table:	delivery_types
-columns:	delivery_id [int],
-			type_name [string],
+	# Contains items for each order-id.
+	table:	order_items	
+	columns:	order_id	[int]
+				product_id	[int]
 
-table:	orderstatus_types
-columns:	status_id [int],
-			type_name [string],
 
+In dataset `store_constants`
+
+	table:	delivery_types
+	columns:	delivery_id [int],
+				type_name	[string]
+
+	table:	orderstatus_types
+	columns:	status_id	[int]
+				type_name	[string]
+
+	table:	product_categories
+	columns:	category_id [int]
+				type_name 	[string]
