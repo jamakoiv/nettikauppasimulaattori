@@ -52,6 +52,9 @@ In dataset `store_operational`
 				customer_id		[int]
 				delivery_type	[int]
 				status			[int]
+				order_placed	[datetime]
+				shipping_date	[date]
+				tracking_number	[int]
 
 	# Contains items for each order-id.
 	table:	order_items	
