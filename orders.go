@@ -87,7 +87,7 @@ func (order *Order) Send(ctx context.Context, client *bigquery.Client) error {
     // TODO: guard against malicious inputs.
     order_sql := fmt.Sprintf("INSERT INTO `%s.%s.%s` VALUES ", 
         project_id, dataset_id, orders_table_id)
-    order_sql = fmt.Sprintf("%s (%d, %d, %d, %d, \"%s\")", 
+    order_sql = fmt.Sprintf("%s (%d, %d, %d, %d, \"%s\", NULL, NULL)", 
         order_sql, order.id, order.customer_id, 
         order.delivery_type, order.status, Now2SQLDatetime(log_timezone))
 
