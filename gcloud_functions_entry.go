@@ -11,6 +11,16 @@ import (
 	"golang.org/x/exp/slog"
 )
 
+var settings = Settings{
+    "nettikauppasimulaattori",
+    "store_operational",
+    "orders",
+    "order_items",
+
+    "Europe/Helsinki",
+}
+    
+
 /*
     Boilerplate for registering the function for the Eventarc Pub/Sub framework.
 */
@@ -42,6 +52,9 @@ func Run(ctx context.Context, ev event.Event) error {
     }
     defer client.Close()
 
+    /*
+        Check all customers and send orders if any.
+    */
     orders_in_this_run := false
     for _, customer := range Customers {
         order, err := customer.Shop(Products)
@@ -49,7 +62,7 @@ func Run(ctx context.Context, ev event.Event) error {
 
         slog.Debug(fmt.Sprint(order))
         slog.Info(fmt.Sprintf("Sending order %d to BigQuery.", order.id))
-        err = order.Send(ctx, client)
+        err = order.Send(settings, ctx, client)
         if err != nil { 
             slog.Error(fmt.Sprintf("Error in sending order: %v", err))
         }
@@ -60,10 +73,13 @@ func Run(ctx context.Context, ev event.Event) error {
         slog.Info("No orders placed this time.")
     }
 
-    order_ids, err := GetOpenOrders(ctx, client)
+    /*
+        Check all workers and update orders they complete.
+    */
+    order_ids, err := GetOpenOrders(settings, ctx, client)
     if err != nil { fmt.Println(err) }
     fmt.Println(order_ids)
-    err = UpdateOrder(order_ids[0], ctx, client)
+    err = UpdateOrder(order_ids[0], settings, ctx, client)
     if err != nil { fmt.Println(err) }
 
     return nil

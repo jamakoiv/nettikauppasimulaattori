@@ -51,28 +51,31 @@ func (order *Order) String() string {
     return str
 }
 
-func (order *Order) Send(ctx context.Context, client *bigquery.Client) error {
+func (order *Order) Send(   settings Settings, 
+                            ctx context.Context, 
+                            client *bigquery.Client) error {
     // TODO: Break creating the SQL-queries into separate functions.
-    // TODO: Store project_id etc in separate config-file.
 
-    project_id := "nettikauppasimulaattori"
-    dataset_id := "store_operational"
-    orders_table_id := "orders"
-    order_items_table_id := "order_items"
-
-    log_timezone := "Europe/Helsinki"
-
-    t := NowInTimezone(log_timezone)
+    t := NowInTimezone(settings.timezone)
 
     // TODO: guard against malicious inputs.
     order_sql := fmt.Sprintf("INSERT INTO `%s.%s.%s` VALUES ", 
-        project_id, dataset_id, orders_table_id)
+        settings.project_id, 
+        settings.dataset_id, 
+        settings.orders_table_id)
+
     order_sql = fmt.Sprintf("%s (%d, %d, %d, %d, \"%s\", NULL, NULL)", 
-        order_sql, order.id, order.customer_id, 
-        order.delivery_type, order.status, Time2SQLDatetime(t))
+        order_sql, 
+        order.id, 
+        order.customer_id, 
+        order.delivery_type, 
+        order.status, 
+        Time2SQLDatetime(t))
 
     items_sql := fmt.Sprintf("INSERT INTO `%s.%s.%s` VALUES ", 
-        project_id, dataset_id, order_items_table_id)
+        settings.project_id, 
+        settings.dataset_id, 
+        settings.order_items_table_id)
 
     for _, item := range order.items {
         items_sql = fmt.Sprintf("%s (%d, %d),", items_sql, order.id, item.id)

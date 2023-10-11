@@ -34,28 +34,29 @@ func (w *Worker) CheckIfWorking(t time.Time) bool {
     return a && b
 }
 
-func (w *Worker) Work(ctx context.Context, client *bigquery.Client) error {
+func (w *Worker) Work(settings Settings, ctx context.Context, client *bigquery.Client) error {
     if !w.CheckIfWorking(time.Now())  {
         return nil
     }
     
-    orders, err := GetOpenOrders(ctx, client)
+    orders, err := GetOpenOrders(settings, ctx, client)
     if err != nil { return err }
 
-    err = UpdateOrder(rand.Intn(len(orders)), ctx, client)
+    err = UpdateOrder(rand.Intn(len(orders)), settings, ctx, client)
     if err != nil { return err }
     
     return nil
 }
 
-func GetOpenOrders(ctx context.Context, client *bigquery.Client) ([]int, error) {
-    // TODO: Move ids to config file somewhere.
-    project_id := "nettikauppasimulaattori"
-    dataset_id := "store_operational"
-    table_id := "orders"
+func GetOpenOrders( settings Settings, 
+                    ctx context.Context, 
+                    client *bigquery.Client) ([]int, error) {
 
     sql := fmt.Sprintf("SELECT id FROM `%s.%s.%s` WHERE status = %d",
-        project_id, dataset_id, table_id, ORDER_PENDING)
+        settings.project_id,
+        settings.dataset_id,
+        settings.orders_table_id,
+        ORDER_PENDING)
     slog.Debug(sql)
 
     var res []int
@@ -80,17 +81,17 @@ func GetOpenOrders(ctx context.Context, client *bigquery.Client) ([]int, error) 
     return res, nil
 }
 
-func UpdateOrder(order_id int, ctx context.Context, client *bigquery.Client) error {
-    project_id := "nettikauppasimulaattori"
-    dataset_id := "store_operational"
-    table_id := "orders"
+func UpdateOrder(   order_id int, 
+                    settings Settings, 
+                    ctx context.Context, 
+                    client *bigquery.Client) error {
 
-    t := NowInTimezone("Europe/Helsinki")
+    t := NowInTimezone(settings.timezone)
 
     sql := fmt.Sprintf("UPDATE `%s.%s.%s` SET status = %d, shipping_date = \"%s\", tracking_number = %d WHERE id = %d",
-        project_id, 
-        dataset_id,
-        table_id, 
+        settings.project_id, 
+        settings.dataset_id,
+        settings.orders_table_id, 
         ORDER_SHIPPED,
         Time2SQLDate(t), 
         rand.Int(),
