@@ -53,5 +53,12 @@ func Run(ctx context.Context, ev event.Event) error {
     if !orders_in_this_run {
         slog.Info("No orders placed this time.")
     }
+
+    order_ids, err := GetOpenOrders(ctx, client)
+    if err != nil { fmt.Println(err) }
+    fmt.Println(order_ids)
+    err = UpdateOrder(order_ids[0], ctx, client)
+    if err != nil { fmt.Println(err) }
+
     return nil
 }
