@@ -11,6 +11,9 @@ import (
 	"golang.org/x/exp/slog"
 )
 
+/*
+    Boilerplate for registering the function for the Eventarc Pub/Sub framework.
+*/
 type MessagePublishedData struct {
 	Message PubSubMessage
 }
@@ -18,7 +21,10 @@ type PubSubMessage struct {
 	Data []byte `json:"data"`
 }
 
-// Define google cloud functions entry-point.
+/*
+    Choose the execution entry-point e.g. start from this function.
+    Has to match the entry-point selected in google functions.
+*/
 func init() {
 	functions.CloudEvent("Run", Run)
 }

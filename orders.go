@@ -4,9 +4,7 @@ import (
     "fmt"
     "math/rand"
     "context"
-    "time"
     "strings"
-    "log/slog"
 
     "cloud.google.com/go/bigquery"
 )
@@ -30,43 +28,6 @@ const (     // Values for Order.delivery_type.
     SHIP_TO_CUSTOMER = iota
     COLLECT_FROM_STORE = iota
 )
-
-
-func Now2SQLDatetime(timezone string) string {
-    // Return current time as SQL Datetime.
-    var t time.Time
-    tz, err := time.LoadLocation(timezone)
-
-    if err != nil {
-        err_str := fmt.Sprintf("Error getting timezone 'time.LoadLocation(%s'): %s", timezone, err)
-        slog.Error(err_str)
-        t = time.Now()
-    } else {
-        t = time.Now().In(tz)
-    }
-
-    return fmt.Sprintf("%d-%d-%d %d:%d:%d",
-        t.Year(), t.Month(), t.Day(),
-        t.Hour(), t.Minute(), t.Second())
-}
-
-// TODO: Reduce code duplication.
-func Now2SQLDate(timezone string) string {
-    // Return current time as SQL Date.
-    var t time.Time
-    tz, err := time.LoadLocation(timezone)
-
-    if err != nil {
-        err_str := fmt.Sprintf("Error getting timezone 'time.LoadLocation(%s'): %s", timezone, err)
-        slog.Error(err_str)
-        t = time.Now()
-    } else {
-        t = time.Now().In(tz)
-    }
-
-    return fmt.Sprintf("%d-%d-%d", t.Year(), t.Month(), t.Day())
-}
-
 
 func (order *Order) init() {
     order.id = uint64(rand.Uint32())  // Foolishly hope we don't get two same order IDs.
@@ -101,12 +62,14 @@ func (order *Order) Send(ctx context.Context, client *bigquery.Client) error {
 
     log_timezone := "Europe/Helsinki"
 
+    t := NowInTimezone(log_timezone)
+
     // TODO: guard against malicious inputs.
     order_sql := fmt.Sprintf("INSERT INTO `%s.%s.%s` VALUES ", 
         project_id, dataset_id, orders_table_id)
     order_sql = fmt.Sprintf("%s (%d, %d, %d, %d, \"%s\", NULL, NULL)", 
         order_sql, order.id, order.customer_id, 
-        order.delivery_type, order.status, Now2SQLDatetime(log_timezone))
+        order.delivery_type, order.status, Time2SQLDatetime(t))
 
     items_sql := fmt.Sprintf("INSERT INTO `%s.%s.%s` VALUES ", 
         project_id, dataset_id, order_items_table_id)
