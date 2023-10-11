@@ -50,6 +50,23 @@ func Now2SQLDatetime(timezone string) string {
         t.Hour(), t.Minute(), t.Second())
 }
 
+// TODO: Reduce code duplication.
+func Now2SQLDate(timezone string) string {
+    // Return current time as SQL Date.
+    var t time.Time
+    tz, err := time.LoadLocation(timezone)
+
+    if err != nil {
+        err_str := fmt.Sprintf("Error getting timezone 'time.LoadLocation(%s'): %s", timezone, err)
+        slog.Error(err_str)
+        t = time.Now()
+    } else {
+        t = time.Now().In(tz)
+    }
+
+    return fmt.Sprintf("%d-%d-%d", t.Year(), t.Month(), t.Day())
+}
+
 
 func (order *Order) init() {
     order.id = uint64(rand.Uint32())  // Foolishly hope we don't get two same order IDs.
