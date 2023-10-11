@@ -77,10 +77,13 @@ func Run(ctx context.Context, ev event.Event) error {
         Check all workers and update orders they complete.
     */
     order_ids, err := GetOpenOrders(settings, ctx, client)
-    if err != nil { fmt.Println(err) }
-    fmt.Println(order_ids)
-    err = UpdateOrder(order_ids[0], settings, ctx, client)
-    if err != nil { fmt.Println(err) }
+    if err != nil { slog.Error(fmt.Sprint(err)) }
+
+    for i, worker := range Workers {
+        // fmt.Println(order_ids)
+        err := worker.Work(order_ids[i], settings, ctx, client)
+        if err != nil { slog.Error(fmt.Sprint(err)) }
+    }
 
     return nil
 }

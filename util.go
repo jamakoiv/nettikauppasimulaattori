@@ -19,6 +19,10 @@ type Settings struct {
     timezone string
 }
 
+// func LoadSettings() Settings {
+//     return nil
+// }
+
 func NowInTimezone(timezone string) time.Time {
     tz, err := time.LoadLocation(timezone)
 

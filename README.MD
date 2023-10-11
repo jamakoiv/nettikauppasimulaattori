@@ -17,9 +17,6 @@ The project in BigQuery contains saved SQL-queries for creating the necessary ta
 Datasets must be added manually.
 
 
-TODO: Refactor simulation program to separate files.
-TODO: Create the workers-part to the simulation program.
-
 TODO: Create a settings-file for BigQuery credentials, dataset- & table-ids etc.
 
 TODO: Create the analysis-scripts.
