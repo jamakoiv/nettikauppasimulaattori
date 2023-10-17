@@ -5,7 +5,9 @@ import pandas as pd
 import seaborn as sns
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
+
+from google.cloud import storage
 
 import logging
 
@@ -16,7 +18,15 @@ bigquery_ids = {    "project": "nettikauppasimulaattori",
                     "order_items_table": "order_items",
                     "products_table": "products" }
 
+storage_ids = { "project": "nettikauppasimulaattori",
+                "bucket": "nettikauppasimulaattori_analysis"}
+
+
 class OrdersDatabase():
+    """
+    
+    """
+
     def __init__(self, bigquery_ids: dict):
         self.bq_ids = bigquery_ids
 
@@ -87,7 +97,8 @@ class OrdersDatabase():
         """Calculate price, wholesale price, tax, and profit
         for each order and add these to the dataframe.
         """
-        
+        # TODO: Maybe should do this server-side.
+
         for i, ID in enumerate(self.orders['id']):
             tmp = db.order_items[db.order_items['order_id'] == ID]
             tmp = tmp.merge(right=self.products, 
@@ -105,9 +116,12 @@ class OrdersDatabase():
             self.orders.loc[i, 'profit'] = profit
 
 
-def plot(orders: pd.DataFrame,
+
+
+def PlotSales(orders: pd.DataFrame,
          bins: pd.DatetimeIndex,
-         day: datetime):
+         date: datetime):
+    """Plot sales and profits as histogram."""
 
     sns.set_theme()
     fig = plt.figure(figsize=(6, 7))
@@ -129,10 +143,14 @@ def plot(orders: pd.DataFrame,
                         fontsize='small')
     # ax_daily.set_xlabel("Date")
     ax_daily.set_ylabel("Money €")
-
-    ax_daily.set_title("Daily sales {}.".format(day.strftime("%d. %B %Y")))
+    ax_daily.set_title("Daily sales {}.".format(date.strftime("%d. %B %Y")))
 
     return fig, ax
+
+
+def SaveFigure2GoogleCloudStorage(fig: mpl.figure.Figure,
+                                  storage_client: storage.Client):
+    ...
 
 
 if __name__ == "__main__":
