@@ -101,7 +101,7 @@ class OrdersDatabase():
         # TODO: Maybe should do this server-side.
 
         for i, ID in enumerate(self.orders['id']):
-            tmp = db.order_items[db.order_items['order_id'] == ID]
+            tmp = self.order_items[self.order_items['order_id'] == ID]
             tmp = tmp.merge(right=self.products, 
                             left_on='product_id',
                             right_on='id')
@@ -128,7 +128,7 @@ def CreateFigure():
 def PlotDaySales(ax: plt.axis,
               orders: pd.DataFrame,
               bins: pd.DatetimeIndex,
-              title: datetime):
+              title: str):
     """Plot sales and profits as histogram."""
 
     __bins__ =  mpl.dates.date2num(bins)
@@ -146,7 +146,7 @@ def PlotDaySales(ax: plt.axis,
     ax.set_xlabel("Hour", fontsize='small')
     ax.set_ylabel("Money €")
 
-    return ax
+    # return ax
 
 def PlotHistoryAndProjetion():
     ...
@@ -165,15 +165,14 @@ def SaveFigure2GoogleCloudStorage(fig: mpl.figure.Figure,
     blob.upload_from_file(buf, content_type='image/svg', rewind=True)
 
 
-if __name__ == "__main__":
-    #logging.basicConfig(level=logging.DEBUG)
+def main():
+     #logging.basicConfig(level=logging.DEBUG)
 
     t_start = datetime(2023, 10, 13)
     t_end = t_start + timedelta(days=1)
     t_bins = pd.date_range(t_start, t_end, freq="1H")
 
     db = OrdersDatabase(bigquery_ids)
-    # db.orders = db.GetOrders()
     db.orders = db.GetOrders(t_start, t_end)
     db.order_items = db.GetOrderitems()
     db.products = db.GetProducts()
@@ -185,5 +184,9 @@ if __name__ == "__main__":
     filename = "sales_{}.svg".format(t_start.strftime("%Y_%m_%d"))
     
     gcs_client = storage.Client()
-    SaveFigure2GoogleCloudStorage(fig, gcs_client, filename)
     PlotDaySales(ax, db.orders, t_bins, title)
+    SaveFigure2GoogleCloudStorage(fig, gcs_client, filename)
+
+
+if __name__ == "__main__":
+    main()
