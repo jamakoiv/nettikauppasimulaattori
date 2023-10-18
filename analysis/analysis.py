@@ -9,6 +9,7 @@ from datetime import datetime, timedelta
 
 from google.cloud import storage
 
+import io
 import logging
 
 
@@ -116,41 +117,52 @@ class OrdersDatabase():
             self.orders.loc[i, 'profit'] = profit
 
 
-
-
-def PlotSales(orders: pd.DataFrame,
-         bins: pd.DatetimeIndex,
-         date: datetime):
-    """Plot sales and profits as histogram."""
-
+def CreateFigure():
     sns.set_theme()
     fig = plt.figure(figsize=(6, 7))
     ax = fig.subplots(2,1)
     plt.subplots_adjust(top=0.95, hspace=0.60)
 
-    ax_daily, ax_weekly = ax
+    return fig, ax
+
+def PlotDaySales(ax: plt.axis,
+              orders: pd.DataFrame,
+              bins: pd.DatetimeIndex,
+              title: datetime):
+    """Plot sales and profits as histogram."""
 
     __bins__ =  mpl.dates.date2num(bins)
-    ax_daily.hist([orders['order_placed'], orders['order_placed']],
+    ax.hist([orders['order_placed'], orders['order_placed']],
             weights=[orders['price'], orders['profit']],
             bins=__bins__)
 
-    ax_daily.legend(['Sales', 'Profit'])
-    ax_daily.set_xticks(__bins__[::2],
+    ax.legend(['Sales', 'Profit'])
+    ax.set_xticks(__bins__[::2],
                         ["{:02d}".format(x) for x in np.arange(0,25,2)],
                         # rotation=45,
                         ha='right',
                         fontsize='small')
-    # ax_daily.set_xlabel("Date")
-    ax_daily.set_ylabel("Money €")
-    ax_daily.set_title("Daily sales {}.".format(date.strftime("%d. %B %Y")))
+    ax.set_title(title)
+    ax.set_xlabel("Hour", fontsize='small')
+    ax.set_ylabel("Money €")
 
-    return fig, ax
+    return ax
+
+def PlotHistoryAndProjetion():
+    ...
 
 
 def SaveFigure2GoogleCloudStorage(fig: mpl.figure.Figure,
-                                  storage_client: storage.Client):
-    ...
+                                  storage_client: storage.Client,
+                                  filename: str):
+    """Save figure 'fig' to google cloud storage bucket."""
+    
+    buf = io.BytesIO()
+    fig.savefig(buf, format='svg')
+
+    bucket = storage_client.bucket(storage_ids['bucket'])
+    blob = bucket.blob(filename)
+    blob.upload_from_file(buf, content_type='image/svg', rewind=True)
 
 
 if __name__ == "__main__":
@@ -166,3 +178,12 @@ if __name__ == "__main__":
     db.order_items = db.GetOrderitems()
     db.products = db.GetProducts()
     db.CalculateOrderPrices()
+
+
+    fig, ax = CreateFigure()
+    title = "Daily sales {}.".format(t_start.strftime("%d. %B %Y"))
+    filename = "sales_{}.svg".format(t_start.strftime("%Y_%m_%d"))
+    
+    gcs_client = storage.Client()
+    SaveFigure2GoogleCloudStorage(fig, gcs_client, filename)
+    PlotDaySales(ax, db.orders, t_bins, title)
