@@ -118,6 +118,8 @@ func (customer *Customer) Shop(products []Product) (*Order, error) {
         return order, errors.New("Order empty.")
     }
 
+    products = filterProducts(products, customer.product_categories)
+    
     // Customer picks randomly how many and which products to buy.
     n := rand.Intn(10)+1 
     for i := 0; i < n; i++ {

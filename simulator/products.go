@@ -10,9 +10,18 @@ type Product struct {
     vat float64
 }
 
+const (
+    ALCOHOL = 1
+    ELECTRONICS = 2
+    GROCERIES = 3
+    BOOKS = 4
+    CLOTHING = 5
+)
+
 var Products = []Product{   
     {1001, "Pirkka olut 24-pak.", 10, 25, 0.24},
     {1002, "Pirkka olut 6-pak.", 3, 8, 0.24},
+
     {2001, "Raspberry Pi 4 4GB", 40, 80, 0.24},
     {2002, "Raspberry Pi 4 8GB", 50, 100, 0.24},
     {2003, "VHS-kasetteja 10-pak", 5, 8, 0.24},
@@ -33,3 +42,19 @@ var Products = []Product{
     {4002, "Robottien aamunkoitto, Isaac Asimov", 10, 15, 0.10},
     {4003, "Holmenkollen, Matti Hagelberg", 15, 30, 0.10},
 }   
+
+
+func filterProducts(products []Product, categories []int) []Product {
+    var filteredProducts []Product
+
+    for _, category := range categories {
+        for _, product := range products {
+            // Check if the first digit of the product ID matches the specified category
+            if product.id/1000 == category {
+                    filteredProducts = append(filteredProducts, product)
+            }
+        }
+    }
+
+    return filteredProducts
+}
