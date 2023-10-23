@@ -21,38 +21,38 @@ type Customer struct {
 }
 
 var Customers = []Customer{
-    {10,  "Erkki",    "Nyrhinen"   , 6,  150, 0.15, []int{1,2} },
-    {11,  "Jaana",    "Lahtinen"   , 7,  150, 0.25, []int{2} },   
-    {12,  "Toni",     "Kuusisto"   , 8,  150, 0.10, []int{1} },    
-    {13,  "Tero",     "Teronen"    , 9,  150, 0.20, []int{3} },    
+    {10,  "Erkki",    "Nyrhinen"   , 6,  500, 0.15, []int{1,2} },
+    {11,  "Jaana",    "Lahtinen"   , 7,  250, 0.25, []int{2} },   
+    {12,  "Toni",     "Kuusisto"   , 8,  50 , 0.10, []int{1} },    
+    {13,  "Tero",     "Teronen"    , 9,  25 , 0.20, []int{3} },    
     {14,  "Liisa",    "Peronen"    , 9,  150, 0.25, []int{4} },     
     {22,  "Laura",    "Mukka"      , 12, 150, 0.10, []int{3} },       
-    {24,  "Sakari",   "Herkola"    , 12, 150, 0.15, []int{1} },
+    {24,  "Sakari",   "Herkola"    , 12, 250, 0.15, []int{1} },
     {31,  "Kalevi",   "Sorsa"      , 12, 150, 0.20, []int{1} },     
-    {33,  "Mauno",    "Koivisto"   , 14, 150, 0.05, []int{2} },  
-    {34,  "Tarja",    "Kekkonen"   , 14, 150, 0.30, []int{2} },   
+    {33,  "Mauno",    "Koivisto"   , 14, 700, 0.05, []int{2} },  
+    {34,  "Tarja",    "Kekkonen"   , 14, 350, 0.30, []int{2} },   
     {120, "Hertta",   "Kuusisto"   , 14, 150, 0.15, []int{4,3} },  
-    {121, "Sari",     "Jokunen"    , 14, 150, 0.20, []int{2,1} },      
+    {121, "Sari",     "Jokunen"    , 14, 250, 0.20, []int{2,1} },      
     {122, "Kaarina",  "Erkylä"     , 17, 150, 0.10, []int{2} },    
     {123, "Pasi",     "Sarasti"    , 17, 150, 0.20, []int{1} },
-    {200, "Matti",    "Välimäki"   , 17, 150, 0.10, []int{4} },
-    {201, "Matias",   "Honkamaa"   , 17, 150, 0.30, []int{3} },
+    {200, "Matti",    "Välimäki"   , 17, 100, 0.10, []int{4} },
+    {201, "Matias",   "Honkamaa"   , 17, 100, 0.30, []int{3} },
     {202, "Mirva",    "Holma"      , 18, 150, 0.20, []int{3} },
     {203, "Sari",     "Karjalainen", 18, 150, 0.20, []int{4} },
     {204, "Teija",    "Laakso"     , 18, 150, 0.30, []int{2} },
     {205, "Mika",     "Rampa"      , 20, 150, 0.05, []int{2} },
-    {206, "Antti",    "Vettenranta", 20, 150, 0.20, []int{1} },
-    {207, "Anri",     "Lindström"  , 20, 150, 0.10, []int{1,2} },
+    {206, "Antti",    "Vettenranta", 20, 50 , 0.20, []int{1} },
+    {207, "Anri",     "Lindström"  , 20, 50 , 0.10, []int{1,2} },
     {208, "Taina",    "Vilkuna"    , 20, 150, 0.20, []int{1} },
-    {209, "Sami",     "Turunen"    , 21, 150, 0.10, []int{2} },
+    {209, "Sami",     "Turunen"    , 21, 750, 0.10, []int{2} },
     {210, "Marjo",    "Tiirikka"   , 21, 150, 0.20, []int{3} },
     {211, "Jirina",   "Alanko"     , 21, 150, 0.20, []int{4,3} },
     {212, "Kasper",   "Kukkonen"   , 21, 150, 0.05, []int{4} },
     {213, "Karina",   "Tiihonen"   , 22, 150, 0.10, []int{2} },
-    {214, "Pauliina", "Kampuri"    , 22, 150, 0.20, []int{1,2} },
-    {215, "Nelli",    "Numminen"   , 22, 150, 0.25, []int{2} },
+    {214, "Pauliina", "Kampuri"    , 22, 50 , 0.20, []int{1,2} },
+    {215, "Nelli",    "Numminen"   , 22, 25 , 0.25, []int{2} },
     {216, "Anna",     "Schroderus" , 22, 150, 0.20, []int{1} },
-    {217, "Sabrina",  "Bqain"      , 23, 150, 0.10, []int{4,2} },  
+    {217, "Sabrina",  "Bqain"      , 23, 300, 0.10, []int{4,2} },  
     {218, "Tara",     "Junker"     , 23, 150, 0.10, []int{4} },
 
     {219, "Milan",    "Kundera"    , 17, 30 , 0.25, []int{1} },
@@ -78,7 +78,7 @@ var Customers = []Customer{
     {239, "Katimaria","Mustajärvi" , 18, 25 , 0.20, []int{4} },
     {240, "Petteri",  "Oja"        , 18, 50 , 0.30, []int{1} },
     {241, "Jouko",    "Pukkila"    , 17, 100, 0.20, []int{2} },
-    {242, "Timo",     "Ronkainen"  , 15, 200, 0.25, []int{5} },
+    {242, "Timo",     "Ronkainen"  , 15, 200, 0.25, []int{5,1} },
     {243, "Ossi",     "Hiekkala"   , 21, 100, 0.25, []int{2} },
     {244, "Yrjänä",   "Ermala"     , 18, 100, 0.15, []int{3} },
 }
@@ -100,10 +100,13 @@ func calc_probability(x int, base_probability float64, target int, spread int) f
 func (customer *Customer) ChanceToShop() float64 {
     hour := time.Now().Hour()
 
+    base_spread := 5
+    rand_spread := rand.Intn(5)
+
     prob := calc_probability(hour, 
         customer.base_purchase_probability,
         customer.most_active,
-        rand.Intn(10))
+        base_spread + rand_spread)
 
     return prob
 }
@@ -118,7 +121,9 @@ func (customer *Customer) Shop(products []Product) (*Order, error) {
         return order, errors.New("Order empty.")
     }
 
-    products = filterProducts(products, customer.product_categories)
+    // Filter products by product category and customer budget.
+    products = FilterProductsByCategory(products, customer.product_categories)
+    products = FilterProductsByPrice(products, customer.max_budget)
     
     // Customer picks randomly how many and which products to buy.
     n := rand.Intn(10)+1 

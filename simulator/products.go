@@ -1,7 +1,7 @@
 package nettikauppasimulaattori
 
-// TODO: Not actually necessary to have price and other info on this side.
 
+// NOTE: First integer of product-id acts as product category.
 type Product struct {
     id int
     name string
@@ -44,7 +44,7 @@ var Products = []Product{
 }   
 
 
-func filterProducts(products []Product, categories []int) []Product {
+func FilterProductsByCategory(products []Product, categories []int) []Product {
     var filteredProducts []Product
 
     for _, category := range categories {
@@ -53,6 +53,18 @@ func filterProducts(products []Product, categories []int) []Product {
             if product.id/1000 == category {
                     filteredProducts = append(filteredProducts, product)
             }
+        }
+    }
+
+    return filteredProducts
+}
+
+func FilterProductsByPrice(products []Product, max_price int) []Product {
+    var filteredProducts []Product
+
+    for _, product := range products {
+        if product.price <= max_price {
+            filteredProducts = append(filteredProducts, product)
         }
     }
 
