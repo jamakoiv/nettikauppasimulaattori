@@ -7,7 +7,7 @@ from google.cloud import storage
 def main():
     global fig, ax, db, gcs_client
 
-     #logging.basicConfig(level=logging.DEBUG)
+    # logging.basicConfig(level=logging.DEBUG)
 
     t_start = datetime(2023, 10, 13)
     t_end = t_start + timedelta(days=1)
@@ -19,12 +19,11 @@ def main():
     db.products = db.GetProducts()
     db.CalculateOrderPrices()
 
-
     fig, ax = CreateFigure()
     ax_daily, ax_longterm = ax
     title = "Daily sales {}.".format(t_start.strftime("%d. %B %Y"))
     filename = "sales_{}.svg".format(t_start.strftime("%Y_%m_%d"))
-    
+
     gcs_client = storage.Client()
     PlotDaySales(ax_daily, db.orders, t_bins, title)
     SaveFigure2GoogleCloudStorage(fig, gcs_client, filename)
