@@ -7,9 +7,6 @@ import matplotlib.pyplot as plt
 
 from google.cloud import storage
 
-storage_ids = {"project": "nettikauppasimulaattori",
-               "bucket": "nettikauppasimulaattori_analysis"}
-
 
 def CreateFigure():
     sns.set_theme()
@@ -51,12 +48,12 @@ def PlotHistoryAndProjetion():
 
 def SaveFigure2GoogleCloudStorage(fig: mpl.figure.Figure,
                                   storage_client: storage.Client,
-                                  filename: str):
+                                  settings: dict):
     """Save figure 'fig' to google cloud storage bucket."""
 
     buf = io.BytesIO()
     fig.savefig(buf, format='svg')
 
-    bucket = storage_client.bucket(storage_ids['bucket'])
-    blob = bucket.blob(filename)
+    bucket = storage_client.bucket(settings['bucket'])
+    blob = bucket.blob(settings['filename'])
     blob.upload_from_file(buf, content_type='image/svg', rewind=True)

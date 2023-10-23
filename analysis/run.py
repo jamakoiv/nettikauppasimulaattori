@@ -1,7 +1,15 @@
-from database_io import *
-from analyze_and_plot import *
+
+import json
+import pandas as pd
+
+from datetime import datetime, timedelta
+from database_io import OrdersDatabase
+from analyze_and_plot import CreateFigure, PlotDaySales, PlotHistoryAndProjetion, SaveFigure2GoogleCloudStorage
 
 from google.cloud import storage
+
+f_bigquery = "bigquery_ids.json"
+f_cloud_storage = "cloud_storage_ids.json"
 
 
 def main():
@@ -13,7 +21,10 @@ def main():
     t_end = t_start + timedelta(days=1)
     t_bins = pd.date_range(t_start, t_end, freq="1H")
 
-    db = OrdersDatabase(bigquery_ids)
+    bigquery_settings = json.load(open(f_bigquery, 'r'))
+    cloud_storage_settings = json.load(open(f_cloud_storage, 'r'))
+
+    db = OrdersDatabase(bigquery_settings)
     db.orders = db.GetOrders(t_start, t_end)
     db.order_items = db.GetOrderitems()
     db.products = db.GetProducts()
@@ -26,7 +37,9 @@ def main():
 
     gcs_client = storage.Client()
     PlotDaySales(ax_daily, db.orders, t_bins, title)
-    SaveFigure2GoogleCloudStorage(fig, gcs_client, filename)
+
+    cloud_storage_settings['filename'] = filename
+    SaveFigure2GoogleCloudStorage(fig, gcs_client, cloud_storage_settings)
 
 
 if __name__ == "__main__":

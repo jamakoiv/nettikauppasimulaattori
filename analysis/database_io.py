@@ -3,20 +3,13 @@ import logging
 import pandas as pd
 
 
-bigquery_ids = {"project": "nettikauppasimulaattori",
-                "dataset": "store_operational",
-                "orders_table": "orders",
-                "order_items_table": "order_items",
-                "products_table": "products"}
-
-
 class OrdersDatabase():
     """
 
     """
 
-    def __init__(self, bigquery_ids: dict):
-        self.bq_ids = bigquery_ids
+    def __init__(self, bigquery_settings: dict):
+        self.bq_ids = bigquery_settings
 
         self.orders = None
         self.products = None
