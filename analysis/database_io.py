@@ -15,15 +15,14 @@ class OrdersDatabase():
         self.products = None
         self.order_items = None
 
-
     @classmethod
     def datetime2GoogleSQL(self, d: datetime):
         """Convert python datetime-object to google-SQL
         CAST(... AS DATETIME)."""
+
         return """CAST("{:04d}-{:02d}-{:02d}T{:02d}:{:02d}:{:02d}" AS DATETIME)""".format(
             d.year, d.month, d.day,
             d.hour, d.minute, d.second)
-
 
     def GetOrders(self,
                   date_start: datetime = None,
@@ -92,3 +91,13 @@ class OrdersDatabase():
             self.orders.loc[i, 'price'] = price
             self.orders.loc[i, 'tax'] = tax
             self.orders.loc[i, 'profit'] = profit
+
+    def GetAll(self,
+               date_start: datetime = None,
+               date_end: datetime = None):
+        """Helper function to run GetOrders, GetOrderItems,
+        and GetProducts in one call."""
+
+        self.orders = self.GetOrders(date_start, date_end)
+        self.order_items = self.GetOrderitems()
+        self.products = self.GetProducts()

@@ -42,8 +42,18 @@ def PlotDaySales(ax: plt.axis,
     # return ax
 
 
-def PlotHistoryAndProjetion():
-    ...
+def PlotHistoryAndProjetion(ax: plt.axis,
+                            orders: pd.DataFrame,
+                            bins: pd.DatetimeIndex,
+                            title: str):
+    """Plot sales history frame and projection of future sales."""
+    __bins__ = mpl.dates.date2num(bins)
+
+    ax.hist(orders['order_placed'], weights=orders['price'], bins=__bins__)
+    ax.set_xticks(ax.get_xticks())
+    ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha='right', fontsize='small')
+    ax.set_title(title)
+    ax.set_ylabel("Sales €")
 
 
 def SaveFigure2GoogleCloudStorage(fig: mpl.figure.Figure,
