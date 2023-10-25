@@ -54,7 +54,6 @@ func Run(ctx context.Context, ev event.Event) error {
         slog.Info("No orders placed this time.")
     }
 
-    // TODO: Have workers ship the orders.
     for _, worker := range Workers {
         worker.Work(ctx, client)
     }
