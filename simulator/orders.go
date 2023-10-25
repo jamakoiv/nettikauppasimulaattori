@@ -78,6 +78,14 @@ func (order *Order) AddItem(item Product) {
     order.items = append(order.items, item) 
 }
 
+func (order *Order) TotalPrice() int {
+    var total int
+    for _, item := range order.items {
+        total += item.price
+    }
+    return total
+}
+
 // Satisfy Stringer-interface.
 func (order *Order) String() string {
     if order.status == ORDER_EMPTY { return "" }

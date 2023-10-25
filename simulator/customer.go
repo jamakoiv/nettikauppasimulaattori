@@ -129,6 +129,7 @@ func (customer *Customer) Shop(products []Product) (*Order, error) {
     n := rand.Intn(10)+1 
     for i := 0; i < n; i++ {
         order.AddItem(products[rand.Intn(len(products))])
+        if order.TotalPrice() >= customer.max_budget { break }
     }
     order.status = ORDER_PENDING
     order.customer_id = customer.id

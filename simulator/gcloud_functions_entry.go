@@ -54,11 +54,10 @@ func Run(ctx context.Context, ev event.Event) error {
         slog.Info("No orders placed this time.")
     }
 
-    order_ids, err := GetOpenOrders(ctx, client)
-    if err != nil { fmt.Println(err) }
-    fmt.Println(order_ids)
-    err = UpdateOrder(order_ids[0], ctx, client)
-    if err != nil { fmt.Println(err) }
+    // TODO: Have workers ship the orders.
+    for _, worker := range Workers {
+        worker.Work(ctx, client)
+    }
 
     return nil
 }
