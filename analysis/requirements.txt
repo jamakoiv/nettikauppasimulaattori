@@ -1,0 +1,6 @@
+Flask
+functions-framework==3.*
+numpy
+pandas
+matplotlib
+seaborn

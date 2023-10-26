@@ -23,6 +23,7 @@ def PlotDaySales(ax: plt.axis,
                  title: str):
     """Plot sales and profits as histogram."""
 
+    # Plot histogram of sales and profit per hour.
     __bins__ = mpl.dates.date2num(bins)
     ax.hist([orders['order_placed'], orders['order_placed']],
             weights=[orders['price'], orders['profit']],
@@ -42,10 +43,17 @@ def PlotDaySales(ax: plt.axis,
     # return ax
 
 
-def PlotHistoryAndProjetion(ax: plt.axis,
-                            orders: pd.DataFrame,
-                            bins: pd.DatetimeIndex,
-                            title: str):
+def PlotDayOrders(ax: plt.axis,
+                  orders: pd.DataFrame,
+                  title: str):
+
+    dates = pd.to_datetime(orders['order_placed'])
+
+
+def PlotSalesHistory(ax: plt.axis,
+                     orders: pd.DataFrame,
+                     bins: pd.DatetimeIndex,
+                     title: str):
     """Plot sales history frame and projection of future sales."""
     __bins__ = mpl.dates.date2num(bins)
 
