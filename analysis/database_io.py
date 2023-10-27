@@ -1,6 +1,9 @@
 from datetime import datetime, timedelta
+
 import logging
 import pandas as pd
+
+from google.cloud import bigquery
 
 
 class OrdersDatabase():
@@ -31,7 +34,7 @@ class OrdersDatabase():
 
         # Create the SQL query
         query = """SELECT * FROM {}.{}""".format(
-            self.bq_ids["dataset"],
+            self.bq_ids["dataset_operational"],
             self.bq_ids["orders_table"]
             )
         if date_start is not None and date_end is not None:
@@ -55,7 +58,7 @@ class OrdersDatabase():
         """Get the products-table from BigQuery."""
 
         query = """SELECT * FROM {}.{}""".format(
-            self.bq_ids["dataset"],
+            self.bq_ids["dataset_operational"],
             self.bq_ids["products_table"])
         logging.debug(f"GetProducts-query: {query}")
 
@@ -65,7 +68,7 @@ class OrdersDatabase():
         """Get the order-items -table from BigQuery."""
 
         query = """SELECT * FROM {}.{}""".format(
-            self.bq_ids["dataset"],
+            self.bq_ids["dataset_operational"],
             self.bq_ids["order_items_table"])
         logging.debug(f"GetOrderItems-query: {query}")
         return pd.read_gbq(query, project_id=self.bq_ids["project"])
@@ -101,3 +104,50 @@ class OrdersDatabase():
         self.orders = self.GetOrders(date_start, date_end)
         self.order_items = self.GetOrderitems()
         self.products = self.GetProducts()
+
+
+    def MakeARIMAHourly(self,
+                        client: bigquery.Client,
+                        t_start: datetime,
+                        t_end: datetime) -> None:
+
+        # Absolutely horrible wall of text in the middle of the code.
+        q = """CREATE OR REPLACE MODEL `nettikauppasimulaattori.store_analysis.sales_model`
+OPTIONS(
+        model_type = "ARIMA_PLUS",
+        time_series_timestamp_col = 'order_placed_hour',
+        time_series_data_col = 'price_hour',
+        auto_arima = TRUE,
+        data_frequency = 'AUTO_FREQUENCY',
+        decompose_time_series = TRUE
+        )
+AS
+SELECT # Timestamp data has to be truncated to longer than minute intervals or ARIMA fails.
+  DATE_TRUNC(order_placed, HOUR) AS order_placed_hour,
+  SUM(price) AS price_hour
+FROM `nettikauppasimulaattori.store_analysis.order_totals`
+
+WHERE order_placed BETWEEN
+    {t_start} AND {t_end}
+
+GROUP BY order_placed_hour
+ORDER BY order_placed_hour""".format(t_start=t_start, t_end=t_end)
+
+        conf = bigquery.QueryJobConfig(default_dataset=self.bq_ids['dataset_analysis'],
+                                       use_legacy_sql=False)
+        res = client.query(q, job_config=conf)
+        while not res.done():
+            pass
+
+        if res.errors:
+            logging.error("Error creating ARIMA-model: {}".format(res.errors))
+        else:
+            logging.info("Succesfully created ARIMA-model.")
+
+    def QueryARIMAHourly(self, hours_to_forecast: int) -> pd.DataFrame:
+
+        q = """SELECT * FROM ML.FORECAST(MODEL `nettikauppasimulaattori.store_analysis.sales_model`, STRUCT({N} AS horizon))""".format(N=hours_to_forecast)
+
+        df = pd.read_gbq(q, project_id=self.bq_ids['project'])
+
+        return df

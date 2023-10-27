@@ -42,11 +42,11 @@ def Run(event):
     # Currently it is assumed that this will be run after midnight.
     t_end = GetCurrentDate("Europe/Helsinki")
     t_start_daily = t_end - timedelta(days=1)
-    t_start_longterm = t_end - timedelta(days=14)
+    t_start_longterm = t_end - timedelta(days=7)
     t_title = t_start_daily
 
     t_bins_daily = pd.date_range(t_start_daily, t_end, freq=HOURLY)
-    t_bins_longterm = pd.date_range(t_start_longterm, t_end, freq=DAILY)
+    t_bins_longterm = pd.date_range(t_start_longterm, t_end + timedelta(days=3), freq=DAILY)
 
     # Load settings.
     bigquery_settings = json.load(open(f_bigquery, 'r'))
@@ -74,6 +74,12 @@ def Run(event):
     SaveFigure2GoogleCloudStorage(fig, gcs_client, cloud_storage_settings)
 
 
+# For executing Run-function in local machine.
+class DummyEvent():
+    def __init__(self):
+        pass
+
+
 # For running in local machine...
 if __name__ == "__main__":
-    Run()
+    Run(DummyEvent())
