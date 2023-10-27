@@ -194,10 +194,14 @@ func (customer *Customer) Shop(products []Product) (*Order, error) {
     products = FilterProductsByPrice(products, customer.max_budget)
     
     // Customer picks randomly how many and which products to buy.
+    var money_remaining int
     n := rand.Intn(20)+1 
     for i := 0; i < n; i++ {
         order.AddItem(products[rand.Intn(len(products))])
-        if order.TotalPrice() >= customer.max_budget { break }
+
+        money_remaining = customer.max_budget - order.TotalPrice()
+        products = FilterProductsByPrice(products, money_remaining)
+        if len(products) == 0 { break }
     }
     order.status = ORDER_PENDING
     order.customer_id = customer.id
