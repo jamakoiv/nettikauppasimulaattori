@@ -2,5 +2,7 @@ Flask
 functions-framework==3.*
 numpy
 pandas
+pandas-gbq
 matplotlib
 seaborn
+google-cloud-storage
