@@ -11,13 +11,17 @@ class OrdersDatabase():
 
     """
 
-    def __init__(self, bigquery_settings: dict, queries: dict):
-        self.bq_ids = bigquery_settings
+    def __init__(self,
+                 client: bigquery.Client,
+                 bigquery_settings: dict,
+                 queries: dict):
 
+        self.bq_ids = bigquery_settings
         self.orders = None
         self.products = None
         self.order_items = None
         self.queries = queries
+        self.client = client
 
     @classmethod
     def datetime2GoogleSQL(self, d: datetime):
@@ -102,11 +106,11 @@ class OrdersDatabase():
         self.order_items = self.GetOrderitems()
         self.products = self.GetProducts()
 
-
     def MakeARIMAHourly(self,
-                        client: bigquery.Client,
                         t_start: datetime,
                         t_end: datetime) -> None:
+        """Create ARIMA-model for hourly sales.
+        Datasets and tables are defined in self.bq_ids."""
 
         query = self.queries['create_arima_model']['sql'].format(
                     model_dataset=self.bq_ids['dataset_analysis'],
@@ -120,7 +124,7 @@ class OrdersDatabase():
 
         conf = bigquery.QueryJobConfig(default_dataset=self.bq_ids['dataset_analysis'],
                                        use_legacy_sql=False)
-        res = client.query(query, job_config=conf)
+        res = self.client.query(query, job_config=conf)
         while not res.done():
             pass
 
@@ -129,13 +133,35 @@ class OrdersDatabase():
         else:
             logging.info("Succesfully created ARIMA-model.")
 
-    def QueryARIMAHourly(self, hours_to_forecast: int) -> pd.DataFrame:
+    def ForecastARIMAHourly(self,
+                            hours_to_forecast: int):
+        """Use the ML-model for hourly sales to forecast future sales."""
 
         query = self.queries['forecast_model']['sql'].format(
                     model_dataset=self.bq_ids['dataset_analysis'],
                     model_name=self.bq_ids['sales_model'],
                     forecast_N=hours_to_forecast)
 
-        df = pd.read_gbq(query, project_id=self.bq_ids['project'])
+        conf = bigquery.QueryJobConfig(default_dataset=self.bq_ids['dataset_analysis'],
+                                       destination=self.bq_ids['arima_sales_forecast'],
+                                       write_disposition="WRITE_TRUNCATE",
+                                       use_legacy_sql=False)
 
-        return df
+        res = self.client.query(query, job_config=conf)
+        while not res.done():
+            pass
+
+        if res.errors:
+            logging.error("Error forecasting with ARIMA-model: {}".format(res.errors))
+        else:
+            logging.info("""Succesfully retrieved forecast from ARIMA-model:
+                         {model}.""".format(model=self.bq_ids['sales_model']))
+
+    def GetHourlySalesForecast(self) -> pd.DataFrame:
+        """Retrieve forecasted hourly sales data."""
+
+        query = self.queries['get_table']['sql'].format(
+                    dataset=self.bq_ids['dataset_analysis'],
+                    table=self.bq_ids['arima_sales_forecast'])
+
+        return pd.read_gbq(query, project_id=self.bq_ids['project'])

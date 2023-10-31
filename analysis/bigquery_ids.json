@@ -9,5 +9,6 @@
 
 	"dataset_analysis": "store_analysis",
 	"order_totals_table": "order_totals",
-	"sales_model": "arima_sales"
+	"sales_model": "arima_sales",
+	"sales_model_forecast": "arima_sales_forecast"
 }
