@@ -61,7 +61,7 @@ create_arima_model:
     end_date: "End of date-range."
 
   sql: |
-    CREATE OR REPLACE MODEL {model_dataset}.{model_name}`
+    CREATE OR REPLACE MODEL {model_dataset}.{model_name}
     OPTIONS(
             model_type = "ARIMA_PLUS",
             time_series_timestamp_col = 'timestamp_col',
@@ -76,16 +76,15 @@ create_arima_model:
       SUM({data_column}) AS data_col
     FROM {dataset}.{table}
 
-    WHERE {time_column} BETWEEN 
-        DATE_SUB(CURRENT_DATE("Europe/Helsinki") , INTERVAL 7 DAY) AND CURRENT_DATE("Europe/Helsinki")
+    WHERE {time_column} BETWEEN {start_date} AND {end_date} 
 
     GROUP BY timestamp_col
     ORDER BY timestamp_col
 
 forecast_model:
   params:
-    model_dataset: "Dataset name to store the model."
-    model_name: "Model name to store the model."
+    model_dataset: "Dataset name containing ML-model."
+    model_name: "Model name of the ML-model."
     forecast_N: "How many datapoints in future to forecast."
 
   sql: |

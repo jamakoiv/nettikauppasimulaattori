@@ -23,6 +23,9 @@ def PlotDaySales(ax: plt.axis,
                  title: str):
     """Plot sales and profits as histogram."""
 
+    # BUG: X-axis labels give 0-24 hours regardless of
+    # actual bins given in the input.
+
     # Plot histogram of sales and profit per hour.
     __bins__ = mpl.dates.date2num(bins)
     ax.hist([orders['order_placed'], orders['order_placed']],
@@ -43,10 +46,23 @@ def PlotDaySales(ax: plt.axis,
     # return ax
 
 
+def PlotDailyForecast(ax: plt.axis,
+                      forecast: pd.DataFrame) -> None:
+
+    # x_ = mpl.dates.date2num(forecast['forecast_timestamp'])
+    x_ = forecast['forecast_timestamp']
+
+    ax.plot(x_, forecast['forecast_value'], 'k:')
+    ax.plot(x_, forecast['prediction_interval_lower_bound'], 'r:')
+    ax.plot(x_, forecast['prediction_interval_upper_bound'], 'r:')
+
+
 def PlotDayOrders(ax: plt.axis,
                   orders: pd.DataFrame,
                   title: str):
+    """Plot order amounts."""
 
+    # TODO...
     dates = pd.to_datetime(orders['order_placed'])
 
 
