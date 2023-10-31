@@ -1,9 +1,10 @@
 
 Program for simulating an internet store. Includes a simple program for simulating customers 
 who place orders to the store, and workers who ship the orders.
-Ultimate goal is to forecast daily and weekly sales by hour from the sales-data,
-and classify different types of customers by their behaviour (time of day, class of items,
-money used etc.).
+Ultimate goal is to forecast daily and weekly sales by hour from the sales-data 
+(ARIMA or linear regression), and classify different types of customers 
+by their behaviour (time of day, class of items, money used etc.) 
+(k-clustering or RandomForestClassifier). Maybe 
 
 Includes automated scripts for plotting daily/weekly/montly sales and profits
 and projections for weekly and monthly sales. Save graphs to google-cloud-storage.
