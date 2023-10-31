@@ -1,5 +1,7 @@
 
 import json
+import logging
+import yaml
 import pandas as pd
 import pytz
 
@@ -17,6 +19,7 @@ import functions_framework
 # Settings files.
 f_bigquery = "bigquery_ids.json"
 f_cloud_storage = "cloud_storage_ids.json"
+f_queries = "queries.yaml"
 
 
 DAILY = "1D"
@@ -36,7 +39,7 @@ def Run(event):
     global fig, ax, db, gcs_clienst
     global t_bins_daily, t_bins_longterm
 
-    # logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(level=logging.DEBUG)
 
     # NOTE: This script plots data from last 24 hours,
     # Currently it is assumed that this will be run after midnight.
@@ -52,8 +55,11 @@ def Run(event):
     bigquery_settings = json.load(open(f_bigquery, 'r'))
     cloud_storage_settings = json.load(open(f_cloud_storage, 'r'))
 
+    # Load queries.
+    queries = yaml.safe_load(open(f_queries, 'r'))
+
     # Retrieve data.
-    db = OrdersDatabase(bigquery_settings)
+    db = OrdersDatabase(bigquery_settings, queries)
     db.GetAll(t_start_daily, t_end)
     db.CalculateOrderPrices()
 
@@ -71,7 +77,7 @@ def Run(event):
     PlotSalesHistory(ax_longterm, db.orders, t_bins_longterm, "Weekly sales")
 
     cloud_storage_settings['filename'] = filename
-    SaveFigure2GoogleCloudStorage(fig, gcs_client, cloud_storage_settings)
+    # SaveFigure2GoogleCloudStorage(fig, gcs_client, cloud_storage_settings)
 
 
 # For executing Run-function in local machine.

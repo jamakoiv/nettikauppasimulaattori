@@ -1,0 +1,92 @@
+---
+get_table:
+  params:
+    dataset: "BigQuery dataset name."
+    table: "BigQuery table name."
+  sql: |
+    SELECT * FROM {dataset}.{table}
+
+
+get_table_between_dates:
+  params:
+    dataset: "BigQuery dataset name."
+    table: "BigQuery table name."
+    date_column: "Name of the column with dates."
+    start_date: "Beginning of date-range."
+    end_date: "End of date-range."
+  sql: |
+    SELECT * FROM {dataset}.{table} WHERE {date_column} BETWEEN {start_date} AND {end_date}
+
+
+update_order_totals:
+  params:
+    insert_dataset: "BigQuery dataset for results."
+    insert_table: "BigQuery table for results."
+    source_dataset: "BigQuery dataset name of source data."
+    source_table: "BigQuery table name of source data."
+
+  sql: | 
+    INSERT INTO {insert_dataset}.{insert_table} (order_id, order_placed, price, wholesale_price, tax, profit)
+    SELECT order_id, order_placed, price, wholesale_price, tax, profit
+    FROM (
+        SELECT
+            orders.id AS order_id,
+            orders.order_placed AS order_placed,
+            SUM(products.price) AS price,
+            SUM(products.wholesale_price) AS wholesale_price,
+            SUM(products.price * products.vat) AS tax,
+            SUM(products.price) - SUM(products.wholesale_price) - SUM(products.price * products.vat) AS profit
+        FROM (
+            # Select orders from `store_operational.orders` which do not have a corresponding row in table `store_analysis.order_totals`.
+            SELECT orders.id, orders.order_placed
+            FROM {insert_dataset}.{insert_table}`
+            RIGHT JOIN {source_dataset}.{source_table} AS orders ON id = order_id 
+            WHERE order_id IS NULL
+            ) AS orders
+        JOIN store_operational.order_items AS items ON id = items.order_id
+        JOIN store_operational.products AS products ON items.product_id = products.id
+        GROUP BY order_id, order_placed
+    )
+
+
+create_arima_model:
+  params:
+    dataset: "BigQuery dataset name of source-dataset."
+    table: "BigQuery table name of source-table."
+    model_dataset: "Dataset name to store the model."
+    model_name: "Model name to store the model."
+    time_column: "Column name of timestamp data."
+    data_column: "Column name of dependent data."
+    start_date: "Beginning of date-range."
+    end_date: "End of date-range."
+
+  sql: |
+    CREATE OR REPLACE MODEL {model_dataset}.{model_name}`
+    OPTIONS(
+            model_type = "ARIMA_PLUS",
+            time_series_timestamp_col = 'timestamp_col',
+            time_series_data_col = 'data_col',
+            auto_arima = TRUE,
+            data_frequency = 'AUTO_FREQUENCY',
+            decompose_time_series = TRUE
+            ) 
+    AS
+    SELECT # Timestamp data has to be truncated to longer than minute intervals or ARIMA fails.
+      DATE_TRUNC({time_column}, HOUR) AS timestamp_col,
+      SUM({data_column}) AS data_col
+    FROM {dataset}.{table}
+
+    WHERE {time_column} BETWEEN 
+        DATE_SUB(CURRENT_DATE("Europe/Helsinki") , INTERVAL 7 DAY) AND CURRENT_DATE("Europe/Helsinki")
+
+    GROUP BY timestamp_col
+    ORDER BY timestamp_col
+
+forecast_model:
+  params:
+    model_dataset: "Dataset name to store the model."
+    model_name: "Model name to store the model."
+    forecast_N: "How many datapoints in future to forecast."
+
+  sql: |
+    SELECT * FROM ML.FORECAST(MODEL {model_dataset}.{model_name}, STRUCT({forecast_N} AS horizon))

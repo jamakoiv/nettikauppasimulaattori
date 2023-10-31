@@ -8,5 +8,6 @@
 	"products_table": "products",
 
 	"dataset_analysis": "store_analysis",
-	"order_totals_table": "order_totals"
+	"order_totals_table": "order_totals",
+	"sales_model": "arima_sales"
 }

@@ -11,17 +11,17 @@ class OrdersDatabase():
 
     """
 
-    def __init__(self, bigquery_settings: dict):
+    def __init__(self, bigquery_settings: dict, queries: dict):
         self.bq_ids = bigquery_settings
 
         self.orders = None
         self.products = None
         self.order_items = None
+        self.queries = queries
 
     @classmethod
     def datetime2GoogleSQL(self, d: datetime):
-        """Convert python datetime-object to google-SQL
-        CAST(... AS DATETIME)."""
+        """Convert python datetime-object to SQL-style date-string."""
 
         return """CAST("{:04d}-{:02d}-{:02d}T{:02d}:{:02d}:{:02d}" AS DATETIME)""".format(
             d.year, d.month, d.day,
@@ -32,16 +32,12 @@ class OrdersDatabase():
                   date_end: datetime = None):
         """Get orders in timewindow from database in BigQuery."""
 
-        # Create the SQL query
-        query = """SELECT * FROM {}.{}""".format(
-            self.bq_ids["dataset_operational"],
-            self.bq_ids["orders_table"]
-            )
-        if date_start is not None and date_end is not None:
-            query += """ WHERE order_placed BETWEEN {} AND {}""".format(
-                self.datetime2GoogleSQL(date_start),
-                self.datetime2GoogleSQL(date_end)
-            )
+        query = self.queries['get_table_between_dates']['sql'].format(
+                    dataset=self.bq_ids["dataset_operational"],
+                    table=self.bq_ids["orders_table"],
+                    date_column="order_placed",
+                    start_date=self.datetime2GoogleSQL(date_start),
+                    end_date=self.datetime2GoogleSQL(date_end))
         logging.debug(f"GetOrders-query: {query}")
 
         df = pd.read_gbq(query, project_id=self.bq_ids["project"])
@@ -57,9 +53,9 @@ class OrdersDatabase():
     def GetProducts(self):
         """Get the products-table from BigQuery."""
 
-        query = """SELECT * FROM {}.{}""".format(
-            self.bq_ids["dataset_operational"],
-            self.bq_ids["products_table"])
+        query = self.queries['get_table']['sql'].format(
+                    dataset=self.bq_ids["dataset_operational"],
+                    table=self.bq_ids["products_table"])
         logging.debug(f"GetProducts-query: {query}")
 
         return pd.read_gbq(query, project_id=self.bq_ids["project"])
@@ -67,10 +63,11 @@ class OrdersDatabase():
     def GetOrderitems(self):
         """Get the order-items -table from BigQuery."""
 
-        query = """SELECT * FROM {}.{}""".format(
-            self.bq_ids["dataset_operational"],
-            self.bq_ids["order_items_table"])
+        query = self.queries['get_table']['sql'].format(
+                    dataset=self.bq_ids["dataset_operational"],
+                    table=self.bq_ids["order_items_table"])
         logging.debug(f"GetOrderItems-query: {query}")
+
         return pd.read_gbq(query, project_id=self.bq_ids["project"])
 
     def CalculateOrderPrices(self):
@@ -111,31 +108,19 @@ class OrdersDatabase():
                         t_start: datetime,
                         t_end: datetime) -> None:
 
-        # Absolutely horrible wall of text in the middle of the code.
-        q = """CREATE OR REPLACE MODEL `nettikauppasimulaattori.store_analysis.sales_model`
-OPTIONS(
-        model_type = "ARIMA_PLUS",
-        time_series_timestamp_col = 'order_placed_hour',
-        time_series_data_col = 'price_hour',
-        auto_arima = TRUE,
-        data_frequency = 'AUTO_FREQUENCY',
-        decompose_time_series = TRUE
-        )
-AS
-SELECT # Timestamp data has to be truncated to longer than minute intervals or ARIMA fails.
-  DATE_TRUNC(order_placed, HOUR) AS order_placed_hour,
-  SUM(price) AS price_hour
-FROM `nettikauppasimulaattori.store_analysis.order_totals`
-
-WHERE order_placed BETWEEN
-    {t_start} AND {t_end}
-
-GROUP BY order_placed_hour
-ORDER BY order_placed_hour""".format(t_start=t_start, t_end=t_end)
+        query = self.queries['create_arima_model']['sql'].format(
+                    model_dataset=self.bq_ids['dataset_analysis'],
+                    model_name=self.bq_ids['sales_model'],
+                    dataset=self.bq_ids['dataset_analysis'],
+                    table=self.bq_ids['order_totals_table'],
+                    time_column="order_placed",
+                    data_column="price",
+                    start_date=self.datetime2GoogleSQL(t_start),
+                    end_date=self.datetime2GoogleSQL(t_end))
 
         conf = bigquery.QueryJobConfig(default_dataset=self.bq_ids['dataset_analysis'],
                                        use_legacy_sql=False)
-        res = client.query(q, job_config=conf)
+        res = client.query(query, job_config=conf)
         while not res.done():
             pass
 
@@ -146,8 +131,11 @@ ORDER BY order_placed_hour""".format(t_start=t_start, t_end=t_end)
 
     def QueryARIMAHourly(self, hours_to_forecast: int) -> pd.DataFrame:
 
-        q = """SELECT * FROM ML.FORECAST(MODEL `nettikauppasimulaattori.store_analysis.sales_model`, STRUCT({N} AS horizon))""".format(N=hours_to_forecast)
+        query = self.queries['forecast_model']['sql'].format(
+                    model_dataset=self.bq_ids['dataset_analysis'],
+                    model_name=self.bq_ids['sales_model'],
+                    forecast_N=hours_to_forecast)
 
-        df = pd.read_gbq(q, project_id=self.bq_ids['project'])
+        df = pd.read_gbq(query, project_id=self.bq_ids['project'])
 
         return df
