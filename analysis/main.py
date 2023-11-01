@@ -73,7 +73,8 @@ def Run(event):
 
     # Save yesterdays forecast, create new model, and get new forecast.
     previous_sales_forecast = db.GetHourlySalesForecast()
-    # db.MakeARIMAHourly(t_start_arima, t_end)
+    db.UpdateOrderTotals()
+    db.MakeARIMAHourly(t_start_arima, t_end)
     db.ForecastARIMAHourly(24)
     # sales_forecast = db.GetHourlySalesForecast()
 
