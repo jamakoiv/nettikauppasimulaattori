@@ -1,3 +1,9 @@
+#
+# SQL Queries for use with BigQuery-project Nettikauppasimulaattori.
+#
+# NOTE: Check Readme for expected table schemas and column names.
+#
+
 ---
 get_table:
   params:
@@ -89,3 +95,76 @@ forecast_model:
 
   sql: |
     SELECT * FROM ML.FORECAST(MODEL {model_dataset}.{model_name}, STRUCT({forecast_N} AS horizon))
+
+
+# Get stats needed for analyzing customers in single query.
+# Calculates which product category the customer
+# mostly favours, which time the customer mostly shops,
+# total number of orders, and average order total price.
+gather_customer_stats:
+  params:
+    dataset_operational: "Dataset containing the operational database."
+    orders_table: "Table containing individual orders."
+    customers_table: "Table containing customer information."
+    items_table: "Table containing individual orders."
+    products_table: "Table containing individual orders."
+
+    dataset_analysis: "Dataset containing analysis tables."
+    order_totals_table: "Table containing order total price etc."
+
+  sql: |
+    WITH ranked_hours AS (
+        WITH tmp AS (
+            SELECT
+                customer_id,
+                EXTRACT(HOUR FROM order_placed) AS hour,
+                COUNT(*) AS count,
+                RANK() OVER (PARTITION BY customer_id ORDER BY COUNT(*) DESC) AS hour_rank,
+            FROM {dataset_operational}.{orders_table} AS orders
+            GROUP BY customer_id, hour
+            )
+        SELECT  customer_id,
+                AVG(hour) AS hour,
+                SUM(count) as count
+        FROM tmp WHERE hour_rank = 1
+        GROUP BY customer_id
+    ),
+
+    ranked_categories AS (
+        with tmp2 AS (
+            SELECT
+                orders.customer_id AS customer_id,
+                CAST(products.id / 1000 AS INTEGER) AS product_category,
+                COUNT(*) AS count,
+                RANK() OVER (PARTITION BY customers.id ORDER BY COUNT(*) DESC) AS category_rank,
+            FROM {dataset_operational}.{orders_table} AS orders
+            JOIN {dataset_operational}.{items_table} AS items ON items.order_id = orders.id
+            JOIN {dataset_operational}.{products_table} AS products ON products.id = items.product_id
+
+            GROUP BY orders.customer_id, product_category
+            )
+        SELECT customer_id, product_category, count
+        FROM tmp2 WHERE category_rank = 1
+    ),
+
+    order_totals AS (
+        SELECT
+            customer_id,
+            AVG(price) AS average_price,
+            COUNT(*) AS count,
+        FROM {dataset_analysis}.{order_totals_table} AS order_totals
+        GROUP BY customer_id
+    )
+
+    SELECT
+        hours.customer_id AS customer_id,
+        hours.hour AS peak_activity_hour,
+        categories.product_category,
+        categories.count AS products_in_category,
+        totals.average_price AS average_order_price,
+        totals.count AS number_of_orders
+    FROM ranked_hours AS hours
+    JOIN ranked_categories AS categories ON hours.customer_id = categories.customer_id
+    JOIN order_totals AS totals on hours.customer_id = totals.customer_id
+
+    ORDER BY hours.customer_id
