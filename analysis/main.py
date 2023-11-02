@@ -90,7 +90,7 @@ def Run(event):
 
     cloud_storage_settings['filename'] = filename
     cloud_storage_settings['filename'] = "testing"
-    # SaveFigure2GoogleCloudStorage(fig, gcs_client, cloud_storage_settings)
+    SaveFigure2GoogleCloudStorage(fig, gcs_client, cloud_storage_settings)
 
 
 # For executing Run-function in local machine.
