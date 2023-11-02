@@ -25,12 +25,13 @@ class OrdersDatabase():
         self.order_items = None
 
     @classmethod
-    def datetime2GoogleSQL(self, d: datetime):
+    def datetime2GoogleSQL(self, d: datetime, dtype="DATETIME"):
         """Convert python datetime-object to SQL-style date-string."""
 
-        return """CAST("{:04d}-{:02d}-{:02d}T{:02d}:{:02d}:{:02d}" AS DATETIME)""".format(
+        return """CAST("{:04d}-{:02d}-{:02d}T{:02d}:{:02d}:{:02d}" AS {dtype})""".format(
             d.year, d.month, d.day,
-            d.hour, d.minute, d.second)
+            d.hour, d.minute, d.second,
+            dtype=dtype)
 
     def GetOrders(self,
                   date_start: datetime = None,
@@ -199,9 +200,9 @@ class OrdersDatabase():
         query = self.queries['get_table_between_dates']['sql'].format(
                     dataset=self.bq_ids['dataset_analysis'],
                     table=self.bq_ids['sales_model_forecast'],
-                    start_date=self.datetime2GoogleSQL(start_date),
-                    end_date=self.datetime2GoogleSQL(end_date))
-
+                    start_date=self.datetime2GoogleSQL(start_date, dtype="TIMESTAMP"),
+                    end_date=self.datetime2GoogleSQL(end_date, dtype="TIMESTAMP"),
+                    date_column="forecast_timestamp")
         logging.debug("GetHourlySalesForecast query: {}".format(query))
 
         return pd.read_gbq(query, project_id=self.bq_ids['project'])
@@ -212,7 +213,6 @@ class OrdersDatabase():
         query = self.queries['get_customer_stats']['sql'].format(
                     dataset_operational=self.bq_ids['dataset_operational'],
                     orders_table=self.bq_ids["orders_table"],
-                    customers_table=self.bq_ids["customers_table"],
                     items_table=self.bq_ids["order_items_table"],
                     products_table=self.bq_ids["products_table"],
                     dataset_analysis=self.bq_ids["dataset_analysis"],
