@@ -5,6 +5,7 @@
 	"orders_table": "orders",
 	"order_items_table": "order_items",
 	"products_table": "products",
+	"customers_table": "customers",
 
 	"dataset_analysis": "store_analysis",
 	"order_totals_table": "order_totals",
