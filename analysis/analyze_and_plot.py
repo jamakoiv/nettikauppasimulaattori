@@ -50,11 +50,12 @@ def PlotDailyForecast(ax: plt.axis,
                       forecast: pd.DataFrame) -> None:
 
     # x_ = mpl.dates.date2num(forecast['forecast_timestamp'])
+    forecast = forecast.sort_values(by='forecast_timestamp')
     x_ = forecast['forecast_timestamp']
 
     ax.plot(x_, forecast['forecast_value'], 'k:')
-    ax.plot(x_, forecast['prediction_interval_lower_bound'], 'r:')
-    ax.plot(x_, forecast['prediction_interval_upper_bound'], 'r:')
+    # ax.plot(x_, forecast['prediction_interval_lower_bound'], 'r:')
+    # ax.plot(x_, forecast['prediction_interval_upper_bound'], 'r:')
 
 
 def PlotDayOrders(ax: plt.axis,
