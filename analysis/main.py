@@ -72,7 +72,7 @@ def Run(event):
     db.CalculateOrderPrices()
 
     # Save yesterdays forecast, create new model, and get new forecast.
-    previous_sales_forecast = db.GetHourlySalesForecast()
+    previous_sales_forecast = db.GetHourlySalesForecast(t_start_daily, t_end)
     db.UpdateOrderTotals()
     db.MakeARIMAHourly(t_start_arima, t_end)
     db.ForecastARIMAHourly(24)
@@ -93,16 +93,13 @@ def Run(event):
 
     cloud_storage_settings['filename'] = filename
     cloud_storage_settings['filename'] = "testing"
-    SaveFigure2GoogleCloudStorage(fig, gcs_client, cloud_storage_settings)
-
-
+    # SaveFigure2GoogleCloudStorage(fig, gcs_client, cloud_storage_settings)
 
 
 # For executing Run-function in local machine.
 class DummyEvent():
     def __init__(self):
         pass
-
 
 # For running in local machine...
 if __name__ == "__main__":

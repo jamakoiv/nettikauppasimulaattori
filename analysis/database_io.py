@@ -177,7 +177,7 @@ class OrdersDatabase():
                                  self.bq_ids['sales_model_forecast'])
         conf = bigquery.QueryJobConfig(destination=dest,
                                        create_disposition="CREATE_IF_NEEDED",
-                                       write_disposition="WRITE_TRUNCATE",
+                                       write_disposition="WRITE_APPEND",
                                        use_legacy_sql=False)
 
         res = self.client.query(query, job_config=conf)
@@ -191,12 +191,17 @@ class OrdersDatabase():
                          into table {}.""".format(self.bq_ids['sales_model'],
                                                   dest))
 
-    def GetHourlySalesForecast(self) -> pd.DataFrame:
+    def GetHourlySalesForecast(self,
+                               start_date: datetime,
+                               end_date: datetime) -> pd.DataFrame:
         """Retrieve forecasted hourly sales data."""
 
-        query = self.queries['get_table']['sql'].format(
+        query = self.queries['get_table_between_dates']['sql'].format(
                     dataset=self.bq_ids['dataset_analysis'],
-                    table=self.bq_ids['sales_model_forecast'])
+                    table=self.bq_ids['sales_model_forecast'],
+                    start_date=self.datetime2GoogleSQL(start_date),
+                    end_date=self.datetime2GoogleSQL(end_date))
+
         logging.debug("GetHourlySalesForecast query: {}".format(query))
 
         return pd.read_gbq(query, project_id=self.bq_ids['project'])
