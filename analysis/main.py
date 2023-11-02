@@ -39,7 +39,7 @@ def Run(event):
     # Export to global namespace for using interactively.
     global fig, ax, db
     global gcs_client, bq_client
-    global t_bins_daily, t_bins_longterm, t_end, t_start_arima
+    global t_bins_daily, t_bins_longterm, t_end, t_start_arima, t_start_daily
     global previous_sales_forecast, sales_forecast
 
     logging.basicConfig(level=logging.DEBUG)
@@ -68,12 +68,12 @@ def Run(event):
 
     # Retrieve data.
     db = OrdersDatabase(bq_client, bigquery_settings, queries)
-    db.GetAll(t_start_daily, t_end)
+    db.GetAll(t_start_longterm, t_end)
     db.CalculateOrderPrices()
+    db.UpdateOrderTotals()
 
     # Save yesterdays forecast, create new model, and get new forecast.
     previous_sales_forecast = db.GetHourlySalesForecast(t_start_daily, t_end)
-    db.UpdateOrderTotals()
     db.MakeARIMAHourly(t_start_arima, t_end)
     db.ForecastARIMAHourly(24)
     # sales_forecast = db.GetHourlySalesForecast()
@@ -86,9 +86,6 @@ def Run(event):
 
     PlotDaySales(ax_daily, db.orders, t_bins_daily, title)
     PlotDailyForecast(ax_daily, previous_sales_forecast)
-
-    db.orders = db.GetOrders(t_start_longterm, t_end)
-    db.CalculateOrderPrices()
     PlotSalesHistory(ax_longterm, db.orders, t_bins_longterm, "Weekly sales")
 
     cloud_storage_settings['filename'] = filename
