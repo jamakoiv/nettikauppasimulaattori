@@ -136,7 +136,7 @@ get_customer_stats:
                 orders.customer_id AS customer_id,
                 CAST(products.id / 1000 AS INTEGER) AS product_category,
                 COUNT(*) AS count,
-                RANK() OVER (PARTITION BY customers.id ORDER BY COUNT(*) DESC) AS category_rank,
+                RANK() OVER (PARTITION BY customer_id ORDER BY COUNT(*) DESC) AS category_rank,
             FROM {dataset_operational}.{orders_table} AS orders
             JOIN {dataset_operational}.{items_table} AS items ON items.order_id = orders.id
             JOIN {dataset_operational}.{products_table} AS products ON products.id = items.product_id
