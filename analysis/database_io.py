@@ -200,3 +200,32 @@ class OrdersDatabase():
         logging.debug("GetHourlySalesForecast query: {}".format(query))
 
         return pd.read_gbq(query, project_id=self.bq_ids['project'])
+
+    def UpdateCustomerStats(self) -> None:
+        """Update customer_stats table."""
+
+        query = self.queries['get_customer_stats']['sql'].format(
+                    dataset_operational=self.bq_ids['dataset_operational'],
+                    orders_table=self.bq_ids["orders_table"],
+                    customers_table=self.bq_ids["customers_table"],
+                    items_table=self.bq_ids["order_items_table"],
+                    products_table=self.bq_ids["products_table"],
+                    dataset_analysis=self.bq_ids["dataset_analysis"],
+                    order_totals_table=self.bq_ids["order_totals_table"])
+
+        dest = "{}.{}.{}".format(self.bq_ids["project"],
+                                 self.bq_ids["dataset_analysis"],
+                                 self.bq_ids["customer_stats_table"])
+        conf = bigquery.QueryJobConfig(destination=dest,
+                                       create_disposition="CREATE_IF_NEEDED",
+                                       write_disposition="WRITE_TRUNCATE",
+                                       use_legacy_sql=False)
+
+        res = self.client.query(query, job_config=conf)
+        while not res.done():
+            pass
+
+        if res.errors:
+            logging.error("Error updating table {}: {}".format(dest, res.errors))
+        else:
+            logging.info("Succesfully updated table {}.".format(dest))

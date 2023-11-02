@@ -101,7 +101,7 @@ forecast_model:
 # Calculates which product category the customer
 # mostly favours, which time the customer mostly shops,
 # total number of orders, and average order total price.
-gather_customer_stats:
+get_customer_stats:
   params:
     dataset_operational: "Dataset containing the operational database."
     orders_table: "Table containing individual orders."
