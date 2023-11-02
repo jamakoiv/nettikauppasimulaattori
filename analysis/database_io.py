@@ -234,3 +234,13 @@ class OrdersDatabase():
             logging.error("Error updating table {}: {}".format(dest, res.errors))
         else:
             logging.info("Succesfully updated table {}.".format(dest))
+
+    def GetCustomerStats(self) -> pd.DataFrame:
+        """Retrieve contents of customer_stats-table."""
+
+        query = self.queries['get_table']['sql'].format(
+                    dataset=self.bq_ids['dataset_analysis'],
+                    table=self.bq_ids['customer_stats_table'])
+        logging.debug("GetCustomerStats query: {}".format(query))
+
+        return pd.read_gbq(query, project_id=self.bq_ids['project'])
