@@ -2,7 +2,9 @@
 
 import pandas as pd
 
-data = [
+
+# Customer-definitions from simulator/customer.go source-file.
+customers_raw = [
     [10,  "Erkki",    "Nyrhinen"   , 6,  500, 0.15, [1,2] ],
     [11,  "Jaana",    "Lahtinen"   , 7,  250, 0.25, [2] ],   
     [12,  "Toni",     "Kuusisto"   , 8,  50 , 0.10, [1] ],    
@@ -133,11 +135,13 @@ columns = ["id",
            "first_name",
            "last_name",
            "peak_activity_hour",
-           "max_budged",
+           "max_budget",
            "base_purchase_chance",
            "product_category"]
 
-customers = pd.DataFrame(data, columns=columns)
+customers_ref = pd.DataFrame(customers_raw, columns=columns)
+customers_ref['category'] = [x[0] for x in customers_ref['product_category']]
+customers_ref['expected_value'] = customers_ref['max_budget'] * customers_ref['base_purchase_chance']
 
 if __name__ == "__main__":
     pass
