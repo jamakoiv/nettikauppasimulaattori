@@ -31,10 +31,9 @@ const (     // Values for Order.delivery_type.
     COLLECT_FROM_STORE = iota
 )
 
-
-func Now2SQLDatetime(timezone string) string {
-    // Return current time as SQL Datetime.
+func initTimezone(timezone string) (time.Time, error) {
     var t time.Time
+
     tz, err := time.LoadLocation(timezone)
 
     if err != nil {
@@ -44,29 +43,26 @@ func Now2SQLDatetime(timezone string) string {
     } else {
         t = time.Now().In(tz)
     }
+
+    return t, err
+}
+
+
+func Now2SQLDatetime(timezone string) string {
+    // Return current time as SQL Datetime.
+    t, _ := initTimezone(timezone)
 
     return fmt.Sprintf("%d-%d-%d %d:%d:%d",
         t.Year(), t.Month(), t.Day(),
         t.Hour(), t.Minute(), t.Second())
 }
 
-// TODO: Reduce code duplication.
 func Now2SQLDate(timezone string) string {
     // Return current time as SQL Date.
-    var t time.Time
-    tz, err := time.LoadLocation(timezone)
-
-    if err != nil {
-        err_str := fmt.Sprintf("Error getting timezone 'time.LoadLocation(%s'): %s", timezone, err)
-        slog.Error(err_str)
-        t = time.Now()
-    } else {
-        t = time.Now().In(tz)
-    }
+    t, _ := initTimezone(timezone)
 
     return fmt.Sprintf("%d-%d-%d", t.Year(), t.Month(), t.Day())
 }
-
 
 func (order *Order) init() {
     order.id = uint64(rand.Uint32())  // Foolishly hope we don't get two same order IDs.
