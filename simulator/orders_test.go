@@ -13,6 +13,7 @@ var OrdersTestProducts = []Product{
 }   
 
 
+
 func TestTime2SQLDatetime(t *testing.T) {
     var test_time time.Time
     test_time = time.Date(1234, time.Month(6), 7, 8, 9, 10, 0, test_time.Location())
@@ -35,5 +36,23 @@ func TestTime2SQLDate(t *testing.T) {
     if res != target {
         t.Fatalf("Wanted %v, got %v", target, res)
     }
+}
 
+func TestGetInsertOrderSQLquery(t *testing.T) {
+    var test_order Order 
+    test_order.id = 1234
+    test_order.customer_id = 9876
+    test_order.delivery_type = 0
+    test_order.status = 0
+
+    test_order.AddItem(OrdersTestProducts[0])
+    test_order.AddItem(OrdersTestProducts[1])
+
+    // TODO: Again have to get hack the way around time.Now in testing...
+    target := "INSERT INTO `nettikauppasimulaattori.store_operational.orders` VALUES (1234, 9876, 0, 0, \"1234-5-6 7:8:9\", NULL, NULL)"
+    res := GetInsertOrderSQLquery(&test_order)
+
+    if res != target {
+        t.Fatalf("Wanted '%v', got '%v' instead.", target, res)
+    }
 }
