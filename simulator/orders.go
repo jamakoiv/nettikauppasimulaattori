@@ -31,7 +31,7 @@ const (     // Values for Order.delivery_type.
     COLLECT_FROM_STORE = iota
 )
 
-func initTimezone(timezone string) (time.Time, error) {
+func nowInTimezone(timezone string) (time.Time, error) {
     var t time.Time
 
     tz, err := time.LoadLocation(timezone)
@@ -47,21 +47,19 @@ func initTimezone(timezone string) (time.Time, error) {
     return t, err
 }
 
-
-func Now2SQLDatetime(timezone string) string {
+func Time2SQLDatetime(t time.Time) string {
     // Return current time as SQL Datetime.
-    t, _ := initTimezone(timezone)
 
     return fmt.Sprintf("%d-%d-%d %d:%d:%d",
         t.Year(), t.Month(), t.Day(),
         t.Hour(), t.Minute(), t.Second())
 }
 
-func Now2SQLDate(timezone string) string {
+func Time2SQLDate(t time.Time) string {
     // Return current time as SQL Date.
-    t, _ := initTimezone(timezone)
 
-    return fmt.Sprintf("%d-%d-%d", t.Year(), t.Month(), t.Day())
+    return fmt.Sprintf("%d-%d-%d", 
+        t.Year(), t.Month(), t.Day())
 }
 
 func (order *Order) init() {
@@ -104,13 +102,14 @@ func (order *Order) Send(ctx context.Context, client *bigquery.Client) error {
     order_items_table_id := "order_items"
 
     log_timezone := "Europe/Helsinki"
+    now, _ := nowInTimezone(log_timezone)
 
     // TODO: guard against malicious inputs.
     order_sql := fmt.Sprintf("INSERT INTO `%s.%s.%s` VALUES ", 
         project_id, dataset_id, orders_table_id)
     order_sql = fmt.Sprintf("%s (%d, %d, %d, %d, \"%s\", NULL, NULL)", 
         order_sql, order.id, order.customer_id, 
-        order.delivery_type, order.status, Now2SQLDatetime(log_timezone))
+        order.delivery_type, order.status, Time2SQLDatetime(now))
 
     items_sql := fmt.Sprintf("INSERT INTO `%s.%s.%s` VALUES ", 
         project_id, dataset_id, order_items_table_id)

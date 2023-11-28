@@ -85,12 +85,14 @@ func UpdateOrder(order_id int, ctx context.Context, client *bigquery.Client) err
     dataset_id := "store_operational"
     table_id := "orders"
 
+    now, _ := nowInTimezone("Europe/Helsinki")
+
     sql := fmt.Sprintf("UPDATE `%s.%s.%s` SET status = %d, shipping_date = \"%s\", tracking_number = %d WHERE id = %d",
         project_id, 
         dataset_id,
         table_id, 
         ORDER_SHIPPED,
-        Now2SQLDate("Europe/Helsinki"), 
+        Time2SQLDate(now), 
         rand.Int(),
         order_id)
     slog.Debug(sql)
