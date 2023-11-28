@@ -18,6 +18,8 @@ const (
     CLOTHING = 5
 )
 
+// TODO: Move products and categories to separate file or database.
+
 var Products = []Product{   
     {1001, "Pirkka olut 24-pak.", 10, 25, 0.24},
     {1002, "Pirkka olut 6-pak.", 3, 8, 0.24},
@@ -53,7 +55,8 @@ var Products = []Product{
 
 
 func FilterProductsByCategory(products []Product, categories []int) []Product {
-    var filteredProducts []Product
+    // var filteredProducts []Product
+    filteredProducts := []Product{}
 
     for _, category := range categories {
         for _, product := range products {
@@ -68,7 +71,8 @@ func FilterProductsByCategory(products []Product, categories []int) []Product {
 }
 
 func FilterProductsByPrice(products []Product, max_price int) []Product {
-    var filteredProducts []Product
+    // var filteredProducts []Product
+    filteredProducts := []Product{}
 
     for _, product := range products {
         if product.price <= max_price {
