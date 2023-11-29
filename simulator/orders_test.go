@@ -22,11 +22,8 @@ var test_order = Order{
 
 
 func TestTime2SQLDatetime(t *testing.T) {
-    var test_time time.Time
-    test_time = time.Date(1234, time.Month(6), 7, 8, 9, 10, 0, test_time.Location())
-
-    target := "1234-6-7 8:9:10"
-    res := Time2SQLDatetime(test_time)
+    target := "1234-5-6 7:8:9"
+    res := Time2SQLDatetime(test_order.order_placed)
 
     if res != target {
         t.Fatalf("Wanted %v, got %v", target, res)
@@ -34,11 +31,8 @@ func TestTime2SQLDatetime(t *testing.T) {
 }
 
 func TestTime2SQLDate(t *testing.T) {
-    var test_time time.Time
-    test_time = time.Date(1234, time.Month(6), 7, 0, 0, 0, 0, test_time.Location())
-
-    target := "1234-6-7"
-    res := Time2SQLDate(test_time)
+    target := "1234-5-6"
+    res := Time2SQLDate(test_order.order_placed)
 
     if res != target {
         t.Fatalf("Wanted %v, got %v", target, res)
@@ -46,13 +40,6 @@ func TestTime2SQLDate(t *testing.T) {
 }
 
 func TestGetInsertOrderSQLquery(t *testing.T) {
-    // var test_order Order 
-    // test_order.id = 1234
-    // test_order.customer_id = 9876
-    // test_order.delivery_type = 0
-    // test_order.status = 0
-    // test_order.order_placed = time.Date(1234, time.Month(5), 6, 7, 8, 9, 0, time.UTC)
-
     // TODO: Hardcoded table names...
     target := "INSERT INTO `nettikauppasimulaattori.store_operational.orders` VALUES (1234, 9876, 0, 0, \"1234-5-6 7:8:9\", NULL, NULL)"
     res := GetInsertOrderSQLquery(&test_order)
@@ -63,16 +50,7 @@ func TestGetInsertOrderSQLquery(t *testing.T) {
 }
 
 func TestGetInsertOrderItemsSQLquery(t *testing.T) {
-    // var test_order Order 
-    // test_order.id = 1234
-    // test_order.customer_id = 9876
-    // test_order.delivery_type = 0
-    // test_order.status = 0
-    // test_order.order_placed = time.Date(1234, time.Month(5), 6, 7, 8, 9, 0, time.UTC)
-
-    // test_order.AddItem(OrdersTestProducts[0])
-    // test_order.AddItem(OrdersTestProducts[1])
-
+    // TODO: Hardcoded table names...
     target := "INSERT INTO `nettikauppasimulaattori.store_operational.order_items` VALUES (1234, 1001),(1234, 2001)"
     res := GetInsertOrderItemsSQLquery(&test_order)
 
@@ -82,5 +60,10 @@ func TestGetInsertOrderItemsSQLquery(t *testing.T) {
 }
 
 func TestTotalPrice(t *testing.T) {
+    target := 105
+    res := test_order.TotalPrice()
 
+    if res != target {
+        t.Fatalf("Wanted %v, got %v instead.", target, res)
+    }
 }
