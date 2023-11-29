@@ -179,9 +179,10 @@ func (customer *Customer) ChanceToShop() float64 {
     return prob
 }
 
-func (customer *Customer) Shop(products []Product) (*Order, error) {
+func (customer *Customer) Shop(products []Product) (Order, error) {
 
-    order := new(Order)
+    // order := new(Order)
+    var order Order
     order.init()
 
     // Check if customer wants to shop at this time.

@@ -12,6 +12,13 @@ var OrdersTestProducts = []Product{
     {4000, "Silmarillion, J.R.R Tolkien", 10, 25, 0.10},
 }   
 
+var test_order = Order{
+    1234,
+    9876,
+    []Product{OrdersTestProducts[0], OrdersTestProducts[1]},
+    time.Date(1234, time.Month(5), 6, 7, 8, 9, 0, time.UTC),
+    0,
+    0 }
 
 
 func TestTime2SQLDatetime(t *testing.T) {
@@ -39,20 +46,41 @@ func TestTime2SQLDate(t *testing.T) {
 }
 
 func TestGetInsertOrderSQLquery(t *testing.T) {
-    var test_order Order 
-    test_order.id = 1234
-    test_order.customer_id = 9876
-    test_order.delivery_type = 0
-    test_order.status = 0
+    // var test_order Order 
+    // test_order.id = 1234
+    // test_order.customer_id = 9876
+    // test_order.delivery_type = 0
+    // test_order.status = 0
+    // test_order.order_placed = time.Date(1234, time.Month(5), 6, 7, 8, 9, 0, time.UTC)
 
-    test_order.AddItem(OrdersTestProducts[0])
-    test_order.AddItem(OrdersTestProducts[1])
-
-    // TODO: Again have to get hack the way around time.Now in testing...
+    // TODO: Hardcoded table names...
     target := "INSERT INTO `nettikauppasimulaattori.store_operational.orders` VALUES (1234, 9876, 0, 0, \"1234-5-6 7:8:9\", NULL, NULL)"
     res := GetInsertOrderSQLquery(&test_order)
 
     if res != target {
         t.Fatalf("Wanted '%v', got '%v' instead.", target, res)
     }
+}
+
+func TestGetInsertOrderItemsSQLquery(t *testing.T) {
+    // var test_order Order 
+    // test_order.id = 1234
+    // test_order.customer_id = 9876
+    // test_order.delivery_type = 0
+    // test_order.status = 0
+    // test_order.order_placed = time.Date(1234, time.Month(5), 6, 7, 8, 9, 0, time.UTC)
+
+    // test_order.AddItem(OrdersTestProducts[0])
+    // test_order.AddItem(OrdersTestProducts[1])
+
+    target := "INSERT INTO `nettikauppasimulaattori.store_operational.order_items` VALUES (1234, 1001),(1234, 2001)"
+    res := GetInsertOrderItemsSQLquery(&test_order)
+
+    if res != target {
+        t.Fatalf("Wanted '%v', got '%v' instead.", target, res)
+    }
+}
+
+func TestTotalPrice(t *testing.T) {
+
 }

@@ -16,6 +16,7 @@ type Order struct {
     id uint64
     customer_id int
     items []Product
+    order_placed time.Time
     delivery_type int
     status int
 }
@@ -48,24 +49,25 @@ func nowInTimezone(timezone string) (time.Time, error) {
 }
 
 func Time2SQLDatetime(t time.Time) string {
-    // Return current time as SQL Datetime.
-
-    return fmt.Sprintf("%d-%d-%d %d:%d:%d",
+    res := fmt.Sprintf("%d-%d-%d %d:%d:%d",
         t.Year(), t.Month(), t.Day(),
         t.Hour(), t.Minute(), t.Second())
+
+    return res
 }
 
 func Time2SQLDate(t time.Time) string {
-    // Return current time as SQL Date.
-
-    return fmt.Sprintf("%d-%d-%d", 
+    res := fmt.Sprintf("%d-%d-%d", 
         t.Year(), t.Month(), t.Day())
+
+    return res
 }
 
 func (order *Order) init() {
     order.id = uint64(rand.Uint32())  // Foolishly hope we don't get two same order IDs.
     order.status = ORDER_EMPTY
     order.delivery_type = rand.Intn(2)
+    order.order_placed = time.Now()
 }
 
 func (order *Order) AddItem(item Product) {
@@ -94,12 +96,10 @@ func (order *Order) String() string {
 
 
 func GetInsertOrderSQLquery(order *Order) string {
+    // Create SQL-query for inserting order to database.
     project_id := "nettikauppasimulaattori"
     dataset_id := "store_operational"
     orders_table_id := "orders"
-
-    log_timezone := "Europe/Helsinki"
-    now, _ := nowInTimezone(log_timezone)
 
     // TODO: guard against malicious inputs.
     order_sql := fmt.Sprintf("INSERT INTO `%s.%s.%s` VALUES (%d, %d, %d, %d, \"%s\", NULL, NULL)",     project_id, 
@@ -109,12 +109,13 @@ func GetInsertOrderSQLquery(order *Order) string {
         order.customer_id, 
         order.delivery_type, 
         order.status, 
-        Time2SQLDatetime(now))
+        Time2SQLDatetime(order.order_placed))
 
     return order_sql
 }
 
 func GetInsertOrderItemsSQLquery(order *Order) string {
+    // Create SQL-query for inserting order items to database.
     project_id := "nettikauppasimulaattori"
     dataset_id := "store_operational"
     order_items_table_id := "order_items"
@@ -140,6 +141,9 @@ func GetInsertOrderItemsSQLquery(order *Order) string {
 
 
 func (order *Order) Send(ctx context.Context, client *bigquery.Client) error {
+
+    timezone := "Europe/Helsinki"
+    order.order_placed, _ = nowInTimezone(timezone)
 
     order_sql := GetInsertOrderSQLquery(order)
     items_sql := GetInsertOrderItemsSQLquery(order)
