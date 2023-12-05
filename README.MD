@@ -4,30 +4,33 @@ who place orders to the store, and workers who ship the orders.
 Ultimate goal is to forecast daily and weekly sales by hour from the sales-data 
 (ARIMA or linear regression), and classify different types of customers 
 by their behaviour (time of day, class of items, money used etc.) 
-(k-clustering or RandomForestClassifier). Maybe 
+(k-clustering or RandomForestClassifier).
+Other goal is to forecast possible new product sales using linear regression on the sales-data,
+and using logistical regression to classify which customers might buy the
+new product.
 
 Includes automated scripts for plotting daily/weekly/montly sales and profits
 and projections for weekly and monthly sales. Save graphs to google-cloud-storage.
-
-
-Automated back-up of operational database to google-cloud-storage.
-Weekly.
 
 The customer/worker program is run on google cloud functions 
 and orders are sent to BigQuery tables. Analysis and backup are also
 run on GC functions. Timing is done via GC schedule (cron) and Pub/Sub.
 
-
 The project in BigQuery contains saved SQL-queries for creating the necessary tables.
 Datasets must be added manually.
 
+Moved most of data-transforms to DBT. 
 
 
+TODO: Fix bugs/shoddy logic in analysis-scripts.
+TODO: Change analysis-scripts to use DBT-created tables.
 
+TODO: Add DBT-tests.
+TODO: Create separate devel- and production environments for DBT.
+TODO: Add snapshots in DBT.
+TODO: Add data-freshness warnings in DBT.
 
-TODO: Create the backup-scripts.
-
-TODO: Create tests...
+TODO: Create rest of unit-tests.
 TODO: Create option for selecting if we want to upload orders from local test-runs.
 
 
