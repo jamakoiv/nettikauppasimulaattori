@@ -1,40 +1,44 @@
 
 Program for simulating an internet store. Includes a simple program for simulating customers 
 who place orders to the store, and workers who ship the orders.
-Ultimate goal is to forecast daily and weekly sales by hour from the sales-data,
-and classify different types of customers by their behaviour (time of day, class of items,
-money used etc.).
+Ultimate goal is to forecast daily and weekly sales by hour from the sales-data 
+(ARIMA or linear regression), and classify different types of customers 
+by their behaviour (time of day, class of items, money used etc.) 
+(k-clustering or RandomForestClassifier).
+Other goal is to forecast possible new product sales using linear regression on the sales-data,
+and using logistical regression to classify which customers might buy the
+new product.
 
 Includes automated scripts for plotting daily/weekly/montly sales and profits
 and projections for weekly and monthly sales. Save graphs to google-cloud-storage.
-
-
-Automated back-up of operational database to google-cloud-storage.
-Weekly.
 
 The customer/worker program is run on google cloud functions 
 and orders are sent to BigQuery tables. Analysis and backup are also
 run on GC functions. Timing is done via GC schedule (cron) and Pub/Sub.
 
-
 The project in BigQuery contains saved SQL-queries for creating the necessary tables.
 Datasets must be added manually.
 
+Moved most of data-transforms to DBT. 
 
 
-TODO: Create a settings-file for BigQuery credentials, dataset- & table-ids etc.
+TODO: Fix bugs/shoddy logic in analysis-scripts.
+TODO: Change analysis-scripts to use DBT-created tables.
 
-TODO: Create the analysis-scripts.
-TODO: Create the backup-scripts.
+TODO: Add DBT-tests.
+TODO: Create separate devel- and production environments for DBT.
+TODO: Add snapshots in DBT.
+TODO: Add data-freshness warnings in DBT.
 
-TODO: Create tests...
+TODO: Create rest of unit-tests.
 TODO: Create option for selecting if we want to upload orders from local test-runs.
-
 
 
 Table schemas in BigQuery (Data type in []):
 -------------------------------------------------
 
+Dataset `store_operational` contains database of customer information,
+individual orders placed by customers, and products available in the store.
 In dataset `store_operational`:
 
 table:	customers
@@ -64,6 +68,9 @@ columns:	order_id	[int]
 			product_id	[int]
 
 
+Dataset `store_analysis` contains aggregate data created from the data in
+`store_operational'. `order_totals` contains data used for forecasting future sales,
+and `customer_stats` contains data used for analyzing customers.
 In dataset `store_analysis`:
 
 table:	order_totals
@@ -74,7 +81,17 @@ columns:	order_id	[int]
 			tax			[int]
 			profit		[int]
 
+table:	customer_stats
+columns:	customer_id			[int]
+			peak_activity_hour	[int]
+			product_category	[int]
+			products_in_category	[int]
+			average_order_price		[int]
+			number_of_orders		[int]
 
+
+Dataset `store_constants` contains helper data for converting some values
+stored as integers in `store_operational` to human-readable form.
 In dataset `store_constants`:
 
 table:	delivery_types

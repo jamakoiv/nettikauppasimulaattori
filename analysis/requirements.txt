@@ -1,5 +1,6 @@
 Flask
 functions-framework==3.*
+pyyaml
 numpy
 pandas
 pandas-gbq

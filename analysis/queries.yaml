@@ -1,0 +1,170 @@
+#
+# SQL Queries for use with BigQuery-project Nettikauppasimulaattori.
+#
+# NOTE: Check Readme for expected table schemas and column names.
+#
+
+---
+get_table:
+  params:
+    dataset: "BigQuery dataset name."
+    table: "BigQuery table name."
+  sql: |
+    SELECT * FROM {dataset}.{table}
+
+
+get_table_between_dates:
+  params:
+    dataset: "BigQuery dataset name."
+    table: "BigQuery table name."
+    date_column: "Name of the column with dates."
+    start_date: "Beginning of date-range."
+    end_date: "End of date-range."
+  sql: |
+    SELECT * FROM {dataset}.{table} WHERE {date_column} BETWEEN {start_date} AND {end_date}
+
+
+update_order_totals:
+  params:
+    insert_dataset: "BigQuery dataset for results."
+    insert_table: "BigQuery table for results."
+    source_dataset: "BigQuery dataset name of source data."
+    source_table: "BigQuery table name of source data."
+
+  sql: | 
+    INSERT INTO {insert_dataset}.{insert_table} (order_id, order_placed, price, wholesale_price, tax, profit)
+    SELECT order_id, order_placed, price, wholesale_price, tax, profit
+    FROM (
+        SELECT
+            orders.id AS order_id,
+            orders.order_placed AS order_placed,
+            SUM(products.price) AS price,
+            SUM(products.wholesale_price) AS wholesale_price,
+            SUM(products.price * products.vat) AS tax,
+            SUM(products.price) - SUM(products.wholesale_price) - SUM(products.price * products.vat) AS profit
+        FROM (
+            # Select orders from `store_operational.orders` which do not have a corresponding row in table `store_analysis.order_totals`.
+            SELECT orders.id, orders.order_placed
+            FROM {insert_dataset}.{insert_table}`
+            RIGHT JOIN {source_dataset}.{source_table} AS orders ON id = order_id 
+            WHERE order_id IS NULL
+            ) AS orders
+        JOIN store_operational.order_items AS items ON id = items.order_id
+        JOIN store_operational.products AS products ON items.product_id = products.id
+        GROUP BY order_id, order_placed
+    )
+
+
+create_arima_model:
+  params:
+    dataset: "BigQuery dataset name of source-dataset."
+    table: "BigQuery table name of source-table."
+    model_dataset: "Dataset name to store the model."
+    model_name: "Model name to store the model."
+    time_column: "Column name of timestamp data."
+    data_column: "Column name of dependent data."
+    start_date: "Beginning of date-range."
+    end_date: "End of date-range."
+
+  sql: |
+    CREATE OR REPLACE MODEL {model_dataset}.{model_name}
+    OPTIONS(
+            model_type = "ARIMA_PLUS",
+            time_series_timestamp_col = 'timestamp_col',
+            time_series_data_col = 'data_col',
+            auto_arima = TRUE,
+            data_frequency = 'AUTO_FREQUENCY',
+            decompose_time_series = TRUE
+            ) 
+    AS
+    SELECT # Timestamp data has to be truncated to longer than minute intervals or ARIMA fails.
+      DATE_TRUNC({time_column}, HOUR) AS timestamp_col,
+      SUM({data_column}) AS data_col
+    FROM {dataset}.{table}
+
+    WHERE {time_column} BETWEEN {start_date} AND {end_date} 
+
+    GROUP BY timestamp_col
+    ORDER BY timestamp_col
+
+forecast_model:
+  params:
+    model_dataset: "Dataset name containing ML-model."
+    model_name: "Model name of the ML-model."
+    forecast_N: "How many datapoints in future to forecast."
+
+  sql: |
+    SELECT * FROM ML.FORECAST(MODEL {model_dataset}.{model_name}, STRUCT({forecast_N} AS horizon))
+
+
+# Get stats needed for analyzing customers in single query.
+# Calculates which product category the customer
+# mostly favours, which time the customer mostly shops,
+# total number of orders, and average order total price.
+get_customer_stats:
+  params:
+    dataset_operational: "Dataset containing the operational database."
+    orders_table: "Table containing individual orders."
+    customers_table: "Table containing customer information."
+    items_table: "Table containing individual orders."
+    products_table: "Table containing individual orders."
+
+    dataset_analysis: "Dataset containing analysis tables."
+    order_totals_table: "Table containing order total price etc."
+
+  sql: |
+    WITH ranked_hours AS (
+        WITH tmp AS (
+            SELECT
+                customer_id,
+                EXTRACT(HOUR FROM order_placed) AS hour,
+                COUNT(*) AS count,
+                RANK() OVER (PARTITION BY customer_id ORDER BY COUNT(*) DESC) AS hour_rank,
+            FROM {dataset_operational}.{orders_table} AS orders
+            GROUP BY customer_id, hour
+            )
+        SELECT  customer_id,
+                AVG(hour) AS hour,
+                SUM(count) as count
+        FROM tmp WHERE hour_rank = 1
+        GROUP BY customer_id
+    ),
+
+    ranked_categories AS (
+        with tmp2 AS (
+            SELECT
+                orders.customer_id AS customer_id,
+                CAST(products.id / 1000 AS INTEGER) AS product_category,
+                COUNT(*) AS count,
+                RANK() OVER (PARTITION BY customer_id ORDER BY COUNT(*) DESC) AS category_rank,
+            FROM {dataset_operational}.{orders_table} AS orders
+            JOIN {dataset_operational}.{items_table} AS items ON items.order_id = orders.id
+            JOIN {dataset_operational}.{products_table} AS products ON products.id = items.product_id
+
+            GROUP BY orders.customer_id, product_category
+            )
+        SELECT customer_id, product_category, count
+        FROM tmp2 WHERE category_rank = 1
+    ),
+
+    order_totals AS (
+        SELECT
+            customer_id,
+            AVG(price) AS average_price,
+            COUNT(*) AS count,
+        FROM {dataset_analysis}.{order_totals_table} AS order_totals
+        GROUP BY customer_id
+    )
+
+    SELECT
+        hours.customer_id AS customer_id,
+        hours.hour AS peak_activity_hour,
+        categories.product_category,
+        categories.count AS products_in_category,
+        totals.average_price AS average_order_price,
+        totals.count AS number_of_orders
+    FROM ranked_hours AS hours
+    JOIN ranked_categories AS categories ON hours.customer_id = categories.customer_id
+    JOIN order_totals AS totals on hours.customer_id = totals.customer_id
+
+    ORDER BY hours.customer_id
