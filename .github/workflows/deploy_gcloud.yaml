@@ -1,0 +1,72 @@
+name: Create zip of simulator-source code and upload to google-cloud-storage.
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  create_zip:
+    runs_on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: simulator
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create zip-file.
+        uses: montudor/action-zip@v1
+        with:
+          args: zip -qq nettikauppasimulaattori.zip `find -name "*.go" ! -name "*_test.go" -type f`
+
+      - name: Save zip-file.
+        uses: actions/upload-artifact@v2
+        with:
+          name: zip-artifact
+          path: zip-tmp
+          retention-days: 1
+
+
+  upload_zip:
+    runs_on: ubuntu-latest
+    needs: create_zip
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    defaults:
+      run:
+        working-directory: simulator
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 'Authenticate to google cloud.'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          workload_identity_provider: ${{env.WIF_PROVIDER}}
+          service_account: ${{env.WIF_SERVICE_ACCOUNT}}
+
+      - name: 'Set up Google Cloud SDK.'
+        uses: 'google-github-actions/setup-gcloud@v1'
+        with:
+          version: '>= 363.0.0'
+          project_id: ${{env.PROJECT_ID}}
+   
+      - name: 'Check google cloud cli works.'
+        run: 'gcloud info'
+
+      - name: Get saved zip-file.
+        uses: actions/download-artifact@v2
+        with:
+          name: zip-artifact
+          path: zip-tmp
+          
+      - name: Upload to google-cloud-storage.
+        uses: google-github-actions/upload-cloud-storage@v1
+        with:
+          path: nettikauppasimulaattori.zip
+          destination: functions_source_code/nettikauppasimulaattori.zip
+
