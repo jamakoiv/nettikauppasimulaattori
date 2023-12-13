@@ -24,9 +24,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-
       - name: Create zip-file.
-        run: zip nettikauppasimulaattori.zip `find -name "*.go" ! -name "*_test.go" -type f`
+        # zip every file except testing_files.
+        run: zip nettikauppasimulaattori.zip `find ! -name "*_test.go" -type f`
 
       - name: Save zip-file.
         uses: actions/upload-artifact@v2
