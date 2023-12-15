@@ -18,6 +18,7 @@ type Worker struct {
     last_name string
     work_days []int
     work_hours []int
+    orders_per_hour int
     salary_per_hour int
 }
 
@@ -87,12 +88,13 @@ func UpdateOrder(order_id int, ctx context.Context, client *bigquery.Client) err
 
     now, _ := nowInTimezone("Europe/Helsinki")
 
-    sql := fmt.Sprintf("UPDATE `%s.%s.%s` SET status = %d, shipping_date = \"%s\", tracking_number = %d WHERE id = %d",
+    sql := fmt.Sprintf("UPDATE `%s.%s.%s` SET status = %d, shipping_date = \"%s\", last_modified = \"%s\", tracking_number = %d WHERE id = %d",
         project_id, 
         dataset_id,
         table_id, 
         ORDER_SHIPPED,
         Time2SQLDate(now), 
+        Time2SQLDatetime(now), 
         rand.Int(),
         order_id)
     slog.Debug(sql)
