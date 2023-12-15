@@ -11,6 +11,8 @@ import (
 	"cloud.google.com/go/bigquery"
 )
 
+// Type for creating an order, adding products to it, 
+// and sendind in to database.
 type Order struct {
 	id            uint64
 	customer_id   int
@@ -18,6 +20,15 @@ type Order struct {
 	order_placed  time.Time
 	delivery_type int
 	status        int
+}
+
+// Type for temporarily storing order-data returned by the database.
+type OrderReceiver struct {
+	id            uint64
+	customer_id   int
+	delivery_type int
+	status        int
+	order_placed  time.Time
 }
 
 const ( // Values for Order.status.

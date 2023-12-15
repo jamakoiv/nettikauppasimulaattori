@@ -121,14 +121,14 @@ func (w *Worker) Work(ctx context.Context, client *bigquery.Client) error {
     orders, err := GetOpenOrders(ctx, client)
     if err != nil { return err }
 
-    order_id := orders[0]
+    order := orders[0]
     for i := 0; i < w.orders_per_hour; i++ {
-        err = UpdateOrder(order_id, ctx, client)
+        err = UpdateOrder(order, ctx, client)
         if err != nil { return err }
 
         if len(orders) >= 2 {
             orders = orders[1:]
-            order_id = orders[0]
+            order = orders[0]
         } else {
             break
         }
@@ -142,17 +142,18 @@ func (w *Worker) Work(ctx context.Context, client *bigquery.Client) error {
 // and use those rather than 'if len(orders)' in Work.
 
 
-func GetOpenOrders(ctx context.Context, client *bigquery.Client) ([]int, error) {
+func GetOpenOrders(ctx context.Context, client *bigquery.Client) ([]Order, error) {
     // TODO: Move ids to config file somewhere.
     project_id := "nettikauppasimulaattori"
     dataset_id := "store_operational"
     table_id := "orders"
 
-    sql := fmt.Sprintf("SELECT id FROM `%s.%s.%s` WHERE status = %d",
+    sql := fmt.Sprintf("SELECT id, customer_id, delivery_type, status, order_placed FROM `%s.%s.%s` WHERE status = %d",
         project_id, dataset_id, table_id, ORDER_PENDING)
     slog.Debug(sql)
 
-    var res []int
+    var res []Order
+
     q := client.Query(sql)
     job, err := q.Run(ctx)
     if err != nil { return res, err }
@@ -161,14 +162,13 @@ func GetOpenOrders(ctx context.Context, client *bigquery.Client) ([]int, error) 
     if err != nil { return res, err }
     if status.Err() != nil { return res, status.Err() }
 
-    type order_id struct { ID int } // Need this extra struct for receiving single int...
     it, err := job.Read(ctx)
     if err != nil { return res, err }
     for {
-        var tmp order_id
+        tmp := new(OrderReceiver)
         if it.Next(&tmp) == iterator.Done { break }
         // fmt.Printf("%d: %T\n", tmp.ID, tmp.ID)
-        res = append(res, tmp.ID)
+        res = append(res, ConvertOrderReceiverToOrder(*tmp))
     }
 
     // TODO: Add error if res has zero length.
@@ -176,7 +176,20 @@ func GetOpenOrders(ctx context.Context, client *bigquery.Client) ([]int, error) 
     return res, nil
 }
 
-func UpdateOrder(order_id int, ctx context.Context, client *bigquery.Client) error {
+func ConvertOrderReceiverToOrder(o OrderReceiver) Order {
+    var res Order
+
+    res.id = o.id
+    res.customer_id = o.customer_id
+    res.order_placed = o.order_placed
+    res.delivery_type = o.delivery_type
+    res.status = o.status
+        
+    return res
+}
+
+
+func UpdateOrder(order Order, ctx context.Context, client *bigquery.Client) error {
     project_id := "nettikauppasimulaattori"
     dataset_id := "store_operational"
     table_id := "orders"
@@ -191,7 +204,7 @@ func UpdateOrder(order_id int, ctx context.Context, client *bigquery.Client) err
         Time2SQLDate(now), 
         Time2SQLDatetime(now), 
         rand.Int(),
-        order_id)
+        order.id)
     slog.Debug(sql)
 
     q := client.Query(sql)
