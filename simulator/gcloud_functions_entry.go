@@ -55,6 +55,7 @@ func Run(ctx context.Context, ev event.Event) error {
     }
 
     for _, worker := range Workers {
+        slog.Info(fmt.Sprintf("Checking worker %d.", worker.id))
         worker.Work(ctx, client)
     }
 

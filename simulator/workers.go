@@ -121,8 +121,18 @@ func (w *Worker) Work(ctx context.Context, client *bigquery.Client) error {
     orders, err := GetOpenOrders(ctx, client)
     if err != nil { return err }
 
-    err = UpdateOrder(rand.Intn(len(orders)), ctx, client)
-    if err != nil { return err }
+    order_id := orders[0]
+    for i := 0; i < w.orders_per_hour; i++ {
+        err = UpdateOrder(order_id, ctx, client)
+        if err != nil { return err }
+
+        if len(orders) >= 2 {
+            orders = orders[1:]
+            order_id = orders[0]
+        } else {
+            return nil
+        }
+    }
     
     return nil
 }
@@ -155,6 +165,8 @@ func GetOpenOrders(ctx context.Context, client *bigquery.Client) ([]int, error) 
         // fmt.Printf("%d: %T\n", tmp.ID, tmp.ID)
         res = append(res, tmp.ID)
     }
+
+    // TODO: Add error if res has zero length.
 
     return res, nil
 }
