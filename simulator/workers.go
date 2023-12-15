@@ -130,12 +130,17 @@ func (w *Worker) Work(ctx context.Context, client *bigquery.Client) error {
             orders = orders[1:]
             order_id = orders[0]
         } else {
-            return nil
+            break
         }
     }
     
     return nil
 }
+
+// TODO: GetOpenOrders and updateOrder should rather be in orders.go
+// Also define PopOrder for list of orders, ErrorOrderEmpty if list is empty
+// and use those rather than 'if len(orders)' in Work.
+
 
 func GetOpenOrders(ctx context.Context, client *bigquery.Client) ([]int, error) {
     // TODO: Move ids to config file somewhere.
