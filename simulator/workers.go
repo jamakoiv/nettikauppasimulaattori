@@ -108,7 +108,7 @@ func (w *Worker) GetDailySalary() int {
 
 func (w *Worker) CheckIfWorking(t time.Time) bool {
     a := slices.Contains(w.work_hours, t.Hour())
-    b := slices.Contains(w.work_days, t.Day())
+    b := slices.Contains(w.work_days, t.Weekday())
 
     return a && b
 }
