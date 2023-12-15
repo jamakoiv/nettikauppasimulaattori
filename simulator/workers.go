@@ -114,17 +114,26 @@ func (w *Worker) CheckIfWorking(t time.Time) bool {
 }
 
 func (w *Worker) Work(ctx context.Context, client *bigquery.Client) error {
+    slog.Debug("Entering work function.")
+
     if !w.CheckIfWorking(time.Now())  {
+        slog.Debug("Worker not working at this hour.")
         return nil
     }
     
     orders, err := GetOpenOrders(ctx, client)
-    if err != nil { return err }
+    if err != nil { 
+        slog.Debug("GetOpenOrders failed!")
+        return err
+    }
 
     order := orders[0]
     for i := 0; i < w.orders_per_hour; i++ {
         err = UpdateOrder(order, ctx, client)
-        if err != nil { return err }
+        if err != nil {
+            slog.Debug("UpdateOrder failed!")
+            return err
+        }
 
         if len(orders) >= 2 {
             orders = orders[1:]
@@ -152,23 +161,43 @@ func GetOpenOrders(ctx context.Context, client *bigquery.Client) ([]Order, error
         project_id, dataset_id, table_id, ORDER_PENDING)
     slog.Debug(sql)
 
+    slog.Debug("Creating result var.")
     var res []Order
 
+    slog.Debug("Sending query.")
     q := client.Query(sql)
     job, err := q.Run(ctx)
-    if err != nil { return res, err }
+    if err != nil { 
+        slog.Error(fmt.Sprint(err))
+        return res, err }
 
+    slog.Debug("Wait query.")
     status, err := job.Wait(ctx)
-    if err != nil { return res, err }
-    if status.Err() != nil { return res, status.Err() }
+    if err != nil { 
+        slog.Error(fmt.Sprint(err))
+        return res, err 
+    }
 
+    slog.Debug("Check status.")
+    if status.Err() != nil { 
+        slog.Error(fmt.Sprint(err))
+        return res, status.Err()
+    }
+
+    slog.Debug("Get iterator.")
     it, err := job.Read(ctx)
-    if err != nil { return res, err }
+    if err != nil { 
+        slog.Error(fmt.Sprint(err))
+        return res, err
+    }
+
+    
+    slog.Debug("Parse results.")
     for {
-        tmp := new(OrderReceiver)
+        var tmp OrderReceiver
         if it.Next(&tmp) == iterator.Done { break }
         // fmt.Printf("%d: %T\n", tmp.ID, tmp.ID)
-        res = append(res, ConvertOrderReceiverToOrder(*tmp))
+        res = append(res, ConvertOrderReceiverToOrder(tmp))
     }
 
     // TODO: Add error if res has zero length.
