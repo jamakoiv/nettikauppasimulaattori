@@ -2,14 +2,11 @@ package nettikauppasimulaattori
 
 import (
 	"context"
-	"fmt"
-	"math/rand"
 	"slices"
 	"time"
 
 	"cloud.google.com/go/bigquery"
 	"golang.org/x/exp/slog"
-	"google.golang.org/api/iterator"
 )
 
 type Worker struct {
@@ -143,104 +140,5 @@ func (w *Worker) Work(ctx context.Context, client *bigquery.Client) error {
         }
     }
     
-    return nil
-}
-
-// TODO: GetOpenOrders and updateOrder should rather be in orders.go
-// Also define PopOrder for list of orders, ErrorOrderEmpty if list is empty
-// and use those rather than 'if len(orders)' in Work.
-
-
-func GetOpenOrders(ctx context.Context, client *bigquery.Client) ([]Order, error) {
-    // TODO: Move ids to config file somewhere.
-    project_id := "nettikauppasimulaattori"
-    dataset_id := "store_operational"
-    table_id := "orders"
-
-    sql := fmt.Sprintf("SELECT id, customer_id, delivery_type, status, order_placed FROM `%s.%s.%s` WHERE status = %d",
-        project_id, dataset_id, table_id, ORDER_PENDING)
-    slog.Debug(sql)
-
-    var res []Order
-
-    // slog.Debug("Sending query.")
-    q := client.Query(sql)
-    job, err := q.Run(ctx)
-    if err != nil { 
-        slog.Error(fmt.Sprint(err))
-        return res, err }
-
-    // slog.Debug("Wait query.")
-    status, err := job.Wait(ctx)
-    if err != nil { 
-        slog.Error(fmt.Sprint(err))
-        return res, err 
-    }
-
-    // slog.Debug("Check status.")
-    if status.Err() != nil { 
-        slog.Error(fmt.Sprint(err))
-        return res, status.Err()
-    }
-
-    // slog.Debug("Get iterator.")
-    it, err := job.Read(ctx)
-    if err != nil { 
-        slog.Error(fmt.Sprint(err))
-        return res, err
-    }
-
-    // slog.Debug("Parse results.")
-    for {
-        var tmp OrderReceiver
-        if it.Next(&tmp) == iterator.Done { break }
-        // fmt.Printf("%d: %T\n", tmp.ID, tmp.ID)
-        res = append(res, ConvertOrderReceiverToOrder(tmp))
-    }
-
-    // TODO: Add error if res has zero length.
-
-    return res, nil
-}
-
-func ConvertOrderReceiverToOrder(o OrderReceiver) Order {
-    var res Order
-
-    res.id = o.id
-    res.customer_id = o.customer_id
-    res.order_placed = o.order_placed
-    res.delivery_type = o.delivery_type
-    res.status = o.status
-        
-    return res
-}
-
-
-func UpdateOrder(order Order, ctx context.Context, client *bigquery.Client) error {
-    project_id := "nettikauppasimulaattori"
-    dataset_id := "store_operational"
-    table_id := "orders"
-
-    now, _ := nowInTimezone("Europe/Helsinki")
-
-    sql := fmt.Sprintf("UPDATE `%s.%s.%s` SET status = %d, shipping_date = \"%s\", last_modified = \"%s\", tracking_number = %d WHERE id = %d",
-        project_id, 
-        dataset_id,
-        table_id, 
-        ORDER_SHIPPED,
-        Time2SQLDate(now), 
-        Time2SQLDatetime(now), 
-        rand.Int(),
-        order.id)
-    slog.Debug(sql)
-
-    q := client.Query(sql)
-    job, err := q.Run(ctx)
-    if err != nil { return err }
-
-    status, err := job.Wait(ctx)
-    if err != nil { return err }
-    if status.Err() != nil { return status.Err() }
-
     return nil
 }
