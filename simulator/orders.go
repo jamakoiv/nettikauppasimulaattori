@@ -2,6 +2,7 @@ package nettikauppasimulaattori
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"log/slog"
 	"math/rand"
@@ -12,7 +13,7 @@ import (
 	"google.golang.org/api/iterator"
 )
 
-// Type for creating an order, adding products to it, 
+// Type for creating an order, adding products to it,
 // and sendind in to database.
 type Order struct {
 	id            uint64
@@ -43,6 +44,9 @@ const ( // Values for Order.delivery_type.
 	SHIP_TO_CUSTOMER   = iota
 	COLLECT_FROM_STORE = iota
 )
+
+var ErrorEmptyOrdersList = errors.New("List is empty.")
+
 
 func nowInTimezone(timezone string) (time.Time, error) {
 	var t time.Time
@@ -186,6 +190,31 @@ func (order *Order) Send(ctx context.Context, client *bigquery.Client) error {
 	return nil
 }
 
+
+func (orders *Orders) AppendOrder(order Order) {
+    *orders = append(*orders, order)
+}
+
+
+func (orders *Orders) PopOrder(order Order) (Order, error) {
+	if len(*orders) == 0 {
+		return Order{}, ErrorEmptyOrdersList 
+	}
+
+	first := (*orders)[0]
+
+	// [1:] panics if length is 1, se we create and return empty list
+	// if we pop last element out.
+	if len(*orders) == 1 {
+		orders = new(Orders) 
+	} else {
+		(*orders) = (*orders)[1:]
+	}
+
+	return first, nil
+}
+
+
 func GetOpenOrders(ctx context.Context, client *bigquery.Client) (Orders, error) {
     // TODO: Move ids to config file somewhere.
     project_id := "nettikauppasimulaattori"
@@ -230,7 +259,7 @@ func GetOpenOrders(ctx context.Context, client *bigquery.Client) (Orders, error)
         var order OrderReceiver
         if it.Next(&order) == iterator.Done { break }
         // fmt.Printf("%d: %T\n", tmp.ID, tmp.ID)
-        orders = append(orders, ConvertOrderReceiverToOrder(order))
+		orders.AppendOrder(ConvertOrderReceiverToOrder(order))
     }
 
     // TODO: Add error if res has zero length.
