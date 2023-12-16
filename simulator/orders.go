@@ -191,12 +191,12 @@ func (order *Order) Send(ctx context.Context, client *bigquery.Client) error {
 }
 
 
-func (orders *Orders) AppendOrder(order Order) {
+func (orders *Orders) Append(order Order) {
     *orders = append(*orders, order)
 }
 
 
-func (orders *Orders) PopOrder(order Order) (Order, error) {
+func (orders *Orders) Pop() (Order, error) {
 	if len(*orders) == 0 {
 		return Order{}, ErrorEmptyOrdersList 
 	}
@@ -259,7 +259,7 @@ func GetOpenOrders(ctx context.Context, client *bigquery.Client) (Orders, error)
         var order OrderReceiver
         if it.Next(&order) == iterator.Done { break }
         // fmt.Printf("%d: %T\n", tmp.ID, tmp.ID)
-		orders.AppendOrder(ConvertOrderReceiverToOrder(order))
+		orders.Append(ConvertOrderReceiverToOrder(order))
     }
 	
 	if len(orders) == 0 {

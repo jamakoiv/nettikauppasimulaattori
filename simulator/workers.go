@@ -2,6 +2,8 @@ package nettikauppasimulaattori
 
 import (
 	"context"
+	"errors"
+	"fmt"
 	"slices"
 	"time"
 
@@ -119,24 +121,24 @@ func (w *Worker) Work(ctx context.Context, client *bigquery.Client) error {
     }
     
     orders, err := GetOpenOrders(ctx, client)
-    if err != nil { 
-        slog.Debug("GetOpenOrders failed!")
+    if errors.Is(err, ErrorEmptyOrdersList) {
+        slog.Debug(fmt.Sprint("GetOpenOrders did not return any orders: ", err))
+        return err
+    } else if err != nil { 
+        slog.Debug(fmt.Sprint("GetOpenOrders failed!", err))
         return err
     }
 
-    order := orders[0]
     for i := 0; i < w.orders_per_hour; i++ {
+        order, err := orders.Pop()
+        if errors.Is(err, ErrorEmptyOrdersList) {
+            break
+        }
+
         err = UpdateOrder(order, ctx, client)
         if err != nil {
             slog.Debug("UpdateOrder failed!")
             return err
-        }
-
-        if len(orders) >= 2 {
-            orders = orders[1:]
-            order = orders[0]
-        } else {
-            break
         }
     }
     
