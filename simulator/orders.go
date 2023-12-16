@@ -231,26 +231,26 @@ func GetOpenOrders(ctx context.Context, client *bigquery.Client) (Orders, error)
     q := client.Query(sql)
     job, err := q.Run(ctx)
     if err != nil { 
-        slog.Error(fmt.Sprint(err))
+		slog.Error(fmt.Sprint("Error running query in GetOpenOrder: ", err))
         return orders, err }
 
     // slog.Debug("Wait query.")
     status, err := job.Wait(ctx)
     if err != nil { 
-        slog.Error(fmt.Sprint(err))
+		slog.Error(fmt.Sprint("Error waiting in GetOpenOrder: ", err))
         return orders, err 
     }
 
     // slog.Debug("Check status.")
     if status.Err() != nil { 
-        slog.Error(fmt.Sprint(err))
+		slog.Error(fmt.Sprint("Error returned by bigquery: ", err))
         return orders, status.Err()
     }
 
     // slog.Debug("Get iterator.")
     it, err := job.Read(ctx)
     if err != nil { 
-        slog.Error(fmt.Sprint(err))
+		slog.Error(fmt.Sprint("Error reading data returned by bigquery: ", err))
         return orders, err
     }
 
@@ -261,11 +261,14 @@ func GetOpenOrders(ctx context.Context, client *bigquery.Client) (Orders, error)
         // fmt.Printf("%d: %T\n", tmp.ID, tmp.ID)
 		orders.AppendOrder(ConvertOrderReceiverToOrder(order))
     }
-
-    // TODO: Add error if res has zero length.
-
-    return orders, nil
+	
+	if len(orders) == 0 {
+		return orders, ErrorEmptyOrdersList
+	} else {
+		return orders, nil
+	}
 }
+
 
 func ConvertOrderReceiverToOrder(o OrderReceiver) Order {
     var res Order
