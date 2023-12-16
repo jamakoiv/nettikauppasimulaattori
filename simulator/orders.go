@@ -271,11 +271,20 @@ func UpdateOrder(order Order, ctx context.Context, client *bigquery.Client) erro
 
     q := client.Query(sql)
     job, err := q.Run(ctx)
-    if err != nil { return err }
+    if err != nil { 
+		slog.Error(fmt.Sprint("Error running query in UpdateOrder: ", err))
+		return err 
+	}
 
     status, err := job.Wait(ctx)
-    if err != nil { return err }
-    if status.Err() != nil { return status.Err() }
+    if err != nil { 
+		slog.Error(fmt.Sprint("Error waiting query in UpdateOrder: ", err))
+		return err 
+	}
+    if status.Err() != nil { 
+		slog.Error(fmt.Sprint("Received error from bigquery: ", err))
+		return status.Err() 
+	}
 
     return nil
 }
