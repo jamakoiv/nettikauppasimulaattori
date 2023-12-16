@@ -16,33 +16,35 @@ import (
 // Type for creating an order, adding products to it,
 // and sendind in to database.
 type Order struct {
-	id            uint64
-	customer_id   int
-	items         []Product
-	order_placed  time.Time
-	delivery_type int
-	status        int
+    id            uint64
+    customer_id   int
+    items         []Product
+    order_placed  time.Time
+    delivery_type int
+    status        int
 }
 type Orders []Order
 
 // Type for temporarily storing order-data returned by the database.
+// NOTE: All variables have to be public or big-query library fails silently
+// when receiving data.
 type OrderReceiver struct {
-	id            uint64
-	customer_id   int
-	delivery_type int
-	status        int
-	order_placed  time.Time
+    ID            int
+    Customer_id   int
+    Delivery_type int
+    Status        int
+    // Order_placed  time.Time
 }
 
 const ( // Values for Order.status.
-	ORDER_PENDING = iota
-	ORDER_SHIPPED = iota
-	ORDER_EMPTY   = iota
+    ORDER_PENDING = iota
+    ORDER_SHIPPED = iota
+    ORDER_EMPTY   = iota
 )
 
 const ( // Values for Order.delivery_type.
-	SHIP_TO_CUSTOMER   = iota
-	COLLECT_FROM_STORE = iota
+    SHIP_TO_CUSTOMER   = iota
+    COLLECT_FROM_STORE = iota
 )
 
 var ErrorEmptyOrdersList = errors.New("List is empty.")
@@ -192,7 +194,7 @@ func (order *Order) Send(ctx context.Context, client *bigquery.Client) error {
 
 
 func (orders *Orders) Append(order Order) {
-    *orders = append(*orders, order)
+	*orders = append(*orders, order)
 }
 
 
@@ -216,52 +218,51 @@ func (orders *Orders) Pop() (Order, error) {
 
 
 func GetOpenOrders(ctx context.Context, client *bigquery.Client) (Orders, error) {
-    // TODO: Move ids to config file somewhere.
-    project_id := "nettikauppasimulaattori"
-    dataset_id := "store_operational"
-    table_id := "orders"
+	// TODO: Move ids to config file somewhere.
+    	project_id := "nettikauppasimulaattori"
+    	dataset_id := "store_operational"
+    	table_id := "orders"
 
-    sql := fmt.Sprintf("SELECT id, customer_id, delivery_type, status, order_placed FROM `%s.%s.%s` WHERE status = %d",
-        project_id, dataset_id, table_id, ORDER_PENDING)
-    slog.Debug(sql)
+    	sql := fmt.Sprintf("SELECT id, customer_id, delivery_type, status FROM `%s.%s.%s` WHERE status = %d", project_id, dataset_id, table_id, ORDER_PENDING)
+    	slog.Debug(sql)
 
-    var orders Orders
+    	var orders Orders
 
-    // slog.Debug("Sending query.")
-    q := client.Query(sql)
-    job, err := q.Run(ctx)
-    if err != nil { 
+    	// slog.Debug("Sending query.")
+    	q := client.Query(sql)
+    	job, err := q.Run(ctx)
+    	if err != nil { 
 		slog.Error(fmt.Sprint("Error running query in GetOpenOrder: ", err))
         return orders, err }
 
-    // slog.Debug("Wait query.")
-    status, err := job.Wait(ctx)
-    if err != nil { 
+	// slog.Debug("Wait query.")
+	status, err := job.Wait(ctx)
+	if err != nil { 
 		slog.Error(fmt.Sprint("Error waiting in GetOpenOrder: ", err))
-        return orders, err 
-    }
+	return orders, err 
+	}
 
-    // slog.Debug("Check status.")
-    if status.Err() != nil { 
+	// slog.Debug("Check status.")
+	if status.Err() != nil { 
 		slog.Error(fmt.Sprint("Error returned by bigquery: ", err))
-        return orders, status.Err()
-    }
+	return orders, status.Err()
+	}
 
-    // slog.Debug("Get iterator.")
-    it, err := job.Read(ctx)
-    if err != nil { 
+	// slog.Debug("Get iterator.")
+	it, err := job.Read(ctx)
+	if err != nil { 
 		slog.Error(fmt.Sprint("Error reading data returned by bigquery: ", err))
-        return orders, err
-    }
+	return orders, err
+	}
 
-    // slog.Debug("Parse results.")
-    for {
-        var order OrderReceiver
-        if it.Next(&order) == iterator.Done { break }
-        // fmt.Printf("%d: %T\n", tmp.ID, tmp.ID)
+	// slog.Debug("Parse results.")
+	for {
+		var order OrderReceiver
+		if it.Next(&order) == iterator.Done { break }
+		fmt.Println(order.ID, order.Customer_id, order.Delivery_type, order.Status)
 		orders.Append(ConvertOrderReceiverToOrder(order))
-    }
-	
+	}
+
 	if len(orders) == 0 {
 		return orders, ErrorEmptyOrdersList
 	} else {
@@ -273,12 +274,12 @@ func GetOpenOrders(ctx context.Context, client *bigquery.Client) (Orders, error)
 func ConvertOrderReceiverToOrder(o OrderReceiver) Order {
     var res Order
 
-    res.id = o.id
-    res.customer_id = o.customer_id
-    res.order_placed = o.order_placed
-    res.delivery_type = o.delivery_type
-    res.status = o.status
-        
+    res.id = uint64(o.ID)
+    res.customer_id = o.Customer_id
+    // res.order_placed = o.Order_placed
+    res.delivery_type = o.Delivery_type
+    res.status = o.Status
+
     return res
 }
 

@@ -121,6 +121,7 @@ func (w *Worker) Work(ctx context.Context, client *bigquery.Client) error {
     }
     
     orders, err := GetOpenOrders(ctx, client)
+    slog.Debug(fmt.Sprint(len(orders)))
     if errors.Is(err, ErrorEmptyOrdersList) {
         slog.Debug(fmt.Sprint("GetOpenOrders did not return any orders: ", err))
         return err
@@ -131,6 +132,7 @@ func (w *Worker) Work(ctx context.Context, client *bigquery.Client) error {
 
     for i := 0; i < w.orders_per_hour; i++ {
         order, err := orders.Pop()
+        slog.Debug(fmt.Sprint(order))
         if errors.Is(err, ErrorEmptyOrdersList) {
             break
         }
