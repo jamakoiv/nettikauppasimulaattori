@@ -161,38 +161,36 @@ func GetOpenOrders(ctx context.Context, client *bigquery.Client) ([]Order, error
         project_id, dataset_id, table_id, ORDER_PENDING)
     slog.Debug(sql)
 
-    slog.Debug("Creating result var.")
     var res []Order
 
-    slog.Debug("Sending query.")
+    // slog.Debug("Sending query.")
     q := client.Query(sql)
     job, err := q.Run(ctx)
     if err != nil { 
         slog.Error(fmt.Sprint(err))
         return res, err }
 
-    slog.Debug("Wait query.")
+    // slog.Debug("Wait query.")
     status, err := job.Wait(ctx)
     if err != nil { 
         slog.Error(fmt.Sprint(err))
         return res, err 
     }
 
-    slog.Debug("Check status.")
+    // slog.Debug("Check status.")
     if status.Err() != nil { 
         slog.Error(fmt.Sprint(err))
         return res, status.Err()
     }
 
-    slog.Debug("Get iterator.")
+    // slog.Debug("Get iterator.")
     it, err := job.Read(ctx)
     if err != nil { 
         slog.Error(fmt.Sprint(err))
         return res, err
     }
 
-    
-    slog.Debug("Parse results.")
+    // slog.Debug("Parse results.")
     for {
         var tmp OrderReceiver
         if it.Next(&tmp) == iterator.Done { break }
