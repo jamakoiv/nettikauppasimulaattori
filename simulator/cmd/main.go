@@ -1,12 +1,10 @@
 package main
 
 import (
-	"context"
 	"flag"
 	"fmt"
 	"os"
 
-	"github.com/cloudevents/sdk-go/v2/event"
 	"nettikauppasimulaattori.piste"
 
 	"golang.org/x/exp/slog"
@@ -30,13 +28,9 @@ func main() {
 
 	// Run selected target.
 	if *targetPtr == "prod" {
-		ctx := context.Background()
-		ev := event.Event{}
-
-		nettikauppasimulaattori.Run(ctx, ev)
+		nettikauppasimulaattori.Run_prod()
 	} else if *targetPtr == "test" {
-		// Implement test-run.
-		slog.Error(fmt.Sprint("Run target 'test' not implemented yet."))
+		nettikauppasimulaattori.Run_test()
 	} else if *targetPtr == "" {
 		slog.Error(fmt.Sprint("Empty run-target. Aborting..."))
 	} else {

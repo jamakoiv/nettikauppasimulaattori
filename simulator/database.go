@@ -5,15 +5,17 @@ import (
     "cloud.google.com/go/bigquery"
     "fmt"
     "strings"
+    "math/rand"
 
     "golang.org/x/exp/slog"
+    "google.golang.org/api/iterator"
 )
 
 type Database interface {
-    SendOrder(Order)
-    GetOpenOrders() Orders
-    UpdateOrder(Order)
-    Close()
+    SendOrder(Order) error
+    GetOpenOrders() (Orders, error)
+    UpdateOrder(Order) error
+    Close() 
 }
 
 
@@ -37,8 +39,9 @@ func (db *DatabaseBigQuery) Init(ctx context.Context, project string, dataset st
     db.orders_table = orders_table
     db.order_items_table = order_items_table
     db.timezone = timezone
+    db.ctx = ctx
 
-    client, err := bigquery.NewClient(ctx, db.project)
+    client, err := bigquery.NewClient(db.ctx, db.project)
     if err != nil { 
         slog.Error("Error creating BigQuery-client.") 
         return err
@@ -68,11 +71,13 @@ func (db *DatabaseBigQuery) SendOrder(order Order) error {
 
         job, err := q.Run(db.ctx)
         if err != nil {
+            slog.Error(fmt.Sprint("Error submitting query."))
             return err
         }
 
         status, err := job.Wait(db.ctx)
         if err != nil {
+            slog.Error(fmt.Sprint("Error waiting for query to finish."))
             return err
         }
         if status.Err() != nil {
@@ -116,4 +121,78 @@ func (db *DatabaseBigQuery) GetInsertOrderItemsSQLquery(order Order) string {
     items_sql = strings.TrimSuffix(items_sql, ",")
 
     return items_sql
+}
+
+func (db *DatabaseBigQuery) GetOpenOrders() (Orders, error) {
+    sql := fmt.Sprintf("SELECT id, customer_id, delivery_type, status FROM `%s.%s.%s` WHERE status = %d", 
+        db.project, db.dataset, db.orders_table, ORDER_PENDING)
+    slog.Debug(sql)
+
+    var orders Orders
+
+    q := db.client.Query(sql)
+    job, err := q.Run(db.ctx)
+    if err != nil { 
+        slog.Error(fmt.Sprint("Error running query in GetOpenOrder: ", err))
+    return orders, err }
+
+    status, err := job.Wait(db.ctx)
+    if err != nil { 
+        slog.Error(fmt.Sprint("Error waiting in GetOpenOrder: ", err))
+    return orders, err 
+    }
+
+    if status.Err() != nil { 
+        slog.Error(fmt.Sprint("Error returned by bigquery: ", err))
+    return orders, status.Err()
+    }
+
+    it, err := job.Read(db.ctx)
+    if err != nil { 
+        slog.Error(fmt.Sprint("Error reading data returned by bigquery: ", err))
+    return orders, err
+    }
+
+    for {
+        var order OrderReceiver
+        if it.Next(&order) == iterator.Done { break }
+        fmt.Println(order.ID, order.Customer_id, order.Delivery_type, order.Status)
+        orders.Append(ConvertOrderReceiverToOrder(order))
+    }
+
+    if len(orders) == 0 {
+            return orders, ErrorEmptyOrdersList
+    } else {
+            return orders, nil
+    }
+}
+
+func (db *DatabaseBigQuery) UpdateOrder(order Order) error {
+    now, _ := nowInTimezone(db.timezone)
+
+    sql := fmt.Sprintf("UPDATE `%s.%s.%s` SET status = %d, shipping_date = \"%s\", last_modified = \"%s\", tracking_number = %d WHERE id = %d",
+        db.project, db.dataset, db.orders_table, 
+        ORDER_SHIPPED,
+        Time2SQLDate(now), Time2SQLDatetime(now), 
+        rand.Int(),
+        order.id)
+    slog.Debug(sql)
+
+    q := db.client.Query(sql)
+    job, err := q.Run(db.ctx)
+    if err != nil { 
+		slog.Error(fmt.Sprint("Error running query in UpdateOrder: ", err))
+		return err 
+	}
+    status, err := job.Wait(db.ctx)
+    if err != nil { 
+		slog.Error(fmt.Sprint("Error waiting query in UpdateOrder: ", err))
+		return err 
+	}
+    if status.Err() != nil { 
+		slog.Error(fmt.Sprint("Received error from bigquery: ", err))
+		return status.Err() 
+	}
+
+    return nil
 }

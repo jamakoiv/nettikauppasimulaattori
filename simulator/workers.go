@@ -1,13 +1,11 @@
 package nettikauppasimulaattori
 
 import (
-	"context"
 	"errors"
 	"fmt"
 	"slices"
 	"time"
 
-	"cloud.google.com/go/bigquery"
 	"golang.org/x/exp/slog"
 )
 
@@ -112,7 +110,7 @@ func (w *Worker) CheckIfWorking(t time.Time) bool {
     return a && b
 }
 
-func (w *Worker) Work(ctx context.Context, client *bigquery.Client) error {
+func (w *Worker) Work(db Database) error {
     slog.Debug("Entering work function.")
 
     if !w.CheckIfWorking(time.Now())  {
@@ -120,8 +118,8 @@ func (w *Worker) Work(ctx context.Context, client *bigquery.Client) error {
         return nil
     }
     
-    orders, err := GetOpenOrders(ctx, client)
-    slog.Debug(fmt.Sprint(len(orders)))
+    orders, err := db.GetOpenOrders()
+    slog.Debug(fmt.Sprintf("Received %d open orders.", len(orders)))
     if errors.Is(err, ErrorEmptyOrdersList) {
         slog.Debug(fmt.Sprint("GetOpenOrders did not return any orders: ", err))
         return err
@@ -137,7 +135,7 @@ func (w *Worker) Work(ctx context.Context, client *bigquery.Client) error {
             break
         }
 
-        err = UpdateOrder(order, ctx, client)
+        err = db.UpdateOrder(order)
         if err != nil {
             slog.Debug("UpdateOrder failed!")
             return err
