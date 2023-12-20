@@ -31,22 +31,7 @@ func RunWorkers(ctx context.Context, client* bigquery.Client) {
             slog.Error(fmt.Sprint(err))
         }
     }
-
-    // DebugWorker := Worker{777, "Debug", "Debugger",
-    //     []time.Weekday{time.Monday, 
-    //         time.Tuesday, 
-    //         time.Wednesday, 
-    //         time.Thursday,
-    //         time.Friday},
-    //     []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23},
-    //     3, 15}
-
-    // err := DebugWorker.Work(ctx, client)
-    // if err != nil {
-    //     slog.Error(fmt.Sprint(err))
-    // }
 }
-
 
 func RunCustomers(ctx context.Context, client* bigquery.Client) {
     orders_in_this_run := false
