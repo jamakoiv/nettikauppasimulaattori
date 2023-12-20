@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"log/slog"
 	"math/rand"
-	"strings"
 	"time"
 
 	"cloud.google.com/go/bigquery"
@@ -114,89 +113,9 @@ func (order *Order) String() string {
 	return str
 }
 
-func GetInsertOrderSQLquery(order *Order) string {
-	// Create SQL-query for inserting order to database.
-	project_id := "nettikauppasimulaattori"
-	dataset_id := "store_operational"
-	orders_table_id := "orders"
-
-	// TODO: guard against malicious inputs.
-	order_sql := fmt.Sprintf("INSERT INTO `%s.%s.%s` VALUES (%d, %d, %d, %d, \"%s\", NULL, NULL, \"%s\")", project_id,
-		dataset_id,
-		orders_table_id,
-		order.id,
-		order.customer_id,
-		order.delivery_type,
-		order.status,
-		Time2SQLDatetime(order.order_placed),
-		Time2SQLDatetime(order.order_placed))
-
-	return order_sql
-}
-
-func GetInsertOrderItemsSQLquery(order *Order) string {
-	// Create SQL-query for inserting order items to database.
-	project_id := "nettikauppasimulaattori"
-	dataset_id := "store_operational"
-	order_items_table_id := "order_items"
-
-	var tmp strings.Builder
-
-	tmp.WriteString(fmt.Sprintf("INSERT INTO `%s.%s.%s` VALUES ",
-		project_id,
-		dataset_id,
-		order_items_table_id))
-
-	for _, item := range order.items {
-		tmp.WriteString(fmt.Sprintf("(%d, %d),",
-			order.id,
-			item.id))
-	}
-
-	items_sql := tmp.String()
-	items_sql = strings.TrimSuffix(items_sql, ",")
-
-	return items_sql
-}
-
-func (order *Order) Send(ctx context.Context, client *bigquery.Client) error {
-
-	timezone := "Europe/Helsinki"
-	order.order_placed, _ = nowInTimezone(timezone)
-
-	order_sql := GetInsertOrderSQLquery(order)
-	items_sql := GetInsertOrderItemsSQLquery(order)
-
-	// slog.Debug(order_sql)
-	// slog.Debug(items_sql)
-
-	queries := [2]string{order_sql, items_sql}
-	for _, sql := range queries {
-		q := client.Query(sql)
-		// q.WriteDisposition = "WRITE_APPEND" // Error with "INSERT INTO..." statement.
-
-		job, err := q.Run(ctx)
-		if err != nil {
-			return err
-		}
-
-		status, err := job.Wait(ctx)
-		if err != nil {
-			return err
-		}
-		if status.Err() != nil {
-			return status.Err()
-		}
-	}
-
-	return nil
-}
-
-
 func (orders *Orders) Append(order Order) {
 	*orders = append(*orders, order)
 }
-
 
 func (orders *Orders) Pop() (Order, error) {
 	if len(*orders) == 0 {
@@ -215,7 +134,6 @@ func (orders *Orders) Pop() (Order, error) {
 
 	return first, nil
 }
-
 
 func GetOpenOrders(ctx context.Context, client *bigquery.Client) (Orders, error) {
 	// TODO: Move ids to config file somewhere.

@@ -23,7 +23,7 @@ func main() {
 	if *verbosePtr == true {
 		logLevel.Set(slog.LevelDebug)
 	} else {
-		logLevel.Set(slog.LevelError)
+		logLevel.Set(slog.LevelInfo)
 	}
 	logger := slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{Level: logLevel})
 	slog.SetDefault(slog.New(logger))
