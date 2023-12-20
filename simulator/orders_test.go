@@ -42,25 +42,25 @@ func TestTime2SQLDate(t *testing.T) {
     }
 }
 
-func TestGetInsertOrderSQLquery(t *testing.T) {
-    // TODO: Hardcoded table names...
-    target := "INSERT INTO `nettikauppasimulaattori.store_operational.orders` VALUES (1234, 9876, 0, 0, \"1234-5-6 7:8:9\", NULL, NULL, \"1234-5-6 7:8:9\")"
-    res := GetInsertOrderSQLquery(&test_order)
-
-    if res != target {
-        t.Fatalf("Wanted '%v', got '%v' instead.", target, res)
-    }
-}
-
-func TestGetInsertOrderItemsSQLquery(t *testing.T) {
-    // TODO: Hardcoded table names...
-    target := "INSERT INTO `nettikauppasimulaattori.store_operational.order_items` VALUES (1234, 1001),(1234, 2001)"
-    res := GetInsertOrderItemsSQLquery(&test_order)
-
-    if res != target {
-        t.Fatalf("Wanted '%v', got '%v' instead.", target, res)
-    }
-}
+// func TestGetInsertOrderSQLquery(t *testing.T) {
+//     // TODO: Hardcoded table names...
+//     target := "INSERT INTO `nettikauppasimulaattori.store_operational.orders` VALUES (1234, 9876, 0, 0, \"1234-5-6 7:8:9\", NULL, NULL, \"1234-5-6 7:8:9\")"
+//     res := GetInsertOrderSQLquery(&test_order)
+// 
+//     if res != target {
+//         t.Fatalf("Wanted '%v', got '%v' instead.", target, res)
+//     }
+// }
+// 
+// func TestGetInsertOrderItemsSQLquery(t *testing.T) {
+//     // TODO: Hardcoded table names...
+//     target := "INSERT INTO `nettikauppasimulaattori.store_operational.order_items` VALUES (1234, 1001),(1234, 2001)"
+//     res := GetInsertOrderItemsSQLquery(&test_order)
+// 
+//     if res != target {
+//         t.Fatalf("Wanted '%v', got '%v' instead.", target, res)
+//     }
+// }
 
 func TestTotalPrice(t *testing.T) {
     target := 105

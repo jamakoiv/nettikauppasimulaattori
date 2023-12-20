@@ -105,7 +105,6 @@ func (db *DatabaseBigQuery) GetInsertOrderSQLquery(order Order) string {
     return order_sql
 }
 
-
 // Create SQL-query for inserting order items to database.
 func (db *DatabaseBigQuery) GetInsertOrderItemsSQLquery(order Order) string {
     var tmp strings.Builder
@@ -156,14 +155,13 @@ func (db *DatabaseBigQuery) GetOpenOrders() (Orders, error) {
     for {
         var order OrderReceiver
         if it.Next(&order) == iterator.Done { break }
-        fmt.Println(order.ID, order.Customer_id, order.Delivery_type, order.Status)
         orders.Append(ConvertOrderReceiverToOrder(order))
     }
 
     if len(orders) == 0 {
-            return orders, ErrorEmptyOrdersList
+        return orders, ErrorEmptyOrdersList
     } else {
-            return orders, nil
+        return orders, nil
     }
 }
 
@@ -181,18 +179,18 @@ func (db *DatabaseBigQuery) UpdateOrder(order Order) error {
     q := db.client.Query(sql)
     job, err := q.Run(db.ctx)
     if err != nil { 
-		slog.Error(fmt.Sprint("Error running query in UpdateOrder: ", err))
-		return err 
-	}
+        slog.Error(fmt.Sprint("Error running query in UpdateOrder: ", err))
+        return err 
+    }
     status, err := job.Wait(db.ctx)
     if err != nil { 
-		slog.Error(fmt.Sprint("Error waiting query in UpdateOrder: ", err))
-		return err 
-	}
+        slog.Error(fmt.Sprint("Error waiting query in UpdateOrder: ", err))
+        return err 
+    }
     if status.Err() != nil { 
-		slog.Error(fmt.Sprint("Received error from bigquery: ", err))
-		return status.Err() 
-	}
+        slog.Error(fmt.Sprint("Received error from bigquery: ", err))
+        return status.Err() 
+    }
 
     return nil
 }
