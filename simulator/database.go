@@ -194,3 +194,48 @@ func (db *DatabaseBigQuery) UpdateOrder(order Order) error {
 
     return nil
 }
+
+
+type DatabaseBigQueryDummy struct {
+    db DatabaseBigQuery
+}
+
+func (dummy *DatabaseBigQueryDummy) Init(ctx context.Context, project string, dataset string, 
+    orders_table string, order_items_table string, timezone string) error {
+
+    dummy.db.project = project
+    dummy.db.dataset = dataset
+    dummy.db.orders_table = orders_table
+    dummy.db.order_items_table = order_items_table
+    dummy.db.timezone = timezone
+    dummy.db.ctx = ctx
+
+    return nil
+}
+
+func (dummy *DatabaseBigQueryDummy) Close() {
+    slog.Info(fmt.Sprint("Closing DummyDatabase-connection."))
+    return
+}
+
+func (dummy *DatabaseBigQueryDummy) SendOrder(order Order) error {
+    slog.Info(fmt.Sprintf("Sending order %d to DummyDatabase.", order.id))
+    slog.Debug(fmt.Sprintf("Order query: %s", dummy.db.GetInsertOrderSQLquery(order)))
+    slog.Debug(fmt.Sprintf("Order-items query: %s", dummy.db.GetInsertOrderItemsSQLquery(order)))
+
+    return nil
+}
+
+func (dummy *DatabaseBigQueryDummy) GetOrders() (Orders, error) {
+    slog.Info(fmt.Sprintf("Getting open orders from DummyDatabase."))
+    slog.Debug(fmt.Sprintf("Query: %s"))
+    
+    return Orders{}, nil
+}
+
+func (dummy *DatabaseBigQueryDummy) UpdateOrder(order Order) error {
+    slog.Info(fmt.Sprintf("Updating order %d in DummyDatabase.", order.id))
+    slog.Debug(fmt.Sprintf("Query: %s"))
+
+    return nil
+}
