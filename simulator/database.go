@@ -52,7 +52,7 @@ func (db *DatabaseBigQuery) Init(ctx context.Context, project string, dataset st
 }
 
 func (db *DatabaseBigQuery) Close() {
-    db.Close()
+    db.client.Close()
 }
 
 func (db *DatabaseBigQuery) SendOrder(order Order) error {

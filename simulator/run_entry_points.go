@@ -84,7 +84,7 @@ func Run_prod() error {
             "order_items",
             "Europe/Helsinki")
     if err != nil { slog.Error("Database init failed.") }
-    // defer db.Close()
+    defer db.Close()
 
     RunCustomers(&db)
     RunWorkers(&db)
