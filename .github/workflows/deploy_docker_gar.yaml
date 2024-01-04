@@ -3,10 +3,12 @@ name: "Create docker image."
 env:
   PROJECT_ID: nettikauppasimulaattori
   REGION: europe-north1
-  REPOSITORY: nettikauppasimulaattori
+  # REPOSITORY: nettikauppasimulaattori
+  REPOSITORY: testirepo
   IMAGE_TAG: nettikauppasimulaattori_simulator:latest
-  WIF_PROVIDER: projects/63753790271/locations/global/workloadIdentityPools/github-pool/providers/github
-  WIF_SERVICE_ACCOUNT: github-actions@github-actions-temp.iam.gserviceaccount.com
+  WIF_PROVIDER: projects/725245772054/locations/global/workloadIdentityPools/github-actions/providers/github
+  WIF_SERVICE_ACCOUNT: github-connection@nettikauppasimulaattori.iam.gserviceaccount.com
+  # WIF_SERVICE_ACCOUNT: artifact-repo-docker@nettikauppasimulaattori.iam.gserviceaccount.com
 
 on:
     push:
@@ -36,7 +38,7 @@ jobs:
 
      - name: Build Docker-image.
        run: |
-         docker buildx build -t ${{env.IMAGE_TAG}} --load .
+         docker buildx build -t ${{env.IMAGE_TAG}} --load simulator
          mkdir -p docker-tmp
          docker save ${{env.IMAGE_TAG}} > docker-tmp/docker-image.tar
 
@@ -61,6 +63,7 @@ jobs:
      - name: 'Authenticate to google cloud.'
        uses: 'google-github-actions/auth@v1'
        with:
+         create_credentials_file: true
          workload_identity_provider: ${{env.WIF_PROVIDER}}
          service_account: ${{env.WIF_SERVICE_ACCOUNT}}
 
