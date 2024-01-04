@@ -6,7 +6,8 @@ env:
   REPOSITORY: nettikauppasimulaattori
   IMAGE_TAG: nettikauppasimulaattori_simulator:latest
   WIF_PROVIDER: projects/63753790271/locations/global/workloadIdentityPools/github-pool/providers/github
-  WIF_SERVICE_ACCOUNT: github-actions@github-actions-temp.iam.gserviceaccount.com
+  # WIF_SERVICE_ACCOUNT: github-actions@github-actions-temp.iam.gserviceaccount.com
+  WIF_SERVICE_ACCOUNT: artifact-repo-docker@nettikauppasimulaattori.iam.gserviceaccount.com
 
 on:
     push:
