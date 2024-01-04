@@ -67,16 +67,11 @@ jobs:
          workload_identity_provider: ${{env.WIF_PROVIDER}}
          service_account: ${{env.WIF_SERVICE_ACCOUNT}}
 
-      #- name: 'Set up Google Cloud SDK.'
-      #  uses: 'google-github-actions/setup-gcloud@v1'
-      #  with:
-      #    version: '>= 363.0.0'
-      #    project_id: ${{env.PROJECT_ID}}
-
-     - name: 'Run gcloud command.'
-       run: |
-          gcloud --quiet config set project ${{ env.PROJECT_ID }}
-          gcloud --quiet auth application-default login --impersonate-service-account=github-connection@nettikauppasimulaattori.iam.gserviceaccount.com
+     - name: 'Set up Google Cloud SDK.'
+       uses: 'google-github-actions/setup-gcloud@v1'
+       with:
+         version: '>= 363.0.0'
+         project_id: ${{env.PROJECT_ID}}
    
      - name: 'Check google cloud cli works.'
        run: 'gcloud info'
