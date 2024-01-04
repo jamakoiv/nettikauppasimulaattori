@@ -24,7 +24,7 @@ func init() {
 
 func RunWorkers(db Database) {
     for _, worker := range Workers {
-        slog.Info(fmt.Sprintf("Checking worker %d.", worker.id))
+        slog.Debug(fmt.Sprintf("Running worker %d.", worker.id))
         err := worker.Work(db)
         if err != nil {
             slog.Error(fmt.Sprint(err))
@@ -35,11 +35,11 @@ func RunWorkers(db Database) {
 func RunCustomers(db Database) {
     orders_in_this_run := false
     for _, customer := range Customers {
+        slog.Debug(fmt.Sprintf("Running customer %d.", customer.id))
         order, err := customer.Shop(Products)
         if err != nil { continue } // If order is empty.
 
         slog.Debug(fmt.Sprint(order))
-        slog.Info(fmt.Sprintf("Sending order %d to BigQuery.", order.id))
         err = db.SendOrder(order)
         if err != nil { 
             slog.Error(fmt.Sprintf("Error in sending order: %v", err))
@@ -96,7 +96,18 @@ func Run_prod() error {
 func Run_test() error {
     slog.Info(fmt.Sprintf("Dry run started locally at %v", time.Now()))
 
-    slog.Error(fmt.Sprint("Run target 'test' not implemented yet."))
+    var db DatabaseBigQueryDummy
+    err := db.Init(context.Background(), 
+            "nettikauppasimulaattori",
+            "store_operational",
+            "orders",
+            "order_items",
+            "Europe/Helsinki")
+    if err != nil { slog.Error("Database init failed.") }
+    defer db.Close()
+
+    RunCustomers(&db)
+    RunWorkers(&db)
 
     return nil
 }

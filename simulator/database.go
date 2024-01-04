@@ -57,8 +57,9 @@ func (db *DatabaseBigQuery) Close() {
 }
 
 func (db *DatabaseBigQuery) SendOrder(order Order) error {
-    order.order_placed, _ = nowInTimezone(db.timezone)
+    slog.Info(fmt.Sprintf("Sending order %d to BigQuery.", order.id))
 
+    order.order_placed, _ = nowInTimezone(db.timezone)
     order_sql := db.GetInsertOrderSQLquery(order)
     items_sql := db.GetInsertOrderItemsSQLquery(order)
 
@@ -235,7 +236,7 @@ func (dummy *DatabaseBigQueryDummy) SendOrder(order Order) error {
     return nil
 }
 
-func (dummy *DatabaseBigQueryDummy) GetOrders() (Orders, error) {
+func (dummy *DatabaseBigQueryDummy) GetOpenOrders() (Orders, error) {
     slog.Info(fmt.Sprintf("Getting open orders from DummyDatabase."))
     slog.Debug(fmt.Sprintf("Query: %s", dummy.db.GetOpenOrdersSQLquery()))
     
@@ -243,8 +244,10 @@ func (dummy *DatabaseBigQueryDummy) GetOrders() (Orders, error) {
 }
 
 func (dummy *DatabaseBigQueryDummy) UpdateOrder(order Order) error {
+    now, _ := nowInTimezone(dummy.db.timezone)
+
     slog.Info(fmt.Sprintf("Updating order %d in DummyDatabase.", order.id))
-    slog.Debug(fmt.Sprintf("Query: %s", dummy.db.GetUpdateOrderSQLquery(order, time.Now())))
+    slog.Debug(fmt.Sprintf("Query: %s", dummy.db.GetUpdateOrderSQLquery(order, now)))
 
     return nil
 }
