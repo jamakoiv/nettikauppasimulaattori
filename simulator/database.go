@@ -122,12 +122,15 @@ func (db *DatabaseBigQuery) GetInsertOrderItemsSQLquery(order Order) string {
     return items_sql
 }
 
-func (db *DatabaseBigQuery) GetOpenOrders() (Orders, error) {
-    sql := fmt.Sprintf("SELECT id, customer_id, delivery_type, status FROM `%s.%s.%s` WHERE status = %d", 
+func (db *DatabaseBigQuery) GetOpenOrdersSQLquery() string {
+    return fmt.Sprintf("SELECT id, customer_id, delivery_type, status FROM `%s.%s.%s` WHERE status = %d", 
         db.project, db.dataset, db.orders_table, ORDER_PENDING)
-    slog.Debug(sql)
+}
 
+func (db *DatabaseBigQuery) GetOpenOrders() (Orders, error) {
     var orders Orders
+
+    sql := db.GetOpenOrdersSQLquery()
 
     q := db.client.Query(sql)
     job, err := q.Run(db.ctx)
@@ -228,7 +231,7 @@ func (dummy *DatabaseBigQueryDummy) SendOrder(order Order) error {
 
 func (dummy *DatabaseBigQueryDummy) GetOrders() (Orders, error) {
     slog.Info(fmt.Sprintf("Getting open orders from DummyDatabase."))
-    slog.Debug(fmt.Sprintf("Query: %s"))
+    slog.Debug(fmt.Sprintf("Query: %s", dummy.db.GetOpenOrdersSQLquery()))
     
     return Orders{}, nil
 }
