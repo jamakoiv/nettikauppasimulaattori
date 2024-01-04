@@ -45,7 +45,7 @@ func (db *DatabaseBigQuery) Init(ctx context.Context, project string, dataset st
 
     client, err := bigquery.NewClient(db.ctx, db.project)
     if err != nil { 
-        slog.Error("Error creating BigQuery-client.") 
+        slog.Error(fmt.Sprintf("Error creating BigQuery-client: %s", err)) 
         return err
     }
 
