@@ -36,7 +36,7 @@ jobs:
 
      - name: Build Docker-image.
        run: |
-         docker buildx build -t ${{env.IMAGE_TAG}} --load .
+         docker buildx build -t ${{env.IMAGE_TAG}} --load simulator
          mkdir -p docker-tmp
          docker save ${{env.IMAGE_TAG}} > docker-tmp/docker-image.tar
 
