@@ -63,6 +63,7 @@ jobs:
      - name: 'Authenticate to google cloud.'
        uses: 'google-github-actions/auth@v1'
        with:
+         create_credentials_file: true
          workload_identity_provider: ${{env.WIF_PROVIDER}}
          service_account: ${{env.WIF_SERVICE_ACCOUNT}}
 
