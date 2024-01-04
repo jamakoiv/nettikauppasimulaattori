@@ -6,6 +6,7 @@ import (
     "fmt"
     "strings"
     "math/rand"
+    "time"
 
     "golang.org/x/exp/slog"
     "google.golang.org/api/iterator"
@@ -168,16 +169,21 @@ func (db *DatabaseBigQuery) GetOpenOrders() (Orders, error) {
     }
 }
 
-func (db *DatabaseBigQuery) UpdateOrder(order Order) error {
-    now, _ := nowInTimezone(db.timezone)
-
+func (db *DatabaseBigQuery) GetUpdateOrderSQLquery(order Order, t time.Time) string {
     sql := fmt.Sprintf("UPDATE `%s.%s.%s` SET status = %d, shipping_date = \"%s\", last_modified = \"%s\", tracking_number = %d WHERE id = %d",
         db.project, db.dataset, db.orders_table, 
         ORDER_SHIPPED,
-        Time2SQLDate(now), Time2SQLDatetime(now), 
+        Time2SQLDate(t), Time2SQLDatetime(t), 
         rand.Int(),
         order.id)
-    slog.Debug(sql)
+
+    return sql
+}
+
+func (db *DatabaseBigQuery) UpdateOrder(order Order) error {
+    now, _ := nowInTimezone(db.timezone)
+
+    sql := db.GetUpdateOrderSQLquery(order, now)
 
     q := db.client.Query(sql)
     job, err := q.Run(db.ctx)
@@ -238,7 +244,7 @@ func (dummy *DatabaseBigQueryDummy) GetOrders() (Orders, error) {
 
 func (dummy *DatabaseBigQueryDummy) UpdateOrder(order Order) error {
     slog.Info(fmt.Sprintf("Updating order %d in DummyDatabase.", order.id))
-    slog.Debug(fmt.Sprintf("Query: %s"))
+    slog.Debug(fmt.Sprintf("Query: %s", dummy.db.GetUpdateOrderSQLquery(order, time.Now())))
 
     return nil
 }
