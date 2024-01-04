@@ -34,6 +34,7 @@ type DatabaseBigQuery struct {
 
 func (db *DatabaseBigQuery) Init(ctx context.Context, project string, dataset string, 
     orders_table string, order_items_table string, timezone string) error {
+    slog.Info(fmt.Sprint("Opening connection to BigQuery."))
 
     db.project = project
     db.dataset = dataset
@@ -212,6 +213,7 @@ type DatabaseBigQueryDummy struct {
 
 func (dummy *DatabaseBigQueryDummy) Init(ctx context.Context, project string, dataset string, 
     orders_table string, order_items_table string, timezone string) error {
+    slog.Info(fmt.Sprint("Opening DummyDatabase-connection."))
 
     dummy.db.project = project
     dummy.db.dataset = dataset
