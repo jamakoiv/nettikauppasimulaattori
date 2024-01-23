@@ -169,14 +169,13 @@ func calc_probability(x int, base_probability float64, target int, spread int) f
     return res
 }
 
-func (customer *Customer) ChanceToShop(t time.Time, 
-    day_var ShoppingWeekdayVariation) float64 {
+func (customer *Customer) ChanceToShop(t time.Time, day_var float64, week_var float64) float64 {
 
     base_spread := 5
     rand_spread := rand.Intn(5)
 
     prob := calc_probability(t.Hour(), 
-        customer.base_purchase_probability + day_var[t.Weekday()],
+        customer.base_purchase_probability + day_var + week_var,
         customer.most_active,
         base_spread + rand_spread)
 
@@ -189,10 +188,12 @@ func (customer *Customer) Shop(products []Product) (Order, error) {
     var order Order
     order.init()
 
-    day_variation := Default_ShoppingWeekdayVariation()
+    now := time.Now()
+    day_variation := Default_ShoppingWeekdayVariation(now)
+    week_variation := Default_ShoppingWeekVariation(now)
 
     // Check if customer wants to shop at this time.
-    if !(rand.Float64() < customer.ChanceToShop(time.Now(), day_variation)) {
+    if !(rand.Float64() < customer.ChanceToShop(now, day_variation, week_variation)) {
         return order, errors.New("Order empty.")
     }
 
@@ -216,8 +217,8 @@ func (customer *Customer) Shop(products []Product) (Order, error) {
     return order, nil
 }
 
-func Default_ShoppingWeekdayVariation() ShoppingWeekdayVariation{
-    return ShoppingWeekdayVariation{
+func Default_ShoppingWeekdayVariation(now time.Time) float64 { 
+    variation := ShoppingWeekdayVariation{
         time.Monday: -0.01,
         time.Tuesday: -0.01,
         time.Wednesday: 0.02,
@@ -226,4 +227,14 @@ func Default_ShoppingWeekdayVariation() ShoppingWeekdayVariation{
         time.Saturday: 0.04,
         time.Sunday: 0.01,
     }
+
+    return variation[now.Weekday()]
+}
+
+func Default_ShoppingWeekVariation(now time.Time) float64 {
+    t_start := time.Date(2024, time.January, 23, 0, 0, 0, 0, time.UTC) 
+    week := int64(604800) // One week in seconds
+    ramp := float64(0.002) // How much shopping chance goes up per week.
+
+    return float64((now.Unix() - t_start.Unix()) / week) * ramp 
 }
