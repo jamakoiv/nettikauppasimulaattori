@@ -1,15 +1,12 @@
 package nettikauppasimulaattori
 
 import (
-	"context"
+	"errors"
 	"fmt"
-	"math/rand"
 	"slices"
 	"time"
 
-	"cloud.google.com/go/bigquery"
 	"golang.org/x/exp/slog"
-	"google.golang.org/api/iterator"
 )
 
 type Worker struct {
@@ -113,89 +110,37 @@ func (w *Worker) CheckIfWorking(t time.Time) bool {
     return a && b
 }
 
-func (w *Worker) Work(ctx context.Context, client *bigquery.Client) error {
+func (w *Worker) Work(db Database) error {
+    slog.Debug("Entering work function.")
+
     if !w.CheckIfWorking(time.Now())  {
+        slog.Debug("Worker not working at this hour.")
         return nil
     }
     
-    orders, err := GetOpenOrders(ctx, client)
-    if err != nil { return err }
+    orders, err := db.GetOpenOrders()
+    slog.Debug(fmt.Sprintf("Received %d open orders.", len(orders)))
+    if errors.Is(err, ErrorEmptyOrdersList) {
+        slog.Debug(fmt.Sprint("GetOpenOrders did not return any orders: ", err))
+        return err
+    } else if err != nil { 
+        slog.Debug(fmt.Sprint("GetOpenOrders failed!", err))
+        return err
+    }
 
-    order_id := orders[0]
     for i := 0; i < w.orders_per_hour; i++ {
-        err = UpdateOrder(order_id, ctx, client)
-        if err != nil { return err }
+        order, err := orders.Pop()
+        slog.Debug(fmt.Sprint(order))
+        if errors.Is(err, ErrorEmptyOrdersList) {
+            break
+        }
 
-        if len(orders) >= 2 {
-            orders = orders[1:]
-            order_id = orders[0]
-        } else {
-            return nil
+        err = db.UpdateOrder(order)
+        if err != nil {
+            slog.Debug("UpdateOrder failed!")
+            return err
         }
     }
     
-    return nil
-}
-
-func GetOpenOrders(ctx context.Context, client *bigquery.Client) ([]int, error) {
-    // TODO: Move ids to config file somewhere.
-    project_id := "nettikauppasimulaattori"
-    dataset_id := "store_operational"
-    table_id := "orders"
-
-    sql := fmt.Sprintf("SELECT id FROM `%s.%s.%s` WHERE status = %d",
-        project_id, dataset_id, table_id, ORDER_PENDING)
-    slog.Debug(sql)
-
-    var res []int
-    q := client.Query(sql)
-    job, err := q.Run(ctx)
-    if err != nil { return res, err }
-
-    status, err := job.Wait(ctx)
-    if err != nil { return res, err }
-    if status.Err() != nil { return res, status.Err() }
-
-    type order_id struct { ID int } // Need this extra struct for receiving single int...
-    it, err := job.Read(ctx)
-    if err != nil { return res, err }
-    for {
-        var tmp order_id
-        if it.Next(&tmp) == iterator.Done { break }
-        // fmt.Printf("%d: %T\n", tmp.ID, tmp.ID)
-        res = append(res, tmp.ID)
-    }
-
-    // TODO: Add error if res has zero length.
-
-    return res, nil
-}
-
-func UpdateOrder(order_id int, ctx context.Context, client *bigquery.Client) error {
-    project_id := "nettikauppasimulaattori"
-    dataset_id := "store_operational"
-    table_id := "orders"
-
-    now, _ := nowInTimezone("Europe/Helsinki")
-
-    sql := fmt.Sprintf("UPDATE `%s.%s.%s` SET status = %d, shipping_date = \"%s\", last_modified = \"%s\", tracking_number = %d WHERE id = %d",
-        project_id, 
-        dataset_id,
-        table_id, 
-        ORDER_SHIPPED,
-        Time2SQLDate(now), 
-        Time2SQLDatetime(now), 
-        rand.Int(),
-        order_id)
-    slog.Debug(sql)
-
-    q := client.Query(sql)
-    job, err := q.Run(ctx)
-    if err != nil { return err }
-
-    status, err := job.Wait(ctx)
-    if err != nil { return err }
-    if status.Err() != nil { return status.Err() }
-
     return nil
 }

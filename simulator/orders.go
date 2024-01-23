@@ -1,35 +1,49 @@
 package nettikauppasimulaattori
 
 import (
-	"context"
+	"errors"
 	"fmt"
 	"log/slog"
 	"math/rand"
-	"strings"
 	"time"
-
-	"cloud.google.com/go/bigquery"
 )
 
+// Type for creating an order, adding products to it,
+// and sendind in to database.
 type Order struct {
-	id            uint64
-	customer_id   int
-	items         []Product
-	order_placed  time.Time
-	delivery_type int
-	status        int
+    id            uint64
+    customer_id   int
+    items         []Product
+    order_placed  time.Time
+    delivery_type int
+    status        int
+}
+type Orders []Order
+
+// Type for temporarily storing order-data returned by the database.
+// NOTE: All variables have to be public or big-query library fails silently
+// when receiving data.
+type OrderReceiver struct {
+    ID            int
+    Customer_id   int
+    Delivery_type int
+    Status        int
+    // Order_placed  time.Time
 }
 
 const ( // Values for Order.status.
-	ORDER_PENDING = iota
-	ORDER_SHIPPED = iota
-	ORDER_EMPTY   = iota
+    ORDER_PENDING = iota
+    ORDER_SHIPPED = iota
+    ORDER_EMPTY   = iota
 )
 
 const ( // Values for Order.delivery_type.
-	SHIP_TO_CUSTOMER   = iota
-	COLLECT_FROM_STORE = iota
+    SHIP_TO_CUSTOMER   = iota
+    COLLECT_FROM_STORE = iota
 )
+
+var ErrorEmptyOrdersList = errors.New("List is empty.")
+
 
 func nowInTimezone(timezone string) (time.Time, error) {
 	var t time.Time
@@ -95,80 +109,36 @@ func (order *Order) String() string {
 	return str
 }
 
-func GetInsertOrderSQLquery(order *Order) string {
-	// Create SQL-query for inserting order to database.
-	project_id := "nettikauppasimulaattori"
-	dataset_id := "store_operational"
-	orders_table_id := "orders"
-
-	// TODO: guard against malicious inputs.
-	order_sql := fmt.Sprintf("INSERT INTO `%s.%s.%s` VALUES (%d, %d, %d, %d, \"%s\", NULL, NULL, \"%s\")", project_id,
-		dataset_id,
-		orders_table_id,
-		order.id,
-		order.customer_id,
-		order.delivery_type,
-		order.status,
-		Time2SQLDatetime(order.order_placed),
-		Time2SQLDatetime(order.order_placed))
-
-	return order_sql
+func (orders *Orders) Append(order Order) {
+	*orders = append(*orders, order)
 }
 
-func GetInsertOrderItemsSQLquery(order *Order) string {
-	// Create SQL-query for inserting order items to database.
-	project_id := "nettikauppasimulaattori"
-	dataset_id := "store_operational"
-	order_items_table_id := "order_items"
-
-	var tmp strings.Builder
-
-	tmp.WriteString(fmt.Sprintf("INSERT INTO `%s.%s.%s` VALUES ",
-		project_id,
-		dataset_id,
-		order_items_table_id))
-
-	for _, item := range order.items {
-		tmp.WriteString(fmt.Sprintf("(%d, %d),",
-			order.id,
-			item.id))
+func (orders *Orders) Pop() (Order, error) {
+	if len(*orders) == 0 {
+		return Order{}, ErrorEmptyOrdersList 
 	}
 
-	items_sql := tmp.String()
-	items_sql = strings.TrimSuffix(items_sql, ",")
+	first := (*orders)[0]
 
-	return items_sql
+	// [1:] panics if length is 1, se we create and return empty list
+	// if we pop last element out.
+	if len(*orders) == 1 {
+		orders = new(Orders) 
+	} else {
+		(*orders) = (*orders)[1:]
+	}
+
+	return first, nil
 }
 
-func (order *Order) Send(ctx context.Context, client *bigquery.Client) error {
+func ConvertOrderReceiverToOrder(o OrderReceiver) Order {
+    var res Order
 
-	timezone := "Europe/Helsinki"
-	order.order_placed, _ = nowInTimezone(timezone)
+    res.id = uint64(o.ID)
+    res.customer_id = o.Customer_id
+    // res.order_placed = o.Order_placed
+    res.delivery_type = o.Delivery_type
+    res.status = o.Status
 
-	order_sql := GetInsertOrderSQLquery(order)
-	items_sql := GetInsertOrderItemsSQLquery(order)
-
-	// slog.Debug(order_sql)
-	// slog.Debug(items_sql)
-
-	queries := [2]string{order_sql, items_sql}
-	for _, sql := range queries {
-		q := client.Query(sql)
-		// q.WriteDisposition = "WRITE_APPEND" // Error with "INSERT INTO..." statement.
-
-		job, err := q.Run(ctx)
-		if err != nil {
-			return err
-		}
-
-		status, err := job.Wait(ctx)
-		if err != nil {
-			return err
-		}
-		if status.Err() != nil {
-			return status.Err()
-		}
-	}
-
-	return nil
+    return res
 }
