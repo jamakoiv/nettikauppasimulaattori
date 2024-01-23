@@ -20,6 +20,8 @@ type Customer struct {
     product_categories []int
 }
 
+type ShoppingWeekdayVariation map[time.Weekday]float64
+
 var Customers = []Customer{
     {10,  "Erkki",    "Nyrhinen"   , 6,  500, 0.15, []int{1,2} },
     {11,  "Jaana",    "Lahtinen"   , 7,  250, 0.25, []int{2} },   
@@ -151,6 +153,8 @@ var Customers = []Customer{
     {309, "Ella",     "West",       21, 75, 0.15, []int{4}},
 }
 
+
+
 func calc_probability(x int, base_probability float64, target int, spread int) float64 {
     // Calculate probability which drops as we get further away from 'target'.
     // When x == target: prob -> base_probability.
@@ -165,14 +169,14 @@ func calc_probability(x int, base_probability float64, target int, spread int) f
     return res
 }
 
-func (customer *Customer) ChanceToShop() float64 {
-    hour := time.Now().Hour()
+func (customer *Customer) ChanceToShop(t time.Time, 
+    day_var ShoppingWeekdayVariation) float64 {
 
     base_spread := 5
     rand_spread := rand.Intn(5)
 
-    prob := calc_probability(hour, 
-        customer.base_purchase_probability,
+    prob := calc_probability(t.Hour(), 
+        customer.base_purchase_probability + day_var[t.Weekday()],
         customer.most_active,
         base_spread + rand_spread)
 
@@ -185,8 +189,10 @@ func (customer *Customer) Shop(products []Product) (Order, error) {
     var order Order
     order.init()
 
+    day_variation := Default_ShoppingWeekdayVariation()
+
     // Check if customer wants to shop at this time.
-    if !(rand.Float64() < customer.ChanceToShop()) {
+    if !(rand.Float64() < customer.ChanceToShop(time.Now(), day_variation)) {
         return order, errors.New("Order empty.")
     }
 
@@ -208,4 +214,16 @@ func (customer *Customer) Shop(products []Product) (Order, error) {
     order.customer_id = customer.id
 
     return order, nil
+}
+
+func Default_ShoppingWeekdayVariation() ShoppingWeekdayVariation{
+    return ShoppingWeekdayVariation{
+        time.Monday: -0.01,
+        time.Tuesday: -0.01,
+        time.Wednesday: 0.02,
+        time.Thursday: 0.01,
+        time.Friday: 0.03,
+        time.Saturday: 0.04,
+        time.Sunday: 0.01,
+    }
 }
