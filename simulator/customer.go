@@ -183,7 +183,7 @@ func Default_ShoppingWeekdayVariation(now time.Time) float64 {
 func Default_ShoppingWeekVariation(now time.Time) float64 {
     t_start := time.Date(2024, time.January, 23, 0, 0, 0, 0, time.UTC) 
     week := int64(604800) // One week in seconds
-    ramp := float64(0.002) // How much shopping chance goes up per week.
+    ramp := float64(0.004) // How much shopping chance goes up per week.
 
     return float64((now.Unix() - t_start.Unix()) / week) * ramp 
 }
