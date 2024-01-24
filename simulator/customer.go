@@ -49,6 +49,7 @@ func ReadCustomersCSV(file string) ([]Customer, error) {
 
     reader := csv.NewReader(f)
     rows, err := reader.ReadAll()
+    if err != nil { return res, err }
 
     for _, row := range rows {
         customer, err := CSVRowToCustomer(row)
@@ -70,6 +71,12 @@ func CSVRowToCustomer(row []string) (Customer, error) {
         return res, &CustomerCsvError{len(row)}
     }
 
+    // Atoi fails if there are any whitespace chars.
+    for i := range row {
+        row[i] = strings.ReplaceAll(row[i], " ", "")
+        row[i] = strings.ReplaceAll(row[i], "\t", "")
+    }
+
     res.id, err = strconv.Atoi(row[0])
     if err != nil { return res, err }
 
@@ -86,9 +93,7 @@ func CSVRowToCustomer(row []string) (Customer, error) {
     if err != nil { return res, err }
 
     tmp := strings.Trim(row[6], "{}")
-    tmp = strings.ReplaceAll(tmp, " ", "")
-    tmp = strings.ReplaceAll(tmp, "\t", "")
-    categories := strings.Split(tmp, ",")
+    categories := strings.Split(tmp, ";")
 
     for _, cat := range categories {
         c, err := strconv.Atoi(cat)
