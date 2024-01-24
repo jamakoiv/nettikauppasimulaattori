@@ -1,8 +1,5 @@
 package nettikauppasimulaattori
 
-// TODO: Break into separate files:
-// customers.go, orders.go, products.go, run.go etc.
-
 import (
 	"errors"
 	"fmt"
