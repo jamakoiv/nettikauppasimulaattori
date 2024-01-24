@@ -22,8 +22,8 @@ func init() {
 	functions.CloudEvent("Run", Run_gcloud_functions)
 }
 
-func RunWorkers(db Database) {
-    for _, worker := range Workers {
+func RunWorkers(db Database, workers []Worker) {
+    for _, worker := range workers {
         slog.Debug(fmt.Sprintf("Running worker %d.", worker.id))
         err := worker.Work(db)
         if err != nil {
@@ -67,10 +67,13 @@ func Run_gcloud_functions(ctx context.Context, ev event.Event) error {
     defer db.Close()
 
     customers, err := ReadCustomersCSV("data/customers.csv")
-    if err != nil { slog.Error(fmt.Sprintf("Failed to read customers data from file: %v", err)) }
+    if err != nil { slog.Error(fmt.Sprintf("Failed to read customers-data from file: %v", err)) }
+
+    workers, err := ReadWorkersCSV("data/workers.csv")
+    if err != nil { slog.Error(fmt.Sprintf("Failed to read workers-data from file: %v", err)) }
 
     RunCustomers(&db, customers)
-    RunWorkers(&db)
+    RunWorkers(&db, workers)
 
     return nil
 }
@@ -90,10 +93,13 @@ func Run_prod() error {
     defer db.Close()
 
     customers, err := ReadCustomersCSV("data/customers.csv")
-    if err != nil { slog.Error(fmt.Sprintf("Failed to read customers data from file: %v", err)) }
+    if err != nil { slog.Error(fmt.Sprintf("Failed to read customers-data from file: %v", err)) }
+
+    workers, err := ReadWorkersCSV("data/workers.csv")
+    if err != nil { slog.Error(fmt.Sprintf("Failed to read workers-data from file: %v", err)) }
 
     RunCustomers(&db, customers)
-    RunWorkers(&db)
+    RunWorkers(&db, workers)
 
     return nil
 }
@@ -113,10 +119,13 @@ func Run_test() error {
     defer db.Close()
 
     customers, err := ReadCustomersCSV("data/customers.csv")
-    if err != nil { slog.Error(fmt.Sprintf("Failed to read customers data from file: %v", err)) }
+    if err != nil { slog.Error(fmt.Sprintf("Failed to read customers-data from file: %v", err)) }
+
+    workers, err := ReadWorkersCSV("data/workers.csv")
+    if err != nil { slog.Error(fmt.Sprintf("Failed to read workers-data from file: %v", err)) }
 
     RunCustomers(&db, customers)
-    RunWorkers(&db)
+    RunWorkers(&db, workers)
 
     return nil
 }
