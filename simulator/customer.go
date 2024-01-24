@@ -5,9 +5,17 @@ package nettikauppasimulaattori
 
 import (
 	"errors"
+	"fmt"
 	"math"
 	"math/rand"
+	"strings"
 	"time"
+
+	"encoding/csv"
+	"os"
+	"strconv"
+
+	"golang.org/x/exp/slog"
 )
 
 type Customer struct {
@@ -20,7 +28,77 @@ type Customer struct {
     product_categories []int
 }
 
+var VALID_CSV_ROW_SIZE int = 7
+
+type CustomerCsvError struct {
+    length int
+}
+
+func (e *CustomerCsvError) Error() string {
+    return fmt.Sprintf("Received CSV-row with %v elements. Should be %v elements.",
+        e.length, VALID_CSV_ROW_SIZE)
+}
+
 type ShoppingWeekdayVariation map[time.Weekday]float64
+
+func ReadCustomersCSV(file string) ([]Customer, error) {
+    var res []Customer
+    
+    f, err := os.Open(file)
+    if err != nil { return res, err }
+
+    reader := csv.NewReader(f)
+    rows, err := reader.ReadAll()
+
+    for _, row := range rows {
+        customer, err := CSVRowToCustomer(row)
+        if err != nil { 
+            slog.Error(fmt.Sprintf("Error parsing CSV input to Customer: %v", err)) 
+            continue
+        }
+        res = append(res, customer)
+    }
+
+    return res, nil
+}
+
+func CSVRowToCustomer(row []string) (Customer, error) {
+    var res Customer
+    var err error
+    
+    if len(row) != VALID_CSV_ROW_SIZE {
+        return res, &CustomerCsvError{len(row)}
+    }
+
+    res.id, err = strconv.Atoi(row[0])
+    if err != nil { return res, err }
+
+    res.first_name = row[1]
+    res.last_name = row[2]
+
+    res.most_active, err = strconv.Atoi(row[3])
+    if err != nil { return res, err }
+
+    res.max_budget, err = strconv.Atoi(row[4])
+    if err != nil { return res, err }
+
+    res.base_purchase_probability, err = strconv.ParseFloat(row[5], 64)
+    if err != nil { return res, err }
+
+    tmp := strings.Trim(row[6], "{}")
+    tmp = strings.ReplaceAll(tmp, " ", "")
+    tmp = strings.ReplaceAll(tmp, "\t", "")
+    categories := strings.Split(tmp, ",")
+
+    for _, cat := range categories {
+        c, err := strconv.Atoi(cat)
+        if err != nil { return res, err }
+
+        res.product_categories = append(res.product_categories, c)
+    }
+
+    return res, nil
+}
 
 var Customers = []Customer{
     {10,  "Erkki",    "Nyrhinen"   , 6,  500, 0.15, []int{1,2} },
