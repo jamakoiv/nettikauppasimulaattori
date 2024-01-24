@@ -24,7 +24,7 @@ type Customer struct {
     product_categories []int
 }
 
-var VALID_CSV_ROW_SIZE int = 7
+var VALID_CSV_CUSTOMER_SIZE int = 7
 
 type CustomerCsvError struct {
     length int
@@ -32,7 +32,7 @@ type CustomerCsvError struct {
 
 func (e *CustomerCsvError) Error() string {
     return fmt.Sprintf("Received CSV-row with %v elements. Should be %v elements.",
-        e.length, VALID_CSV_ROW_SIZE)
+        e.length, VALID_CSV_CUSTOMER_SIZE)
 }
 
 func ReadCustomersCSV(file string) ([]Customer, error) {
@@ -62,7 +62,7 @@ func CSVRowToCustomer(row []string) (Customer, error) {
     var res Customer
     var err error
     
-    if len(row) != VALID_CSV_ROW_SIZE {
+    if len(row) != VALID_CSV_CUSTOMER_SIZE {
         return res, &CustomerCsvError{len(row)}
     }
 
