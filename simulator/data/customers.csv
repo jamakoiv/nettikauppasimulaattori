@@ -31,7 +31,6 @@
 216, Anna,     Schroderus , 22, 150, 0.20, {1} 
 217, Sabrina,  Bqain      , 23, 300, 0.10, {4;2}   
 218, Tara,     Junker     , 23, 150, 0.10, {4} 
-
 219, Milan,    Kundera    , 17, 30 , 0.25, {1} 
 220, John,     Kelleher   , 18, 200, 0.25, {2} 
 221, Brendan,  Tierney    , 18, 250, 0.30, {2} 
@@ -58,7 +57,6 @@
 242, Timo,     Ronkainen  , 15, 75 , 0.25, {1} 
 243, Ossi,     Hiekkala   , 21, 100, 0.25, {2} 
 244, Yrjänä,   Ermala     , 18, 20 , 0.15, {3} 
-
 245, Ville,    Similä     , 15, 20 , 0.10, {3} 
 246, Mervi,    Vuorela    , 18, 75 , 0.10, {4} 
 247, Viljami,  Puustinen  , 19, 25 , 0.15, {1} 
@@ -70,8 +68,6 @@
 253, Haruki,   Murakami   , 16, 50 , 0.15, {4} 
 254, Ian,      Winwood    , 16, 30 , 0.10, {2} 
 255, Paul,     Branningan , 17, 20 , 0.15, {1} 
-
-    // ChatGTP to the rescue
 256, Alice,    Johnson,    8,  40, 0.15, {3}
 257, David,    Smith,      18, 600,0.10, {2}
 258, Eva,      Andersson,  17, 35, 0.10, {1}

@@ -32,9 +32,9 @@ func RunWorkers(db Database) {
     }
 }
 
-func RunCustomers(db Database) {
+func RunCustomers(db Database, customers []Customer) {
     orders_in_this_run := false
-    for _, customer := range Customers {
+    for _, customer := range customers {
         slog.Debug(fmt.Sprintf("Running customer %d.", customer.id))
         order, err := customer.Shop(Products)
         if err != nil { continue } // If order is empty.
@@ -66,7 +66,10 @@ func Run_gcloud_functions(ctx context.Context, ev event.Event) error {
     if err != nil { slog.Error("Database init failed.") }
     defer db.Close()
 
-    RunCustomers(&db)
+    customers, err := ReadCustomersCSV("data/customers.csv")
+    if err != nil { slog.Error("Failed to read customers data from file.") }
+
+    RunCustomers(&db, customers)
     RunWorkers(&db)
 
     return nil
@@ -86,7 +89,10 @@ func Run_prod() error {
     if err != nil { slog.Error("Database init failed.") }
     defer db.Close()
 
-    RunCustomers(&db)
+    customers, err := ReadCustomersCSV("data/customers.csv")
+    if err != nil { slog.Error("Failed to read customers data from file.") }
+
+    RunCustomers(&db, customers)
     RunWorkers(&db)
 
     return nil
@@ -106,7 +112,10 @@ func Run_test() error {
     if err != nil { slog.Error("Database init failed.") }
     defer db.Close()
 
-    RunCustomers(&db)
+    customers, err := ReadCustomersCSV("data/customers.csv")
+    if err != nil { slog.Error(fmt.Sprintf("Failed to read customers data from file: %v", err)) }
+
+    RunCustomers(&db, customers)
     RunWorkers(&db)
 
     return nil
