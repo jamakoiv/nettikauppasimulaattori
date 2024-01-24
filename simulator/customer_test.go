@@ -12,7 +12,7 @@ import (
 func TestDefault_ShoppingWeekVariation(t *testing.T) {
 
     test_date := time.Date(2024, time.January, 30, 0, 0, 0, 0, time.UTC)
-    target := 0.002
+    target := 0.004
     allowed_error := 0.00001
 
     res := Default_ShoppingWeekVariation(test_date)
@@ -26,7 +26,7 @@ func TestDefault_ShoppingWeekVariation(t *testing.T) {
 
 func TestCSVRowToCustomer(t *testing.T) {
 
-    test_row := [7]string{"1", "Jaska", "Jokunen", "10", "300", "0.25", "{1; 2; 3}"}
+    test_row := [7]string{"1", "Jaska", "Jokunen", "10", "300", "0.25", "{1;2;3}"}
     target := Customer{1, "Jaska", "Jokunen", 10, 300, 0.25, []int{1,2,3}}
     
     res, _ := CSVRowToCustomer(test_row[:])

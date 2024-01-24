@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"math"
 	"math/rand"
-	"strings"
 	"time"
 
 	"encoding/csv"
@@ -50,6 +49,7 @@ func ReadCustomersCSV(file string) ([]Customer, error) {
     if err != nil { return res, err }
 
     for _, row := range rows {
+        row = CSVRemoveWhitespace(row)
         customer, err := CSVRowToCustomer(row)
         if err != nil { 
             slog.Error(fmt.Sprintf("Error parsing CSV input to Customer: %v", err)) 
@@ -69,12 +69,6 @@ func CSVRowToCustomer(row []string) (Customer, error) {
         return res, &CustomerCsvError{len(row)}
     }
 
-    // Atoi fails if there are any whitespace chars.
-    for i := range row {
-        row[i] = strings.ReplaceAll(row[i], " ", "")
-        row[i] = strings.ReplaceAll(row[i], "\t", "")
-    }
-
     res.id, err = strconv.Atoi(row[0])
     if err != nil { return res, err }
 
@@ -90,15 +84,7 @@ func CSVRowToCustomer(row []string) (Customer, error) {
     res.base_purchase_probability, err = strconv.ParseFloat(row[5], 64)
     if err != nil { return res, err }
 
-    tmp := strings.Trim(row[6], "{}")
-    categories := strings.Split(tmp, ";")
-
-    for _, cat := range categories {
-        c, err := strconv.Atoi(cat)
-        if err != nil { return res, err }
-
-        res.product_categories = append(res.product_categories, c)
-    }
+    res.product_categories, err = CSVSplitSerial2Int(row[6], "{}", ";")
 
     return res, nil
 }

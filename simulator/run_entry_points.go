@@ -67,7 +67,7 @@ func Run_gcloud_functions(ctx context.Context, ev event.Event) error {
     defer db.Close()
 
     customers, err := ReadCustomersCSV("data/customers.csv")
-    if err != nil { slog.Error("Failed to read customers data from file.") }
+    if err != nil { slog.Error(fmt.Sprintf("Failed to read customers data from file: %v", err)) }
 
     RunCustomers(&db, customers)
     RunWorkers(&db)
@@ -90,7 +90,7 @@ func Run_prod() error {
     defer db.Close()
 
     customers, err := ReadCustomersCSV("data/customers.csv")
-    if err != nil { slog.Error("Failed to read customers data from file.") }
+    if err != nil { slog.Error(fmt.Sprintf("Failed to read customers data from file: %v", err)) }
 
     RunCustomers(&db, customers)
     RunWorkers(&db)
