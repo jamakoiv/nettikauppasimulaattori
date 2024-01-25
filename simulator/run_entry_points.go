@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"time"
+        "os"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
 	"github.com/cloudevents/sdk-go/v2/event"
@@ -56,6 +57,9 @@ func RunCustomers(db Database, customers []Customer) {
 func Run_gcloud_functions(ctx context.Context, ev event.Event) error {
     slog.Info(fmt.Sprintf("Program started with Run_gcloud_functions at %v", time.Now()))
 
+    wd, _ := os.Getwd()
+    slog.Info(fmt.Sprintf("Working directory: %v", wd))
+
     var db DatabaseBigQuery
     err := db.Init(ctx, 
             "nettikauppasimulaattori",
@@ -66,10 +70,10 @@ func Run_gcloud_functions(ctx context.Context, ev event.Event) error {
     if err != nil { slog.Error("Database init failed.") }
     defer db.Close()
 
-    customers, err := ReadCustomersCSV("data/customers.csv")
+    customers, err := ReadCustomersCSV("./serverless_function_source_code/data/customers.csv")
     if err != nil { slog.Error(fmt.Sprintf("Failed to read customers-data from file: %v", err)) }
 
-    workers, err := ReadWorkersCSV("data/workers.csv")
+    workers, err := ReadWorkersCSV("./serverless_function_source_code/data/workers.csv")
     if err != nil { slog.Error(fmt.Sprintf("Failed to read workers-data from file: %v", err)) }
 
     RunCustomers(&db, customers)
