@@ -1,4 +1,6 @@
 
+# Nettikauppasimulaattori
+
 Program for simulating an internet store. Includes a simple program for simulating customers 
 who place orders to the store, and workers who ship the orders.
 Ultimate goal is to forecast daily and weekly sales by hour from the sales-data 
@@ -8,6 +10,8 @@ by their behaviour (time of day, class of items, money used etc.)
 Other goal is to forecast possible new product sales using linear regression on the sales-data,
 and using logistical regression to classify which customers might buy the
 new product.
+
+<img src="readme_assets/project_outline.svg"/>
 
 Includes automated scripts for plotting daily/weekly/montly sales and profits
 and projections for weekly and monthly sales. Save graphs to google-cloud-storage.
@@ -34,38 +38,35 @@ TODO: Create rest of unit-tests.
 TODO: Create option for selecting if we want to upload orders from local test-runs.
 
 
-Table schemas in BigQuery (Data type in []):
--------------------------------------------------
+### Table schemas in BigQuery (Data type in []):
 
 Dataset `store_operational` contains database of customer information,
 individual orders placed by customers, and products available in the store.
-In dataset `store_operational`:
 
-table:	customers
-columns:	id			[int]
-			first_name	[string]
-			last_name	[string]
+**customers:**
+ - id [*int*]
+ - first_name [*string*]
+ - last_name [*string*]
 
-table:	products
-columns:	id				[int]
-			name			[string]
-			wholesale_price [int]
-			price			[int]
-			vat				[float]
+**products:** 
+ - id [*int*], 
+ - name [*string*]
+ - wholesale_price [*int*]
+ - price [*int*]
+ - vat [*float*]
 
-table:	orders
-columns:	id				[int]
-			customer_id		[int]
-			delivery_type	[int]
-			status			[int]
-			order_placed	[datetime]
-			shipping_date	[date]
-			tracking_number	[int]
+**orders:**
+ - id				[*int*]
+ - customer_id		[*int*]
+ - delivery_type	[*int*]
+ - status			[*int*]
+ - order_placed	[*datetime*]
+ - shipping_date	[*date*]
+ - tracking_number	[*int*]
 
-# Contains items for each order-id.
-table:	order_items	
-columns:	order_id	[int]
-			product_id	[int]
+**order_items:**
+ - order_id		[*int*]
+ - product_id	[*int*]
 
 
 Dataset `store_analysis` contains aggregate data created from the data in

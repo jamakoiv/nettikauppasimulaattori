@@ -7,6 +7,9 @@ import (
 	"time"
 
 	"golang.org/x/exp/slog"
+        "os"
+        "encoding/csv"
+        "strconv"
 )
 
 type Worker struct {
@@ -19,84 +22,72 @@ type Worker struct {
     salary_per_hour int
 }
 
-var Workers = []Worker{
-    {
-    111, "Vesa", "Sisättö", 
-    []time.Weekday{time.Monday, 
-        time.Tuesday, 
-        time.Wednesday, 
-        time.Thursday,
-        time.Friday},
-    []int{8, 9, 10, 11, 13, 14, 15},
-    4, 15},
+var VALID_CSV_WORKER_SIZE int = 7
 
-    {222, "Seppo", "Lahnakainen", 
-    []time.Weekday{time.Monday, 
-        time.Tuesday, 
-        time.Wednesday, 
-        time.Thursday,
-        time.Friday},
-    []int{8, 9, 10, 11, 13, 14, 15},
-    4, 15},
+type WorkerCsvError struct {
+    length int
+}
+func (e *WorkerCsvError) Error() string {
+    return fmt.Sprintf("Received CSV-row with %v elements. Should be %v elements.",
+        e.length, VALID_CSV_WORKER_SIZE)
+}
 
-    {333, "Janne", "Virtanen", 
-    []time.Weekday{time.Monday, 
-        time.Tuesday, 
-        time.Wednesday, 
-        time.Thursday},
-    []int{12, 13, 14, 15, 16},
-    4, 15},
+// TODO: Duplication of code in different CSV-readers.
+func ReadWorkersCSV(file string) ([]Worker, error) {
+    var res []Worker
+    
+    f, err := os.Open(file)
+    if err != nil { return res, err }
 
-    {444, "Erkki", "Kolehmainen", 
-    []time.Weekday{time.Monday, 
-        time.Tuesday, 
-        time.Wednesday, 
-        time.Thursday,
-        time.Friday},
-    []int{9, 10, 11, 12, 13, 14, 15, 16},
-    3, 15},
+    reader := csv.NewReader(f)
+    rows, err := reader.ReadAll()
+    if err != nil { return res, err }
 
-    {555, "Laura", "Kolehmainen", 
-    []time.Weekday{time.Monday, 
-        time.Tuesday, 
-        time.Wednesday, 
-        time.Thursday,
-        time.Friday},
-    []int{9, 10, 11, 12, 13, 14, 15, 16},
-    3, 15},
+    for _, row := range rows {
+        row = CSVRemoveWhitespace(row)
+        worker, err := CSVRowToWorker(row)
+        if err != nil { 
+            slog.Error(fmt.Sprintf("Error parsing CSV input to Customer: %v", err)) 
+            continue
+        }
+        res = append(res, worker)
+    }
 
-    {555, "Laura", "Kolehmainen", 
-    []time.Weekday{time.Monday, 
-        time.Tuesday, 
-        time.Wednesday, 
-        time.Thursday,
-        time.Friday},
-    []int{9, 10, 11, 12, 13, 14, 15, 16},
-    3, 15},
+    return res, nil
+}
 
-    {666, "Sanna", "Sörppö",
-    []time.Weekday{time.Tuesday, 
-        time.Wednesday, 
-        time.Thursday,
-        time.Friday,
-        time.Saturday},
-    []int{12, 13, 14, 15, 16, 17, 18, 19, 20},
-    4, 15},
+func CSVRowToWorker(row []string) (Worker, error) {
+    var res Worker
+    var err error
 
-    {777, "Ville", "Korhonen",
-    []time.Weekday{time.Monday, 
-        time.Tuesday, 
-        time.Wednesday, 
-        time.Thursday,
-        time.Friday},
-    []int{12, 13, 14, 15, 16, 17, 18, 19, 20},
-    3, 15},
+    if len(row) != VALID_CSV_WORKER_SIZE {
+        return res, &WorkerCsvError{len(row)}
+    }
 
-    {888, "Kiire", "Apulainen",
-    []time.Weekday{time.Saturday,
-        time.Sunday},
-    []int{12, 13, 14, 15, 16, 17, 18},
-    3, 15},
+    res.id, err = strconv.Atoi(row[0])
+    if err != nil { return res, err }
+
+    res.first_name = row[1]
+    res.last_name = row[2]
+
+    res.orders_per_hour, err = strconv.Atoi(row[5])
+    if err != nil { return res, err }
+
+    res.salary_per_hour, err = strconv.Atoi(row[6])
+    if err != nil { return res, err }
+
+
+    tmp, err := CSVSplitSerial2Int(row[3], "{}", ";")
+    if err != nil { return res, err }
+    res.work_days, err = IntToWeekday(tmp)
+    if err != nil { return res, err }
+
+
+    res.work_hours, err = CSVSplitSerial2Int(row[4], "{}", ";")
+    if err != nil { return res, err }
+
+
+    return res, nil
 }
 
 func (w *Worker) GetDailySalary() int {
