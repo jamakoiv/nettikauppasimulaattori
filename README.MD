@@ -18,7 +18,7 @@ suitable for analyzing business-related values, such as weekly income etc.
 DBT related code can be found from the repository 
 [nettikauppasimulaattori-dbt](https://github.com/jamakoiv/nettikauppasimulaattori_dbt).
 
-<img src="histogram.png">
+<img src="readme_assets/histograms.png" width="90%">
 
 ### Table schemas in BigQuery (Data type in []):
 
