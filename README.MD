@@ -1,42 +1,24 @@
 
-# Nettikauppasimulaattori
+Generate and analyze data for a simulated online-store. 
 
-Program for simulating an internet store. Includes a simple program for simulating customers 
-who place orders to the store, and workers who ship the orders.
-Ultimate goal is to forecast daily and weekly sales by hour from the sales-data 
-(ARIMA or linear regression), and classify different types of customers 
-by their behaviour (time of day, class of items, money used etc.) 
-(k-clustering or RandomForestClassifier).
-Other goal is to forecast possible new product sales using linear regression on the sales-data,
-and using logistical regression to classify which customers might buy the
-new product.
+
+### Program outline
 
 <img src="readme_assets/project_outline.svg"/>
 
-Includes automated scripts for plotting daily/weekly/montly sales and profits
-and projections for weekly and monthly sales. Save graphs to google-cloud-storage.
+Main part of the program consist of simulated customers sending orders to the operational database.
+The simulation-code can be run in either 
+[Google-cloud functions](https://cloud.google.com/functions/), Docker-container 
+on a cloud platform, or locally. First two are preferred due to easy automation of
+running the code periodically.
+Operational and analysis databases use [Google BigQuery](https://cloud.google.com/bigquery/)
+as back-end for storing the data. [DBT](https://www.getdbt.com/) is used for 
+importing and transforming the raw data in the operational database to a form 
+suitable for analyzing business-related values, such as weekly income etc.
+DBT related code can be found from the repository 
+[nettikauppasimulaattori-dbt](https://github.com/jamakoiv/nettikauppasimulaattori_dbt).
 
-The customer/worker program is run on google cloud functions 
-and orders are sent to BigQuery tables. Analysis and backup are also
-run on GC functions. Timing is done via GC schedule (cron) and Pub/Sub.
-
-The project in BigQuery contains saved SQL-queries for creating the necessary tables.
-Datasets must be added manually.
-
-Moved most of data-transforms to DBT. 
-
-
-TODO: Fix bugs/shoddy logic in analysis-scripts.
-TODO: Change analysis-scripts to use DBT-created tables.
-
-TODO: Add DBT-tests.
-TODO: Create separate devel- and production environments for DBT.
-TODO: Add snapshots in DBT.
-TODO: Add data-freshness warnings in DBT.
-
-TODO: Create rest of unit-tests.
-TODO: Create option for selecting if we want to upload orders from local test-runs.
-
+<img src="readme_assets/histograms.png" width="90%">
 
 ### Table schemas in BigQuery (Data type in []):
 
