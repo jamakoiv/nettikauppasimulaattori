@@ -18,11 +18,14 @@ class BigQueryDB:
 
     def writeTable(self, 
                    data: pd.DataFrame,
-                   table: str) -> None:
+                   table: str,
+                   *args, **kwargs) -> None:
 
         dest = f"{self.dataset}.{table}"
         data.to_gbq(destination_table=dest,
-                    project_id=self.project) 
+                    project_id=self.project,
+                    *args,
+                    **kwargs) 
 
 
     def deleteTable(self, table: str) -> None:
