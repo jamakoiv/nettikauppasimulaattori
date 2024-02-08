@@ -1,0 +1,6 @@
+*.pyc
+*.code-workspace
+*.zip
+*.exe
+__pycache__
+.vscode

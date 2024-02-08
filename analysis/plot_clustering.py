@@ -26,7 +26,8 @@ def PlotClustersHistogram(
     if len(columns) > len(fig.axes):
         print(
             f"""Not enough axes to plot all required columns: 
-            Figure has {len(fig.axes)} axes, received {len(columns)} data columns to plot."""
+            Figure has {len(fig.axes)} axes, received {len(columns)} 
+            data columns to plot."""
         )
 
     for column, ax in zip(columns, fig.axes):
