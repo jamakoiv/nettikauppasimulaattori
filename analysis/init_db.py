@@ -1,6 +1,9 @@
 import pandas as pd
 import numpy as np
 import random
+import copy
+
+from pathlib import Path
 from dataclasses import dataclass
 
 
@@ -55,31 +58,72 @@ class Customer:
     ...
 
 
+def import_income_per_area(f: str | Path) -> pd.DataFrame | None:
+    """Import CSV-file containing median income per area.
+    ------------
+    f: path to CSV-file. See 'seed_median_income.csv' for file format.
+
+    -> on success DataFrame, on failure None.
+    """
+    try: 
+        res = pd.read_csv(f, 
+                        header=1, 
+                        names=['region', 'area', 'income'], 
+                        thousands=" ")
+    except FileNotFoundError:
+        return
+
+    res = res.drop_duplicates(ignore_index=True)
+    return res
+
 
 def create_customers(N: int, 
-                     income_per_area: pd.DataFrame,
-                     destination_table: pd.DataFrame) -> pd.DataFrame: 
+                     income_per_area: pd.DataFrame) -> pd.DataFrame: 
+    """Create customers with income based on median income per area.
+    -------------
+    N: number of customers to create.
+    income_per_area: DataFrame containing median income for each area.
+    
+    -> DataFrame containing the new customers.
+    """
+
+    # Index change later creates bug in random.choices.
+    # Make local copy so original table is not mangled. 
+    income_per_area = copy.copy(income_per_area)
 
     weights = np.random.random(size=len(income_per_area))
-    areas = random.choices(income_per_area['code'], weights, k=N)
+    areas = random.choices(income_per_area['area'], weights, k=N)
 
-    # 
+    #  
     income_floor = 8000
     income_coeff = 0.02 
 
+    income_per_area.index = income_per_area['area']
+    income = [ (income_per_area.loc[area]['income'] - income_floor) * 
+              income_coeff * np.random.random()
+              for area in areas ]
+
     max_purchase_chance = 0.10
+    purchase_chance = np.random.random(size=N) * max_purchase_chance
 
-    for i, area in enumerate(areas):
-        active = np.random.normal(15.0, 6) % 24  # modulo forces value to 0-24 range.
+    # modulo forces value to 0-24 range.
+    active = np.random.normal(15.0, 6, size=N) % 24  
 
-        mask = income_per_area['code'] == area
-        budget = (income_per_area[mask]['income'].values[0] - income_floor)
-        budget *= np.random.random() * income_coeff
+    id = np.arange(N)
 
-        purchase_chance = np.random.random() * max_purchase_chance
+    res = pd.DataFrame({'id': pd.Series(id, dtype='int'), 
+        'name': pd.Series(dtype='str'),
+        'area': pd.Series(areas, dtype='int'),
+        'most_active': pd.Series(active, dtype='float'),
+        'purchase_chance': pd.Series(purchase_chance, dtype='float'),
+        'max_budget': pd.Series(income, dtype='float'),
+        'product_categories': pd.Series(dtype='str')
+    })
 
-        destination_table.loc[i] = [i, '', area, 
-                                    active, purchase_chance, 
-                                    budget, '{1;2;3;4}']
+    return res
 
-    return destination_table
+
+if __name__ == "__main__":
+    income_per_area = import_income_per_area("seed_median_income.csv")
+
+    df = create_customers(5000, income_per_area)
