@@ -1,0 +1,3040 @@
+# Amount of persons in Finland per education bracket per postal code.
+# Data taken from https://www.stat.fi/tup/paavo/index.html
+#
+# 18: 18 vuotta täyttäneet yhteensä (KO)
+# pe: Perusasteen suorittaneet (KO)
+# yht: Koulutetut yhteensä (KO)
+# yo: Ylioppilastutkinnon suorittaneet (KO)
+# amk: Ammatillisen tutkinnon suorittaneet (KO)
+# akk: Alimman korkea-asteen tai alemman korkeakoulututkinnon suorittaneet (KO)
+# ykk: Ylemmän korkeakoulututkinnon suorittaneet (KO)
+#
+# CSV-schema:
+# area_code, area_name, 18, pe, yht, yo, amk, akk, ykk
+
+00100; Helsinki keskusta - Etu-Töölö (Helsinki); 15997; 1854; 14143; 2663; 1690; 3813; 5977
+00120; Punavuori - Bulevardi (Helsinki); 6209; 705; 5504; 1015; 761; 1460; 2268
+00130; Kaartinkaupunki (Helsinki); 1484; 192; 1292; 268; 142; 316; 566
+00140; Kaivopuisto - Ullanlinna (Helsinki); 6674; 754; 5920; 1087; 689; 1641; 2503
+00150; Punavuori - Eira - Hernesaari (Helsinki); 8162; 1003; 7159; 1391; 1003; 1954; 2811
+00160; Katajanokka (Helsinki); 4320; 602; 3718; 618; 524; 1056; 1520
+00170; Kruununhaka (Helsinki); 6267; 715; 5552; 973; 667; 1421; 2491
+00180; Kamppi - Ruoholahti (Helsinki); 12418; 2312; 10106; 1761; 1971; 3040; 3334
+00190; Suomenlinna (Helsinki); 483; 68; 415; 58; 93; 108; 156
+00200; Pohjois-Lauttasaari (Helsinki); 13173; 1376; 11797; 1670; 1514; 3504; 5109
+00210; Vattuniemi (Helsinki); 7248; 846; 6402; 692; 844; 2004; 2862
+00220; Jätkäsaari (Helsinki); 8404; 1398; 7006; 1143; 1352; 2219; 2292
+00230; Helsinki postikeskus (Helsinki); 0; 0; 0; 0; 0; 0; 0
+00240; Länsi-Pasila (Helsinki); 4891; 823; 4068; 558; 981; 1322; 1207
+00250; Taka-Töölö (Helsinki); 9889; 1099; 8790; 1690; 1353; 2499; 3248
+00260; Keski-Töölö (Helsinki); 5049; 695; 4354; 717; 527; 1297; 1813
+00270; Pohjois-Meilahti (Helsinki); 6260; 817; 5443; 882; 942; 1622; 1997
+00280; Ruskeasuo (Helsinki); 2451; 290; 2161; 459; 310; 608; 784
+00290; Meilahden sairaala-alue (Helsinki); 117; 13; 104; 6; 29; 31; 38
+00300; Pikku Huopalahti (Helsinki); 4369; 878; 3491; 455; 926; 1051; 1059
+00310; Kivihaka (Helsinki); 689; 90; 599; 78; 113; 208; 200
+00320; Etelä-Haaga (Helsinki); 9178; 1148; 8030; 1187; 1395; 2561; 2887
+00330; Munkkiniemi (Helsinki); 7688; 874; 6814; 860; 882; 2009; 3063
+00340; Kuusisaari - Lehtisaari (Helsinki); 1450; 202; 1248; 185; 105; 339; 619
+00350; Munkkivuori - Niemenmäki (Helsinki); 7860; 1119; 6741; 976; 1424; 2168; 2173
+00360; Pajamäki (Helsinki); 1598; 285; 1313; 160; 317; 426; 410
+00370; Reimarla (Helsinki); 5210; 1257; 3953; 514; 1127; 1228; 1084
+00380; Pitäjänmäen yritysalue (Helsinki); 4098; 956; 3142; 380; 947; 1030; 785
+00390; Konala (Helsinki); 5354; 1329; 4025; 449; 1370; 1310; 896
+00400; Pohjois-Haaga (Helsinki); 7890; 1927; 5963; 733; 1694; 1839; 1697
+00410; Malminkartano (Helsinki); 7771; 2096; 5675; 785; 2125; 1717; 1048
+00420; Kannelmäki (Helsinki); 11471; 3439; 8032; 1035; 2914; 2405; 1678
+00430; Maununneva - Kuninkaantammi (Helsinki); 6054; 868; 5186; 598; 1403; 1738; 1447
+00440; Lassila (Helsinki); 4019; 913; 3106; 387; 902; 1009; 808
+00500; Sörnäinen - Harju (Helsinki); 11032; 1878; 9154; 2061; 2102; 2562; 2429
+00510; Alppila - Vallila (Helsinki); 8718; 1353; 7365; 1268; 1677; 2160; 2260
+00520; Itä- ja Keski-Pasila (Helsinki); 7348; 1375; 5973; 843; 1364; 1837; 1929
+00530; Kallio (Helsinki); 16651; 2864; 13787; 2734; 2924; 3983; 4146
+00540; Kalasatama - Sompasaari (Helsinki); 4463; 668; 3795; 565; 764; 1126; 1340
+00550; Vallila - Hermanni (Helsinki); 8156; 1365; 6791; 1323; 1695; 1955; 1818
+00560; Toukola - Kumpula - Vanhakaupunki (Helsinki); 11366; 1502; 9864; 1708; 1913; 2954; 3289
+00570; Kulosaari (Helsinki); 3183; 397; 2786; 362; 353; 783; 1288
+00580; Kalasatama - Kyläsaari (Helsinki); 6052; 783; 5269; 1052; 1107; 1445; 1665
+00590; Kruunuvuorenranta (Helsinki); 3395; 534; 2861; 340; 784; 921; 816
+00600; Koskela (Helsinki); 3872; 1080; 2792; 408; 813; 746; 825
+00610; Käpylä (Helsinki); 6513; 1091; 5422; 665; 1373; 1569; 1815
+00620; Metsälä - Etelä-Oulunkylä (Helsinki); 4516; 765; 3751; 496; 841; 1182; 1232
+00630; Maunula (Helsinki); 6660; 1567; 5093; 605; 1639; 1374; 1475
+00640; Oulunkylä - Patola (Helsinki); 6774; 1291; 5483; 677; 1392; 1670; 1744
+00650; Veräjämäki (Helsinki); 3426; 637; 2789; 327; 650; 817; 995
+00660; Länsi-Pakila (Helsinki); 5116; 645; 4471; 432; 753; 1432; 1854
+00670; Paloheinä (Helsinki); 4432; 480; 3952; 403; 605; 1258; 1686
+00680; Itä-Pakila (Helsinki); 2726; 359; 2367; 260; 513; 797; 797
+00690; Torpparinmäki (Helsinki); 2045; 355; 1690; 170; 452; 540; 528
+00700; Malmi (Helsinki); 11227; 3473; 7754; 944; 3222; 2223; 1365
+00710; Pihlajamäki - Viikinmäki (Helsinki); 10409; 3116; 7293; 926; 2817; 2081; 1469
+00720; Pukinmäki (Helsinki); 7262; 1936; 5326; 610; 2018; 1674; 1024
+00730; Tapanila (Helsinki); 8900; 1721; 7179; 721; 2310; 2288; 1860
+00740; Siltamäki (Helsinki); 8093; 2091; 6002; 651; 2366; 1948; 1037
+00750; Tapulikaupunki (Helsinki); 7402; 2149; 5253; 548; 2122; 1520; 1063
+00760; Puistola - Heikinlaakso (Helsinki); 5680; 1018; 4662; 447; 1505; 1552; 1158
+00770; Jakomäki - Alppikylä (Helsinki); 5700; 2049; 3651; 388; 2023; 823; 417
+00780; Tapaninvainio (Helsinki); 5535; 1107; 4428; 414; 1359; 1560; 1095
+00790; Viikki (Helsinki); 8083; 1631; 6452; 1058; 1617; 1822; 1955
+00800; Länsi-Herttoniemi (Helsinki); 6375; 1213; 5162; 728; 1392; 1400; 1642
+00810; Herttoniemenranta (Helsinki); 9850; 2163; 7687; 984; 2346; 2219; 2138
+00820; Roihuvuori (Helsinki); 6421; 1611; 4810; 595; 1441; 1359; 1415
+00830; Tammisalo (Helsinki); 1717; 182; 1535; 174; 188; 436; 737
+00840; Yliskylä (Helsinki); 7229; 1209; 6020; 698; 1402; 2015; 1905
+00850; Jollas (Helsinki); 2298; 362; 1936; 239; 383; 524; 790
+00860; Santahamina (Helsinki); 232; 15; 217; 33; 56; 59; 69
+00870; Gunillanmäki - Hevossalmi (Helsinki); 4827; 1117; 3710; 478; 1285; 1055; 892
+00880; Keski-Herttoniemi - Roihupelto (Helsinki); 1212; 227; 985; 130; 283; 336; 236
+00890; Östersundom (Helsinki); 1426; 223; 1203; 175; 298; 366; 364
+00900; Puotinharju (Helsinki); 3470; 1177; 2293; 304; 885; 654; 450
+00910; Puotila (Helsinki); 5015; 1383; 3632; 490; 1254; 1046; 842
+00920; Myllypuro (Helsinki); 11137; 3056; 8081; 997; 3108; 2244; 1732
+00930; Itäkeskus - Marjaniemi (Helsinki); 5326; 1758; 3568; 436; 1209; 942; 981
+00940; Kontula - Vesala - Kivikko (Helsinki); 20958; 8483; 12475; 1496; 6378; 2957; 1644
+00950; Vartioharju (Helsinki); 5072; 979; 4093; 492; 1242; 1277; 1082
+00960; Pohjois-Vuosaari (Helsinki); 5888; 1616; 4272; 482; 1821; 1272; 697
+00970; Mellunmäki (Helsinki); 8961; 2776; 6185; 767; 3055; 1640; 723
+00980; Etelä-Vuosaari (Helsinki); 18207; 5743; 12464; 1434; 4984; 3533; 2513
+00990; Aurinkolahti (Helsinki); 7216; 1521; 5695; 662; 1688; 1844; 1501
+01120; Västerskog (Sipoo); 1166; 258; 908; 107; 307; 318; 176
+01150; Söderkulla (Sipoo); 5176; 1007; 4169; 406; 1510; 1431; 822
+01180; Kalkkiranta (Sipoo); 403; 84; 319; 25; 117; 123; 54
+01190; Box (Sipoo); 809; 171; 638; 63; 291; 195; 89
+01200; Hakunila (Vantaa); 9924; 3987; 5937; 626; 3330; 1364; 617
+01230; Vaarala (Vantaa); 2491; 571; 1920; 210; 814; 632; 264
+01260; Itä-Hakkila (Vantaa); 3631; 738; 2893; 279; 1173; 906; 535
+01280; Länsimäki (Vantaa); 8005; 2732; 5273; 539; 2601; 1468; 665
+01300; Tikkurila (Vantaa); 19944; 4954; 14990; 1911; 6273; 4583; 2223
+01340; Leinelä (Vantaa); 2136; 521; 1615; 200; 737; 486; 192
+01350; Hiekkaharju (Vantaa); 8273; 2281; 5992; 619; 2784; 1766; 823
+01360; Koivukylä-Havukoski (Vantaa); 10196; 3955; 6241; 670; 3173; 1637; 761
+01370; Jokiniemi (Vantaa); 5721; 1534; 4187; 607; 1768; 1169; 643
+01380; Kuusikko-Hakkila (Vantaa); 1502; 331; 1171; 93; 486; 385; 207
+01390; Ruskeasanta-Ilola (Vantaa); 7030; 1371; 5659; 528; 2393; 1837; 901
+01400; Rekola (Vantaa); 7772; 2078; 5694; 592; 2599; 1666; 837
+01420; Päiväkumpu (Vantaa); 2329; 487; 1842; 164; 747; 596; 335
+01450; Korso (Vantaa); 14448; 4114; 10334; 962; 5101; 3002; 1269
+01480; Mikkola (Vantaa); 5086; 1636; 3450; 351; 1755; 967; 377
+01490; Nikinmäki (Vantaa); 3314; 624; 2690; 262; 1022; 886; 520
+01510; Kirkonkylä-Veromäki (Vantaa); 5988; 1707; 4281; 485; 1989; 1258; 549
+01520; Tammisto (Vantaa); 5569; 934; 4635; 461; 1481; 1506; 1187
+01530; Veromiehenkylä (Vantaa); 631; 280; 351; 56; 195; 72; 28
+01600; Myyrmäki (Vantaa); 14783; 4549; 10234; 1253; 4248; 3299; 1434
+01610; Kaivoksela (Vantaa); 4927; 1298; 3629; 429; 1448; 1183; 569
+01620; Martinlaakso (Vantaa); 11063; 3764; 7299; 905; 3203; 2110; 1081
+01630; Hämeenkylä (Vantaa); 1622; 240; 1382; 132; 445; 518; 287
+01640; Hämevaara (Vantaa); 2853; 675; 2178; 187; 768; 746; 477
+01650; Vapaala (Vantaa); 3209; 711; 2498; 238; 881; 827; 552
+01660; Varisto (Vantaa); 1780; 454; 1326; 140; 559; 392; 235
+01670; Vantaanlaakso (Vantaa); 2241; 362; 1879; 138; 585; 738; 418
+01680; Askisto (Vantaa); 1570; 330; 1240; 114; 460; 423; 243
+01690; Ylästö (Vantaa); 3581; 477; 3104; 263; 801; 1111; 929
+01700; Kivistö (Vantaa); 9707; 2353; 7354; 1048; 3003; 2145; 1158
+01710; Pähkinärinne (Vantaa); 4219; 1113; 3106; 323; 1246; 1025; 512
+01720; Petikko (Vantaa); 53; 24; 29; 1; 16; 10; 2
+01730; Vantaanpuisto (Vantaa); 2034; 458; 1576; 160; 665; 498; 253
+01740; Tuupakan teollisuusalue (Vantaa); 140; 43; 97; 10; 34; 27; 26
+01750; Keimola (Vantaa); 645; 129; 516; 47; 208; 166; 95
+01760; Seutula (Vantaa); 1598; 429; 1169; 102; 575; 335; 157
+01770; Martinlaakson teollisuusalue (Vantaa); 0; 0; 0; 0; 0; 0; 0
+01800; Klaukkala Keskus (Nurmijärvi); 8255; 1957; 6298; 579; 2946; 1878; 895
+01810; Luhtajoki (Nurmijärvi); 502; 121; 381; 44; 165; 115; 57
+01820; Haikala (Nurmijärvi); 2416; 437; 1979; 185; 806; 662; 326
+01830; Lepsämä (Nurmijärvi); 1753; 363; 1390; 105; 646; 433; 206
+01840; Klaukkala (Nurmijärvi); 2858; 514; 2344; 217; 860; 813; 454
+01860; Perttula (Nurmijärvi); 1506; 322; 1184; 104; 574; 336; 170
+01900; Nurmijärvi Keskus (Nurmijärvi); 7466; 1794; 5672; 461; 2807; 1666; 738
+01940; Palojoki (Nurmijärvi); 601; 136; 465; 40; 224; 138; 63
+02100; Tapiola (Espoo); 5483; 684; 4799; 726; 605; 1471; 1997
+02110; Otsolahti (Espoo); 2307; 273; 2034; 278; 207; 559; 990
+02120; Länsikorkee-Suvikumpu (Espoo); 2485; 301; 2184; 292; 250; 601; 1041
+02130; Pohjois-Tapiola (Espoo); 5089; 650; 4439; 520; 439; 1204; 2276
+02140; Laajalahti (Espoo); 2739; 509; 2230; 223; 342; 641; 1024
+02150; Otaniemi (Espoo); 4304; 1081; 3223; 1411; 87; 891; 834
+02160; Westend (Espoo); 2518; 276; 2242; 321; 187; 613; 1121
+02170; Haukilahti (Espoo); 4486; 594; 3892; 485; 523; 1175; 1709
+02180; Mankkaa (Espoo); 5036; 609; 4427; 430; 607; 1301; 2089
+02200; Niittykumpu (Espoo); 10436; 1692; 8744; 1430; 1536; 2659; 3119
+02210; Olari (Espoo); 9387; 1760; 7627; 906; 1725; 2528; 2468
+02230; Matinkylä (Espoo); 18162; 4462; 13700; 1730; 3400; 4180; 4390
+02240; Friisilä (Espoo); 1881; 223; 1658; 176; 209; 489; 784
+02250; Henttaa (Espoo); 4846; 1471; 3375; 482; 1131; 941; 821
+02260; Kaitaa (Espoo); 2692; 518; 2174; 244; 576; 656; 698
+02270; Finnoo-Eestinmalmi (Espoo); 2136; 380; 1756; 245; 370; 537; 604
+02280; Malminmäki-Eestinlaakso (Espoo); 3525; 765; 2760; 270; 888; 830; 772
+02290; Puolarmetsän sairaala (Espoo); 0; 0; 0; 0; 0; 0; 0
+02300; Nöykkiönpuro (Espoo); 1897; 251; 1646; 204; 254; 564; 624
+02320; Espoonlahti (Espoo); 13913; 3587; 10326; 1239; 3296; 3321; 2470
+02330; Saunalahti-Kattilalaakso (Espoo); 9058; 1799; 7259; 871; 1924; 2145; 2319
+02340; Latokaski (Espoo); 3426; 502; 2924; 249; 812; 995; 868
+02360; Soukka (Espoo); 7660; 1758; 5902; 637; 1466; 1901; 1898
+02380; Suvisaaristo (Espoo); 511; 85; 426; 71; 68; 122; 165
+02390; Sarvvik (Kirkkonummi); 954; 167; 787; 111; 269; 235; 172
+02400; Kirkkonummi Keskus (Kirkkonummi); 9984; 2264; 7720; 727; 3046; 2450; 1497
+02410; Gesterby (Kirkkonummi); 1674; 612; 1062; 95; 576; 267; 124
+02420; Jorvas (Kirkkonummi); 1371; 236; 1135; 141; 293; 380; 321
+02430; Masala (Kirkkonummi); 3721; 1017; 2704; 271; 1172; 790; 471
+02440; Luoma (Kirkkonummi); 485; 81; 404; 37; 96; 153; 118
+02450; Sundsberg (Kirkkonummi); 1516; 129; 1387; 115; 213; 480; 579
+02460; Kantvik (Kirkkonummi); 1505; 317; 1188; 97; 419; 400; 272
+02470; Upinniemi (Kirkkonummi); 242; 47; 195; 21; 90; 71; 13
+02480; Porkkala (Kirkkonummi); 3546; 558; 2988; 276; 941; 974; 797
+02490; Pikkala (Siuntio); 232; 69; 163; 21; 77; 33; 32
+02510; Oitmäki (Kirkkonummi); 369; 73; 296; 28; 116; 83; 69
+02520; Lapinkylä (Kirkkonummi); 630; 131; 499; 39; 203; 162; 95
+02540; Kylmälä (Kirkkonummi); 480; 123; 357; 30; 162; 103; 62
+02550; Evitskog (Kirkkonummi); 671; 145; 526; 40; 213; 177; 96
+02570; Siuntio Kirkonkylä (Siuntio); 1027; 250; 777; 70; 342; 249; 116
+02580; Siuntio Asemanseutu (Siuntio); 2758; 608; 2150; 179; 830; 710; 431
+02590; Lappers (Siuntio); 182; 41; 141; 12; 63; 39; 27
+02600; Etelä-Leppävaara (Espoo); 13175; 3265; 9910; 1514; 2727; 3146; 2523
+02610; Kilo (Espoo); 5284; 1424; 3860; 490; 1048; 1147; 1175
+02620; Karakallio (Espoo); 6496; 1525; 4971; 535; 1558; 1538; 1340
+02630; Nihtisilta (Espoo); 2641; 585; 2056; 177; 541; 646; 692
+02650; Pohjois-Leppävaara (Espoo); 9636; 2050; 7586; 880; 1944; 2497; 2265
+02660; Lintuvaara (Espoo); 4569; 807; 3762; 376; 772; 1189; 1425
+02680; Uusmäki (Espoo); 2685; 350; 2335; 165; 477; 754; 939
+02700; Kauniainen (Kauniainen); 7858; 1009; 6849; 826; 967; 2060; 2996
+02710; Viherlaakso (Espoo); 4996; 962; 4034; 422; 1103; 1329; 1180
+02720; Lähderanta (Espoo); 2263; 422; 1841; 180; 533; 657; 471
+02730; Jupperi (Espoo); 3515; 464; 3051; 339; 535; 1024; 1153
+02740; Bemböle-Pakankylä (Espoo); 2349; 447; 1902; 177; 655; 593; 477
+02750; Sepänkylä-Kuurinniitty (Espoo); 4971; 881; 4090; 435; 1006; 1177; 1472
+02760; Tuomarila-Suvela (Espoo); 11371; 3532; 7839; 745; 2827; 2441; 1826
+02770; Espoon Keskus (Espoo); 8588; 2685; 5903; 642; 2308; 1701; 1252
+02780; Kauklahti (Espoo); 9555; 1715; 7840; 811; 2300; 2471; 2258
+02810; Gumböle-Karhusuo (Espoo); 1277; 211; 1066; 96; 320; 331; 319
+02820; Nupuri-Nuuksio (Espoo); 1324; 249; 1075; 105; 348; 348; 274
+02860; Siikajärvi (Espoo); 513; 117; 396; 39; 144; 129; 84
+02880; Veikkola (Kirkkonummi); 4272; 746; 3526; 322; 1096; 1172; 936
+02920; Niipperi (Espoo); 4110; 762; 3348; 280; 1176; 1094; 798
+02940; Lippajärvi-Järvenperä (Espoo); 8161; 1480; 6681; 677; 2108; 2135; 1761
+02970; Kalajärvi (Espoo); 2775; 507; 2268; 185; 877; 716; 490
+02980; Lakisto (Espoo); 207; 66; 141; 11; 80; 31; 19
+03100; Nummela (Vihti); 12327; 2861; 9466; 693; 4513; 2961; 1299
+03150; Huhmari (Vihti); 622; 125; 497; 45; 209; 155; 88
+03220; Tervalampi (Vihti); 480; 100; 380; 31; 172; 113; 64
+03250; Ojakkala (Vihti); 1394; 288; 1106; 91; 508; 332; 175
+03300; Otalampi (Vihti); 1845; 420; 1425; 105; 715; 416; 189
+03320; Selki (Vihti); 252; 53; 199; 13; 110; 59; 17
+03400; Vihti Kirkonkylä (Vihti); 4815; 1083; 3732; 284; 1992; 1016; 440
+03430; Jokikunta (Vihti); 390; 69; 321; 27; 181; 82; 31
+03600; Karkkila Keskus (Karkkila); 5217; 1638; 3579; 216; 2191; 898; 274
+03620; Polari (Karkkila); 1643; 517; 1126; 66; 707; 272; 81
+03710; Uusitalo (Karkkila); 157; 36; 121; 9; 73; 30; 9
+03790; Vihtijärvi (Vihti); 380; 87; 293; 19; 145; 87; 42
+03810; Ikkala (Lohja); 461; 133; 328; 11; 203; 98; 16
+03850; Pusula (Lohja); 1320; 391; 929; 62; 562; 239; 66
+03870; Hyönölä (Lohja); 141; 38; 103; 9; 53; 27; 14
+04130; Sipoo (Sipoo); 6484; 1431; 5053; 437; 2216; 1451; 949
+04150; Martinkylä (Sipoo); 502; 98; 404; 39; 184; 117; 64
+04170; Paippinen (Sipoo); 983; 201; 782; 58; 385; 236; 103
+04200; Kerava Keskus (Kerava); 10258; 2694; 7564; 665; 3297; 2364; 1238
+04220; Ahjo-Kaskela (Kerava); 4083; 994; 3089; 257; 1557; 857; 418
+04230; Pihkaniitty (Kerava); 5928; 1110; 4818; 355; 2020; 1613; 830
+04240; Talma (Sipoo); 953; 199; 754; 62; 342; 238; 112
+04250; Alikerava (Kerava); 4523; 1370; 3153; 297; 1694; 802; 360
+04260; Savio (Kerava); 5162; 1375; 3787; 293; 1980; 1048; 466
+04300; Hyrylä (Tuusula); 9467; 2141; 7326; 628; 3352; 2204; 1142
+04310; Tuusula Kirkonkylä (Tuusula); 1920; 329; 1591; 146; 514; 546; 385
+04320; Riihikallio (Tuusula); 3961; 960; 3001; 223; 1444; 941; 393
+04330; Lahela (Tuusula); 1869; 304; 1565; 141; 574; 540; 310
+04340; Mattila (Tuusula); 2062; 361; 1701; 134; 685; 544; 338
+04350; Nahkela (Tuusula); 386; 75; 311; 27; 142; 108; 34
+04360; Ruotsinkylä-Kiilinmäki (Tuusula); 915; 245; 670; 55; 357; 180; 78
+04370; Rusutjärvi (Tuusula); 573; 127; 446; 37; 217; 148; 44
+04380; Tuomala (Tuusula); 459; 74; 385; 25; 164; 127; 69
+04390; Jäniksenlinna (Tuusula); 335; 76; 259; 19; 130; 89; 21
+04400; Loutti (Järvenpää); 9628; 1913; 7715; 649; 3262; 2443; 1361
+04410; Järvenpää Keskus (Järvenpää); 10130; 2395; 7735; 656; 3851; 2254; 974
+04420; Kyrölä (Järvenpää); 3195; 454; 2741; 193; 1085; 941; 522
+04430; Kinnari-Mikonkorpi (Järvenpää); 7297; 1191; 6106; 444; 2491; 2123; 1048
+04440; Jamppa (Järvenpää); 3539; 1126; 2413; 201; 1306; 628; 278
+04460; Nummenkylä (Järvenpää); 1436; 235; 1201; 75; 571; 382; 173
+04480; Haarajoki (Järvenpää); 1700; 349; 1351; 87; 631; 395; 238
+04500; Kellokoski (Tuusula); 4544; 959; 3585; 229; 1972; 999; 385
+04530; Ohkola (Mäntsälä); 665; 108; 557; 29; 304; 165; 59
+04600; Mäntsälä Keskus (Mäntsälä); 7593; 2021; 5572; 305; 3248; 1499; 520
+04620; Kaunismäki (Mäntsälä); 1518; 239; 1279; 98; 580; 364; 237
+04630; Sääksjärvi (Mäntsälä); 643; 165; 478; 26; 308; 98; 46
+04660; Numminen (Mäntsälä); 1257; 292; 965; 57; 566; 267; 75
+04680; Hirvihaara (Mäntsälä); 487; 123; 364; 16; 211; 103; 34
+04740; Sälinkää (Mäntsälä); 877; 255; 622; 28; 389; 166; 39
+04770; Sahakylä (Mäntsälä); 163; 42; 121; 9; 85; 18; 9
+04820; Kaukalampi (Mäntsälä); 223; 39; 184; 9; 104; 53; 18
+04840; Hautjärvi (Mäntsälä); 205; 65; 140; 14; 84; 31; 11
+04920; Saarentaus (Mäntsälä); 247; 47; 200; 11; 128; 48; 13
+04940; Levanto (Mäntsälä); 222; 47; 175; 12; 98; 48; 17
+05100; Röykkä (Nurmijärvi); 1709; 389; 1320; 97; 688; 403; 132
+05200; Rajamäki (Nurmijärvi); 5245; 1197; 4048; 303; 2099; 1110; 536
+05250; Kiljava (Nurmijärvi); 155; 49; 106; 9; 57; 33; 7
+05400; Jokela (Tuusula); 5111; 1121; 3990; 296; 1883; 1247; 564
+05430; Nuppulinna (Tuusula); 756; 171; 585; 32; 328; 148; 77
+05440; Hyvinkää (Hyvinkää); 934; 141; 793; 38; 309; 279; 167
+05450; Nukari (Nurmijärvi); 798; 171; 627; 46; 350; 151; 80
+05460; Hakalanmäki-Hakala (Hyvinkää); 2535; 505; 2030; 114; 1108; 626; 182
+05470; Palopuro (Hyvinkää); 246; 66; 180; 11; 112; 34; 23
+05510; Päivärinta (Hyvinkää); 389; 109; 280; 9; 175; 72; 24
+05620; Noppo (Hyvinkää); 948; 199; 749; 41; 399; 225; 84
+05720; Kytäjä (Hyvinkää); 454; 104; 350; 30; 155; 110; 55
+05800; Hyvinkää Keskus (Hyvinkää); 8661; 2161; 6500; 520; 3150; 2077; 753
+05810; Martti (Hyvinkää); 4139; 694; 3445; 244; 1429; 1138; 634
+05820; Mustamännistö (Hyvinkää); 3890; 824; 3066; 195; 1558; 910; 403
+05830; Kirjavatolppa-Kruununpuisto (Hyvinkää); 5714; 1166; 4548; 302; 2128; 1477; 641
+05840; Hyvinkäänkylä-Vehkoja (Hyvinkää); 2791; 581; 2210; 124; 1201; 645; 240
+05850; Hyvinkää, sairaala-alue (Hyvinkää); 0; 0; 0; 0; 0; 0; 0
+05860; Talvisilta (Hyvinkää); 1086; 254; 832; 45; 477; 251; 59
+05880; Paavola-Vaivero (Hyvinkää); 2718; 923; 1795; 108; 1121; 445; 121
+05900; Vieremä (Hyvinkää); 3754; 905; 2849; 245; 1326; 895; 383
+05950; Ridasjärvi (Hyvinkää); 314; 60; 254; 16; 146; 72; 20
+06100; Porvoo Keskus (Porvoo); 15787; 3378; 12409; 1116; 4700; 4115; 2478
+06150; Kevätkumpu (Porvoo); 5229; 1457; 3772; 236; 2007; 1131; 398
+06200; Porvoo itäinen (Porvoo); 1977; 390; 1587; 104; 734; 540; 209
+06400; Gammelbacka (Porvoo); 5820; 1586; 4234; 271; 2171; 1225; 567
+06450; Eestinmäki-Ernestas (Porvoo); 1608; 331; 1277; 82; 658; 369; 168
+06500; Saksala-Suomenkylä (Porvoo); 1611; 397; 1214; 63; 592; 386; 173
+06530; Kerkkoo (Porvoo); 613; 126; 487; 39; 241; 142; 65
+06650; Hamari (Porvoo); 1069; 234; 835; 57; 364; 270; 144
+06750; Tolkkinen (Porvoo); 1482; 265; 1217; 81; 502; 417; 217
+06830; Kulloonkylä (Porvoo); 805; 171; 634; 38; 303; 200; 93
+06850; Kulloo (Porvoo); 16; ...; ...; ...; ...; ...; ...
+06880; Kärrby (Sipoo); 289; 58; 231; 22; 97; 75; 37
+06950; Emäsalo (Porvoo); 312; 65; 247; 22; 118; 79; 28
+07110; Hinthaara (Porvoo); 1082; 226; 856; 57; 416; 270; 113
+07130; Anttila (Porvoo); 489; 129; 360; 19; 177; 112; 52
+07150; Laukkoski (Pornainen); 786; 180; 606; 37; 326; 164; 79
+07170; Keski-Pornainen (Pornainen); 1855; 425; 1430; 92; 821; 386; 131
+07190; Halkia (Pornainen); 1073; 235; 838; 63; 482; 226; 67
+07220; Kaarenkylä (Porvoo); 234; 54; 180; 11; 104; 40; 25
+07230; Monninkylä (Askola); 1167; 285; 882; 48; 515; 242; 77
+07280; Ilola (Porvoo); 672; 150; 522; 37; 279; 148; 58
+07310; Sannainen (Porvoo); 306; 45; 261; 14; 135; 69; 43
+07320; Jakari-Sannäs (Porvoo); 356; 72; 284; 14; 163; 81; 26
+07350; Gäddrag (Porvoo); 64; 15; 49; 3; 20; 22; 4
+07360; Tirmo (Porvoo); 40; 14; 26; 2; 17; 6; 1
+07370; Pellinki (Porvoo); 121; 33; 88; 6; 39; 37; 6
+07390; Suurpellinki (Porvoo); 82; 20; 62; 3; 33; 23; 3
+07410; Kråkö (Porvoo); 239; 62; 177; 8; 87; 60; 22
+07450; Voolahti (Porvoo); 331; 75; 256; 11; 129; 97; 19
+07500; Askola Kirkonkylä (Askola); 860; 205; 655; 36; 396; 162; 61
+07510; Vakkola (Askola); 524; 126; 398; 19; 248; 100; 31
+07530; Onkimaa (Askola); 226; 65; 161; 11; 104; 34; 12
+07550; Torpinkylä (Pukkila); 215; 46; 169; 5; 123; 35; 6
+07560; Pukkila Keskus (Pukkila); 1028; 256; 772; 42; 504; 183; 43
+07565; Kantele (Pukkila); 187; 44; 143; 5; 93; 35; 10
+07580; Tiilää (Askola); 63; 23; 40; 1; 28; 8; 3
+07590; Huuvari-Tiilää (Askola); 472; 101; 371; 23; 217; 100; 31
+07600; Myrskylä Keskus (Myrskylä); 1249; 367; 882; 49; 562; 213; 58
+07680; Juornaankylä (Askola); 383; 99; 284; 11; 210; 51; 12
+07690; Kankkila (Myrskylä); 115; 26; 89; 4; 62; 20; 3
+07700; Koskenkylän saha-alue (Loviisa); 940; 223; 717; 52; 410; 179; 76
+07720; Malmgård (Loviisa); 73; 21; 52; 3; 31; 15; 3
+07740; Gammelby (Loviisa); 321; 75; 246; 13; 143; 59; 31
+07750; Isnäs (Loviisa); 439; 141; 298; 11; 186; 71; 30
+07780; Härkäpää (Loviisa); 132; 37; 95; 3; 56; 22; 14
+07800; Lapinjärvi Keskus (Lapinjärvi); 671; 232; 439; 24; 268; 108; 39
+07810; Ingermaninkylä (Lapinjärvi); 230; 77; 153; 6; 100; 38; 9
+07820; Porlammi (Lapinjärvi); 383; 134; 249; 15; 156; 55; 23
+07830; Pukaro (Lapinjärvi); 212; 69; 143; 7; 86; 35; 15
+07840; Lindkoski (Lapinjärvi); 160; 50; 110; 3; 63; 31; 13
+07850; Heikinkylä (Lapinjärvi); 232; 66; 166; 9; 94; 40; 23
+07870; Skinnarby (Loviisa); 337; 89; 248; 23; 113; 80; 32
+07880; Liljendal Keskus (Loviisa); 808; 222; 586; 36; 345; 157; 48
+07890; Mickelspiltom (Loviisa); 154; 39; 115; 8; 70; 30; 7
+07900; Loviisa Keskus (Loviisa); 3431; 1021; 2410; 186; 1167; 764; 293
+07910; Valko (Loviisa); 903; 285; 618; 39; 368; 166; 45
+07920; Etelä-Harju (Loviisa); 1139; 294; 845; 54; 455; 267; 69
+07930; Pernaja Kirkonkylä (Loviisa); 499; 123; 376; 25; 214; 94; 43
+07940; Määrlahti (Loviisa); 782; 298; 484; 23; 307; 112; 42
+07945; Kuggom (Loviisa); 370; 105; 265; 12; 161; 69; 23
+07955; Tesjoki (Loviisa); 919; 269; 650; 33; 392; 167; 58
+07960; Ahvenkoski (Loviisa); 114; 32; 82; 7; 47; 16; 12
+07970; Ruotsinpyhtää Keskus (Loviisa); 453; 134; 319; 12; 197; 85; 25
+07980; Kuninkaankylä (Loviisa); 237; 62; 175; 6; 109; 48; 12
+07990; Ruotsinkylä-Koskisto (Loviisa); 222; 55; 167; 8; 98; 50; 11
+08100; Lohja Keskus (Lohja); 7225; 1945; 5280; 394; 2599; 1595; 692
+08150; Keskilohja (Lohja); 4007; 839; 3168; 197; 1560; 977; 434
+08200; Ojamo (Lohja); 3060; 925; 2135; 139; 1308; 539; 149
+08350; Routio (Lohja); 1884; 511; 1373; 83; 733; 399; 158
+08360; Kisakallio (Lohja); 0; 0; 0; 0; 0; 0; 0
+08450; Hormajärvi (Lohja); 214; 67; 147; 10; 71; 48; 18
+08480; Karstu (Lohja); 193; 45; 148; 10; 78; 51; 9
+08500; Ventelä-Millola (Lohja); 4874; 1135; 3739; 210; 2034; 1070; 425
+08680; Muijala (Lohja); 1290; 242; 1048; 59; 448; 366; 175
+08700; Virkkala (Lohja); 5789; 1542; 4247; 223; 2411; 1218; 395
+08800; Kirkniemi (Lohja); 1186; 242; 944; 54; 510; 290; 90
+09120; Karjalohja (Lohja); 986; 256; 730; 64; 372; 202; 92
+09220; Sammatti (Lohja); 1248; 304; 944; 43; 559; 260; 82
+09430; Saukkola (Lohja); 1269; 310; 959; 68; 543; 266; 82
+09520; Millola (Lohja); 101; 30; 71; 5; 45; 16; 5
+09630; Koisjärvi (Lohja); 376; 94; 282; 17; 174; 68; 23
+09810; Nummi-Oinola (Lohja); 752; 227; 525; 32; 285; 138; 70
+09930; Leppäkorpi (Lohja); 246; 68; 178; 8; 101; 51; 18
+10120; Tähtelä (Inkoo); 493; 89; 404; 36; 185; 124; 59
+10140; Päivölä (Inkoo); 227; 40; 187; 18; 85; 50; 34
+10160; Degerby (Inkoo); 692; 140; 552; 55; 210; 189; 98
+10210; Inkoo Keskus (Inkoo); 2263; 557; 1706; 134; 698; 578; 296
+10230; Inkoo Asemanseutu (Inkoo); 280; 56; 224; 16; 108; 63; 37
+10250; Fagervik (Inkoo); 128; 34; 94; 10; 42; 34; 8
+10270; Barösund (Inkoo); 119; 35; 84; 3; 41; 24; 16
+10300; Karjaa Keskus (Raasepori); 5970; 1685; 4285; 336; 2091; 1239; 619
+10320; Bäljars (Raasepori); 988; 289; 699; 57; 380; 189; 73
+10330; Pinjainen (Raasepori); 479; 100; 379; 27; 173; 117; 62
+10350; Meltolan sairaala-alue (Raasepori); 31; 15; 16; 1; 8; 4; 3
+10360; Mustio (Raasepori); 1004; 230; 774; 43; 451; 212; 68
+10380; Kaunislahti (Raasepori); 91; 26; 65; 6; 39; 15; 5
+10410; Åminnefors (Raasepori); 275; 84; 191; 14; 106; 48; 23
+10420; Pohjankuru (Raasepori); 1438; 523; 915; 54; 556; 216; 89
+10440; Bollsta (Raasepori); 275; 72; 203; 16; 109; 55; 23
+10470; Fiskari (Raasepori); 440; 90; 350; 41; 121; 91; 97
+10480; Antskog (Raasepori); 91; 21; 70; 7; 32; 19; 12
+10520; Tenhola Kirkonkylä (Raasepori); 1309; 340; 969; 50; 548; 284; 87
+10570; Bromarv (Raasepori); 382; 126; 256; 17; 138; 83; 18
+10600; Tammisaari Keskus (Raasepori); 4151; 1075; 3076; 229; 1295; 1051; 501
+10620; Tammisaari (Raasepori); 1478; 392; 1086; 56; 551; 355; 124
+10640; Dragsvik (Raasepori); 730; 124; 606; 28; 285; 198; 95
+10650; Flyet (Raasepori); 2166; 549; 1617; 105; 744; 535; 233
+10660; Trollböle (Raasepori); 657; 189; 468; 29; 289; 118; 32
+10680; Skogby (Raasepori); 165; 49; 116; 10; 71; 30; 5
+10710; Snappertuna (Raasepori); 314; 62; 252; 12; 118; 84; 38
+10820; Lappohja (Hanko); 441; 157; 284; 14; 184; 59; 27
+10900; Hanko Keskus (Hanko); 3282; 1177; 2105; 173; 1159; 551; 222
+10940; Hangonkylä (Hanko); 1532; 444; 1088; 70; 556; 340; 122
+10960; Hanko Pohjoinen (Hanko); 1382; 440; 942; 74; 523; 262; 83
+11100; Riihimäki Keskus (Riihimäki); 5712; 1443; 4269; 374; 2259; 1189; 447
+11120; Pohjois-Riihimäki (Riihimäki); 5379; 1158; 4221; 241; 2252; 1309; 419
+11130; Peltosaari-Patastenmäki (Riihimäki); 7685; 1747; 5938; 407; 3108; 1771; 652
+11310; Taka-Kasarmi (Riihimäki); 552; 101; 451; 23; 262; 124; 42
+11710; Herajoki (Riihimäki); 2322; 502; 1820; 108; 982; 546; 184
+11910; Lasi-Kumela (Riihimäki); 1864; 388; 1476; 76; 821; 441; 138
+12100; Oitti (Hausjärvi); 2018; 590; 1428; 64; 929; 341; 94
+12130; Mommila (Hausjärvi); 246; 65; 181; 12; 100; 48; 21
+12170; Hietoinen (Hausjärvi); 166; 42; 124; 2; 81; 30; 11
+12210; Hausjärvi kk (Hausjärvi); 164; 45; 119; 3; 70; 38; 8
+12240; Hikiä (Hausjärvi); 1222; 188; 1034; 41; 608; 296; 89
+12310; Ryttylä (Hausjärvi); 1389; 344; 1045; 48; 638; 263; 96
+12350; Turkhauta (Hausjärvi); 340; 68; 272; 15; 154; 69; 34
+12380; Leppäkoski (Janakkala); 384; 95; 289; 15; 178; 73; 23
+12400; Tervakoski (Janakkala); 3601; 819; 2782; 138; 1604; 809; 231
+12450; Vähikkälä (Janakkala); 199; 44; 155; 1; 103; 36; 15
+12520; Kormu (Loppi); 326; 57; 269; 9; 165; 69; 26
+12540; Launonen (Loppi); 1164; 237; 927; 48; 573; 234; 72
+12600; Läyliäinen (Loppi); 1339; 335; 1004; 46; 644; 256; 58
+12630; Sajaniemi (Loppi); 232; 52; 180; 11; 102; 55; 12
+12640; Joentaka (Loppi); 242; 50; 192; 6; 111; 59; 16
+12700; Loppi kk (Loppi); 1935; 612; 1323; 55; 818; 344; 106
+12750; Pilpala (Loppi); 415; 120; 295; 19; 185; 60; 31
+12820; Räyskälä (Loppi); 34; 7; 27; 2; 15; 9; 1
+12920; Topeno (Loppi); 306; 78; 228; 12; 137; 65; 14
+12950; Vojakkala-Eerolankulma (Loppi); 148; 52; 96; 9; 58; 22; 7
+13100; Hämeenlinna Keskus (Hämeenlinna); 10551; 2164; 8387; 874; 3363; 2764; 1386
+13110; Kantola (Hämeenlinna); 148; 37; 111; 5; 60; 34; 12
+13130; Kauriala (Hämeenlinna); 5206; 1110; 4096; 300; 1965; 1271; 560
+13200; Keinusaari (Hämeenlinna); 2155; 438; 1717; 204; 751; 522; 240
+13210; Hätilä (Hämeenlinna); 6624; 1389; 5235; 339; 2431; 1560; 905
+13220; Sairio (Hämeenlinna); 1493; 257; 1236; 81; 450; 423; 282
+13250; Katuma (Hämeenlinna); 814; 257; 557; 45; 339; 121; 52
+13270; Ruununmylly (Hämeenlinna); 1237; 146; 1091; 59; 394; 409; 229
+13300; Käikälä (Hämeenlinna); 1995; 332; 1663; 94; 773; 579; 217
+13330; Harviala (Janakkala); 680; 95; 585; 24; 277; 197; 87
+13430; Hattelmala (Hämeenlinna); 844; 126; 718; 42; 329; 231; 116
+13500; Jukola (Hämeenlinna); 9139; 1774; 7365; 365; 3638; 2409; 953
+13530; Hämeenlinna sairaala-alue (Hämeenlinna); 0; 0; 0; 0; 0; 0; 0
+13600; Ojoinen (Hämeenlinna); 3099; 792; 2307; 157; 1253; 681; 216
+13700; Parolannummi (Hattula); 317; 58; 259; 13; 117; 96; 33
+13720; Parola (Hattula); 3577; 712; 2865; 168; 1535; 874; 288
+13800; Katinala (Hattula); 1044; 230; 814; 50; 435; 245; 84
+13880; Rahkoila (Hattula); 914; 119; 795; 41; 365; 280; 109
+13900; Pekola (Hattula); 632; 116; 516; 25; 244; 165; 82
+14140; Jokimaa (Janakkala); 155; 36; 119; 2; 80; 28; 9
+14200; Turenki (Janakkala); 7045; 1737; 5308; 248; 3178; 1445; 437
+14240; Väli-Janakkala (Janakkala); 705; 139; 566; 23; 349; 148; 46
+14300; Renko kk (Hämeenlinna); 1768; 416; 1352; 64; 837; 345; 106
+14430; Vuohiniemi (Hattula); 55; 13; 42; 7; 18; 12; 5
+14450; Rimmilä (Hämeenlinna); 109; 24; 85; 2; 57; 19; 7
+14500; Iittala (Hämeenlinna); 2515; 618; 1897; 77; 1134; 511; 175
+14530; Leteensuo (Hattula); 178; 35; 143; 4; 98; 33; 8
+14610; Lepaa (Hattula); 308; 47; 261; 38; 137; 66; 20
+14620; Tyrväntö (Hattula); 134; 29; 105; 2; 64; 35; 4
+14680; Alvettula (Hämeenlinna); 447; 75; 372; 32; 217; 91; 32
+14690; Torvoila (Hämeenlinna); 143; 37; 106; 5; 70; 21; 10
+14700; Hauho kk (Hämeenlinna); 1590; 437; 1153; 50; 725; 302; 76
+14770; Eteläinen (Hämeenlinna); 670; 119; 551; 27; 337; 142; 45
+14810; Pohjoinen (Hämeenlinna); 225; 53; 172; 6; 107; 44; 15
+14820; Syrjäntaka (Hämeenlinna); 658; 173; 485; 22; 300; 126; 37
+14840; Sairiala (Hämeenlinna); 169; 45; 124; 5; 67; 27; 25
+14870; Juttila (Hämeenlinna); 179; 44; 135; 5; 90; 30; 10
+14930; Sappee (Hämeenlinna); 92; 25; 67; 3; 45; 17; 2
+14960; Puutikkala (Pälkäne); 73; 20; 53; 3; 34; 12; 4
+14980; Kuohijoki (Pälkäne); 39; 6; 33; 0; 16; 15; 2
+15100; Lahti Asemanseutu (Lahti); 5743; 1404; 4339; 427; 1962; 1286; 664
+15110; Keski-Lahti (Lahti); 5018; 1166; 3852; 540; 1658; 1096; 558
+15140; Kartano-Paavola (Lahti); 13907; 3411; 10496; 1034; 4899; 3220; 1343
+15150; Möysä (Lahti); 3738; 860; 2878; 253; 1368; 888; 369
+15160; Kolava (Lahti); 1870; 183; 1687; 102; 457; 660; 468
+15170; Tenava-Tonttila (Lahti); 3102; 870; 2232; 141; 1319; 575; 197
+15200; Kiveriö (Lahti); 2846; 807; 2039; 169; 1212; 496; 162
+15210; Kivistönmäki (Lahti); 3883; 992; 2891; 349; 1625; 717; 200
+15230; Kytölä (Lahti); 2199; 383; 1816; 86; 886; 619; 225
+15240; Mukkula (Lahti); 6380; 1798; 4582; 445; 2424; 1299; 414
+15270; Kukkila (Hollola); 1288; 209; 1079; 69; 492; 364; 154
+15300; Myllypohja-Koiskala (Lahti); 3160; 657; 2503; 143; 1300; 784; 276
+15320; Ahtiala (Lahti); 2276; 420; 1856; 114; 863; 594; 285
+15340; Kunnas-Hiekkanummi (Lahti); 2054; 337; 1717; 78; 902; 540; 197
+15460; Mäkelä (Lahti); 421; 87; 334; 13; 186; 101; 34
+15500; Liipola (Lahti); 4027; 1488; 2539; 171; 1682; 495; 191
+15520; Saksala (Lahti); 1899; 440; 1459; 82; 853; 406; 118
+15540; Villähde (Lahti); 3284; 614; 2670; 122; 1400; 850; 298
+15550; Rakokivi (Lahti); 2902; 885; 2017; 76; 1365; 463; 113
+15560; Nastola kk (Lahti); 3091; 904; 2187; 120; 1352; 521; 194
+15580; Ruuhijärvi (Lahti); 165; 39; 126; 3; 79; 32; 12
+15610; Laune-Nikkilä (Lahti); 4224; 883; 3341; 192; 1716; 1062; 371
+15680; Renkomäki-Ämmälä (Lahti); 2472; 355; 2117; 122; 944; 766; 285
+15700; Hennala-Jokimaa (Lahti); 6014; 1314; 4700; 279; 2583; 1352; 486
+15800; Kärpänen (Lahti); 2752; 755; 1997; 142; 1129; 524; 202
+15810; Kasakkamäki (Lahti); 1084; 218; 866; 40; 486; 261; 79
+15820; Okeroinen (Hollola); 733; 149; 584; 33; 337; 169; 45
+15830; Metsäkangas (Lahti); 3062; 832; 2230; 146; 1290; 612; 182
+15840; Riihelä (Lahti); 1517; 310; 1207; 52; 670; 356; 129
+15850; Likolampi (Lahti); 534; 130; 404; 24; 220; 112; 48
+15860; Kartano (Hollola); 2910; 641; 2269; 95; 1245; 725; 204
+15870; Salpakangas (Hollola); 3459; 849; 2610; 115; 1266; 928; 301
+15880; Soramäki (Hollola); 3561; 735; 2826; 133; 1445; 923; 325
+15900; Jalkaranta (Lahti); 1465; 195; 1270; 81; 280; 510; 399
+15950; Kiikkula (Lahti); 3123; 598; 2525; 144; 1055; 878; 448
+15980; Messilä (Hollola); 0; 0; 0; 0; 0; 0; 0
+16100; Uusikylä (Lahti); 1113; 300; 813; 34; 522; 201; 56
+16160; Okkeri (Lahti); 81; 29; 52; 0; 48; 3; 1
+16200; Artjärvi Keskus (Orimattila); 541; 178; 363; 14; 245; 77; 27
+16230; Artjärvi Kirkonkylä (Orimattila); 247; 96; 151; 4; 99; 41; 7
+16260; Hietana (Orimattila); 132; 37; 95; 6; 70; 17; 2
+16270; Villikkala (Orimattila); 109; 27; 82; 0; 51; 21; 10
+16280; Kuivanto (Orimattila); 445; 100; 345; 11; 251; 58; 25
+16300; Orimattila Keskus (Orimattila); 8382; 2336; 6046; 303; 3870; 1477; 396
+16310; Virenoja (Orimattila); 439; 85; 354; 17; 198; 99; 40
+16320; Pennala (Orimattila); 803; 129; 674; 34; 367; 205; 68
+16330; Heinämaa (Orimattila); 247; 46; 201; 9; 125; 55; 12
+16350; Niinikoski (Orimattila); 239; 68; 171; 6; 119; 38; 8
+16390; Pakaa (Orimattila); 225; 46; 179; 9; 118; 45; 7
+16450; Mallusjoki (Orimattila); 356; 99; 257; 15; 158; 60; 24
+16500; Herrala (Hollola); 637; 131; 506; 26; 297; 141; 42
+16510; Luhtikylä (Orimattila); 349; 70; 279; 13; 179; 65; 22
+16540; Mertie (Kärkölä); 224; 58; 166; 7; 110; 36; 13
+16600; Järvelä (Kärkölä); 2314; 744; 1570; 73; 1052; 358; 87
+16610; Kärkölä kk (Kärkölä); 515; 113; 402; 30; 247; 96; 29
+16630; Tennilä (Hollola); 217; 45; 172; 10; 101; 46; 15
+16670; Lappila (Kärkölä); 469; 127; 342; 16; 215; 81; 30
+16710; Hollola kk (Hollola); 719; 156; 563; 29; 279; 185; 70
+16730; Kutajärvi (Hollola); 737; 165; 572; 29; 301; 176; 66
+16790; Manskivi (Hollola); 67; 19; 48; 5; 25; 14; 4
+16800; Hämeenkoski (Hollola); 1548; 396; 1152; 53; 713; 303; 83
+16900; Lammi kk (Hämeenlinna); 3757; 1027; 2730; 115; 1712; 695; 208
+16960; Iso-Evo (Hämeenlinna); 126; 38; 88; 3; 60; 20; 5
+16970; Evo (Hämeenlinna); 74; 11; 63; 32; 21; 7; 3
+17110; Kalliola (Hollola); 817; 135; 682; 35; 356; 206; 85
+17120; Paimela (Hollola); 430; 79; 351; 21; 186; 114; 30
+17130; Vesivehmaa (Asikkala); 620; 112; 508; 28; 291; 145; 44
+17150; Urajärvi (Asikkala); 276; 72; 204; 11; 122; 54; 17
+17200; Vääksy Keskus (Asikkala); 4363; 1154; 3209; 199; 1692; 970; 348
+17220; Pietilä (Asikkala); 133; 40; 93; 5; 57; 26; 5
+17240; Kalkkinen (Asikkala); 323; 89; 234; 9; 150; 67; 8
+17320; Asikkala (Asikkala); 276; 86; 190; 5; 112; 55; 18
+17410; Viitaila (Asikkala); 174; 39; 135; 6; 85; 38; 6
+17430; Kurhila (Asikkala); 209; 33; 176; 15; 97; 47; 17
+17440; Vähimaa (Asikkala); 44; 13; 31; 1; 16; 11; 3
+17450; Iso-Äiniö-Vähimaa (Asikkala); 169; 50; 119; 5; 74; 27; 13
+17470; Maakeski (Padasjoki); 219; 63; 156; 13; 97; 37; 9
+17500; Padasjoki Keskus (Padasjoki); 1422; 514; 908; 51; 583; 217; 57
+17510; Nyystölä (Padasjoki); 190; 53; 137; 10; 83; 37; 7
+17530; Arrakoski (Padasjoki); 161; 59; 102; 5; 66; 23; 8
+17610; Auttoinen (Padasjoki); 235; 85; 150; 6; 108; 24; 12
+17630; Vesijako (Padasjoki); 84; 22; 62; 5; 35; 18; 4
+17710; Torittu (Padasjoki); 56; 17; 39; 2; 24; 9; 4
+17740; Kasiniemi-Torittu (Padasjoki); 45; 14; 31; 1; 18; 8; 4
+17780; Harmoinen (Kuhmoinen); 57; 13; 44; 1; 25; 18; 0
+17800; Kuhmoinen Keskus (Kuhmoinen); 1462; 466; 996; 48; 616; 252; 80
+17840; Harjunsalmi (Kuhmoinen); 61; 16; 45; 1; 27; 14; 3
+17850; Pihlajakoski (Kuhmoinen); 61; 13; 48; 1; 22; 21; 4
+17870; Ruolahti (Kuhmoinen); 48; 16; 32; 1; 23; 6; 2
+17930; Päijälä (Kuhmoinen); 70; 20; 50; 0; 39; 8; 3
+17950; Kylämä (Kuhmoinen); 24; ...; ...; ...; ...; ...; ...
+17970; Puukkoinen (Kuhmoinen); 34; 3; 31; 1; 16; 9; 5
+18100; Heinola Keskus (Heinola); 5925; 1622; 4303; 184; 2361; 1332; 426
+18120; Reumasairaala-alue (Heinola); 684; 187; 497; 20; 300; 145; 32
+18130; Tommola-Sahanniemi (Heinola); 1581; 544; 1037; 57; 673; 234; 73
+18150; Jyränkö (Heinola); 1859; 502; 1357; 56; 845; 380; 76
+18200; Kaakonlampi-Pyhätön (Heinola); 1664; 475; 1189; 68; 830; 247; 44
+18300; Heinola kk (Heinola); 2159; 552; 1607; 67; 1029; 420; 91
+18600; Myllyoja (Heinola); 627; 143; 484; 23; 286; 146; 29
+19110; Vierumäki taajama (Heinola); 495; 129; 366; 16; 248; 83; 19
+19120; Vierumäki urheiluopisto (Heinola); 116; 22; 94; 24; 32; 24; 14
+19160; Huutotöyry (Iitti); 396; 97; 299; 14; 172; 80; 33
+19210; Lusi (Heinola); 349; 103; 246; 12; 157; 52; 25
+19230; Onkiniemi (Sysmä); 96; 31; 65; 2; 40; 19; 4
+19250; Syrjäkoski (Heinola); 39; 12; 27; 0; 21; 6; 0
+19260; Paaso-Syrjäkoski (Heinola); 102; 38; 64; 3; 51; 7; 3
+19310; Karilanmaa (Sysmä); 65; 18; 47; 3; 34; 10; 0
+19320; Nikkaroinen (Sysmä); 77; 25; 52; 4; 35; 11; 2
+19370; Nuoramoinen (Sysmä); 319; 93; 226; 16; 148; 48; 14
+19410; Kuortti (Pertunmaa); 362; 107; 255; 11; 172; 65; 7
+19420; Mansikkamäki (Pertunmaa); 132; 41; 91; 4; 66; 20; 1
+19430; Pertunmaa Keskus (Pertunmaa); 591; 205; 386; 14; 261; 89; 22
+19460; Ruorasmäki (Pertunmaa); 79; 27; 52; 3; 37; 8; 4
+19470; Lihavanpää-Hartosenpää (Pertunmaa); 125; 41; 84; 3; 58; 20; 3
+19480; Hartosenpää (Pertunmaa); 63; 29; 34; 1; 23; 7; 3
+19510; Lepsala (Hartola); 32; 6; 26; 2; 20; 4; 0
+19540; Koitti-Lepsala (Hartola); 233; 82; 151; 4; 99; 36; 12
+19600; Hartola Keskus (Hartola); 1642; 600; 1042; 49; 671; 251; 71
+19610; Murakka (Hartola); 81; 30; 51; 2; 32; 15; 2
+19620; Pohela (Hartola); 131; 39; 92; 5; 68; 15; 4
+19630; Kalhonkylä (Hartola); 61; 15; 46; 3; 28; 11; 4
+19650; Joutsa Keskus (Joutsa); 2686; 830; 1856; 75; 1191; 461; 129
+19670; Mieskonmäki (Joutsa); 100; 23; 77; 1; 55; 19; 2
+19700; Sysmä Keskus (Sysmä); 2317; 837; 1480; 58; 912; 394; 116
+19730; Särkilampi (Sysmä); 22; ...; ...; ...; ...; ...; ...
+19740; Liikola (Sysmä); 99; 25; 74; 1; 46; 19; 8
+19770; Valittula (Sysmä); 101; 27; 74; 5; 47; 18; 4
+19850; Putkijärvi-Siltasuo (Hartola); 71; 29; 42; 1; 25; 12; 4
+19910; Tammijärvi (Luhanka); 351; 112; 239; 7; 143; 64; 25
+19920; Pappinen (Joutsa); 119; 38; 81; 0; 58; 18; 5
+19950; Luhanka (Luhanka); 267; 83; 184; 5; 105; 48; 26
+20100; Turku Keskus (Turku); 27328; 3600; 23728; 5355; 6515; 6762; 5096
+20200; Iso-Heikkilä (Turku); 3822; 873; 2949; 620; 1382; 639; 308
+20210; Pahaniemi (Turku); 3392; 1146; 2246; 149; 1521; 429; 147
+20240; Pansio-Perno (Turku); 4244; 1887; 2357; 171; 1615; 405; 166
+20250; Pitkämäki-Muhkuri (Turku); 603; 97; 506; 50; 187; 144; 125
+20300; Pohjola-Kastu (Turku); 6233; 912; 5321; 747; 1852; 1542; 1180
+20320; Kuninkoja-Mälikkälä (Turku); 14376; 2979; 11397; 905; 5460; 3402; 1630
+20360; Runosmäki-Kärsämäki (Turku); 9631; 2939; 6692; 521; 3896; 1616; 659
+20380; Räntämäki-Saramäki (Turku); 2354; 558; 1796; 275; 634; 513; 374
+20400; Moisio (Turku); 2503; 401; 2102; 129; 966; 662; 345
+20460; Jäkärlä (Turku); 2784; 690; 2094; 137; 1301; 471; 185
+20500; Vesilinna (Turku); 6099; 585; 5514; 2011; 903; 1359; 1241
+20520; Kupittaa (Turku); 3485; 400; 3085; 924; 701; 827; 633
+20540; Nummi-Ylioppilaskylä (Turku); 18785; 3704; 15081; 3374; 4286; 4092; 3329
+20610; Varissuo (Turku); 10405; 3556; 6849; 698; 3697; 1615; 839
+20660; Littoinen (Kaarina); 5667; 819; 4848; 358; 1746; 1599; 1145
+20700; Vartiovuori-Samppalinna (Turku); 5548; 724; 4824; 1146; 1166; 1357; 1155
+20720; Vasaramäki (Turku); 5476; 1093; 4383; 594; 1455; 1254; 1080
+20730; Skanssi (Turku); 918; 173; 745; 107; 377; 186; 75
+20740; Ilpoinen-Harittu (Turku); 7594; 1636; 5958; 535; 2519; 1792; 1112
+20750; Huhkola-Lauste-Vaala (Turku); 4086; 1359; 2727; 282; 1467; 639; 339
+20760; Piispanristi (Kaarina); 4282; 582; 3700; 288; 1438; 1231; 743
+20780; Kaarina Keskus (Kaarina); 10511; 2196; 8315; 575; 3539; 2656; 1545
+20800; Ammattikorkeakoulu (Turku); 0; 0; 0; 0; 0; 0; 0
+20810; Martti-Korppolaismäki (Turku); 14726; 2294; 12432; 1745; 4149; 3865; 2673
+20880; Uittamo (Turku); 3298; 539; 2759; 217; 928; 941; 673
+20900; Moikoinen-Pikisaari (Turku); 7654; 998; 6656; 554; 1807; 2178; 2117
+20960; Kakskerta (Turku); 1141; 181; 960; 74; 319; 336; 231
+21100; Naantali Keskus (Naantali); 6422; 1354; 5068; 338; 2234; 1677; 819
+21110; Taimo-Nuhjala-Lietsala (Naantali); 6136; 969; 5167; 324; 2313; 1682; 848
+21120; Viherjäinen (Raisio); 1498; 208; 1290; 77; 588; 428; 197
+21130; Poikko (Naantali); 438; 57; 381; 19; 179; 129; 54
+21140; Rymättylä Keskus (Naantali); 1041; 265; 776; 35; 447; 205; 89
+21150; Röölä (Naantali); 273; 75; 198; 7; 105; 57; 29
+21160; Merimasku (Naantali); 1325; 205; 1120; 64; 484; 387; 185
+21180; Livonsaari (Naantali); 197; 44; 153; 13; 82; 36; 22
+21195; Velkua (Naantali); 187; 40; 147; 10; 49; 64; 24
+21200; Raisio Keskus (Raisio); 10752; 2877; 7875; 474; 4451; 2181; 769
+21210; Hakinmäki (Raisio); 2027; 354; 1673; 112; 833; 500; 228
+21220; Somersoja (Raisio); 1048; 270; 778; 43; 457; 204; 74
+21230; Lemu (Masku); 1332; 255; 1077; 60; 590; 295; 132
+21240; Askainen (Masku); 680; 144; 536; 29; 332; 132; 43
+21250; Masku (Masku); 5109; 809; 4300; 225; 2049; 1380; 646
+21260; Ihala (Raisio); 2792; 479; 2313; 141; 1053; 735; 384
+21270; Nousiainen (Nousiainen); 3537; 675; 2862; 133; 1689; 780; 260
+21280; Kuloinen (Raisio); 1922; 273; 1649; 95; 673; 586; 295
+21290; Rusko (Rusko); 3448; 588; 2860; 140; 1404; 892; 424
+21310; Vahto (Rusko); 1355; 292; 1063; 51; 646; 258; 108
+21330; Paattinen (Turku); 1392; 285; 1107; 70; 594; 303; 140
+21340; Tortinmäki (Turku); 414; 112; 302; 13; 203; 67; 19
+21350; Ilmarinen (Lieto); 1591; 229; 1362; 84; 549; 460; 269
+21360; Lieto Asemanseutu (Lieto); 1379; 282; 1097; 54; 628; 293; 122
+21370; Aura kk. (Aura); 455; 88; 367; 17; 230; 82; 38
+21380; Aura Keskus (Aura); 2628; 653; 1975; 99; 1222; 495; 159
+21410; Vanhalinna (Lieto); 2077; 251; 1826; 105; 603; 612; 506
+21420; Lieto Keskus (Lieto); 6658; 1392; 5266; 305; 2597; 1566; 798
+21430; Yliskulma (Lieto); 594; 108; 486; 24; 277; 137; 48
+21450; Tarvasjoki Keskus (Lieto); 1396; 338; 1058; 55; 666; 261; 76
+21480; Prunkila (Marttila); 289; 73; 216; 8; 129; 61; 18
+21490; Marttila (Marttila); 934; 255; 679; 44; 409; 166; 60
+21500; Piikkiö (Kaarina); 5654; 1125; 4529; 285; 2099; 1324; 821
+21510; Hevonpää (Paimio); 358; 52; 306; 18; 148; 79; 61
+21520; Naskarla (Paimio); 6; ...; ...; ...; ...; ...; ...
+21530; Paimio Keskus (Paimio); 6910; 1421; 5489; 283; 2869; 1661; 676
+21540; Preitilä (Paimio); 1025; 128; 897; 36; 419; 315; 127
+21555; Taatila (Paimio); 247; 44; 203; 8; 113; 55; 27
+21560; Ollila (Marttila); 366; 110; 256; 18; 156; 59; 23
+21570; Sauvo Keskus (Sauvo); 2024; 494; 1530; 80; 840; 417; 193
+21590; Karuna (Sauvo); 334; 69; 265; 11; 145; 87; 22
+21600; Parainen Keskus (Parainen); 8463; 1805; 6658; 494; 2937; 2113; 1114
+21610; Kirjala (Parainen); 774; 131; 643; 48; 292; 190; 113
+21620; Kuusisto (Kaarina); 1687; 227; 1460; 97; 459; 506; 398
+21630; Lielahti (Parainen); 443; 65; 378; 20; 185; 107; 66
+21650; Lillandet (Parainen); 345; 76; 269; 21; 136; 77; 35
+21660; Nauvo Keskus (Parainen); 622; 164; 458; 22; 204; 157; 75
+21670; Mattnäs-Nötö (Parainen); 173; 41; 132; 4; 66; 46; 16
+21680; Nötö (Parainen); 8; ...; ...; ...; ...; ...; ...
+21710; Korppoo Keskus-Utö (Parainen); 540; 131; 409; 29; 194; 134; 52
+21720; Korpoström (Parainen); 18; ...; ...; ...; ...; ...; ...
+21740; Utö (Parainen); 38; 4; 34; 4; 7; 13; 10
+21750; Norrskata (Parainen); 78; 15; 63; 6; 29; 18; 10
+21760; Houtskär Keskus (Parainen); 345; 112; 233; 14; 123; 72; 24
+21770; Mossala (Parainen); 101; 22; 79; 2; 47; 24; 6
+21800; Kyrö (Pöytyä); 1892; 606; 1286; 65; 823; 307; 91
+21820; Kumila (Pöytyä); 265; 83; 182; 5; 105; 57; 15
+21840; Karinainen (Pöytyä); 241; 71; 170; 10; 110; 41; 9
+21860; Auvainen (Pöytyä); 303; 76; 227; 18; 133; 55; 21
+21870; Riihikoski (Pöytyä); 1488; 401; 1087; 38; 706; 259; 84
+21880; Pöytyä (Pöytyä); 298; 74; 224; 12; 139; 56; 17
+21890; Haveri (Pöytyä); 200; 42; 158; 11; 94; 37; 16
+21900; Yläne Keskus (Pöytyä); 1168; 366; 802; 39; 506; 192; 65
+21930; Uusikartano (Pöytyä); 429; 129; 300; 13; 222; 55; 10
+22100; Maarianhamina (Maarianhamina - Mariehamn); 9731; 2631; 7100; 610; 3015; 2373; 1102
+22120; Möckelö (Jomala); 962; 203; 759; 46; 333; 285; 95
+22130; Gottby (Jomala); 698; 167; 531; 34; 266; 168; 63
+22140; Önningby (Jomala); 934; 167; 767; 50; 326; 276; 115
+22150; Jomala Centrum (Jomala); 1592; 440; 1152; 79; 627; 352; 94
+22160; Järsö (Lemland); 279; 49; 230; 21; 77; 89; 43
+22220; Emkarby (Finström); 313; 84; 229; 9; 138; 67; 15
+22240; Hammarland (Hammarland); 1259; 373; 886; 34; 566; 223; 63
+22270; Storby (Eckerö); 759; 234; 525; 27; 327; 131; 40
+22310; Pålsböle (Finström); 426; 136; 290; 18; 179; 71; 22
+22320; Ödkarby (Saltvik); 646; 202; 444; 22; 291; 109; 22
+22330; Tjudö (Finström); 264; 98; 166; 11; 104; 36; 15
+22340; Geta (Geta); 404; 143; 261; 13; 172; 62; 14
+22410; Godby (Finström); 1211; 366; 845; 44; 521; 223; 57
+22430; Saltvik (Saltvik); 560; 168; 392; 19; 231; 114; 28
+22520; Tosarby (Sund); 390; 119; 271; 16; 177; 58; 20
+22530; Sund (Sund); 411; 126; 285; 15; 170; 74; 26
+22550; Vårdö (Vårdö); 340; 110; 230; 13; 123; 74; 20
+22610; Lemland (Lemland); 1197; 271; 926; 56; 489; 305; 76
+22630; Lumparland (Lumparland); 298; 78; 220; 11; 116; 69; 24
+22710; Ålands Degerby (Föglö); 403; 160; 243; 16; 160; 44; 23
+22720; Sottunga (Sottunga); 88; 27; 61; 3; 27; 27; 4
+22730; Kökar (Kökar); 204; 58; 146; 3; 88; 48; 7
+22810; Seglinge (Kumlinge); 33; 11; 22; 3; 8; 8; 3
+22820; Kumlinge (Kumlinge); 167; 58; 109; 7; 64; 27; 11
+22830; Enklinge (Kumlinge); 58; 17; 41; 3; 16; 19; 3
+22840; Lappo (Brändö); 52; 13; 39; 2; 14; 19; 4
+22910; Torsholma (Brändö); 62; 11; 51; 1; 23; 21; 6
+22920; Brändö-Åland (Brändö); 139; 42; 97; 5; 38; 32; 22
+22930; Fiskö (Brändö); 21; ...; ...; ...; ...; ...; ...
+22940; Åva (Brändö); 78; 28; 50; 1; 25; 16; 8
+22950; Jurmo (Brändö); 41; 11; 30; 3; 15; 8; 4
+23100; Mynämäki Keskus (Mynämäki); 4853; 1231; 3622; 166; 2223; 918; 315
+23120; Mietoinen Keskus (Mynämäki); 692; 113; 579; 22; 370; 144; 43
+23140; Hietamäki (Mynämäki); 523; 103; 420; 12; 280; 103; 25
+23200; Vinkkilä (Vehmaa); 1253; 359; 894; 38; 611; 199; 46
+23210; Vehmaa (Vehmaa); 451; 120; 331; 9; 218; 84; 20
+23260; Rautila (Vehmaa); 159; 30; 129; 9; 72; 41; 7
+23310; Taivassalo (Taivassalo); 1403; 438; 965; 37; 597; 245; 86
+23360; Kustavi (Kustavi); 837; 243; 594; 33; 305; 190; 66
+23390; Iniö (Parainen); 166; 49; 117; 3; 62; 41; 11
+23450; Lokalahti (Uusikaupunki); 756; 208; 548; 15; 363; 144; 26
+23500; Uusikaupunki Keskus (Uusikaupunki); 9455; 2510; 6945; 321; 4234; 1871; 519
+23600; Kalanti Keskus (Uusikaupunki); 1624; 404; 1220; 45; 875; 251; 49
+23660; Kalanti Asemanseutu (Uusikaupunki); 291; 56; 235; 6; 153; 60; 16
+23800; Laitila Keskus (Laitila); 6469; 1870; 4599; 199; 2986; 1106; 308
+23840; Soukainen (Laitila); 57; 9; 48; 2; 30; 13; 3
+23880; Suontaka (Laitila); 79; 24; 55; 0; 45; 10; 0
+23930; Pyhämaa (Uusikaupunki); 439; 126; 313; 9; 191; 87; 26
+23950; Pyhäranta (Pyhäranta); 415; 111; 304; 9; 209; 76; 10
+23960; Santtio (Pyhäranta); 186; 49; 137; 6; 78; 39; 14
+24100; Salo Keskus (Salo); 7748; 2300; 5448; 335; 2986; 1639; 488
+24130; Ylhäisi (Salo); 2826; 642; 2184; 121; 1106; 688; 269
+24240; Rappula (Salo); 3403; 1060; 2343; 128; 1219; 737; 259
+24260; Ollikkala (Salo); 3654; 1181; 2473; 138; 1548; 626; 161
+24280; Tupuri-Hähkänä (Salo); 3714; 618; 3096; 144; 1520; 1071; 361
+24800; Halikko Keskus (Salo); 3780; 925; 2855; 138; 1523; 871; 323
+24910; Halikko Asemanseutu (Salo); 781; 130; 651; 32; 283; 248; 88
+25110; Kruusila (Salo); 290; 74; 216; 9; 139; 54; 14
+25130; Muurla (Salo); 1188; 256; 932; 61; 488; 285; 98
+25160; Tuohittu (Salo); 95; 22; 73; 1; 43; 17; 12
+25170; Kotalato (Salo); 106; 26; 80; 2; 50; 22; 6
+25180; Romsila (Salo); 188; 37; 151; 8; 90; 36; 17
+25190; Inkere (Salo); 748; 199; 549; 21; 368; 129; 31
+25210; Vartsala (Salo); 287; 59; 228; 15; 111; 67; 35
+25230; Angelniemi (Salo); 282; 53; 229; 9; 122; 74; 24
+25240; Hajala (Salo); 495; 90; 405; 21; 245; 92; 47
+25250; Märynummi (Salo); 800; 150; 650; 27; 373; 192; 58
+25260; Vaskio (Salo); 772; 215; 557; 35; 346; 140; 36
+25320; Raatala (Salo); 321; 77; 244; 10; 148; 67; 19
+25330; Kuusjoki Keskus (Salo); 641; 179; 462; 20; 311; 111; 20
+25340; Kanunki (Salo); 306; 88; 218; 11; 130; 61; 16
+25360; Pertteli Keskus (Salo); 903; 214; 689; 27; 428; 182; 52
+25370; Hiisi (Salo); 497; 114; 383; 18; 245; 94; 26
+25380; Rekijoki (Salo); 384; 133; 251; 18; 155; 62; 16
+25390; Kiikala Keskus (Salo); 669; 212; 457; 22; 296; 106; 33
+25410; Suomusjärvi Keskus (Salo); 899; 271; 628; 27; 390; 163; 48
+25420; Lahnajärvi (Salo); 109; 34; 75; 1; 39; 26; 9
+25430; Kettula (Salo); 63; 13; 50; 3; 27; 17; 3
+25460; Toija (Salo); 922; 287; 635; 34; 410; 142; 49
+25470; Kisko kk (Salo); 235; 70; 165; 6; 100; 45; 14
+25500; Perniö Keskus (Salo); 2671; 867; 1804; 111; 1094; 463; 136
+25520; Perniö Asemanseutu (Salo); 518; 138; 380; 22; 234; 88; 36
+25540; Knaapila (Salo); 155; 39; 116; 7; 69; 28; 12
+25550; Aijala (Salo); 89; 30; 59; 5; 37; 13; 4
+25560; Koski Asemanseutu (Salo); 159; 49; 110; 5; 69; 21; 15
+25570; Teijo-Mathildedal (Salo); 470; 146; 324; 21; 168; 104; 31
+25610; Ylönkylä (Salo); 319; 85; 234; 15; 133; 63; 23
+25630; Finby (Salo); 231; 67; 164; 7; 89; 51; 17
+25640; Förby (Salo); 190; 50; 140; 10; 69; 48; 13
+25650; Strömma (Kemiönsaari); 93; 21; 72; 6; 31; 23; 12
+25660; Mathildedal (Salo); 111; 18; 93; 4; 28; 43; 18
+25700; Kemiö Keskus (Kemiönsaari); 1909; 506; 1403; 81; 784; 404; 134
+25710; Vreta-Vestlax (Kemiönsaari); 224; 44; 180; 11; 108; 42; 19
+25730; Mjösund (Kemiönsaari); 93; 26; 67; 5; 30; 26; 6
+25760; Kiila (Kemiönsaari); 108; 25; 83; 7; 40; 31; 5
+25810; Mark (Kemiönsaari); 52; 8; 44; 1; 26; 13; 4
+25820; Vestlax (Kemiönsaari); 93; 17; 76; 6; 37; 19; 14
+25830; Västanfjärd Keskus (Kemiönsaari); 411; 99; 312; 19; 172; 92; 29
+25840; Nivelax (Kemiönsaari); 206; 55; 151; 2; 83; 52; 14
+25860; Björkboda (Kemiönsaari); 262; 92; 170; 10; 103; 40; 17
+25870; Dragsfjärd (Kemiönsaari); 726; 225; 501; 32; 279; 142; 48
+25900; Taalintehdas (Kemiönsaari); 1124; 423; 701; 44; 382; 201; 74
+25910; Vänoxa (Kemiönsaari); 8; ...; ...; ...; ...; ...; ...
+25930; Kasnäs (Kemiönsaari); 60; 20; 40; 4; 17; 15; 4
+25940; Hiittinen (Kemiönsaari); 50; 14; 36; 0; 11; 24; 1
+25950; Rosala-Kasnäs-Hitis (Kemiönsaari); 101; 27; 74; 10; 32; 28; 4
+25960; Högsåra (Kemiönsaari); 38; 10; 28; 2; 7; 14; 5
+26100; Rauma Keskus (Rauma); 13900; 3753; 10147; 1033; 4636; 3220; 1258
+26200; Merirauma-Kappelinluhta (Rauma); 3994; 762; 3232; 184; 1381; 1139; 528
+26410; Kaaro (Rauma); 1120; 204; 916; 47; 460; 308; 101
+26510; Uotila (Rauma); 2047; 511; 1536; 71; 910; 424; 131
+26560; Kolla (Rauma); 509; 103; 406; 19; 249; 114; 24
+26660; Paroalho (Rauma); 3858; 972; 2886; 159; 1720; 810; 197
+26720; Monnanummi (Rauma); 249; 27; 222; 10; 107; 78; 27
+26740; Vasarainen (Rauma); 398; 81; 317; 11; 205; 88; 13
+26820; Sampaanala (Rauma); 1253; 325; 928; 36; 640; 215; 37
+26840; Kortela (Rauma); 616; 143; 473; 14; 280; 141; 38
+26910; Unaja (Rauma); 485; 117; 368; 9; 223; 113; 23
+26930; Vermuntila (Rauma); 452; 124; 328; 13; 205; 82; 28
+26950; Voiluoto (Rauma); 308; 56; 252; 9; 155; 73; 15
+27100; Eurajoki Keskus (Eurajoki); 2727; 679; 2048; 102; 1152; 580; 214
+27110; Irjanne (Eurajoki); 435; 117; 318; 22; 188; 93; 15
+27130; Eurajoki asemanseutu (Eurajoki); 241; 54; 187; 9; 109; 55; 14
+27150; Lapijoki (Eurajoki); 1039; 302; 737; 44; 467; 172; 54
+27160; Olkiluoto (Eurajoki); 0; 0; 0; 0; 0; 0; 0
+27170; Kuivalahti (Eurajoki); 306; 80; 226; 16; 121; 74; 15
+27220; Ala-Kieri (Rauma); 451; 106; 345; 14; 227; 81; 23
+27230; Lappi (Rauma); 1607; 430; 1177; 61; 736; 301; 79
+27250; Kodiksami (Rauma); 98; 27; 71; 4; 51; 13; 3
+27260; Kuolimaa (Rauma); 145; 31; 114; 12; 63; 28; 11
+27310; Kodisjoki (Rauma); 388; 89; 299; 8; 203; 71; 17
+27320; Ihode (Pyhäranta); 562; 154; 408; 18; 271; 94; 25
+27340; Reila (Pyhäranta); 386; 89; 297; 10; 176; 90; 21
+27400; Kiukainen Keskus (Eura); 1017; 294; 723; 35; 459; 181; 48
+27420; Panelia Asemanseutu (Eura); 193; 52; 141; 5; 94; 30; 12
+27430; Panelia (Eura); 931; 280; 651; 28; 432; 166; 25
+27450; Harola (Eura); 167; 47; 120; 2; 68; 39; 11
+27500; Kauttua (Eura); 2414; 603; 1811; 78; 1084; 508; 141
+27510; Eura Keskus (Eura); 3368; 1003; 2365; 118; 1436; 646; 165
+27600; Hinnerjoki (Eura); 543; 164; 379; 15; 250; 88; 26
+27640; Honkilahti kk (Eura); 215; 78; 137; 2; 96; 32; 7
+27650; Honkilahti (Eura); 235; 76; 159; 10; 104; 38; 7
+27670; Mannila (Eura); 117; 36; 81; 2; 48; 25; 6
+27710; Köyliö Keskus (Säkylä); 811; 234; 577; 28; 369; 155; 25
+27730; Tuiskula (Säkylä); 151; 42; 109; 5; 71; 28; 5
+27740; Voitoinen (Säkylä); 126; 29; 97; 6; 72; 16; 3
+27750; Yttilä (Säkylä); 260; 67; 193; 8; 131; 43; 11
+27800; Säkylä Keskus (Säkylä); 2437; 653; 1784; 76; 998; 536; 174
+27820; Iso-Vimma (Säkylä); 556; 146; 410; 13; 258; 117; 22
+27840; Kakkuri (Säkylä); 336; 83; 253; 9; 150; 75; 19
+27860; Vuori (Säkylä); 247; 67; 180; 14; 123; 37; 6
+27910; Huovinrinne (Säkylä); 138; 19; 119; 17; 66; 27; 9
+27920; Otajoki (Säkylä); 220; 63; 157; 9; 99; 40; 9
+28100; Pori Keskus (Pori); 11914; 2667; 9247; 1030; 4398; 2697; 1122
+28120; Käppärä-Isomäki (Pori); 2984; 659; 2325; 172; 1225; 648; 280
+28130; Impola (Pori); 5678; 1224; 4454; 598; 2311; 1152; 393
+28190; Pormestarinluoto (Pori); 3017; 939; 2078; 100; 1379; 477; 122
+28200; Toejoki (Pori); 3792; 660; 3132; 144; 1703; 965; 320
+28220; Ruosniemi (Pori); 3874; 648; 3226; 154; 1709; 1019; 344
+28240; Isojoenranta (Pori); 539; 93; 446; 16; 250; 140; 40
+28260; Harjunpää (Ulvila); 727; 150; 577; 21; 332; 167; 57
+28300; Kalaholma-Väinölä (Pori); 1961; 277; 1684; 98; 734; 603; 249
+28330; Koivistonluoto (Pori); 2146; 533; 1613; 91; 978; 429; 115
+28360; Vanhakoivisto (Pori); 3312; 753; 2559; 135; 1429; 753; 242
+28370; Sampola (Pori); 2600; 899; 1701; 77; 1195; 363; 66
+28400; Ulvila Keskus (Ulvila); 4364; 915; 3449; 155; 1910; 1041; 343
+28430; Kartano-Harmaalinna (Pori); 1217; 194; 1023; 50; 538; 344; 91
+28450; Vanha-Ulvila (Ulvila); 3230; 591; 2639; 91; 1534; 769; 245
+28500; Keskussairaala-alue-Tiilimäki (Pori); 786; 251; 535; 53; 297; 149; 36
+28540; Pinomäki (Pori); 469; 56; 413; 27; 184; 144; 58
+28560; Lattomeri (Pori); 358; 74; 284; 7; 176; 77; 24
+28580; Niittymaa (Pori); 420; 83; 337; 9; 209; 94; 25
+28600; Vähärauma (Pori); 4098; 608; 3490; 177; 1532; 1279; 502
+28610; Musa-Tiiliruukki (Pori); 3103; 536; 2567; 151; 1284; 831; 301
+28660; Pietniemi-Leppäkorpi (Pori); 2796; 442; 2354; 85; 1218; 813; 238
+28760; Kyläsaari (Pori); 1677; 333; 1344; 55; 833; 355; 101
+28800; Pihlava (Pori); 3295; 884; 2411; 100; 1607; 592; 112
+28840; Yyteri-Kaanaa (Pori); 696; 179; 517; 19; 323; 127; 48
+28880; Mäntyluoto (Pori); 336; 79; 257; 19; 147; 71; 20
+28900; Tahkoluoto-Reposaari (Pori); 788; 230; 558; 19; 314; 167; 58
+29100; Luvia Keskus (Eurajoki); 2336; 464; 1872; 67; 978; 612; 215
+29180; Peränkylä (Eurajoki); 209; 60; 149; 6; 85; 50; 8
+29200; Harjavalta Keskus (Harjavalta); 5595; 1540; 4055; 184; 2497; 1107; 267
+29250; Nakkila Keskus (Nakkila); 3582; 885; 2697; 106; 1628; 754; 209
+29270; Hormisto (Nakkila); 324; 103; 221; 12; 140; 50; 19
+29280; Järvimaa (Nakkila); 207; 57; 150; 5; 104; 30; 11
+29310; Kaasmarkku (Ulvila); 439; 81; 358; 10; 224; 87; 37
+29320; Leineperi (Ulvila); 175; 41; 134; 5; 85; 34; 10
+29340; Kullaa Keskus (Ulvila); 715; 196; 519; 13; 361; 113; 32
+29350; Palus (Ulvila); 223; 66; 157; 5; 104; 40; 8
+29570; Söörmarkku (Pori); 823; 151; 672; 25; 390; 199; 58
+29600; Noormarkku Keskus (Pori); 3643; 841; 2802; 101; 1634; 831; 236
+29630; Pomarkku Keskus (Pomarkku); 1416; 457; 959; 48; 611; 232; 68
+29640; Honkakoski (Pomarkku); 189; 57; 132; 4; 89; 36; 3
+29680; Kairila (Pori); 232; 78; 154; 9; 112; 23; 10
+29700; Ahlainen (Pori); 597; 188; 409; 14; 277; 91; 27
+29720; Lamppi (Pori); 128; 38; 90; 3; 71; 13; 3
+29740; Etelämaa (Merikarvia); 67; 23; 44; 2; 34; 6; 2
+29750; Pohjansaha (Merikarvia); 81; 25; 56; 3; 34; 15; 4
+29760; Köörtilä (Merikarvia); 58; 16; 42; 2; 20; 15; 5
+29790; Tuorila (Merikarvia); 232; 70; 162; 6; 104; 45; 7
+29810; Siikainen Keskus (Siikainen); 665; 213; 452; 18; 323; 88; 23
+29830; Sammi (Siikainen); 133; 39; 94; 2; 71; 16; 5
+29860; Otamo (Siikainen); 100; 26; 74; 4; 51; 15; 4
+29880; Leväsjoki-Saarineva (Siikainen); 153; 51; 102; 3; 63; 32; 4
+29900; Merikarvia Keskus-Rannikko (Merikarvia); 1756; 565; 1191; 58; 730; 317; 86
+29940; Kuvaskangas (Merikarvia); 216; 61; 155; 6; 104; 34; 11
+30100; Forssa Keskus (Forssa); 8423; 2059; 6364; 391; 3550; 1904; 519
+30300; Viksberg (Forssa); 2096; 761; 1335; 78; 988; 228; 41
+30420; Tölö (Forssa); 3877; 1115; 2762; 143; 1734; 715; 170
+31110; Matku (Forssa); 408; 113; 295; 9; 205; 66; 15
+31130; Koijärvi (Forssa); 206; 39; 167; 3; 108; 47; 9
+31140; Menonen (Urjala); 126; 35; 91; 6; 45; 32; 8
+31160; Nuutajärvi (Urjala); 223; 76; 147; 5; 98; 31; 13
+31170; Savijoki (Forssa); 163; 47; 116; 5; 74; 29; 8
+31230; Susikas (Tammela); 168; 55; 113; 5; 75; 29; 4
+31250; Teuro (Tammela); 172; 34; 138; 7; 76; 42; 13
+31300; Tammela Keskus (Tammela); 2473; 592; 1881; 88; 996; 622; 175
+31310; Mustiala (Tammela); 86; 18; 68; 7; 42; 15; 4
+31340; Porras (Tammela); 415; 100; 315; 7; 173; 109; 26
+31350; Vistinkoski (Tammela); 187; 58; 129; 7; 76; 39; 7
+31370; Eerikkilän Urheiluopisto (Tammela); 0; 0; 0; 0; 0; 0; 0
+31380; Letku-Torro (Tammela); 242; 62; 180; 9; 116; 43; 12
+31400; Somero Keskus (Somero); 4957; 1581; 3376; 165; 2129; 869; 213
+31410; Ylöpirtti (Somero); 282; 67; 215; 11; 129; 51; 24
+31450; Häntälä (Somero); 278; 57; 221; 11; 147; 49; 14
+31460; Hirsjärvi (Somero); 194; 53; 141; 13; 87; 27; 14
+31470; Somerniemi (Somero); 504; 142; 362; 22; 206; 86; 48
+31490; Terttilä (Somero); 205; 62; 143; 11; 83; 40; 9
+31500; Koski Tl (Koski Tl); 1865; 547; 1318; 71; 837; 311; 99
+31520; Pitkäjärvi (Somero); 382; 109; 273; 14; 172; 69; 18
+31530; Pyöli (Somero); 245; 55; 190; 11; 116; 53; 10
+31600; Jokioinen Keskus (Jokioinen); 2846; 715; 2131; 79; 1222; 599; 231
+31610; Vaulammi (Jokioinen); 354; 74; 280; 12; 165; 73; 30
+31620; Latovainio (Jokioinen); 310; 84; 226; 14; 143; 57; 12
+31630; Minkiö (Jokioinen); 423; 110; 313; 19; 196; 79; 19
+31640; Humppila Keskus (Humppila); 1574; 431; 1143; 41; 756; 273; 73
+31650; Venäjänkangas (Humppila); 220; 48; 172; 12; 103; 38; 19
+31700; Urjala Asemanseutu-Hanhisuo (Urjala); 1115; 305; 810; 31; 553; 180; 46
+31720; Urjalankylä-Kehro (Urjala); 314; 87; 227; 6; 137; 65; 19
+31730; Honkola (Urjala); 87; 24; 63; 2; 35; 25; 1
+31750; Kehro (Urjala); 47; 15; 32; 3; 17; 10; 2
+31760; Urjala Keskus (Urjala); 1504; 472; 1032; 59; 661; 246; 66
+31810; Oriniemi (Punkalaidun); 294; 87; 207; 11; 128; 52; 16
+31830; Halkivaha (Urjala); 212; 61; 151; 10; 101; 36; 4
+31850; Koskioinen (Punkalaidun); 107; 26; 81; 5; 53; 21; 2
+31860; Tursa (Urjala); 222; 65; 157; 11; 95; 39; 12
+31900; Punkalaidun Keskus (Punkalaidun); 1434; 452; 982; 48; 623; 253; 58
+31930; Vanttila (Punkalaidun); 82; 17; 65; 5; 34; 21; 5
+31950; Sadonmaa (Punkalaidun); 121; 32; 89; 4; 64; 15; 6
+31960; Orisuo (Loimaa); 55; 11; 44; 1; 33; 7; 3
+31970; Kanteenmaa (Punkalaidun); 115; 36; 79; 2; 52; 19; 6
+32100; Ypäjä Keskus (Ypäjä); 1619; 410; 1209; 54; 799; 281; 75
+32140; Ypäjä Asemanseutu (Ypäjä); 248; 59; 189; 13; 120; 49; 7
+32200; Loimaa Keskus (Loimaa); 6738; 1770; 4968; 263; 2882; 1440; 383
+32210; Loimaa kk (Loimaa); 1845; 494; 1351; 53; 825; 385; 88
+32250; Kojonkulma (Loimaa); 221; 54; 167; 6; 94; 57; 10
+32260; Kojonperä (Loimaa); 125; 34; 91; 5; 54; 29; 3
+32270; Metsämaa-Murto (Loimaa); 366; 93; 273; 12; 170; 71; 20
+32280; Metsäkorpi (Loimaa); 120; 29; 91; 3; 61; 20; 7
+32300; Mellilä (Loimaa); 980; 273; 707; 38; 464; 167; 38
+32410; Niinijoki (Loimaa); 408; 79; 329; 14; 179; 92; 44
+32430; Ylhäinen (Loimaa); 67; 15; 52; 2; 32; 15; 3
+32440; Alastaro Keskus (Loimaa); 1420; 440; 980; 31; 650; 242; 57
+32450; Tammiainen (Loimaa); 187; 51; 136; 3; 90; 32; 11
+32500; Oripää Keskus (Oripää); 891; 299; 592; 26; 386; 134; 46
+32520; Latva (Oripää); 119; 39; 80; 6; 49; 19; 6
+32560; Virttaa (Loimaa); 360; 101; 259; 6; 177; 62; 14
+32610; Vampula Keskus (Huittinen); 769; 233; 536; 26; 346; 136; 28
+32620; Rutava (Huittinen); 313; 94; 219; 12; 153; 46; 8
+32700; Huittinen Keskus (Huittinen); 6189; 1649; 4540; 224; 2755; 1220; 341
+32710; Sampu (Huittinen); 461; 91; 370; 16; 203; 124; 27
+32730; Keikyä (Sastamala); 595; 153; 442; 15; 274; 114; 39
+32740; Pehula (Sastamala); 1423; 500; 923; 44; 614; 207; 58
+32760; Suttila (Huittinen); 127; 41; 86; 5; 55; 16; 10
+32770; Huhtamo (Huittinen); 174; 41; 133; 5; 87; 31; 10
+32800; Kokemäki Keskus (Kokemäki); 3126; 872; 2254; 96; 1388; 593; 177
+32810; Peipohja (Kokemäki); 1426; 374; 1052; 39; 699; 255; 59
+32830; Riste (Kokemäki); 378; 108; 270; 18; 178; 65; 9
+32860; Korkeaoja (Kokemäki); 114; 25; 89; 2; 59; 21; 7
+32910; Kauvatsa Asemanseutu (Kokemäki); 214; 47; 167; 14; 114; 34; 5
+32920; Kauvatsa (Kokemäki); 452; 136; 316; 10; 202; 84; 20
+33100; Tampere Keskus (Tampere); 16058; 2043; 14015; 2681; 3667; 4329; 3338
+33180; Lapinniemi-Käpylä (Tampere); 3417; 643; 2774; 416; 773; 848; 737
+33200; Tampere Keskus Läntinen (Tampere); 6213; 901; 5312; 901; 1580; 1576; 1255
+33210; Itä-Amuri-Tammerkoski (Tampere); 5544; 875; 4669; 730; 1367; 1528; 1044
+33230; Länsi-Amuri (Tampere); 5333; 692; 4641; 519; 1192; 1542; 1388
+33240; Tahmela (Tampere); 1317; 140; 1177; 131; 243; 353; 450
+33250; Pispala (Tampere); 3037; 405; 2632; 524; 888; 668; 552
+33270; Epilä (Tampere); 6061; 1041; 5020; 421; 2028; 1565; 1006
+33300; Rahola (Tampere); 4049; 684; 3365; 243; 1400; 1029; 693
+33310; Tesoma (Tampere); 6493; 1724; 4769; 390; 2797; 1112; 470
+33330; Myllypuro-Kalkku (Tampere); 2608; 570; 2038; 151; 1178; 458; 251
+33340; Haukiluoma-Ikuri (Tampere); 4458; 777; 3681; 245; 1772; 1107; 557
+33380; Pitkäniemi (Nokia); 31; 9; 22; 2; 16; 4; 0
+33400; Luoteis-Tampere (Tampere); 9181; 1651; 7530; 852; 3311; 2131; 1236
+33410; Lentävänniemi (Tampere); 4809; 956; 3853; 356; 1843; 1173; 481
+33420; Lamminpää (Tampere); 1476; 270; 1206; 86; 498; 352; 270
+33430; Vuorentausta (Ylöjärvi); 2252; 372; 1880; 111; 925; 576; 268
+33450; Siivikkala (Ylöjärvi); 2245; 310; 1935; 109; 811; 669; 346
+33470; Ylöjärvi Keskus (Ylöjärvi); 5360; 1182; 4178; 230; 2302; 1144; 502
+33480; Manninmäki-Haavisto (Ylöjärvi); 5534; 837; 4697; 264; 2156; 1475; 802
+33500; Osmonmäki-Petsamo (Tampere); 10133; 1500; 8633; 1470; 2485; 2571; 2107
+33520; Keskussairaala-alue-Kauppi (Tampere); 1030; 127; 903; 186; 241; 262; 214
+33530; Kissanmaa (Tampere); 4312; 678; 3634; 611; 1066; 1236; 721
+33540; Kaleva (Tampere); 10051; 1204; 8847; 2117; 2579; 2481; 1670
+33560; Takahuhti (Tampere); 9046; 1543; 7503; 928; 2822; 2244; 1509
+33580; Atala-Linnainmaa (Tampere); 12289; 1833; 10456; 723; 4514; 3295; 1924
+33610; Olkahinen-Tasanne (Tampere); 3017; 373; 2644; 154; 1035; 887; 568
+33680; Aitolahti (Tampere); 1301; 220; 1081; 62; 499; 346; 174
+33700; Messukylä (Tampere); 1467; 210; 1257; 170; 321; 375; 391
+33710; Kaukajärvi (Tampere); 14855; 3075; 11780; 1200; 5052; 3272; 2256
+33720; Hervanta (Tampere); 23269; 5822; 17447; 3895; 6451; 4249; 2852
+33730; Leinola-Vehmainen (Tampere); 1638; 211; 1427; 81; 563; 469; 314
+33800; Nekala (Tampere); 4468; 829; 3639; 511; 1403; 920; 805
+33820; Koivistonkylä (Tampere); 7342; 1122; 6220; 614; 2219; 1847; 1540
+33840; Peltolammi (Tampere); 2970; 596; 2374; 241; 1224; 663; 246
+33850; Multisilta (Tampere); 2056; 533; 1523; 152; 937; 306; 128
+33870; Vuores (Tampere); 5962; 639; 5323; 741; 1873; 1427; 1282
+33880; Höytämö (Lempäälä); 2848; 515; 2333; 146; 1029; 706; 452
+33900; Härmälä-Rantaperkiö (Tampere); 11690; 1878; 9812; 1317; 3807; 3007; 1681
+33920; Toivio (Pirkkala); 869; 107; 762; 45; 270; 232; 215
+33950; Killo (Pirkkala); 4898; 714; 4184; 304; 1588; 1333; 959
+33960; Suuppa (Pirkkala); 8646; 1321; 7325; 478; 2950; 2290; 1607
+33980; Pirkkala kk (Pirkkala); 1058; 141; 917; 52; 396; 292; 177
+34110; Lakiala (Ylöjärvi); 890; 127; 763; 44; 406; 210; 103
+34130; Ylinen (Ylöjärvi); 975; 176; 799; 39; 420; 229; 111
+34140; Mutala (Ylöjärvi); 550; 102; 448; 17; 266; 121; 44
+34150; Kyrönlahti (Ylöjärvi); 289; 67; 222; 9; 147; 54; 12
+34180; Länsi-Teisko (Ylöjärvi); 118; 30; 88; 5; 50; 20; 13
+34240; Kämmenteisko (Tampere); 1183; 220; 963; 60; 441; 317; 145
+34260; Terälahti (Tampere); 685; 147; 538; 26; 274; 156; 82
+34270; Velaatta (Tampere); 261; 67; 194; 7; 117; 55; 15
+34300; Kuru Keskus (Ylöjärvi); 1167; 345; 822; 24; 545; 189; 64
+34320; Parkkuu (Ylöjärvi); 182; 42; 140; 4; 90; 35; 11
+34330; Poikelus (Ylöjärvi); 200; 44; 156; 7; 103; 38; 8
+34410; Murole (Ruovesi); 143; 47; 96; 12; 50; 25; 9
+34420; Muroleen Kanava (Ruovesi); 34; 5; 29; 2; 19; 7; 1
+34430; Kekkonen (Ruovesi); 105; 21; 84; 3; 51; 24; 6
+34450; Jäminkipohja (Ruovesi); 276; 81; 195; 7; 131; 49; 8
+34510; Luode (Ylöjärvi); 74; 20; 54; 3; 35; 14; 2
+34530; Länsi-Aure (Ylöjärvi); 50; 16; 34; 1; 26; 5; 2
+34550; Itä-Aure (Ylöjärvi); 126; 53; 73; 3; 57; 8; 5
+34600; Ruovesi Keskus-Nenonen (Ruovesi); 2014; 571; 1443; 58; 888; 391; 106
+34640; Mustajärvi (Ruovesi); 164; 33; 131; 5; 91; 23; 12
+34710; Vaskivesi (Virrat); 261; 48; 213; 12; 124; 59; 18
+34730; Vaskuu (Virrat); 83; 22; 61; 0; 48; 11; 2
+34740; Koro (Virrat); 69; 10; 59; 4; 35; 18; 2
+34770; Kurjenkylä (Virrat); 169; 37; 132; 5; 99; 24; 4
+34800; Virrat Keskus (Virrat); 3671; 1073; 2598; 105; 1599; 710; 184
+34870; Visuvesi (Ruovesi); 428; 150; 278; 11; 192; 57; 18
+34910; Äijänneva (Virrat); 87; 27; 60; 5; 47; 7; 1
+34930; Liedenpohja (Virrat); 233; 72; 161; 8; 114; 29; 10
+34950; Ohtola (Virrat); 147; 33; 114; 1; 83; 22; 8
+34970; Toisvesi (Virrat); 85; 17; 68; 2; 46; 16; 4
+34980; Killinkoski (Virrat); 283; 111; 172; 4; 128; 33; 7
+35100; Orivesi Asemanseutu (Orivesi); 2258; 463; 1795; 92; 1041; 474; 188
+35220; Eräjärvi (Orivesi); 418; 120; 298; 16; 181; 79; 22
+35240; Ristakallio (Orivesi); 158; 35; 123; 2; 85; 29; 7
+35260; Leväslahti (Orivesi); 8; ...; ...; ...; ...; ...; ...
+35270; Västilä (Orivesi); 128; 27; 101; 4; 54; 32; 11
+35300; Orivesi Keskus (Orivesi); 3765; 964; 2801; 167; 1577; 766; 291
+35320; Hirsilä (Orivesi); 389; 121; 268; 18; 180; 56; 14
+35400; Länkipohja (Jämsä); 700; 203; 497; 17; 325; 106; 49
+35420; Talviainen (Orivesi); 81; 17; 64; 4; 33; 20; 7
+35480; Längelmäki (Orivesi); 49; 12; 37; 1; 21; 10; 5
+35500; Korkeakoski (Juupajoki); 787; 270; 517; 20; 368; 100; 29
+35520; Pirttikangas (Juupajoki); 55; 18; 37; 0; 27; 6; 4
+35530; Lyly (Juupajoki); 233; 52; 181; 6; 118; 42; 15
+35540; Juupajoki (Juupajoki); 318; 73; 245; 10; 134; 78; 23
+35550; Salokunta (Juupajoki); 121; 16; 105; 4; 56; 35; 10
+35600; Halli (Jämsä); 1071; 259; 812; 21; 485; 243; 63
+35610; Pihlaisto (Jämsä); 60; 19; 41; 0; 34; 5; 2
+35630; Suinula-Valkamanperä (Jämsä); 128; 37; 91; 5; 58; 18; 10
+35700; Vilppula Keskus (Mänttä-Vilppula); 2486; 664; 1822; 67; 1233; 431; 91
+35740; Ylä-Vääri (Ruovesi); 81; 15; 66; 1; 35; 20; 10
+35750; Väärinmaja (Ruovesi); 223; 49; 174; 6; 120; 39; 9
+35800; Mänttä (Mänttä-Vilppula); 3313; 895; 2418; 77; 1570; 628; 143
+35820; Asemakulma-Mustalahti (Mänttä-Vilppula); 1599; 370; 1229; 48; 836; 280; 65
+35990; Kolho (Mänttä-Vilppula); 853; 297; 556; 20; 375; 141; 20
+36100; Kangasala Asemanseutu (Kangasala); 964; 106; 858; 51; 333; 261; 213
+36110; Ruutana (Kangasala); 2011; 228; 1783; 68; 713; 582; 420
+36120; Suinula-Haviseva (Kangasala); 814; 143; 671; 41; 302; 240; 88
+36200; Kangasala Keskus (Kangasala); 8776; 1567; 7209; 458; 3290; 2185; 1276
+36220; Suorama (Kangasala); 4220; 820; 3400; 202; 1814; 962; 422
+36240; Nattari (Kangasala); 4070; 576; 3494; 243; 1442; 1130; 679
+36270; Huutijärvi (Kangasala); 1102; 198; 904; 49; 415; 265; 175
+36280; Pikonlinna (Kangasala); 234; 53; 181; 8; 57; 71; 45
+36340; Tohkala (Kangasala); 186; 30; 156; 7; 86; 38; 25
+36420; Sahalahti Keskus (Kangasala); 1347; 303; 1044; 41; 676; 244; 83
+36430; Pakkala (Kangasala); 336; 84; 252; 13; 148; 69; 22
+36450; Salmentaka (Pälkäne); 179; 41; 138; 6; 99; 23; 10
+36520; Raikku (Kangasala); 298; 59; 239; 18; 133; 60; 28
+36570; Kaivanto (Kangasala); 242; 47; 195; 16; 87; 55; 37
+36600; Pälkäne Keskus (Pälkäne); 2663; 598; 2065; 107; 1197; 524; 237
+36640; Iltasmäki (Pälkäne); 310; 68; 242; 13; 146; 59; 24
+36660; Laitikkala (Pälkäne); 178; 22; 156; 10; 78; 49; 19
+36720; Aitoo (Pälkäne); 421; 107; 314; 18; 169; 93; 34
+36760; Luopioinen Keskus (Pälkäne); 674; 194; 480; 17; 299; 114; 50
+36810; Kuhmalahti Keskus (Kangasala); 414; 111; 303; 8; 195; 76; 24
+36840; Kuhmajärvi (Kangasala); 265; 82; 183; 8; 120; 48; 7
+36880; Vehkajärvi (Kangasala); 112; 37; 75; 1; 45; 24; 5
+36910; Rautajärvi (Pälkäne); 294; 99; 195; 7; 115; 56; 17
+36930; Kyynärö (Pälkäne); 152; 51; 101; 8; 66; 22; 5
+37100; Nokia Keskus (Nokia); 6859; 1822; 5037; 345; 2937; 1293; 462
+37120; Koskenmäki (Nokia); 7876; 1314; 6562; 369; 3235; 2031; 927
+37130; Alhoniitty (Nokia); 3553; 690; 2863; 138; 1495; 835; 395
+37140; Harjuniitty (Nokia); 2458; 276; 2182; 104; 1005; 643; 430
+37150; Kankaantaka (Nokia); 3107; 656; 2451; 133; 1313; 669; 336
+37180; Sarkola (Nokia); 293; 46; 247; 14; 130; 74; 29
+37200; Siuro (Nokia); 1929; 348; 1581; 98; 887; 423; 173
+37210; Kulovesi (Nokia); 20; ...; ...; ...; ...; ...; ...
+37240; Linnavuori (Nokia); 577; 137; 440; 27; 287; 92; 34
+37310; Tottijärvi (Nokia); 696; 118; 578; 24; 308; 175; 71
+37350; Rämsöö (Vesilahti); 128; 31; 97; 2; 64; 24; 7
+37370; Narva (Vesilahti); 812; 159; 653; 31; 368; 172; 82
+37380; Krääkkiö (Vesilahti); 137; 38; 99; 5; 75; 15; 4
+37420; Valkkinen (Vesilahti); 599; 107; 492; 27; 258; 131; 76
+37470; Vesilahti Keskus (Vesilahti); 1518; 208; 1310; 81; 538; 410; 281
+37500; Lempäälä Keskus (Lempäälä); 7071; 1321; 5750; 341; 2653; 1749; 1007
+37530; Säijä (Lempäälä); 404; 70; 334; 22; 167; 90; 55
+37550; Kuivaspää (Lempäälä); 3767; 441; 3326; 213; 1414; 975; 724
+37560; Kulju (Lempäälä); 3449; 402; 3047; 202; 1250; 921; 674
+37570; Koivuniemi (Lempäälä); 326; 45; 281; 17; 125; 78; 61
+37600; Valkeakoski Keskus (Valkeakoski); 9278; 2202; 7076; 301; 4324; 1941; 510
+37630; Vääräkoivu (Valkeakoski); 5621; 1038; 4583; 271; 2368; 1415; 529
+37700; Sääksmäki (Valkeakoski); 324; 51; 273; 14; 136; 81; 42
+37720; Ritvala (Valkeakoski); 141; 25; 116; 3; 74; 26; 13
+37740; Haukila (Valkeakoski); 227; 53; 174; 13; 109; 41; 11
+37770; Tarttila (Valkeakoski); 359; 83; 276; 12; 177; 66; 21
+37800; Toijala keskus (Akaa); 7593; 1815; 5778; 323; 3234; 1536; 685
+37830; Viiala Keskus (Akaa); 4096; 949; 3147; 148; 1885; 787; 327
+37850; Metsäkansa (Valkeakoski); 285; 45; 240; 9; 160; 51; 20
+37860; Kärjenniemi (Valkeakoski); 653; 89; 564; 25; 297; 178; 64
+37900; Kylmäkoski Asemanseutu (Akaa); 228; 59; 169; 5; 121; 28; 15
+37910; Kylmäkoski Keskus (Akaa); 1031; 246; 785; 26; 505; 179; 75
+37960; Sotkia (Akaa); 204; 57; 147; 5; 89; 41; 12
+38100; Karkku (Sastamala); 681; 119; 562; 22; 326; 134; 80
+38120; Kutala (Sastamala); 194; 37; 157; 7; 84; 45; 21
+38130; Ellivuori (Sastamala); 6; ...; ...; ...; ...; ...; ...
+38140; Kärppälä (Sastamala); 281; 52; 229; 14; 129; 69; 17
+38200; Vammala Keskus (Sastamala); 5266; 1458; 3808; 190; 2117; 1142; 359
+38210; Vammala Asemanseutu (Sastamala); 3228; 865; 2363; 105; 1481; 585; 192
+38220; Stormi (Sastamala); 626; 149; 477; 19; 298; 123; 37
+38250; Roismala (Sastamala); 1032; 218; 814; 33; 519; 200; 62
+38270; Sammaljoki (Sastamala); 261; 49; 212; 5; 133; 63; 11
+38280; Illo (Sastamala); 318; 63; 255; 14; 179; 44; 18
+38300; Kiikka (Sastamala); 1415; 344; 1071; 45; 705; 253; 68
+38360; Kiikoinen (Sastamala); 875; 235; 640; 29; 401; 153; 57
+38420; Häijää (Sastamala); 830; 166; 664; 34; 394; 176; 60
+38460; Mouhijärvi Keskus (Sastamala); 1365; 343; 1022; 61; 635; 239; 87
+38470; Hyynilä (Sastamala); 200; 33; 167; 3; 115; 44; 5
+38490; Haukijärvi (Hämeenkyrö); 68; 16; 52; 1; 36; 9; 6
+38510; Suodenniemi (Sastamala); 926; 225; 701; 25; 499; 142; 35
+38600; Lavia Keskus (Pori); 1134; 325; 809; 22; 519; 205; 63
+38650; Yli-Putto (Pori); 122; 39; 83; 3; 57; 18; 5
+38670; Kalliala-Haunia (Pori); 142; 51; 91; 1; 65; 15; 10
+38680; Tuunajärvi (Pomarkku); 65; 25; 40; 4; 23; 11; 2
+38700; Kankaanpää Keskus (Kankaanpää); 4904; 1199; 3705; 170; 2202; 977; 356
+38710; Myllymäki (Kankaanpää); 1664; 486; 1178; 67; 817; 245; 49
+38720; Vihteljärvi (Kankaanpää); 331; 86; 245; 10; 164; 54; 17
+38740; Hapuoja (Kankaanpää); 332; 98; 234; 10; 150; 62; 12
+38750; Veneskoski (Kankaanpää); 179; 43; 136; 1; 97; 31; 7
+38760; Venesjärvi (Kankaanpää); 277; 65; 212; 6; 137; 57; 12
+38770; Lohikko (Kankaanpää); 307; 65; 242; 8; 154; 58; 22
+38800; Jämijärvi Keskus (Jämijärvi); 1197; 329; 868; 25; 586; 208; 49
+38840; Niinisalo (Kankaanpää); 596; 140; 456; 6; 294; 131; 25
+38860; Suurimaa (Jämijärvi); 139; 38; 101; 5; 75; 17; 4
+38910; Ala-Honkajoki (Kankaanpää); 405; 124; 281; 8; 202; 59; 12
+38920; Vatajankoski (Kankaanpää); 162; 49; 113; 5; 81; 20; 7
+38950; Honkajoki Keskus (Kankaanpää); 992; 361; 631; 24; 441; 127; 39
+38970; Lauhala (Kankaanpää); 198; 80; 118; 7; 83; 23; 5
+39100; Hämeenkyrö Keskus (Hämeenkyrö); 2669; 574; 2095; 80; 1292; 543; 180
+39110; Simuna (Hämeenkyrö); 173; 38; 135; 8; 68; 40; 19
+39130; Sasi (Hämeenkyrö); 574; 83; 491; 17; 256; 152; 66
+39150; Pinsiö (Hämeenkyrö); 636; 95; 541; 19; 307; 152; 63
+39160; Julkujärvi (Ylöjärvi); 2798; 337; 2461; 122; 1238; 757; 344
+39170; Jumesniemi (Hämeenkyrö); 140; 24; 116; 10; 57; 34; 15
+39180; Herttuala (Hämeenkyrö); 75; 12; 63; 2; 37; 15; 9
+39195; Kaipio (Hämeenkyrö); 128; 37; 91; 9; 62; 19; 1
+39200; Kyröskoski (Hämeenkyrö); 3773; 889; 2884; 104; 1944; 651; 185
+39230; Osara (Hämeenkyrö); 169; 34; 135; 5; 84; 44; 2
+39290; Vesajärvi (Hämeenkyrö); 125; 25; 100; 3; 69; 22; 6
+39310; Viljakkala Keskus (Ylöjärvi); 768; 183; 585; 26; 402; 115; 42
+39340; Karhe (Ylöjärvi); 210; 45; 165; 6; 93; 46; 20
+39360; Komi (Ylöjärvi); 173; 35; 138; 7; 81; 35; 15
+39380; Lavajärvi (Hämeenkyrö); 136; 25; 111; 2; 70; 31; 8
+39410; Luhalahti (Ikaalinen); 255; 78; 177; 8; 102; 57; 10
+39430; Röyhiö (Ikaalinen); 132; 24; 108; 5; 69; 29; 5
+39450; Sisättö (Ikaalinen); 103; 44; 59; 2; 44; 8; 5
+39500; Ikaalinen Keskus (Ikaalinen); 3726; 934; 2792; 134; 1603; 837; 218
+39530; Kilvakkala (Ikaalinen); 743; 182; 561; 23; 361; 144; 33
+39580; Riitiala (Ikaalinen); 309; 69; 240; 7; 160; 58; 15
+39590; Tevaniemi (Ikaalinen); 186; 42; 144; 7; 101; 28; 8
+39610; Kovelahti (Ikaalinen); 143; 31; 112; 2; 69; 29; 12
+39620; Kovesjoki (Parkano); 150; 40; 110; 5; 81; 21; 3
+39660; Lapinneva (Parkano); 196; 60; 136; 2; 110; 20; 4
+39700; Parkano Keskus (Parkano); 4304; 1235; 3069; 95; 2060; 734; 180
+39750; Vatajanjärvi (Parkano); 260; 67; 193; 5; 152; 33; 3
+39770; Aureskoski (Parkano); 63; 24; 39; 3; 27; 8; 1
+39780; Alaskylä (Parkano); 167; 43; 124; 5; 77; 35; 7
+39810; Linnankylä (Kihniö); 257; 75; 182; 8; 137; 32; 5
+39820; Kihniö Keskus (Kihniö); 1157; 388; 769; 29; 539; 163; 38
+39880; Kihniö Asemanseutu (Kihniö); 121; 38; 83; 5; 59; 17; 2
+39920; Suomijärvi (Karvia); 119; 36; 83; 4; 52; 22; 5
+39930; Karvia Keskus (Karvia); 887; 309; 578; 17; 440; 94; 27
+39940; Kantti (Karvia); 193; 56; 137; 2; 109; 20; 6
+39960; Sarvela (Karvia); 352; 110; 242; 5; 177; 54; 6
+39965; Karviankylä (Karvia); 132; 39; 93; 0; 77; 13; 3
+39980; Sara (Karvia); 133; 36; 97; 4; 70; 18; 5
+39990; Alkkia (Karvia); 70; 26; 44; 0; 33; 7; 4
+40100; Jyväskylä Keskus (Jyväskylä); 15510; 1935; 13575; 3407; 3762; 4174; 2232
+40200; Mannila-Taulumäki (Jyväskylä); 3689; 371; 3318; 461; 1077; 1064; 716
+40250; Ritoniemi-Lohikoski (Jyväskylä); 4853; 689; 4164; 248; 1707; 1349; 860
+40270; Palokka (Jyväskylä); 10183; 1537; 8646; 444; 4043; 2739; 1420
+40320; Seppälän Teollisuusalue (Jyväskylä); 4446; 854; 3592; 353; 1805; 954; 480
+40340; Huhtasuo (Jyväskylä); 5509; 1775; 3734; 251; 2452; 741; 290
+40400; Halssila (Jyväskylä); 3100; 516; 2584; 144; 1219; 785; 436
+40420; Jyskä (Jyväskylä); 3906; 573; 3333; 173; 1586; 1027; 547
+40500; Keljo-Ristonmaa (Jyväskylä); 3109; 472; 2637; 459; 914; 779; 485
+40520; Kuokkala-Ristikivi (Jyväskylä); 14373; 2166; 12207; 1456; 4598; 3551; 2602
+40530; Keljonkangas (Jyväskylä); 5119; 626; 4493; 274; 1879; 1426; 914
+40600; Mattilanpelto (Jyväskylä); 1813; 185; 1628; 318; 421; 483; 406
+40620; Keskussairaala-alue-Kukkumäki (Jyväskylä); 345; 49; 296; 46; 145; 66; 39
+40630; Kypärämäki (Jyväskylä); 2796; 458; 2338; 167; 902; 688; 581
+40640; Keltinmäki (Jyväskylä); 5028; 1107; 3921; 346; 1828; 1106; 641
+40660; Länsi-Palokka (Jyväskylä); 653; 93; 560; 34; 263; 176; 87
+40700; Mäki-Matti (Jyväskylä); 4887; 606; 4281; 990; 1304; 1189; 798
+40720; Nisula (Jyväskylä); 2484; 367; 2117; 313; 702; 639; 463
+40740; Kortepohja (Jyväskylä); 6794; 1179; 5615; 1041; 1752; 1532; 1290
+40800; Vaajakoski (Jyväskylä); 6406; 1187; 5219; 265; 2641; 1527; 786
+40820; Vuoritsalo (Jyväskylä); 787; 151; 636; 21; 356; 173; 86
+40900; Säynätsalo (Jyväskylä); 2636; 493; 2143; 103; 975; 681; 384
+40930; Kinkomaa (Muurame); 1279; 149; 1130; 46; 487; 365; 232
+40950; Muurame Keskus (Muurame); 6157; 942; 5215; 256; 2417; 1618; 924
+41120; Puuppola (Jyväskylä); 1360; 181; 1179; 51; 571; 371; 186
+41140; Kuikka (Jyväskylä); 437; 60; 377; 10; 225; 100; 42
+41160; Tikkakoski (Jyväskylä); 3443; 598; 2845; 115; 1581; 830; 319
+41180; Vehniä (Laukaa); 541; 98; 443; 19; 282; 104; 38
+41210; Jokihaara (Uurainen); 302; 54; 248; 9; 142; 76; 21
+41220; Höytiä (Uurainen); 211; 53; 158; 8; 103; 37; 10
+41230; Uurainen Keskus (Uurainen); 1217; 296; 921; 30; 588; 214; 89
+41240; Kyynämöinen (Uurainen); 193; 53; 140; 2; 92; 36; 10
+41260; Hoikankylä (Saarijärvi); 114; 29; 85; 3; 61; 15; 6
+41270; Lannevesi (Saarijärvi); 383; 83; 300; 13; 173; 80; 34
+41290; Kangashäkki (Uurainen); 552; 99; 453; 10; 284; 125; 34
+41310; Leppävesi (Laukaa); 2147; 289; 1858; 67; 1058; 515; 218
+41325; Laukkavirta (Laukaa); 240; 37; 203; 4; 135; 45; 19
+41330; Vihtavuori (Laukaa); 1929; 326; 1603; 50; 900; 451; 202
+41340; Laukaa Keskus (Laukaa); 4498; 917; 3581; 142; 1879; 1076; 484
+41350; Laukaa Asemanseutu (Laukaa); 476; 78; 398; 9; 245; 102; 42
+41360; Valkola (Laukaa); 345; 59; 286; 15; 186; 66; 19
+41370; Kuusa (Laukaa); 725; 127; 598; 15; 348; 164; 71
+41390; Äijälä (Laukaa); 281; 57; 224; 6; 151; 54; 13
+41400; Lievestuore (Laukaa); 2491; 585; 1906; 67; 1280; 425; 134
+41410; Kankainen (Toivakka); 133; 37; 96; 3; 58; 27; 8
+41440; Ruuhimäki (Toivakka); 179; 30; 149; 4; 98; 34; 13
+41450; Leppälahti (Jyväskylä); 497; 83; 414; 12; 227; 124; 51
+41490; Niemisjärvi (Hankasalmi); 591; 119; 472; 23; 317; 101; 31
+41500; Hankasalmi Asemanseutu (Hankasalmi); 1034; 284; 750; 22; 532; 153; 43
+41520; Hankasalmi Keskus (Hankasalmi); 1488; 414; 1074; 55; 657; 264; 98
+41530; Veneranta (Hankasalmi); 126; 36; 90; 0; 70; 16; 4
+41540; Ristimäki (Hankasalmi); 190; 56; 134; 11; 85; 29; 9
+41550; Hannula (Hankasalmi); 119; 33; 86; 2; 56; 21; 7
+41560; Säkinmäki (Hankasalmi); 116; 30; 86; 9; 57; 13; 7
+41580; Sauvamäki (Hankasalmi); 196; 48; 148; 4; 109; 28; 7
+41630; Oravasaari (Jyväskylä); 278; 40; 238; 10; 128; 67; 33
+41660; Toivakka Keskus (Toivakka); 1487; 368; 1119; 39; 677; 309; 94
+41710; Rutalahti-Kivisuo (Jyväskylä); 189; 48; 141; 7; 84; 42; 8
+41730; Kivisuo (Joutsa); 21; ...; ...; ...; ...; ...; ...
+41750; Havumäki (Joutsa); 75; 17; 58; 2; 41; 10; 5
+41770; Leivonmäki (Joutsa); 492; 165; 327; 14; 223; 72; 18
+41800; Korpilahti Keskus (Jyväskylä); 2774; 644; 2130; 102; 1228; 542; 258
+41820; Saakoski (Jyväskylä); 239; 47; 192; 8; 121; 43; 20
+41840; Moksi (Jyväskylä); 57; 8; 49; 2; 34; 9; 4
+41860; Rannila (Jyväskylä); 209; 35; 174; 5; 78; 55; 36
+41870; Putkilahti (Jyväskylä); 133; 25; 108; 6; 63; 29; 10
+41880; Oittila (Jyväskylä); 94; 33; 61; 1; 36; 14; 10
+41900; Petäjävesi Keskus (Petäjävesi); 2006; 445; 1561; 45; 941; 428; 147
+41920; Kintaus (Petäjävesi); 393; 66; 327; 12; 170; 83; 62
+41925; Ylä-Kintaus (Petäjävesi); 104; 20; 84; 4; 58; 16; 6
+41930; Kuohu (Jyväskylä); 574; 96; 478; 14; 265; 143; 56
+41940; Vesanka (Jyväskylä); 1053; 166; 887; 37; 473; 272; 105
+41970; Huttula (Keuruu); 39; 11; 28; 0; 15; 12; 1
+41980; Kuivasmäki (Petäjävesi); 140; 29; 111; 3; 72; 24; 12
+42100; Jämsä Keskus (Jämsä); 8022; 1866; 6156; 221; 3762; 1681; 492
+42140; Juokslahti (Jämsä); 230; 42; 188; 10; 113; 49; 16
+42220; Kaipola (Jämsä); 758; 211; 547; 15; 378; 122; 32
+42300; Jämsänkoski Keskus (Jämsä); 4210; 1069; 3141; 94; 2126; 738; 183
+42330; Haavisto (Jämsä); 300; 41; 259; 12; 153; 75; 19
+42440; Koskenpää (Jämsä); 504; 113; 391; 21; 262; 91; 17
+42520; Asunta (Keuruu); 118; 27; 91; 3; 57; 20; 11
+42560; Pohjoisjärvi (Keuruu); 115; 24; 91; 7; 41; 31; 12
+42600; Multia Keskus-Väätäiskylä (Multia); 1063; 306; 757; 21; 518; 170; 48
+42660; Sahrajärvi (Multia); 81; 17; 64; 3; 44; 16; 1
+42700; Keuruu Keskus (Keuruu); 6147; 1572; 4575; 185; 2781; 1243; 366
+42720; Valkealahti (Keuruu); 71; 25; 46; 2; 35; 6; 3
+42800; Haapamäki (Keuruu); 874; 220; 654; 23; 454; 154; 23
+42820; Riiho (Keuruu); 60; 9; 51; 4; 26; 14; 7
+42830; Ylä-Kolkki (Mänttä-Vilppula); 41; 17; 24; 0; 16; 7; 1
+42840; Kolkki (Mänttä-Vilppula); 106; 33; 73; 6; 45; 16; 6
+42850; Pohjaslahti (Mänttä-Vilppula); 118; 25; 93; 1; 50; 32; 10
+42870; Kotala (Virrat); 334; 98; 236; 14; 145; 64; 13
+42910; Pihlajavesi (Keuruu); 216; 56; 160; 6; 114; 34; 6
+42930; Katajamäki (Keuruu); 77; 17; 60; 1; 42; 14; 3
+43100; Saarijärvi Keskus (Saarijärvi); 4874; 1340; 3534; 136; 2258; 884; 256
+43130; Tarvaala (Saarijärvi); 302; 59; 243; 11; 142; 66; 24
+43170; Häkkilä (Saarijärvi); 196; 66; 130; 7; 99; 23; 1
+43220; Mahlu (Saarijärvi); 338; 104; 234; 5; 172; 46; 11
+43240; Lehtola (Saarijärvi); 128; 30; 98; 1; 67; 24; 6
+43250; Kolkanlahti (Saarijärvi); 240; 50; 190; 4; 121; 50; 15
+43270; Kalmari (Saarijärvi); 375; 132; 243; 8; 171; 48; 16
+43300; Kannonkoski Keskus (Kannonkoski); 899; 271; 628; 18; 435; 138; 37
+43340; Kannonjärvi (Kannonkoski); 127; 51; 76; 4; 59; 11; 2
+43390; Lokakylä (Kivijärvi); 60; 18; 42; 1; 34; 4; 3
+43420; Kukko (Saarijärvi); 39; 15; 24; 1; 16; 6; 1
+43430; Väätäiskylä (Multia); 26; ...; ...; ...; ...; ...; ...
+43440; Pylkönmäki Keskus (Saarijärvi); 369; 132; 237; 8; 172; 45; 12
+43480; Pääjärvi (Saarijärvi); 103; 27; 76; 1; 58; 17; 0
+43490; Kangasaho (Karstula); 127; 27; 100; 3; 70; 23; 4
+43500; Karstula Keskus (Karstula); 2124; 587; 1537; 49; 970; 411; 107
+43520; Kiminki (Karstula); 153; 53; 100; 3; 75; 18; 4
+43540; Rantakylä-Pirttilahti (Karstula); 101; 39; 62; 4; 43; 14; 1
+43560; Vahanka (Karstula); 142; 49; 93; 1; 70; 20; 2
+43610; Aho (Karstula); 68; 18; 50; 0; 37; 10; 3
+43640; Humppi (Karstula); 104; 24; 80; 2; 59; 15; 4
+43660; Vastinki (Karstula); 187; 62; 125; 3; 88; 28; 6
+43700; Kyyjärvi Keskus (Kyyjärvi); 871; 289; 582; 13; 410; 131; 28
+43720; Kumpulainen (Kyyjärvi); 81; 41; 40; 1; 29; 7; 3
+43800; Kivijärvi Keskus-Sompala (Kivijärvi); 755; 264; 491; 10; 378; 90; 13
+43840; Sompala (Kivijärvi); 44; 16; 28; 0; 23; 5; 0
+43900; Kinnula Keskus (Kinnula); 1001; 330; 671; 35; 439; 147; 50
+43940; Muhola-Saarensalmi (Kinnula); 174; 69; 105; 5; 82; 14; 4
+43960; Saarensalmi (Kinnula); 55; 21; 34; 4; 20; 9; 1
+44100; Äänekoski Keskus (Äänekoski); 3473; 958; 2515; 101; 1570; 640; 204
+44120; Mämmensalmi-Mustaniemi (Äänekoski); 1884; 373; 1511; 67; 917; 401; 126
+44150; Likolahti-Karhunlähde (Äänekoski); 2382; 554; 1828; 67; 1231; 416; 114
+44160; Huutomäki (Äänekoski); 361; 66; 295; 2; 208; 61; 24
+44170; Hietama (Äänekoski); 343; 59; 284; 11; 184; 61; 28
+44190; Parantala (Äänekoski); 180; 29; 151; 4; 94; 34; 19
+44200; Suolahti Keskus (Äänekoski); 3450; 944; 2506; 87; 1767; 525; 127
+44220; Sörkänmäki (Äänekoski); 311; 67; 244; 6; 160; 58; 20
+44250; Äänekoivisto (Äänekoski); 390; 74; 316; 11; 204; 79; 22
+44260; Vihijärvi (Äänekoski); 201; 42; 159; 8; 101; 38; 12
+44280; Sumiainen Keskus (Äänekoski); 678; 178; 500; 9; 336; 117; 38
+44300; Konnevesi Keskus (Konnevesi); 1397; 392; 1005; 31; 668; 238; 68
+44320; Sirkkamäki (Konnevesi); 90; 22; 68; 2; 39; 21; 6
+44330; Hytölä (Konnevesi); 208; 45; 163; 5; 104; 42; 12
+44350; Istunmäki (Konnevesi); 291; 91; 200; 13; 144; 36; 7
+44370; Mäntymäki (Konnevesi); 130; 41; 89; 4; 51; 30; 4
+44400; Konginkangas Keskus (Äänekoski); 529; 189; 340; 10; 249; 61; 20
+44420; Liimattala (Äänekoski); 265; 60; 205; 4; 138; 50; 13
+44440; Räihä (Äänekoski); 89; 28; 61; 1; 46; 11; 3
+44460; Kalaniemi (Äänekoski); 105; 27; 78; 2; 57; 16; 3
+44480; Niinilahti (Viitasaari); 124; 28; 96; 7; 62; 19; 8
+44500; Viitasaari Keskus (Viitasaari); 3408; 1012; 2396; 72; 1544; 602; 178
+44530; Ilmolahti (Viitasaari); 141; 33; 108; 4; 67; 28; 9
+44580; Huopanankoski (Viitasaari); 167; 46; 121; 1; 95; 18; 7
+44590; Vuorilahti (Viitasaari); 59; 10; 49; 0; 31; 14; 4
+44610; Kärnä (Viitasaari); 129; 25; 104; 0; 84; 17; 3
+44630; Kumpumäki (Viitasaari); 130; 54; 76; 0; 62; 12; 2
+44640; Kymönkoski (Viitasaari); 283; 66; 217; 10; 158; 38; 11
+44670; Suovanlahti (Viitasaari); 121; 32; 89; 2; 57; 23; 7
+44680; Lahnanen (Viitasaari); 40; 12; 28; 2; 20; 4; 2
+44730; Löytänä (Viitasaari); 78; 21; 57; 1; 44; 9; 3
+44740; Keitelepohja-Kotvala (Viitasaari); 153; 46; 107; 3; 82; 18; 4
+44760; Keihärinkoski (Viitasaari); 225; 73; 152; 5; 110; 28; 9
+44770; Valkeisjärvi (Viitasaari); 5; ...; ...; ...; ...; ...; ...
+44790; Kotvala (Viitasaari); 36; 14; 22; 0; 19; 3; 0
+44800; Pihtipudas Keskus (Pihtipudas); 1892; 579; 1313; 60; 892; 288; 73
+44860; Alvajärvi (Pihtipudas); 181; 54; 127; 7; 90; 28; 2
+44880; Muurasjärvi (Pihtipudas); 435; 137; 298; 8; 227; 43; 20
+44910; Elämäjärvi (Pihtipudas); 172; 54; 118; 1; 96; 19; 2
+44920; Peninki (Pihtipudas); 150; 54; 96; 3; 63; 28; 2
+44950; Kärväsjärvi (Pihtipudas); 145; 44; 101; 2; 74; 17; 8
+44970; Korppinen (Pihtipudas); 129; 42; 87; 4; 64; 17; 2
+45100; Kouvola Keskus (Kouvola); 8008; 1778; 6230; 511; 2878; 2049; 792
+45120; Kotkankallio-Vahteronmäki (Kouvola); 2993; 450; 2543; 134; 1127; 912; 370
+45130; Korjala-Kaunisnurmi (Kouvola); 1484; 293; 1191; 169; 545; 368; 109
+45150; Kankaronmäki-Eskolanmäki (Kouvola); 3859; 1051; 2808; 163; 1536; 864; 245
+45160; Lehtomäki (Kouvola); 4190; 1007; 3183; 191; 1775; 909; 308
+45200; Tornionmäki (Kouvola); 4962; 1213; 3749; 259; 2060; 1064; 366
+45330; Harju (Kouvola); 238; 37; 201; 3; 119; 63; 16
+45360; Kukkuramäki (Kouvola); 2839; 457; 2382; 93; 1223; 782; 284
+45370; Valkeala kk (Kouvola); 2069; 516; 1553; 72; 823; 463; 195
+45410; Utti (Kouvola); 663; 147; 516; 28; 312; 141; 35
+45460; Savero (Kouvola); 142; 35; 107; 4; 76; 19; 8
+45610; Koria (Kouvola); 3822; 817; 3005; 132; 1825; 848; 200
+45700; Kuusankoski Keskus (Kouvola); 7335; 1850; 5485; 258; 3242; 1511; 474
+45720; Kotiharju-Puhjonmäki (Kouvola); 2102; 404; 1698; 84; 1010; 451; 153
+45740; Maunuksela (Kouvola); 2175; 506; 1669; 68; 1041; 420; 140
+45750; Kuusankosken Sairaala-alue (Kouvola); 32; 16; 16; 2; 10; 3; 1
+45810; Pilkanmaa (Kouvola); 1129; 233; 896; 40; 648; 165; 43
+45910; Voikkaa (Kouvola); 2044; 541; 1503; 66; 1048; 327; 62
+45940; Oravala (Kouvola); 236; 49; 187; 7; 127; 37; 16
+46110; Tuohikotti (Kouvola); 308; 98; 210; 6; 153; 43; 8
+46140; Vekaranjärvi (Kouvola); 128; 32; 96; 13; 56; 18; 9
+46230; Aro (Kouvola); 373; 97; 276; 12; 194; 56; 14
+46400; Kaipiainen (Kouvola); 364; 115; 249; 4; 171; 59; 15
+46430; Tirva-Inkerilä (Kouvola); 224; 45; 179; 8; 97; 56; 18
+46450; Enäjärvi (Kouvola); 135; 47; 88; 1; 65; 18; 4
+46530; Kannuskoski (Luumäki); 120; 38; 82; 4; 51; 23; 4
+46570; Saaramaa (Kouvola); 34; 7; 27; 2; 18; 6; 1
+46710; Sippola (Kouvola); 569; 154; 415; 22; 283; 82; 28
+46730; Ruotila (Kouvola); 104; 31; 73; 2; 50; 20; 1
+46750; Liikkala (Kouvola); 215; 45; 170; 4; 120; 32; 14
+46800; Myllykoski (Kouvola); 3698; 969; 2729; 119; 1830; 616; 164
+46810; Ummeljoki (Kouvola); 1125; 261; 864; 28; 606; 197; 33
+46860; Anjalankoski Keskus (Kouvola); 426; 111; 315; 11; 223; 63; 18
+46900; Inkeroinen (Kouvola); 2854; 769; 2085; 85; 1396; 482; 122
+46910; Anjala (Kouvola); 1423; 373; 1050; 30; 758; 212; 50
+46930; Huruksela (Kotka); 181; 51; 130; 4; 83; 41; 2
+46950; Ahvio (Kouvola); 44; 12; 32; 2; 18; 10; 2
+46960; Muhniemi (Kouvola); 263; 65; 198; 4; 136; 44; 14
+47110; Löytty (Kouvola); 67; 11; 56; 4; 37; 14; 1
+47150; Raussila (Kouvola); 112; 20; 92; 5; 57; 21; 9
+47200; Elimäki kk (Kouvola); 1773; 514; 1259; 51; 815; 306; 87
+47260; Ratula (Kouvola); 100; 26; 74; 4; 53; 13; 4
+47310; Haapa-Kimola (Iitti); 201; 41; 160; 6; 91; 48; 15
+47350; Kimonkylä (Lapinjärvi); 99; 30; 69; 0; 46; 19; 4
+47400; Kausala (Iitti); 3659; 1032; 2627; 117; 1607; 717; 186
+47440; Sääskjärvi (Iitti); 98; 22; 76; 4; 45; 19; 8
+47450; Perheniemi (Iitti); 199; 54; 145; 6; 100; 28; 11
+47460; Hiisiö (Iitti); 52; 9; 43; 3; 25; 11; 4
+47490; Mankala-Hiisiö (Iitti); 266; 78; 188; 12; 116; 39; 21
+47520; Iitti kk (Iitti); 138; 18; 120; 4; 46; 42; 28
+47540; Lyöttilä (Iitti); 145; 30; 115; 5; 69; 32; 9
+47610; Kymentaka (Iitti); 114; 27; 87; 9; 45; 23; 10
+47650; Kimola (Kouvola); 156; 32; 124; 8; 66; 38; 12
+47710; Jaala kk (Kouvola); 847; 238; 609; 24; 389; 150; 46
+47760; Huhdasjärvi (Kouvola); 100; 27; 73; 4; 44; 19; 6
+47810; Selänpää (Kouvola); 224; 49; 175; 6; 119; 41; 9
+47830; Hasula (Kouvola); 82; 29; 53; 0; 38; 12; 3
+47850; Verla (Kouvola); 117; 27; 90; 6; 51; 28; 5
+47900; Vuohijärvi (Kouvola); 211; 82; 129; 3; 87; 32; 7
+47910; Hillosensalmi (Kouvola); 21; ...; ...; ...; ...; ...; ...
+48100; Kotkansaari (Kotka); 9289; 2212; 7077; 691; 3532; 2156; 698
+48130; Katariina (Kotka); 577; 114; 463; 30; 192; 150; 91
+48200; Hovinsaari (Kotka); 1418; 432; 986; 97; 627; 203; 59
+48210; Toukolan Sairaala-Alue (Kotka); 204; 33; 171; 9; 84; 53; 25
+48220; Metsola (Kotka); 1040; 243; 797; 77; 433; 210; 77
+48230; Korela-Jylppy (Kotka); 1136; 297; 839; 109; 479; 203; 48
+48300; Ruonala (Kotka); 992; 184; 808; 28; 419; 257; 104
+48310; Mussalo (Kotka); 3388; 461; 2927; 170; 1175; 1118; 464
+48350; Karhuvuori (Kotka); 2577; 930; 1647; 126; 1141; 307; 73
+48400; Sutela (Kotka); 3270; 576; 2694; 147; 1388; 907; 252
+48410; Kaukola (Kotka); 1281; 200; 1081; 46; 580; 364; 91
+48600; Karhula (Kotka); 5968; 1553; 4415; 232; 2644; 1189; 350
+48700; Kyminlinna (Kotka); 1945; 477; 1468; 70; 887; 409; 102
+48710; Koivula (Kotka); 977; 172; 805; 54; 424; 249; 78
+48720; Kymi (Kotka); 1333; 242; 1091; 41; 662; 315; 73
+48750; Nikeli (Kotka); 153; 34; 119; 1; 82; 32; 4
+48770; Ristinkallio (Kotka); 1397; 307; 1090; 46; 693; 286; 65
+48800; Otsola-Mäntykangas (Kotka); 1676; 294; 1382; 59; 700; 493; 130
+48810; Rantahaka (Kotka); 542; 113; 429; 20; 256; 108; 45
+48900; Sunila (Kotka); 1060; 266; 794; 46; 493; 202; 53
+48910; Suulisniemi (Kotka); 1153; 266; 887; 54; 517; 245; 71
+48930; Tiutinen (Kotka); 263; 41; 222; 8; 99; 88; 27
+49200; Heinlahti (Pyhtää); 601; 93; 508; 19; 233; 173; 83
+49210; Huutjärvi (Pyhtää); 801; 164; 637; 33; 331; 217; 56
+49220; Siltakylä (Pyhtää); 1450; 325; 1125; 67; 604; 337; 117
+49240; Purolanlahti (Pyhtää); 272; 86; 186; 10; 110; 49; 17
+49270; Pyhtää kk (Pyhtää); 661; 206; 455; 19; 309; 99; 28
+49290; Vastila (Pyhtää); 316; 75; 241; 6; 159; 64; 12
+49300; Tavastila (Kotka); 491; 107; 384; 22; 249; 96; 17
+49340; Juurikorpi (Kotka); 84; 21; 63; 5; 44; 10; 4
+49400; Hamina Keskus (Hamina); 8194; 1978; 6216; 296; 3448; 1871; 601
+49410; Poitsila (Hamina); 1554; 409; 1145; 42; 736; 289; 78
+49420; Uusi-Summa (Hamina); 1508; 321; 1187; 45; 765; 315; 62
+49460; Hillo (Hamina); 942; 266; 676; 31; 439; 168; 38
+49480; Vanha-Summa (Hamina); 364; 84; 280; 12; 172; 76; 20
+49490; Neuvoton (Hamina); 1098; 237; 861; 30; 537; 229; 65
+49510; Husula (Hamina); 924; 249; 675; 18; 445; 164; 48
+49520; Reitkalli (Hamina); 221; 47; 174; 9; 124; 33; 8
+49540; Metsäkylä (Hamina); 366; 100; 266; 10; 173; 66; 17
+49570; Kannusjärvi (Hamina); 335; 90; 245; 7; 170; 54; 14
+49610; Sivatti (Hamina); 81; 18; 63; 2; 48; 10; 3
+49630; Vehkajoki (Hamina); 88; 31; 57; 4; 38; 11; 4
+49640; Paijärvi (Hamina); 134; 36; 98; 2; 59; 30; 7
+49660; Pyhältö (Hamina); 450; 131; 319; 13; 222; 70; 14
+49700; Miehikkälä Kirkonkylä (Miehikkälä); 673; 238; 435; 20; 293; 97; 25
+49720; Hurttala (Miehikkälä); 45; 21; 24; 0; 21; 3; 0
+49730; Muurikkala (Miehikkälä); 236; 81; 155; 3; 110; 33; 9
+49750; Kalliokoski (Miehikkälä); 115; 49; 66; 4; 43; 18; 1
+49760; Suur-Miehikkälä (Miehikkälä); 157; 52; 105; 2; 71; 24; 8
+49770; Salo-Miehikkälä (Miehikkälä); 188; 56; 132; 6; 88; 26; 12
+49780; Onkamaa (Hamina); 81; 19; 62; 6; 43; 11; 2
+49840; Mäntlahti (Hamina); 119; 33; 86; 2; 48; 25; 11
+49860; Klamila (Virolahti); 538; 134; 404; 14; 259; 101; 30
+49900; Virolahti Keskus (Virolahti); 1502; 449; 1053; 56; 658; 262; 77
+49930; Vaalimaa (Virolahti); 118; 41; 77; 6; 45; 26; 0
+49960; Ala-Pihlaja (Virolahti); 170; 43; 127; 2; 98; 25; 2
+49980; Ravijoki (Virolahti); 206; 42; 164; 5; 101; 47; 11
+50100; Mikkeli Keskus (Mikkeli); 8604; 1686; 6918; 627; 3100; 2287; 904
+50120; Siekkilä (Mikkeli); 1251; 299; 952; 56; 548; 246; 102
+50130; Nuijamies (Mikkeli); 2496; 428; 2068; 127; 903; 695; 343
+50150; Karkialampi (Mikkeli); 1059; 177; 882; 38; 493; 263; 88
+50160; Kattilansilta (Mikkeli); 1924; 489; 1435; 80; 902; 346; 107
+50170; Peitsari (Mikkeli); 4489; 911; 3578; 143; 1951; 1092; 392
+50180; Visulahti (Mikkeli); 592; 84; 508; 17; 253; 171; 67
+50190; Tuppurala (Mikkeli); 3910; 883; 3027; 149; 1608; 944; 326
+50200; Kovala (Mikkeli); 446; 79; 367; 11; 217; 108; 31
+50300; Rämälä (Mikkeli); 254; 51; 203; 9; 127; 48; 19
+50350; Norola (Mikkeli); 246; 40; 206; 7; 131; 50; 18
+50500; Tuukkala-Kaituenmäki (Mikkeli); 1179; 201; 978; 40; 544; 308; 86
+50520; Moision Sairaala-alue (Mikkeli); 101; 21; 80; 4; 34; 30; 12
+50600; Karikko (Mikkeli); 3552; 560; 2992; 134; 1395; 1033; 430
+50670; Otava (Mikkeli); 1357; 289; 1068; 31; 676; 273; 88
+50700; Syysjärvi (Mikkeli); 640; 82; 558; 25; 235; 204; 94
+50770; Korpikoski (Mikkeli); 191; 36; 155; 4; 91; 49; 11
+50800; Annilanselkä (Mikkeli); 415; 67; 348; 13; 135; 136; 64
+50970; Ihastjärvi (Mikkeli); 1820; 324; 1496; 80; 733; 479; 204
+51130; Vanhamäki (Mikkeli); 129; 34; 95; 1; 71; 20; 3
+51200; Kangasniemi Keskus (Kangasniemi); 3103; 909; 2194; 77; 1341; 605; 171
+51260; Tahkomäki (Kangasniemi); 127; 30; 97; 2; 66; 21; 8
+51270; Kutemajärvi (Kangasniemi); 179; 44; 135; 3; 92; 27; 13
+51310; Levä (Kangasniemi); 120; 38; 82; 10; 45; 15; 12
+51335; Kaihlamäki (Kangasniemi); 35; 8; 27; 0; 23; 2; 2
+51340; Hännilä-Särkiharju (Kangasniemi); 208; 62; 146; 9; 104; 24; 9
+51360; Koivula-Synsiö (Kangasniemi); 144; 29; 115; 4; 71; 30; 10
+51380; Synsiö (Kangasniemi); 37; 12; 25; 2; 19; 4; 0
+51420; Harjumaa-Pajulankylä (Mikkeli); 177; 38; 139; 2; 89; 33; 15
+51430; Läsäkoski (Kangasniemi); 72; 20; 52; 2; 34; 15; 1
+51440; Vuojalahti (Kangasniemi); 191; 47; 144; 5; 93; 38; 8
+51450; Pajulankylä (Mikkeli); 45; 16; 29; 0; 18; 9; 2
+51460; Luusniemi (Kangasniemi); 157; 40; 117; 9; 74; 25; 9
+51520; Hiirola (Mikkeli); 324; 75; 249; 2; 162; 61; 24
+51540; Kalvitsa (Mikkeli); 236; 77; 159; 3; 103; 45; 8
+51600; Haukivuori Keskus-Piitkäaho (Mikkeli); 1076; 335; 741; 27; 490; 170; 54
+51620; Pitkäaho (Mikkeli); 15; ...; ...; ...; ...; ...; ...
+51670; Nykälä (Mikkeli); 102; 22; 80; 5; 57; 16; 2
+51720; Rahula (Mikkeli); 370; 68; 302; 12; 159; 101; 30
+51740; Huuhanaho (Mikkeli); 171; 46; 125; 7; 64; 41; 13
+51760; Nuutilanmäki (Juva); 228; 56; 172; 7; 114; 34; 17
+51780; Kuosmala (Juva); 103; 34; 69; 1; 38; 17; 13
+51810; Maivala (Juva); 101; 30; 71; 4; 49; 12; 6
+51820; Hatsola (Juva); 237; 60; 177; 5; 107; 48; 17
+51850; Vuorenmaa (Juva); 155; 44; 111; 2; 80; 20; 9
+51860; Narila (Juva); 55; 19; 36; 0; 26; 7; 3
+51880; Koikkala (Juva); 180; 54; 126; 2; 83; 26; 15
+51890; Risulahti (Juva); 68; 16; 52; 2; 32; 15; 3
+51900; Juva Keskus (Juva); 3410; 951; 2459; 75; 1645; 569; 170
+51930; Paatela (Juva); 120; 35; 85; 3; 54; 23; 5
+51940; Härkälä (Juva); 85; 15; 70; 3; 45; 17; 5
+51980; Lauteala (Juva); 190; 54; 136; 6; 88; 31; 11
+52100; Anttola (Mikkeli); 1174; 293; 881; 24; 526; 249; 82
+52110; Majavesi (Mikkeli); 320; 57; 263; 5; 167; 70; 21
+52150; Hauhala (Mikkeli); 118; 24; 94; 3; 56; 27; 8
+52200; Puumala Keskus (Puumala); 1563; 451; 1112; 57; 660; 287; 108
+52230; Hurissalo (Puumala); 203; 59; 144; 3; 88; 46; 7
+52270; Ryhälä (Puumala); 35; 12; 23; 1; 13; 5; 4
+52300; Ristiina Keskus (Mikkeli); 2255; 579; 1676; 63; 1006; 454; 153
+52320; Vitsiälä (Mikkeli); 271; 46; 225; 11; 130; 54; 30
+52330; Heimari (Mikkeli); 38; 8; 30; 1; 19; 7; 3
+52340; Hangastenmaa (Mikkeli); 180; 44; 136; 4; 90; 30; 12
+52360; Someenjärvi (Mikkeli); 82; 27; 55; 3; 31; 16; 5
+52420; Pellosniemi (Mikkeli); 462; 145; 317; 12; 225; 68; 12
+52510; Hietanen (Hirvensalmi); 374; 89; 285; 14; 186; 67; 18
+52520; Syväsmäki (Hirvensalmi); 120; 28; 92; 4; 57; 24; 7
+52550; Hirvensalmi Keskus (Hirvensalmi); 1276; 409; 867; 35; 555; 212; 65
+52610; Tuukkalanlahti (Hirvensalmi); 106; 32; 74; 2; 47; 22; 3
+52620; Kuitula (Hirvensalmi); 83; 29; 54; 4; 34; 12; 4
+52700; Mäntyharju Keskus (Mäntyharju); 3898; 1214; 2684; 151; 1619; 692; 222
+52720; Karankamäki-Koirakivi (Mäntyharju); 86; 31; 55; 2; 43; 9; 1
+52730; Koirakivi (Mäntyharju); 56; 18; 38; 1; 23; 12; 2
+52740; Tuustaipale (Mäntyharju); 233; 74; 159; 5; 114; 28; 12
+52760; Mynttilä (Mäntyharju); 68; 19; 49; 3; 31; 12; 3
+52780; Kuomiokoski (Mikkeli); 90; 28; 62; 2; 45; 11; 4
+52830; Suomenniemi (Mikkeli); 483; 153; 330; 10; 231; 70; 19
+52850; Halmeniemi (Mäntyharju); 95; 32; 63; 3; 40; 15; 5
+52890; Käävänkylä (Mäntyharju); 77; 22; 55; 1; 37; 13; 4
+52920; Voikoski (Kouvola); 104; 40; 64; 1; 37; 17; 9
+52960; Nurmaa (Mäntyharju); 93; 24; 69; 2; 51; 12; 4
+52970; Pankalahti-Ahvenainen (Mäntyharju); 70; 29; 41; 0; 31; 10; 0
+52980; Ahvenainen (Heinola); 38; 16; 22; 1; 16; 4; 1
+53100; Lappeenranta keskus (Lappeenranta); 9781; 2001; 7780; 996; 3200; 2432; 1152
+53130; Keskussairaala-alue-Kimpinen (Lappeenranta); 592; 82; 510; 43; 215; 157; 95
+53200; Kaukas-Tirilä (Lappeenranta); 1236; 278; 958; 48; 523; 272; 115
+53300; Lauritsala-Mälkiä (Lappeenranta); 6163; 1423; 4740; 238; 2694; 1317; 491
+53400; Laihia (Lappeenranta); 1449; 273; 1176; 50; 623; 371; 132
+53420; Mustola (Lappeenranta); 443; 77; 366; 13; 189; 122; 42
+53500; Parkkarila-Harapainen-Reijola (Lappeenranta); 3720; 695; 3025; 178; 1551; 928; 368
+53550; Kourulanmäki (Lappeenranta); 1070; 161; 909; 43; 366; 328; 172
+53600; Kesämäki (Lappeenranta); 2345; 496; 1849; 242; 769; 565; 273
+53650; Mattila-Kuusela (Lappeenranta); 1578; 344; 1234; 65; 694; 342; 133
+53810; Kuusimäki-Lavola (Lappeenranta); 3242; 720; 2522; 345; 1133; 678; 366
+53830; Rutola (Lappeenranta); 533; 72; 461; 22; 220; 145; 74
+53850; Skinnarila (Lappeenranta); 9447; 1948; 7499; 1652; 2417; 2088; 1342
+53900; Pallo-Tysterniemi-Leiri (Lappeenranta); 3134; 460; 2674; 346; 938; 907; 483
+53920; Voisalmi (Lappeenranta); 2719; 620; 2099; 148; 1052; 617; 282
+53950; Kivisalmi (Lappeenranta); 1670; 395; 1275; 59; 670; 365; 181
+54100; Joutseno Keskus (Lappeenranta); 4218; 1042; 3176; 114; 2021; 792; 249
+54110; Lampikangas (Lappeenranta); 835; 149; 686; 15; 427; 196; 48
+54120; Pulp (Lappeenranta); 1332; 336; 996; 29; 640; 248; 79
+54190; Konnunsuo (Lappeenranta); 65; 20; 45; 0; 37; 7; 1
+54230; Nuijamaa (Lappeenranta); 490; 125; 365; 13; 231; 94; 27
+54250; Rapattila (Lappeenranta); 139; 36; 103; 5; 65; 28; 5
+54260; Hanhijärvi (Lappeenranta); 555; 78; 477; 18; 285; 129; 45
+54270; Vainikkala (Lappeenranta); 338; 94; 244; 10; 176; 53; 5
+54300; Vilkjärvi (Lappeenranta); 468; 100; 368; 24; 231; 82; 31
+54310; Hytti (Lappeenranta); 311; 37; 274; 10; 151; 78; 35
+54330; Simola (Lappeenranta); 335; 72; 263; 8; 169; 76; 10
+54390; Pulsa (Lappeenranta); 108; 36; 72; 3; 53; 10; 6
+54410; Ylämaa Keskus (Lappeenranta); 748; 254; 494; 16; 333; 118; 27
+54430; Hujakkala (Lappeenranta); 126; 41; 85; 4; 61; 17; 3
+54460; Ylijärvi (Lappeenranta); 62; 23; 39; 0; 29; 7; 3
+54490; Ahomäki (Miehikkälä); 127; 51; 76; 1; 60; 11; 4
+54500; Taavetti-Somerharju (Luumäki); 2216; 709; 1507; 79; 970; 355; 103
+54510; Uro (Luumäki); 306; 86; 220; 8; 138; 56; 18
+54530; Luumäki (Luumäki); 934; 182; 752; 43; 396; 230; 83
+54550; Suo-Anttila (Luumäki); 67; 25; 42; 5; 27; 8; 2
+54580; Somerharju (Luumäki); 29; ...; ...; ...; ...; ...; ...
+54590; Kaitjärvi (Luumäki); 94; 33; 61; 6; 40; 12; 3
+54710; Lemi Keskus (Lemi); 1041; 311; 730; 23; 475; 167; 65
+54720; Laksiainen (Lemi); 121; 33; 88; 2; 65; 17; 4
+54750; Välijoki (Savitaipale); 218; 63; 155; 6; 103; 37; 9
+54770; Heituinlahti (Savitaipale); 409; 129; 280; 11; 198; 59; 12
+54800; Savitaipale Keskus (Savitaipale); 2033; 600; 1433; 70; 868; 356; 139
+54820; Kotimäki (Lemi); 187; 40; 147; 4; 93; 37; 13
+54850; Kuukanniemi (Lemi); 797; 144; 653; 27; 381; 183; 62
+54915; Saimaanharju-Kyläniemi (Taipalsaari); 1325; 228; 1097; 45; 549; 370; 133
+54920; Taipalsaari (Taipalsaari); 1229; 229; 1000; 37; 477; 330; 156
+54930; Levänen (Taipalsaari); 228; 64; 164; 6; 106; 41; 11
+54940; Solkei (Taipalsaari); 97; 25; 72; 3; 37; 27; 5
+54950; Pettilä (Savitaipale); 87; 32; 55; 3; 41; 7; 4
+54960; Vehkataipale (Taipalsaari); 465; 86; 379; 11; 191; 113; 64
+55100; Imatra Keskus (Imatra); 7954; 1865; 6089; 255; 3559; 1723; 552
+55120; Mansikkala-Tuulikallio (Imatra); 2644; 733; 1911; 76; 1179; 483; 173
+55300; Rauha-Tiuruniemi (Lappeenranta); 748; 146; 602; 21; 363; 159; 59
+55320; Rauha (Lappeenranta); 433; 72; 361; 10; 194; 124; 33
+55330; Tiuruniemi (Lappeenranta); 45; 4; 41; 3; 17; 11; 10
+55400; Tainionkoski-Mustalampi (Imatra); 1035; 217; 818; 18; 496; 200; 104
+55420; Karhumäki-Karhukallio (Imatra); 1577; 329; 1248; 40; 745; 353; 110
+55510; Sotkulampi-Linnasuo (Imatra); 1017; 338; 679; 43; 436; 151; 49
+55610; Rajapatsas-Teppanala (Imatra); 2120; 589; 1531; 53; 1066; 324; 88
+55700; Vintteri-Virasoja (Imatra); 1086; 240; 846; 33; 578; 191; 44
+55800; Vuoksenniska-Saarlampi (Imatra); 3316; 1007; 2309; 80; 1575; 510; 144
+55910; Rautio-Kurkvuori (Imatra); 1242; 350; 892; 20; 609; 201; 62
+56100; Ruokolahti Keskus (Ruokolahti); 1652; 492; 1160; 32; 692; 337; 99
+56120; Salosaari (Ruokolahti); 623; 127; 496; 21; 276; 146; 53
+56140; Äitsaari (Ruokolahti); 176; 54; 122; 1; 88; 27; 6
+56210; Virmutjoki (Ruokolahti); 316; 86; 230; 8; 159; 49; 14
+56310; Syyspohja (Ruokolahti); 164; 54; 110; 3; 70; 30; 7
+56330; Utula (Ruokolahti); 28; ...; ...; ...; ...; ...; ...
+56350; Kyläniemi (Taipalsaari); 12; ...; ...; ...; ...; ...; ...
+56410; Kaiturinpää (Ruokolahti); 133; 38; 95; 6; 60; 18; 11
+56440; Pohja-Lankila (Ruokolahti); 173; 58; 115; 4; 71; 28; 12
+56510; Puntala (Ruokolahti); 315; 79; 236; 8; 165; 49; 14
+56550; Niska-Pietilä (Rautjärvi); 101; 22; 79; 1; 52; 21; 5
+56610; Rautjärvi (Rautjärvi); 451; 119; 332; 8; 254; 57; 13
+56640; Purnujärvi (Rautjärvi); 76; 28; 48; 2; 39; 6; 1
+56710; Miettilä (Rautjärvi); 100; 25; 75; 5; 46; 19; 5
+56730; Laikko (Rautjärvi); 260; 65; 195; 8; 142; 31; 14
+56800; Simpele (Rautjärvi); 1903; 649; 1254; 41; 863; 295; 55
+57100; Heikinpohja-Piispanmäki (Savonlinna); 3459; 783; 2676; 272; 1319; 805; 280
+57120; Savonlinna (Savonlinna); 15; ...; ...; ...; ...; ...; ...
+57130; Savonlinna Keskus (Savonlinna); 1690; 400; 1290; 128; 533; 447; 182
+57170; Sortteerinlahti-Talvisalo (Savonlinna); 1707; 437; 1270; 108; 712; 344; 106
+57200; Miekonniemi-Venäjänniemi (Savonlinna); 1987; 370; 1617; 70; 933; 428; 186
+57210; Nojanmaa (Savonlinna); 2043; 383; 1660; 58; 1022; 420; 160
+57220; Haka-alue-Viuhonmäki (Savonlinna); 1114; 312; 802; 29; 576; 168; 29
+57230; Inkerinkylä (Savonlinna); 2486; 643; 1843; 71; 1249; 402; 121
+57310; Rinkilä (Savonlinna); 534; 131; 403; 11; 266; 101; 25
+57510; Laitaatsilta (Savonlinna); 369; 61; 308; 9; 120; 118; 61
+57600; Poukkusilta-Pihlajaniemi (Savonlinna); 1281; 199; 1082; 54; 523; 324; 181
+57710; Kellarpelto-Rantakoivikko (Savonlinna); 2104; 385; 1719; 59; 903; 511; 246
+57810; Aholahti (Savonlinna); 243; 46; 197; 6; 101; 78; 12
+58130; Oravi (Savonlinna); 89; 29; 60; 1; 33; 18; 8
+58140; Ahvensalmi (Savonlinna); 64; 20; 44; 2; 26; 12; 4
+58150; Makkola (Savonlinna); 173; 42; 131; 6; 88; 29; 8
+58160; Karvila (Enonkoski); 125; 40; 85; 2; 67; 12; 4
+58170; Simanala (Enonkoski); 200; 39; 161; 5; 110; 38; 8
+58175; Enonkoski Keskus (Enonkoski); 689; 207; 482; 14; 325; 111; 32
+58180; Ihamaniemi (Enonkoski); 115; 40; 75; 2; 46; 19; 8
+58200; Kerimäki Keskus (Savonlinna); 2502; 684; 1818; 44; 1208; 443; 123
+58220; Louhi (Savonlinna); 322; 79; 243; 7; 178; 48; 10
+58260; Kumpuranta (Savonlinna); 138; 38; 100; 4; 64; 27; 5
+58300; Savonranta Keskus (Savonlinna); 540; 189; 351; 11; 276; 59; 5
+58320; Raikuu (Savonlinna); 138; 35; 103; 2; 87; 12; 2
+58350; Villala (Kitee); 161; 61; 100; 5; 73; 15; 7
+58360; Säimen (Savonlinna); 140; 52; 88; 2; 71; 11; 4
+58390; Rönkönvaara (Savonlinna); 46; 16; 30; 0; 22; 8; 0
+58410; Haapakallio (Savonlinna); 459; 78; 381; 12; 243; 94; 32
+58420; Silvola (Savonlinna); 230; 44; 186; 10; 121; 44; 11
+58430; Kulennoinen (Savonlinna); 350; 69; 281; 6; 173; 75; 27
+58450; Punkaharju (Savonlinna); 326; 54; 272; 5; 134; 94; 39
+58500; Punkasalmi (Savonlinna); 1247; 425; 822; 30; 533; 198; 61
+58520; Hiukkajoki (Savonlinna); 227; 48; 179; 4; 119; 42; 14
+58550; Putikko (Savonlinna); 333; 105; 228; 7; 160; 46; 15
+58570; Ruhvana (Savonlinna); 60; 13; 47; 4; 30; 10; 3
+58580; Vuoriniemi (Savonlinna); 73; 23; 50; 3; 34; 10; 3
+58610; Telakanava (Sulkava); 108; 29; 79; 4; 53; 21; 1
+58620; Lohilahti (Sulkava); 200; 67; 133; 7; 90; 26; 10
+58650; Kiviapaja (Savonlinna); 72; 24; 48; 2; 36; 10; 0
+58680; Piojärvi (Savonlinna); 39; 14; 25; 1; 16; 6; 2
+58690; Ala-Särkilahti-Piojärvi (Savonlinna); 81; 25; 56; 0; 42; 12; 2
+58700; Sulkava Keskus (Sulkava); 1665; 517; 1148; 59; 701; 302; 86
+58720; Kaartilankoski (Sulkava); 227; 66; 161; 7; 98; 43; 13
+58770; Pihlajalahti (Savonlinna); 172; 50; 122; 2; 87; 26; 7
+58810; Kallislahti (Savonlinna); 252; 56; 196; 7; 122; 49; 18
+58830; Parkumäki (Rantasalmi); 215; 39; 176; 6; 118; 43; 9
+58850; Hiltula (Rantasalmi); 80; 23; 57; 0; 40; 9; 8
+58900; Rantasalmi Keskus (Rantasalmi); 1860; 541; 1319; 50; 842; 325; 102
+58910; Rantasalmi Asemanseutu (Rantasalmi); 143; 44; 99; 10; 64; 21; 4
+58920; Kolkontaipale (Rantasalmi); 271; 56; 215; 7; 139; 48; 21
+58940; Tuusmäki (Rantasalmi); 187; 45; 142; 7; 97; 31; 7
+59100; Parikkala Keskus (Parikkala); 1718; 534; 1184; 43; 762; 276; 103
+59130; Koitsanlahti (Parikkala); 126; 38; 88; 2; 66; 16; 4
+59210; Melkoniemi (Parikkala); 115; 41; 74; 0; 58; 16; 0
+59310; Särkisalmi (Parikkala); 662; 177; 485; 12; 323; 124; 26
+59320; Haapaoja (Parikkala); 79; 25; 54; 2; 39; 12; 1
+59410; Kirjavala (Parikkala); 311; 96; 215; 2; 161; 44; 8
+59510; Maironiemi (Parikkala); 298; 105; 193; 2; 142; 40; 9
+59520; Saari (Parikkala); 97; 19; 78; 2; 56; 14; 6
+59530; Mikkolanniemi (Parikkala); 64; 17; 47; 1; 34; 8; 4
+59610; Tarnala (Parikkala); 142; 48; 94; 4; 69; 17; 4
+59710; Kummunkylä (Parikkala); 72; 22; 50; 2; 38; 10; 0
+59720; Niukkala (Parikkala); 117; 36; 81; 2; 53; 17; 9
+59730; Uukuniemi (Parikkala); 71; 21; 50; 1; 28; 17; 4
+59800; Kesälahti Keskus (Kitee); 1195; 352; 843; 24; 547; 198; 74
+59810; Suurikylä (Kitee); 75; 17; 58; 4; 43; 10; 1
+59820; Purujärvi-Rajavaara (Kitee); 121; 31; 90; 2; 67; 17; 4
+60100; Seinäjoki Keskus (Seinäjoki); 10307; 2118; 8189; 1009; 3797; 2473; 910
+60120; Pohja (Seinäjoki); 2225; 414; 1811; 160; 1015; 527; 109
+60150; Kasperi (Seinäjoki); 3568; 760; 2808; 154; 1607; 866; 181
+60200; Törnävä (Seinäjoki); 9438; 1112; 8326; 506; 3665; 2925; 1230
+60220; Huhtala (Seinäjoki); 1618; 276; 1342; 102; 617; 475; 148
+60280; Eskoon Keskuslaitosalue (Seinäjoki); 57; 40; 17; 0; 17; 0; 0
+60320; Alakylä-Jouppi (Seinäjoki); 5979; 935; 5044; 460; 2278; 1693; 613
+60420; Impivaara (Seinäjoki); 946; 102; 844; 34; 352; 302; 156
+60450; Munakka (Ilmajoki); 312; 46; 266; 10; 159; 75; 22
+60510; Hyllykallio (Seinäjoki); 6887; 821; 6066; 293; 2858; 2141; 774
+60550; Nurmo Keskus (Seinäjoki); 3274; 621; 2653; 134; 1486; 772; 261
+60560; Halkosaari (Seinäjoki); 474; 65; 409; 26; 216; 135; 32
+60640; Kurjenneva (Seinäjoki); 496; 66; 430; 16; 246; 135; 33
+60720; Tuomikylä (Ilmajoki); 1682; 201; 1481; 61; 731; 510; 179
+60760; Pojanluoma (Ilmajoki); 771; 133; 638; 26; 388; 186; 38
+60800; Ilmajoki Keskus (Ilmajoki); 4679; 1023; 3656; 158; 2189; 1026; 283
+61100; Peräseinäjoki Keskus (Seinäjoki); 1562; 435; 1127; 39; 748; 291; 49
+61110; Vuolle (Seinäjoki); 146; 33; 113; 1; 69; 33; 10
+61120; Louko (Seinäjoki); 505; 89; 416; 16; 239; 125; 36
+61140; Pasto (Seinäjoki); 93; 21; 72; 1; 55; 13; 3
+61150; Sydänmaa (Alavus); 49; 18; 31; 0; 27; 3; 1
+61160; Koura (Seinäjoki); 417; 105; 312; 12; 200; 78; 22
+61170; Sääskiniemi (Alavus); 211; 48; 163; 6; 110; 35; 12
+61180; Haapaluoma (Seinäjoki); 166; 46; 120; 2; 93; 20; 5
+61220; Myllysalo (Kurikka); 182; 45; 137; 3; 97; 26; 11
+61230; Luopa (Kurikka); 502; 110; 392; 11; 276; 87; 18
+61250; Jalasto (Kurikka); 228; 53; 175; 10; 114; 46; 5
+61270; Luopajärvi (Kurikka); 435; 95; 340; 16; 210; 86; 28
+61280; Jokipii (Kurikka); 408; 112; 296; 17; 204; 60; 15
+61290; Taivalmaa (Kurikka); 85; 19; 66; 0; 51; 12; 3
+61300; Kurikka Keskus (Kurikka); 5195; 1243; 3952; 124; 2523; 1037; 268
+61310; Panttila (Kurikka); 538; 113; 425; 16; 297; 87; 25
+61330; Koskenkorva (Ilmajoki); 1533; 358; 1175; 45; 798; 276; 56
+61340; Nopankylä (Ilmajoki); 186; 44; 142; 5; 95; 36; 6
+61350; Huissi (Ilmajoki); 279; 60; 219; 7; 154; 45; 13
+61360; Mieto (Kurikka); 768; 155; 613; 18; 413; 160; 22
+61370; Lohiluoma (Kurikka); 250; 68; 182; 3; 124; 40; 15
+61380; Polvenkylä (Kurikka); 128; 33; 95; 1; 73; 18; 3
+61400; Ylistaro Keskus (Seinäjoki); 1592; 454; 1138; 42; 690; 319; 87
+61410; Ylistaro Asemanseutu (Seinäjoki); 571; 144; 427; 17; 268; 119; 23
+61430; Isorehto (Seinäjoki); 307; 68; 239; 16; 136; 74; 13
+61440; Untamala (Seinäjoki); 128; 42; 86; 0; 56; 24; 6
+61450; Kylänpää (Seinäjoki); 425; 130; 295; 7; 197; 77; 14
+61460; Hanhikoski (Seinäjoki); 194; 43; 151; 4; 89; 50; 8
+61470; Kitinoja (Seinäjoki); 301; 50; 251; 5; 149; 77; 20
+61500; Isokyrö Keskus (Isokyrö); 2088; 515; 1573; 86; 895; 453; 139
+61520; Lehmäjoki (Isokyrö); 164; 42; 122; 3; 79; 32; 8
+61550; Orismala (Isokyrö); 470; 110; 360; 13; 238; 86; 23
+61560; Orisberg (Isokyrö); 39; 10; 29; 1; 18; 10; 0
+61600; Jalasjärvi Keskus (Kurikka); 3086; 868; 2218; 92; 1428; 553; 145
+61630; Hirvijärvi (Kurikka); 213; 41; 172; 4; 106; 55; 7
+61640; Ala-Valli (Kurikka); 168; 35; 133; 7; 102; 21; 3
+61650; Kalakoski (Seinäjoki); 266; 84; 182; 10; 134; 31; 7
+61680; Mantila (Kurikka); 181; 42; 139; 6; 94; 28; 11
+61710; Pentinmäki (Kurikka); 212; 43; 169; 3; 108; 43; 15
+61720; Koskue (Kurikka); 413; 121; 292; 10; 212; 55; 15
+61730; Yli-Valli (Kurikka); 183; 60; 123; 9; 92; 17; 5
+61760; Ilvesjoki (Kurikka); 233; 66; 167; 8; 118; 39; 2
+61800; Kauhajoki Keskus (Kauhajoki); 6414; 1671; 4743; 156; 2998; 1265; 324
+61810; Luomankylä (Kauhajoki); 221; 57; 164; 4; 122; 32; 6
+61820; Kainasto (Kauhajoki); 457; 124; 333; 13; 245; 62; 13
+61840; Norinkylä (Teuva); 236; 73; 163; 9; 114; 36; 4
+61850; Kauhajoki Asemanseutu (Kauhajoki); 1626; 481; 1145; 24; 795; 286; 40
+61860; Harja (Kauhajoki); 157; 33; 124; 7; 75; 38; 4
+61880; Ikkeläjärvi (Kauhajoki); 136; 45; 91; 0; 66; 18; 7
+61910; Nummijärvi (Kauhajoki); 205; 47; 158; 4; 110; 39; 5
+61920; Nummikoski (Kauhajoki); 53; 13; 40; 2; 33; 2; 3
+61940; Hyyppä (Kauhajoki); 229; 71; 158; 3; 123; 26; 6
+61950; Juonikylä (Kauhajoki); 128; 44; 84; 0; 62; 20; 2
+61960; Kyrönlatva (Kauhajoki); 117; 43; 74; 3; 54; 16; 1
+61980; Päntäne (Kauhajoki); 665; 197; 468; 14; 340; 99; 15
+62100; Lapua Keskus (Lapua); 8473; 1892; 6581; 268; 3518; 2099; 696
+62130; Hellanmaa (Lapua); 368; 86; 282; 11; 182; 76; 13
+62150; Rintakangas (Kauhava); 96; 19; 77; 2; 45; 26; 4
+62160; Karhunkylä (Lapua); 422; 96; 326; 5; 197; 103; 21
+62165; Tiisteenjoki (Lapua); 259; 58; 201; 8; 134; 42; 17
+62170; Lakaluoma (Lapua); 210; 56; 154; 4; 116; 30; 4
+62175; Ylikylä-Mäenpää (Lapua); 102; 25; 77; 4; 52; 19; 2
+62185; Mäki-Paavola (Lapua); 98; 15; 83; 4; 47; 28; 4
+62190; Ruha (Lapua); 457; 98; 359; 10; 215; 105; 29
+62200; Kauhava Keskus (Kauhava); 4503; 1154; 3349; 139; 1966; 986; 258
+62220; Pernaa (Kauhava); 319; 66; 253; 15; 144; 74; 20
+62230; Jylhä (Kauhava); 294; 63; 231; 7; 145; 61; 18
+62240; Huhmarkoski (Kauhava); 408; 135; 273; 18; 190; 55; 10
+62260; Hirvijoki (Kauhava); 140; 37; 103; 10; 47; 35; 11
+62280; Mustamaa (Lapua); 91; 21; 70; 5; 51; 10; 4
+62290; Hirvikylä (Lapua); 196; 47; 149; 5; 99; 36; 9
+62295; Kauhajärvi (Lapua); 323; 92; 231; 4; 177; 44; 6
+62300; Härmä (Kauhava); 1805; 495; 1310; 58; 802; 366; 84
+62310; Voltti (Kauhava); 806; 243; 563; 17; 371; 151; 24
+62340; Kuoppa-Vakkuri (Kauhava); 77; 19; 58; 1; 46; 11; 0
+62350; Ekola (Kauhava); 83; 29; 54; 2; 34; 15; 3
+62370; Kangasto (Kauhava); 111; 32; 79; 2; 40; 26; 11
+62375; Ylihärmä Keskus-Vesiluoma (Kauhava); 1897; 545; 1352; 55; 813; 387; 97
+62380; Kosolankylä (Kauhava); 160; 51; 109; 4; 65; 36; 4
+62395; Petterinmäki (Vöyri); 106; 32; 74; 2; 48; 19; 5
+62410; Rintala (Kauhava); 236; 63; 173; 6; 123; 38; 6
+62420; Kortesjärvi Keskus (Kauhava); 752; 221; 531; 16; 363; 119; 33
+62430; Peltotupa (Kauhava); 107; 32; 75; 5; 54; 14; 2
+62435; Pirttinen (Kauhava); 91; 34; 57; 1; 38; 14; 4
+62440; Perkiömäki (Kauhava); 84; 17; 67; 2; 47; 18; 0
+62470; Purmojärvi (Kauhava); 313; 81; 232; 7; 153; 59; 13
+62500; Evijärvi Keskus (Evijärvi); 1149; 341; 808; 30; 547; 185; 46
+62510; Kuoppa-aho (Evijärvi); 226; 46; 180; 9; 111; 49; 11
+62520; Kautiainen (Evijärvi); 109; 41; 68; 4; 55; 9; 0
+62540; Vasikka-aho (Evijärvi); 207; 59; 148; 7; 104; 30; 7
+62570; Särkilä (Evijärvi); 152; 44; 108; 7; 75; 20; 6
+62600; Lappajärvi Keskus (Lappajärvi); 1360; 353; 1007; 38; 623; 263; 83
+62610; Tarvola (Lappajärvi); 105; 21; 84; 0; 54; 25; 5
+62620; Ala-Seppä (Lappajärvi); 133; 22; 111; 8; 66; 27; 10
+62630; Karvala (Lappajärvi); 236; 71; 165; 4; 110; 42; 9
+62640; Savonkylä (Lappajärvi); 86; 22; 64; 1; 42; 18; 3
+62660; Itäkylä (Lappajärvi); 422; 115; 307; 22; 204; 61; 20
+62710; Kurejoki (Alajärvi); 570; 170; 400; 13; 261; 97; 29
+62720; Sissala (Alajärvi); 212; 47; 165; 12; 104; 45; 4
+62730; Haukkala (Alajärvi); 143; 29; 114; 1; 83; 25; 5
+62740; Koskenvarsi (Alajärvi); 156; 33; 123; 8; 63; 39; 13
+62750; Saukonkylä (Alajärvi); 147; 46; 101; 2; 64; 25; 10
+62760; Menkijärvi (Alajärvi); 154; 65; 89; 2; 66; 18; 3
+62800; Vimpeli Keskus (Vimpeli); 1712; 455; 1257; 67; 771; 321; 98
+62810; Savonjoki (Vimpeli); 85; 24; 61; 2; 44; 13; 2
+62830; Luoma-Aho (Alajärvi); 225; 51; 174; 7; 105; 48; 14
+62840; Lakaniemi-Pokela (Vimpeli); 36; 5; 31; 1; 17; 11; 2
+62860; Sahi (Vimpeli); 139; 28; 111; 4; 64; 28; 15
+62870; Vinni (Vimpeli); 37; 9; 28; 0; 23; 5; 0
+62880; Sääksvesi-Vinni (Vimpeli); 212; 51; 161; 13; 110; 30; 8
+62900; Alajärvi Keskus (Alajärvi); 3518; 921; 2597; 101; 1575; 724; 197
+62920; Levijoki (Alajärvi); 75; 18; 57; 5; 39; 10; 3
+62940; Hoisko (Alajärvi); 425; 110; 315; 10; 185; 92; 28
+62950; Paalijärvi (Alajärvi); 308; 73; 235; 4; 157; 60; 14
+62990; Möksy (Alajärvi); 93; 41; 52; 0; 40; 12; 0
+63100; Kuortane Keskus (Kuortane); 1216; 338; 878; 37; 470; 287; 84
+63120; Leppälänkylä (Kuortane); 255; 85; 170; 7; 125; 30; 8
+63130; Mäyry (Kuortane); 528; 122; 406; 15; 246; 116; 29
+63150; Ruona (Kuortane); 304; 74; 230; 9; 142; 49; 30
+63160; Salmi (Kuortane); 108; 36; 72; 3; 46; 17; 6
+63210; Niinimaa (Alavus); 92; 37; 55; 1; 41; 8; 5
+63230; Lentilä (Kuortane); 232; 70; 162; 4; 123; 28; 7
+63250; Rantala (Kuortane); 85; 25; 60; 2; 46; 11; 1
+63300; Alavus Keskus (Alavus); 3764; 961; 2803; 142; 1710; 735; 216
+63320; Kattelus (Alavus); 47; 22; 25; 0; 21; 3; 1
+63330; Pahajoki (Alavus); 126; 30; 96; 4; 61; 25; 6
+63340; Sapsalampi (Alavus); 146; 38; 108; 6; 69; 28; 5
+63350; Sulkavankylä (Alavus); 158; 35; 123; 10; 80; 28; 5
+63355; Seinäjärvi (Alavus); 82; 22; 60; 0; 37; 21; 2
+63360; Kuivaskylä (Alavus); 197; 56; 141; 13; 104; 22; 2
+63370; Taipalus (Alavus); 361; 100; 261; 7; 197; 51; 6
+63400; Alavus Asemanseutu (Alavus); 982; 316; 666; 24; 467; 156; 19
+63410; Rantatöysä (Alavus); 332; 106; 226; 15; 153; 45; 13
+63430; Kätkänjoki (Alavus); 106; 27; 79; 3; 55; 17; 4
+63450; Löyä (Kuortane); 49; 19; 30; 1; 20; 8; 1
+63500; Lehtimäki Keskus (Alajärvi); 685; 201; 484; 17; 343; 96; 28
+63510; Lehtimäki Kirkonkylä (Alajärvi); 213; 57; 156; 5; 102; 38; 11
+63530; Länsikylä (Alajärvi); 103; 28; 75; 1; 48; 22; 4
+63540; Hernesmaa (Alajärvi); 160; 41; 119; 3; 83; 26; 7
+63600; Töysä Keskus (Alavus); 968; 324; 644; 18; 448; 149; 29
+63610; Tuuri (Alavus); 761; 169; 592; 32; 412; 119; 29
+63640; Ritola (Alavus); 226; 56; 170; 5; 118; 40; 7
+63660; Ähtärinranta (Ähtäri); 140; 37; 103; 6; 71; 17; 9
+63680; Hakojärvi (Alavus); 220; 62; 158; 4; 109; 33; 12
+63700; Ähtäri Keskus (Ähtäri); 3313; 841; 2472; 79; 1612; 622; 159
+63770; Peränne (Ähtäri); 154; 36; 118; 5; 64; 37; 12
+63780; Alastaipale (Ähtäri); 107; 25; 82; 4; 47; 27; 4
+63800; Soini Keskus (Soini); 1261; 415; 846; 31; 561; 204; 50
+63830; Keisala (Soini); 45; 22; 23; 0; 15; 8; 0
+63880; Kukonkylä (Soini); 130; 40; 90; 3; 66; 16; 5
+63890; Hautakylä (Soini); 81; 26; 55; 2; 41; 10; 2
+63900; Myllymäki-Vehunkylä (Ähtäri); 369; 88; 281; 5; 206; 57; 13
+63910; Inhan Tehtaat (Ähtäri); 152; 38; 114; 4; 81; 26; 3
+63920; Inha (Ähtäri); 255; 50; 205; 6; 122; 60; 17
+63950; Vehunkylä (Ähtäri); 34; 9; 25; 2; 16; 6; 1
+64100; Kristiinankaupunki keskus (Kristiinankaupunki); 2362; 674; 1688; 103; 890; 515; 180
+64140; Tiukka (Kristiinankaupunki); 403; 108; 295; 15; 188; 71; 21
+64200; Närpiö Keskus (Närpiö); 2568; 1064; 1504; 89; 836; 429; 150
+64210; Kalax (Närpiö); 336; 58; 278; 16; 153; 83; 26
+64220; Yttermark (Närpiö); 751; 220; 531; 19; 361; 126; 25
+64230; Närpiön Asemanseutu (Närpiö); 747; 217; 530; 31; 250; 165; 84
+64240; Böle (Närpiö); 213; 48; 165; 8; 99; 45; 13
+64250; Pjelax (Närpiö); 292; 112; 180; 16; 95; 46; 23
+64260; Kaskinen (Kaskinen); 1136; 370; 766; 46; 423; 224; 73
+64300; Lapväärtti (Kristiinankaupunki); 1380; 433; 947; 45; 591; 245; 66
+64320; Dagsmark (Kristiinankaupunki); 331; 117; 214; 11; 124; 64; 15
+64350; Karijoki Keskus (Karijoki); 871; 288; 583; 18; 435; 112; 18
+64370; Myrkky (Karijoki); 213; 83; 130; 4; 102; 18; 6
+64440; Metsälä-Kallträsk (Kristiinankaupunki); 145; 70; 75; 3; 48; 21; 3
+64450; Kallträsk (Kristiinankaupunki); 48; 22; 26; 1; 16; 8; 1
+64460; Härkmeri (Kristiinankaupunki); 325; 112; 213; 10; 146; 46; 11
+64480; Skaftung (Kristiinankaupunki); 194; 63; 131; 8; 76; 33; 14
+64490; Siipyy (Kristiinankaupunki); 130; 50; 80; 4; 43; 22; 11
+64510; Nämpnäs (Närpiö); 338; 90; 248; 8; 157; 63; 20
+64530; Norrnäs (Närpiö); 231; 69; 162; 9; 94; 48; 11
+64550; Rangsby (Närpiö); 223; 55; 168; 8; 113; 39; 8
+64610; Övermark (Närpiö); 890; 276; 614; 20; 397; 153; 44
+64700; Teuva Keskus (Teuva); 2547; 724; 1823; 69; 1255; 414; 85
+64720; Perälä (Teuva); 461; 135; 326; 10; 248; 57; 11
+64740; Horo (Teuva); 176; 59; 117; 5; 84; 22; 6
+64760; Peltola (Teuva); 273; 78; 195; 6; 149; 33; 7
+64770; Äystö (Teuva); 348; 102; 246; 8; 178; 53; 7
+64810; Vanhakylä (Isojoki); 172; 56; 116; 4; 85; 18; 9
+64820; Kärjenkoski (Isojoki); 140; 42; 98; 4; 70; 20; 4
+64830; Villamo (Isojoki); 146; 66; 80; 5; 61; 11; 3
+64840; Heikkilänjoki (Isojoki); 34; 12; 22; 0; 16; 6; 0
+64850; Möykky (Isojoki); 85; 25; 60; 1; 41; 15; 3
+64900; Isojoki Keskus (Isojoki); 895; 292; 603; 25; 412; 138; 28
+64930; Kodesjärvi (Isojoki); 126; 50; 76; 4; 48; 16; 8
+65100; Vaasa Keskus (Vaasa); 17529; 3318; 14211; 3304; 4404; 4223; 2280
+65130; Hietalahti (Vaasa); 0; 0; 0; 0; 0; 0; 0
+65170; Vaskiluoto (Vaasa); 170; 23; 147; 15; 30; 42; 60
+65200; Palosaari (Vaasa); 5343; 1079; 4264; 1127; 1533; 1011; 593
+65230; Vetokannas (Vaasa); 4164; 772; 3392; 275; 1366; 1069; 682
+65280; Gerby (Vaasa); 5246; 675; 4571; 292; 1573; 1616; 1090
+65300; Asevelikylä (Vaasa); 3957; 442; 3515; 224; 1084; 1272; 935
+65320; Huutoniemi (Vaasa); 4817; 961; 3856; 226; 1862; 1212; 556
+65350; Suvilahti (Vaasa); 3042; 669; 2373; 166; 1176; 699; 332
+65370; Ristinummi (Vaasa); 3535; 1138; 2397; 145; 1495; 596; 161
+65380; Vanha Vaasa (Vaasa); 2511; 521; 1990; 110; 1038; 580; 262
+65410; Sundom (Vaasa); 1909; 247; 1662; 65; 582; 611; 404
+65450; Sulva (Mustasaari); 1484; 219; 1265; 59; 558; 423; 225
+65460; Tölby-Rimal (Mustasaari); 254; 36; 218; 4; 99; 76; 39
+65470; Rimal (Mustasaari); 37; 6; 31; 0; 14; 10; 7
+65480; Vikby (Mustasaari); 189; 26; 163; 6; 79; 49; 29
+65520; Helsingby (Mustasaari); 1073; 180; 893; 37; 478; 273; 105
+65610; Mustasaari Keskus (Mustasaari); 4809; 832; 3977; 233; 1554; 1440; 750
+65630; Karperö (Mustasaari); 964; 133; 831; 47; 348; 266; 170
+65650; Koskö (Mustasaari); 224; 29; 195; 10; 89; 64; 32
+65710; Singsby (Mustasaari); 514; 92; 422; 20; 158; 161; 83
+65730; Jungsund (Mustasaari); 346; 64; 282; 20; 137; 86; 39
+65760; Iskmo (Mustasaari); 236; 37; 199; 8; 94; 73; 24
+65800; Raippaluoto (Mustasaari); 653; 117; 536; 25; 260; 187; 64
+65870; Björköby (Mustasaari); 287; 70; 217; 6; 125; 62; 24
+65920; Norra Vallgrund-Söderudden (Mustasaari); 246; 36; 210; 6; 132; 56; 16
+65930; Södra Vallgrund (Mustasaari); 289; 63; 226; 9; 116; 74; 27
+65970; Söderudden (Mustasaari); 163; 65; 98; 7; 65; 22; 4
+66100; Maalahti (Maalahti); 1657; 350; 1307; 67; 642; 421; 177
+66140; Övermalax (Maalahti); 1263; 256; 1007; 40; 594; 282; 91
+66160; Långåminne (Maalahti); 222; 60; 162; 8; 89; 49; 16
+66200; Korsnäs Keskus (Korsnäs); 655; 173; 482; 25; 277; 142; 38
+66210; Moikipää (Korsnäs); 427; 80; 347; 17; 175; 120; 35
+66220; Bergö (Maalahti); 379; 113; 266; 9; 149; 77; 31
+66230; Korsbäck (Korsnäs); 70; 18; 52; 0; 43; 8; 1
+66240; Petolahti (Maalahti); 804; 207; 597; 29; 366; 164; 38
+66260; Svarvar (Maalahti); 91; 31; 60; 1; 34; 22; 3
+66270; Pirttikylä-Sorvari (Närpiö); 681; 224; 457; 17; 279; 132; 29
+66280; Taklax (Korsnäs); 269; 80; 189; 11; 129; 40; 9
+66290; Harrström (Korsnäs); 271; 101; 170; 11; 102; 43; 14
+66295; Töjby (Närpiö); 300; 122; 178; 7; 117; 43; 11
+66300; Jurva Keskus (Kurikka); 1615; 475; 1140; 44; 771; 258; 67
+66320; Niemenkylä (Kurikka); 243; 81; 162; 4; 111; 40; 7
+66330; Hakko (Kurikka); 190; 68; 122; 5; 88; 24; 5
+66340; Sarvijoki (Kurikka); 251; 70; 181; 5; 127; 43; 6
+66350; Tainus (Kurikka); 99; 36; 63; 3; 46; 11; 3
+66360; Kesti (Kurikka); 306; 69; 237; 6; 176; 47; 8
+66370; Närvijoki (Kurikka); 212; 69; 143; 8; 103; 25; 7
+66400; Laihia Keskus (Laihia); 4527; 931; 3596; 166; 1838; 1120; 472
+66420; Ruto (Laihia); 255; 53; 202; 5; 119; 61; 17
+66430; Vedenoja (Vaasa); 128; 29; 99; 3; 65; 21; 10
+66440; Tervajoki (Isokyrö); 1420; 302; 1118; 62; 718; 276; 62
+66450; Jakkula (Laihia); 627; 136; 491; 19; 293; 138; 41
+66460; Haapala (Laihia); 264; 77; 187; 5; 108; 57; 17
+66470; Jukaja-Jokisalo (Laihia); 240; 73; 167; 7; 103; 47; 10
+66500; Vähäkyrö Keskus (Vaasa); 1686; 425; 1261; 34; 811; 326; 90
+66510; Merikaarto (Vaasa); 886; 171; 715; 30; 395; 227; 63
+66520; Veikkaala (Mustasaari); 415; 82; 333; 7; 188; 104; 34
+66530; Koivulahti (Mustasaari); 1418; 198; 1220; 55; 542; 426; 197
+66540; Petsmo (Mustasaari); 497; 120; 377; 16; 193; 132; 36
+66550; Västerhankmo (Mustasaari); 262; 45; 217; 5; 129; 61; 22
+66560; Österhankmo (Mustasaari); 181; 35; 146; 5; 84; 46; 11
+66580; Kuni (Mustasaari); 297; 41; 256; 8; 138; 81; 29
+66590; Vassor (Mustasaari); 139; 21; 118; 2; 66; 35; 15
+66600; Vöyri Keskus (Vöyri); 2063; 461; 1602; 69; 871; 467; 195
+66640; Maksamaa (Vöyri); 791; 190; 601; 15; 341; 189; 56
+66660; Bertby (Vöyri); 95; 23; 72; 2; 41; 23; 6
+66680; Kaurajärvi (Vöyri); 73; 23; 50; 4; 25; 19; 2
+66710; Kaitsor (Vöyri); 203; 51; 152; 6; 77; 44; 25
+66730; Oxkangar (Vöyri); 43; 15; 28; 1; 21; 5; 1
+66800; Oravainen Keskus (Vöyri); 763; 215; 548; 20; 302; 161; 65
+66810; Kimo (Vöyri); 234; 73; 161; 10; 101; 40; 10
+66820; Komossa (Vöyri); 158; 43; 115; 4; 67; 37; 7
+66830; Oravaisten Tehdas (Vöyri); 352; 81; 271; 10; 171; 74; 16
+66840; Pensala (Uusikaarlepyy); 257; 51; 206; 4; 143; 42; 17
+66850; Jepua (Uusikaarlepyy); 704; 214; 490; 23; 309; 130; 28
+66900; Uusikaarlepyy Keskus (Uusikaarlepyy); 3225; 881; 2344; 134; 1203; 715; 292
+66910; Soklot (Uusikaarlepyy); 350; 68; 282; 10; 175; 76; 21
+66930; Kovjoki (Uusikaarlepyy); 178; 60; 118; 7; 78; 24; 9
+66950; Munsala (Uusikaarlepyy); 732; 218; 514; 23; 342; 117; 32
+66970; Hirvlax (Uusikaarlepyy); 330; 90; 240; 8; 147; 69; 16
+66980; Monå (Uusikaarlepyy); 97; 29; 68; 2; 47; 18; 1
+66999; Kaukaluoto (Mustasaari); 50; 16; 34; 2; 26; 5; 1
+67100; Kokkola Keskus (Kokkola); 9075; 2186; 6889; 575; 3546; 1987; 781
+67200; Kiviniitty-Tullimäki (Kokkola); 3704; 772; 2932; 188; 1459; 874; 411
+67300; Halkokari (Kokkola); 3430; 577; 2853; 107; 1413; 947; 386
+67400; Rytimäki (Kokkola); 3370; 525; 2845; 92; 1460; 916; 377
+67410; Vitsari (Kokkola); 564; 127; 437; 15; 256; 134; 32
+67500; Sokoja (Kokkola); 859; 202; 657; 33; 392; 174; 58
+67600; Linnusperä-Kaustari (Kokkola); 2054; 365; 1689; 85; 856; 567; 181
+67700; Kirkonmäki-Isokylä (Kokkola); 3728; 605; 3123; 121; 1664; 958; 380
+67800; Koivuhaka (Kokkola); 2755; 764; 1991; 72; 1403; 436; 80
+67900; Ykspihjala (Kokkola); 1023; 253; 770; 30; 542; 150; 48
+68100; Himanka Keskus (Kalajoki); 1919; 524; 1395; 38; 931; 353; 73
+68150; Hillilä (Kalajoki); 232; 75; 157; 4; 107; 39; 7
+68210; Marinkainen (Kokkola); 664; 167; 497; 8; 332; 128; 29
+68220; Karhi (Kokkola); 98; 15; 83; 1; 54; 25; 3
+68230; Lohtaja Keskus (Kokkola); 843; 207; 636; 24; 411; 154; 47
+68240; Ala-Viirre (Kokkola); 249; 71; 178; 4; 124; 41; 9
+68300; Kälviä Keskus (Kokkola); 2784; 603; 2181; 68; 1341; 598; 174
+68320; Ruotsalo (Kokkola); 560; 100; 460; 17; 288; 119; 36
+68370; Ullava Keskus (Kokkola); 262; 85; 177; 8; 120; 44; 5
+68380; Yli-Ullava (Kokkola); 244; 90; 154; 10; 109; 31; 4
+68390; Rahkonen (Kokkola); 108; 34; 74; 2; 55; 14; 3
+68410; Alaveteli (Kruunupyy); 1246; 322; 924; 56; 526; 254; 88
+68500; Kruunupyy Keskus (Kruunupyy); 2180; 588; 1592; 84; 883; 457; 168
+68530; Lepplax (Pedersören kunta); 412; 89; 323; 5; 229; 76; 13
+68550; Öja (Kokkola); 594; 120; 474; 15; 265; 146; 48
+68555; Bosund (Luoto); 698; 148; 550; 30; 363; 124; 33
+68560; Eugmo (Luoto); 587; 156; 431; 15; 313; 90; 13
+68570; Luoto (Luoto); 1721; 342; 1379; 53; 843; 347; 136
+68580; Furuholmen (Luoto); 695; 116; 579; 33; 323; 163; 60
+68600; Pietarsaari Keskus (Pietarsaari); 9279; 2502; 6777; 431; 3371; 2154; 821
+68620; Skutnäs-Västermalm (Pietarsaari); 3825; 891; 2934; 197; 1414; 902; 421
+68630; Kyrkostrand (Pietarsaari); 1949; 433; 1516; 61; 802; 464; 189
+68660; Östermalm-Björnholmen (Pietarsaari); 1893; 726; 1167; 49; 712; 324; 82
+68690; Sundby (Pedersören kunta); 279; 66; 213; 6; 140; 58; 9
+68700; Teerijärvi (Kruunupyy); 1411; 397; 1014; 60; 597; 288; 69
+68750; Småbönders (Kruunupyy); 197; 74; 123; 8; 84; 25; 6
+68800; Kolppi (Pedersören kunta); 856; 195; 661; 26; 418; 178; 39
+68810; Ytteresse (Pedersören kunta); 1056; 246; 810; 24; 596; 150; 40
+68820; Ähtävä (Pedersören kunta); 846; 180; 666; 22; 437; 148; 59
+68830; Bäckby (Pedersören kunta); 100; 24; 76; 1; 49; 21; 5
+68840; Nederlappfors (Pedersören kunta); 251; 77; 174; 6; 112; 45; 11
+68870; Edsevö (Pedersören kunta); 396; 126; 270; 18; 179; 56; 17
+68910; Pännäinen (Pedersören kunta); 950; 172; 778; 41; 414; 231; 92
+68920; Forsby (Pedersören kunta); 356; 68; 288; 11; 184; 65; 28
+68930; Purmo (Pedersören kunta); 524; 103; 421; 16; 248; 112; 45
+68940; Lillby (Pedersören kunta); 373; 107; 266; 6; 174; 65; 21
+68970; Överpurmo (Pedersören kunta); 174; 59; 115; 3; 78; 27; 7
+68999; Rita (Kokkola); 76; 28; 48; 4; 40; 2; 2
+69100; Kannus Keskus (Kannus); 3785; 956; 2829; 113; 1865; 664; 187
+69150; Eskola (Kannus); 316; 94; 222; 7; 162; 45; 8
+69170; Yli-Kannus (Kannus); 213; 57; 156; 6; 107; 33; 10
+69300; Toholampi Keskus (Toholampi); 1504; 418; 1086; 58; 697; 251; 80
+69310; Laitala (Toholampi); 230; 64; 166; 7; 114; 33; 12
+69330; Määttälä (Toholampi); 101; 39; 62; 0; 41; 17; 4
+69340; Purontaka (Toholampi); 95; 25; 70; 1; 50; 14; 5
+69410; Sykäräinen (Toholampi); 321; 98; 223; 7; 163; 46; 7
+69420; Syri (Lestijärvi); 40; 18; 22; 0; 17; 5; 0
+69440; Lestijärvi Keskus (Lestijärvi); 330; 99; 231; 19; 124; 67; 21
+69450; Yli-Lesti (Lestijärvi); 169; 48; 121; 5; 86; 24; 6
+69510; Halsua Keskus-Marjusaari (Halsua); 623; 220; 403; 18; 261; 100; 24
+69550; Kanala (Halsua); 62; 24; 38; 0; 29; 8; 1
+69570; Karvonen (Halsua); 187; 66; 121; 9; 79; 26; 7
+69600; Kaustinen Keskus (Kaustinen); 3100; 780; 2320; 87; 1434; 620; 179
+69660; Köyhäjoki (Kaustinen); 169; 60; 109; 10; 72; 22; 5
+69700; Veteli Keskus (Veteli); 1064; 276; 788; 32; 492; 214; 50
+69730; Tunkkari (Veteli); 371; 52; 319; 12; 192; 80; 35
+69750; Sillanpää (Veteli); 135; 32; 103; 2; 76; 18; 7
+69820; Räyrinki (Veteli); 477; 159; 318; 13; 204; 82; 19
+69830; Pulkkinen (Veteli); 188; 65; 123; 4; 95; 21; 3
+69850; Patana (Veteli); 152; 44; 108; 5; 74; 27; 2
+69910; Kivikangas (Perho); 45; 21; 24; 0; 20; 4; 0
+69920; Oksakoski-Kivikangas (Perho); 345; 114; 231; 14; 159; 44; 14
+69950; Perho Keskus-Salamajärvi (Perho); 882; 297; 585; 22; 415; 110; 38
+69970; Salamajärvi (Perho); 21; ...; ...; ...; ...; ...; ...
+69980; Möttönen (Perho); 563; 156; 407; 12; 320; 57; 18
+70100; Kuopio Keskus (Kuopio); 11327; 1679; 9648; 1412; 3422; 3068; 1746
+70110; Etu-Niirala (Kuopio); 4053; 589; 3464; 764; 1251; 952; 497
+70150; Neulamäki (Kuopio); 4513; 930; 3583; 519; 1675; 931; 458
+70200; Puijonlaakso (Kuopio); 6669; 957; 5712; 1136; 1940; 1697; 939
+70210; Kuopion Keskussairaala-alue (Kuopio); 51; 27; 24; 0; 20; 3; 1
+70240; Niuvaniemen Sairaala-alue (Kuopio); 99; 40; 59; 6; 35; 16; 2
+70260; Julkula (Kuopio); 2049; 252; 1797; 86; 751; 640; 320
+70280; Länsi-Puijo (Kuopio); 1672; 284; 1388; 88; 650; 401; 249
+70300; Linnanpelto (Kuopio); 1230; 128; 1102; 163; 373; 337; 229
+70340; Inkilänmäki (Kuopio); 3305; 599; 2706; 220; 1345; 779; 362
+70400; Kettulanlahti (Kuopio); 575; 71; 504; 34; 190; 161; 119
+70420; Päiväranta (Kuopio); 1864; 295; 1569; 87; 746; 507; 229
+70460; Saarijärvi (Kuopio); 3116; 730; 2386; 177; 1503; 559; 147
+70500; Männistö (Kuopio); 6341; 1323; 5018; 488; 2585; 1388; 557
+70600; Niirala-Huuhanmäki (Kuopio); 2853; 373; 2480; 516; 756; 694; 514
+70620; Haapaniemi (Kuopio); 1764; 334; 1430; 135; 631; 392; 272
+70700; Särkiniemi (Kuopio); 3128; 562; 2566; 244; 1146; 736; 440
+70780; Jynkkä (Kuopio); 3854; 628; 3226; 187; 1595; 1004; 440
+70800; Pitkälahti (Kuopio); 2517; 357; 2160; 98; 1011; 695; 356
+70820; Litmanen (Kuopio); 10931; 1803; 9128; 564; 4260; 2831; 1473
+70840; Jynkänmäki (Kuopio); 6855; 625; 6230; 558; 2015; 2075; 1582
+70870; Hiltulanlahti (Kuopio); 2724; 284; 2440; 86; 1129; 826; 399
+70900; Toivala (Siilinjärvi); 2204; 248; 1956; 68; 823; 732; 333
+70910; Vuorela (Siilinjärvi); 2345; 365; 1980; 81; 954; 691; 254
+70940; Jännevirta (Kuopio); 432; 60; 372; 16; 172; 126; 58
+71130; Kortejoki (Kuopio); 422; 85; 337; 9; 186; 104; 38
+71150; Vartiala (Kuopio); 495; 104; 391; 10; 239; 108; 34
+71160; Riistavesi (Kuopio); 1120; 226; 894; 25; 529; 237; 103
+71170; Laukka-aho (Tuusniemi); 70; 19; 51; 5; 35; 10; 1
+71200; Tuusniemi Keskus (Tuusniemi); 1243; 361; 882; 31; 579; 223; 49
+71210; Tuusjärvi (Tuusniemi); 181; 41; 140; 2; 97; 34; 7
+71240; Paakkila (Tuusniemi); 175; 39; 136; 4; 95; 28; 9
+71260; Juurikkamäki (Tuusniemi); 122; 40; 82; 2; 59; 15; 6
+71280; Kosula (Tuusniemi); 193; 61; 132; 4; 88; 34; 6
+71310; Vehmersalmi Keskus (Kuopio); 957; 262; 695; 24; 434; 191; 46
+71330; Räsälä (Kuopio); 293; 60; 233; 9; 140; 61; 23
+71360; Litmaniemi (Kuopio); 138; 41; 97; 3; 60; 27; 7
+71380; Mustinlahti (Kuopio); 116; 37; 79; 2; 62; 14; 1
+71460; Paukarlahti (Leppävirta); 371; 64; 307; 10; 160; 103; 34
+71470; Oravikoski (Leppävirta); 333; 59; 274; 9; 144; 87; 34
+71480; Kurkimäki (Kuopio); 809; 95; 714; 28; 323; 255; 108
+71490; Airaksela (Kuopio); 213; 37; 176; 5; 98; 57; 16
+71520; Kaislastenlahti (Kuopio); 271; 35; 236; 6; 110; 86; 34
+71570; Syvänniemi (Kuopio); 936; 116; 820; 32; 447; 248; 93
+71610; Salonkulma (Kuopio); 3; ...; ...; ...; ...; ...; ...
+71640; Talluskylä (Tervo); 175; 64; 111; 2; 83; 21; 5
+71650; Hirvilahti-Salonkulma (Kuopio); 376; 72; 304; 3; 214; 58; 29
+71660; Leinolanlahti (Kuopio); 99; 15; 84; 2; 56; 22; 4
+71670; Kurolanlahti (Kuopio); 63; 14; 49; 1; 36; 10; 2
+71680; Pulkonkoski-Saarinen (Kuopio); 170; 44; 126; 3; 100; 19; 4
+71690; Varpasmaa (Kuopio); 15; ...; ...; ...; ...; ...; ...
+71720; Käärmelahti (Kuopio); 469; 70; 399; 12; 232; 124; 31
+71730; Kinnulanlahti (Kuopio); 445; 92; 353; 12; 223; 86; 32
+71740; Tavinsalmi (Kuopio); 84; 27; 57; 2; 35; 14; 6
+71745; Haatala (Kuopio); 28; ...; ...; ...; ...; ...; ...
+71750; Maaninka Keskus (Kuopio); 854; 224; 630; 23; 394; 160; 53
+71760; Ahkionlahti-Vianta (Kuopio); 222; 49; 173; 4; 113; 44; 12
+71775; Tuovilanlahti-Haatala (Kuopio); 296; 71; 225; 5; 164; 50; 6
+71800; Siilinjärvi Keskus (Siilinjärvi); 8188; 1470; 6718; 240; 3781; 1953; 744
+71820; Pöljä (Siilinjärvi); 595; 96; 499; 12; 315; 136; 36
+71840; Kuuslahti (Siilinjärvi); 386; 70; 316; 4; 213; 85; 14
+71850; Leppäkaarre (Siilinjärvi); 1478; 234; 1244; 45; 778; 322; 99
+71870; Harjamäki (Siilinjärvi); 295; 26; 269; 18; 114; 85; 52
+71890; Hamula (Siilinjärvi); 671; 109; 562; 19; 308; 162; 73
+71910; Alapitkä (Lapinlahti); 632; 108; 524; 10; 340; 137; 37
+71920; Pajujärvi (Lapinlahti); 294; 77; 217; 5; 145; 48; 19
+71950; Lammasaho (Kuopio); 88; 21; 67; 0; 56; 11; 0
+71960; Lukkarila (Lapinlahti); 173; 46; 127; 7; 79; 27; 14
+72100; Karttula Keskus (Kuopio); 1291; 339; 952; 26; 634; 225; 67
+72140; Itä-Karttula-Riuttasenpää (Kuopio); 24; ...; ...; ...; ...; ...; ...
+72210; Tervo Keskus-Eliaksela (Tervo); 913; 259; 654; 16; 442; 151; 45
+72220; Eliaksela (Tervo); 49; 10; 39; 3; 29; 7; 0
+72300; Vesanto Keskus (Vesanto); 1013; 367; 646; 33; 436; 138; 39
+72310; Niinivesi (Vesanto); 179; 57; 122; 3; 87; 23; 9
+72330; Tiitilänkylä (Vesanto); 84; 23; 61; 3; 35; 13; 10
+72350; Pienola (Vesanto); 210; 73; 137; 3; 98; 24; 12
+72360; Närhilä (Vesanto); 89; 35; 54; 2; 39; 11; 2
+72380; Horontaipale (Vesanto); 96; 28; 68; 4; 43; 11; 10
+72400; Pielavesi Keskus-Jylänki (Pielavesi); 2060; 634; 1426; 45; 977; 314; 90
+72430; Kumpula (Pielavesi); 178; 51; 127; 4; 92; 26; 5
+72490; Saarinen (Kuopio); 9; ...; ...; ...; ...; ...; ...
+72510; Jokijärvi (Pielavesi); 81; 30; 51; 0; 37; 8; 6
+72530; Säviäntaipale (Pielavesi); 183; 61; 122; 1; 100; 19; 2
+72550; Säviä (Pielavesi); 232; 75; 157; 3; 121; 22; 11
+72570; Vuorikylä (Pielavesi); 83; 22; 61; 2; 49; 8; 2
+72600; Keitele Keskus (Keitele); 1499; 447; 1052; 28; 726; 246; 52
+72630; Kuusela-Rajala (Keitele); 71; 18; 53; 2; 33; 15; 3
+72710; Vaaraslahti (Pielavesi); 290; 65; 225; 3; 160; 50; 12
+72740; Laukkala (Pielavesi); 108; 38; 70; 3; 38; 25; 4
+72810; Jylhänkylä (Pielavesi); 99; 27; 72; 9; 50; 12; 1
+72840; Saarela (Pielavesi); 73; 21; 52; 2; 41; 9; 0
+72930; Tossavanlahti (Keitele); 80; 28; 52; 0; 38; 11; 3
+72950; Porttila (Keitele); 61; 14; 47; 0; 38; 6; 3
+72980; Petäjäkylä (Keitele); 53; 19; 34; 1; 26; 6; 1
+73100; Lapinlahti Keskus (Lapinlahti); 3823; 960; 2863; 96; 1882; 691; 194
+73110; Mäntylahti-Karvasalmi (Lapinlahti); 194; 56; 138; 5; 92; 33; 8
+73120; Nerkoo-Horsmanmäki (Lapinlahti); 373; 71; 302; 12; 177; 90; 23
+73200; Varpaisjärvi Keskus (Lapinlahti); 1361; 420; 941; 20; 669; 195; 57
+73230; Syvärinpää (Lapinlahti); 238; 57; 181; 4; 129; 42; 6
+73250; Korpijärvi (Lapinlahti); 148; 45; 103; 1; 77; 21; 4
+73300; Nilsiä Keskus (Kuopio); 2491; 801; 1690; 60; 1098; 417; 115
+73310; Tahkovuori (Kuopio); 73; 18; 55; 0; 23; 27; 5
+73320; Reittiö (Kuopio); 977; 255; 722; 24; 488; 159; 51
+73350; Haluna (Kuopio); 322; 58; 264; 14; 177; 54; 19
+73360; Pajulahti (Kuopio); 455; 85; 370; 18; 229; 88; 35
+73410; Pieksänkoski (Kuopio); 198; 29; 169; 6; 106; 39; 18
+73460; Muuruvesi (Kuopio); 521; 125; 396; 13; 263; 92; 28
+73470; Västinniemi (Kuopio); 253; 47; 206; 0; 161; 39; 6
+73500; Juankoski Keskus (Kuopio); 2147; 609; 1538; 52; 1105; 311; 70
+73600; Kaavi Keskus (Kaavi); 1606; 524; 1082; 21; 815; 199; 47
+73620; Kortteinen-Rasilampi (Kaavi); 184; 54; 130; 2; 106; 21; 1
+73640; Sivakkavaara (Kaavi); 79; 41; 38; 1; 28; 8; 1
+73645; Niinivaara-Onnivaara (Kaavi); 60; 26; 34; 1; 29; 4; 0
+73670; Luikonlahti (Kaavi); 360; 97; 263; 7; 177; 65; 14
+73710; Viitaniemi (Kuopio); 115; 26; 89; 4; 71; 10; 4
+73730; Losomäki (Kuopio); 62; 28; 34; 1; 24; 8; 1
+73770; Säyneinen-Ala-Siikajärvi (Kuopio); 384; 106; 278; 9; 196; 56; 17
+73810; Palonurmi-Aholansaari (Kuopio); 246; 66; 180; 4; 123; 44; 9
+73830; Keski-Siikajärvi (Kuopio); 170; 48; 122; 5; 86; 25; 6
+73850; Ala-Luosta-Riitasalo (Rautavaara); 66; 21; 45; 2; 35; 5; 3
+73900; Rautavaara Keskus (Rautavaara); 1032; 361; 671; 23; 501; 118; 29
+73970; Riitasalo (Rautavaara); 8; ...; ...; ...; ...; ...; ...
+73990; Kangaslahti (Rautavaara); 100; 39; 61; 1; 43; 14; 3
+74100; Iisalmi Keskus, Eteläinen (Iisalmi); 3437; 845; 2592; 151; 1483; 700; 258
+74120; Iisalmi Keskus Pohjoinen (Iisalmi); 5207; 1199; 4008; 137; 2434; 1115; 322
+74130; Kihmula (Iisalmi); 3603; 787; 2816; 93; 1778; 708; 237
+74140; Ritoniemi (Iisalmi); 891; 161; 730; 24; 462; 202; 42
+74150; Laidunmäki (Iisalmi); 757; 142; 615; 22; 420; 146; 27
+74160; Koljonvirta (Iisalmi); 792; 119; 673; 19; 375; 209; 70
+74170; Soinlahti (Iisalmi); 638; 126; 512; 9; 324; 139; 40
+74200; Vieremä Keskus (Vieremä); 1799; 468; 1331; 42; 914; 289; 86
+74230; Salahmi (Vieremä); 302; 75; 227; 6; 161; 49; 11
+74240; Marttisenjärvi (Vieremä); 114; 43; 71; 1; 53; 15; 2
+74250; Nissilä (Vieremä); 76; 27; 49; 2; 35; 10; 2
+74270; Kauppilanmäki (Vieremä); 340; 73; 267; 16; 176; 58; 17
+74300; Sonkajärvi Keskus (Sonkajärvi); 2066; 559; 1507; 39; 1069; 320; 79
+74340; Sukeva-Kainuunmäki (Sonkajärvi); 547; 163; 384; 7; 288; 72; 17
+74345; Kalliosuo (Sonkajärvi); 54; 24; 30; 1; 21; 8; 0
+74360; Sonkakoski (Sonkajärvi); 118; 32; 86; 3; 59; 21; 3
+74380; Jyrkkä (Sonkajärvi); 59; 18; 41; 0; 36; 5; 0
+74390; Laakajärvi (Sotkamo); 43; 10; 33; 0; 22; 8; 3
+74420; Hernejärvi (Sonkajärvi); 238; 58; 180; 4; 126; 38; 12
+74470; Paloinen (Lapinlahti); 119; 41; 78; 3; 58; 15; 2
+74490; Koirakoski (Sonkajärvi); 84; 35; 49; 1; 36; 11; 1
+74510; Peltosalmi-Sourunsalo (Iisalmi); 548; 130; 418; 15; 323; 57; 23
+74520; Kirmanranta (Iisalmi); 380; 53; 327; 9; 200; 89; 29
+74540; Kotikylä (Iisalmi); 117; 16; 101; 1; 70; 24; 6
+74550; Pörsänmäki (Iisalmi); 172; 49; 123; 2; 96; 23; 2
+74590; Kurenpolvi (Vieremä); 233; 39; 194; 3; 126; 50; 15
+74595; Runni (Iisalmi); 433; 89; 344; 10; 250; 72; 12
+74610; Honkaranta (Kiuruvesi); 143; 34; 109; 3; 74; 29; 3
+74630; Heinäkylä (Kiuruvesi); 154; 25; 129; 5; 86; 30; 8
+74640; Sulkavanjärvi (Kiuruvesi); 114; 25; 89; 2; 66; 18; 3
+74670; Rapakkojoki (Kiuruvesi); 95; 15; 80; 5; 55; 14; 6
+74680; Myllyniemi (Kiuruvesi); 289; 66; 223; 5; 154; 48; 16
+74700; Kiuruvesi Keskus (Kiuruvesi); 4669; 1286; 3383; 107; 2329; 754; 193
+74720; Niemiskylä (Kiuruvesi); 157; 23; 134; 2; 95; 28; 9
+74740; Aittojärvi (Kiuruvesi); 217; 66; 151; 4; 121; 22; 4
+74770; Kalliokylä (Kiuruvesi); 46; 15; 31; 1; 26; 2; 2
+74840; Koppeloharju (Kiuruvesi); 193; 53; 140; 3; 103; 27; 7
+74940; Remeskylä-Tihilänkangas (Kiuruvesi); 102; 30; 72; 2; 54; 12; 4
+74980; Tihilänkangas (Kiuruvesi); 26; ...; ...; ...; ...; ...; ...
+75500; Nurmes Keskus (Nurmes); 3229; 952; 2277; 60; 1546; 533; 138
+75530; Porokylä (Nurmes); 2262; 623; 1639; 37; 1078; 440; 84
+75650; Savikylä (Nurmes); 354; 101; 253; 2; 198; 41; 12
+75680; Ylä-Luosta (Rautavaara); 90; 34; 56; 3; 46; 5; 2
+75700; Valtimo Keskus (Nurmes); 1098; 367; 731; 15; 523; 151; 42
+75710; Karhunpää (Nurmes); 211; 53; 158; 1; 102; 45; 10
+75740; Pajukoski (Nurmes); 79; 23; 56; 1; 45; 8; 2
+75770; Puukari (Nurmes); 133; 33; 100; 2; 77; 16; 5
+75790; Rumo (Nurmes); 77; 23; 54; 3; 41; 3; 7
+75840; Ylä-Valtimo (Nurmes); 110; 31; 79; 4; 57; 16; 2
+75890; Saramo-Petäiskylä-Mujejärvi (Nurmes); 56; 14; 42; 0; 31; 9; 2
+75930; Petäiskylä (Nurmes); 41; 16; 25; 0; 22; 2; 1
+75940; Mujejärvi (Nurmes); 7; ...; ...; ...; ...; ...; ...
+75970; Kohtavaara (Nurmes); 98; 21; 77; 0; 50; 16; 11
+75990; Höljäkkä (Nurmes); 87; 27; 60; 2; 44; 10; 4
+76100; Pieksämäki Keskus (Pieksämäki); 4633; 1222; 3411; 158; 2160; 887; 206
+76120; Kontiopuisto (Pieksämäki); 1509; 356; 1153; 35; 739; 320; 59
+76130; Pappilanmäki (Pieksämäki); 737; 145; 592; 22; 343; 180; 47
+76150; Länsirinne (Pieksämäki); 2529; 630; 1899; 79; 1235; 473; 112
+76280; Partaharju (Pieksämäki); 132; 42; 90; 0; 57; 26; 7
+76620; Pyhitty (Pieksämäki); 101; 12; 89; 5; 47; 28; 9
+76780; Lamminmäki (Pieksämäki); 79; 14; 65; 2; 42; 17; 4
+76850; Naarajärvi (Pieksämäki); 2256; 485; 1771; 56; 1080; 505; 130
+76940; Nenonpelto (Pieksämäki); 142; 28; 114; 1; 81; 24; 8
+77110; Paltanen (Pieksämäki); 65; 15; 50; 0; 36; 11; 3
+77120; Venetmäki (Pieksämäki); 139; 44; 95; 6; 61; 24; 4
+77140; Huumala (Pieksämäki); 79; 24; 55; 2; 41; 12; 0
+77220; Neuvola (Pieksämäki); 125; 24; 101; 3; 67; 28; 3
+77240; Halkokumpu (Pieksämäki); 111; 33; 78; 1; 56; 14; 7
+77320; Hurskaala (Pieksämäki); 54; 13; 41; 0; 26; 9; 6
+77330; Virtasalmi Keskus (Pieksämäki); 466; 141; 325; 9; 235; 66; 15
+77350; Montola (Pieksämäki); 156; 51; 105; 4; 81; 16; 4
+77380; Kantala (Mikkeli); 113; 39; 74; 2; 54; 16; 2
+77430; Siikamäki (Pieksämäki); 304; 75; 229; 6; 149; 53; 21
+77460; Maavesi (Joroinen); 277; 43; 234; 7; 147; 66; 14
+77480; Savuniemi (Joroinen); 30; 7; 23; 0; 9; 9; 5
+77520; Haapakoski-Partaharju (Pieksämäki); 140; 35; 105; 5; 72; 22; 6
+77570; Jäppilä Keskus (Pieksämäki); 583; 161; 422; 10; 274; 114; 24
+77580; Tihusniemi (Pieksämäki); 133; 31; 102; 0; 68; 28; 6
+77600; Suonenjoki Keskus (Suonenjoki); 5119; 1301; 3818; 134; 2508; 894; 282
+77630; Lempyy (Suonenjoki); 175; 25; 150; 6; 97; 39; 8
+77690; Suontee (Suonenjoki); 90; 20; 70; 1; 39; 22; 8
+77700; Rautalampi Keskus (Rautalampi); 1941; 533; 1408; 53; 890; 352; 113
+77770; Myhinpää (Rautalampi); 96; 41; 55; 0; 37; 11; 7
+77800; Iisvesi (Suonenjoki); 413; 122; 291; 5; 205; 62; 19
+77910; Vaajasalmi (Rautalampi); 90; 14; 76; 4; 42; 23; 7
+77930; Kerkonjoensuu (Rautalampi); 294; 80; 214; 9; 152; 44; 9
+77960; Pakarila (Rautalampi); 2; ...; ...; ...; ...; ...; ...
+78200; Varkaus Keskus (Varkaus); 3870; 1238; 2632; 124; 1732; 631; 145
+78210; Kuoppakangas (Varkaus); 1182; 278; 904; 28; 536; 252; 88
+78250; Päiviönsaari (Varkaus); 893; 173; 720; 25; 380; 243; 72
+78300; Kommila (Varkaus); 1740; 425; 1315; 37; 817; 358; 103
+78310; Puurtila (Varkaus); 851; 125; 726; 28; 351; 262; 85
+78400; Luttila (Varkaus); 999; 168; 831; 21; 512; 233; 65
+78480; Timola (Leppävirta); 372; 65; 307; 8; 170; 91; 38
+78500; Pitkälänniemi-Könönpelto (Varkaus); 1800; 354; 1446; 39; 927; 392; 88
+78610; Kurola (Varkaus); 193; 35; 158; 5; 85; 56; 12
+78710; Akonlahti (Varkaus); 525; 117; 408; 3; 244; 136; 25
+78850; Käpykangas (Varkaus); 2317; 534; 1783; 63; 1041; 565; 114
+78870; Kaura-Aho (Varkaus); 1852; 448; 1404; 43; 880; 405; 76
+78880; Kuvansi (Joroinen); 897; 157; 740; 15; 474; 204; 47
+78900; Ruokokoski (Varkaus); 185; 40; 145; 3; 95; 39; 8
+79100; Leppävirta Keskus (Leppävirta); 4386; 1073; 3313; 106; 1992; 917; 298
+79130; Sorsakoski (Leppävirta); 747; 217; 530; 17; 371; 118; 24
+79140; Kotalahti (Leppävirta); 269; 47; 222; 4; 151; 52; 15
+79150; Konnuslahti-Valkeamäki (Leppävirta); 307; 76; 231; 3; 162; 54; 12
+79160; Saamaiskylä (Leppävirta); 57; 20; 37; 0; 25; 10; 2
+79180; Tuppurinmäki (Leppävirta); 32; 7; 25; 0; 21; 1; 3
+79190; Valkeamäki (Leppävirta); 24; ...; ...; ...; ...; ...; ...
+79230; Moninmäki (Leppävirta); 45; 12; 33; 1; 24; 5; 3
+79255; Kurjala-Moninmäki (Leppävirta); 92; 19; 73; 4; 49; 15; 5
+79265; Puponmäki (Leppävirta); 78; 21; 57; 2; 40; 15; 0
+79330; Näädänmaa (Leppävirta); 70; 13; 57; 2; 36; 18; 1
+79350; Itä-Soisalo (Leppävirta); 77; 25; 52; 1; 29; 17; 5
+79410; Niinimäki (Leppävirta); 109; 27; 82; 2; 65; 13; 2
+79480; Kangaslampi Keskus (Varkaus); 453; 117; 336; 6; 221; 86; 23
+79520; Viljolahti (Varkaus); 114; 38; 76; 3; 53; 16; 4
+79600; Joroinen Keskus (Joroinen); 1949; 535; 1414; 52; 881; 369; 112
+79620; Huutokoski (Joroinen); 155; 45; 110; 3; 76; 29; 2
+79630; Kolma (Joroinen); 170; 34; 136; 5; 94; 32; 5
+79660; Kerisalo (Joroinen); 141; 41; 100; 5; 64; 24; 7
+79680; Lahnalahti (Joroinen); 98; 23; 75; 4; 56; 13; 2
+79690; Kaitainen (Joroinen); 128; 37; 91; 3; 65; 19; 4
+79700; Heinävesi Keskus (Heinävesi); 1805; 578; 1227; 41; 778; 334; 74
+79810; Karvion kanava (Heinävesi); 169; 51; 118; 2; 73; 37; 6
+79820; Varistaipale (Heinävesi); 84; 32; 52; 3; 31; 16; 2
+79830; Palokki (Heinävesi); 48; 17; 31; 5; 15; 7; 4
+79850; Uusi-Valamo (Heinävesi); 0; 0; 0; 0; 0; 0; 0
+79860; Suuraho - Uusi-Valamo (Heinävesi); 151; 45; 106; 8; 62; 21; 15
+79885; Etelä-Petruma (Heinävesi); 50; 15; 35; 0; 25; 9; 1
+79895; Sarvikumpu (Heinävesi); 79; 27; 52; 0; 39; 10; 3
+79910; Kerma (Heinävesi); 177; 44; 133; 6; 84; 31; 12
+79940; Vihtari-Poikiinaho (Heinävesi); 125; 44; 81; 1; 58; 16; 6
+80100; Joensuu Keskus, Pohjoinen (Joensuu); 9555; 1538; 8017; 1800; 2717; 2347; 1153
+80110; Joensuu Keskus Eteläinen (Joensuu); 4404; 552; 3852; 815; 1151; 1159; 727
+80130; Kanervala (Joensuu); 2399; 316; 2083; 457; 559; 588; 479
+80140; Noljakka (Joensuu); 6751; 1205; 5546; 635; 2315; 1487; 1109
+80160; Rantakylä-Latola (Joensuu); 8171; 1872; 6299; 457; 3632; 1540; 670
+80170; Utra (Joensuu); 2867; 535; 2332; 108; 1302; 642; 280
+80200; Niinivaara (Joensuu); 4257; 702; 3555; 569; 1427; 1017; 542
+80210; Sairaala-alue (Joensuu); 7; ...; ...; ...; ...; ...; ...
+80220; Penttilä (Joensuu); 3830; 537; 3293; 632; 1187; 893; 581
+80230; Hukanhauta (Joensuu); 4971; 601; 4370; 233; 1832; 1528; 777
+80260; Kettuvaara (Joensuu); 4139; 622; 3517; 215; 1800; 1051; 451
+80330; Reijola (Joensuu); 1789; 258; 1531; 54; 844; 464; 169
+80400; Ylämylly (Liperi); 4068; 519; 3549; 108; 1979; 1037; 425
+80510; Onttola-Kunnasniemi (Kontiolahti); 968; 123; 845; 37; 416; 269; 123
+80710; Lehmo (Kontiolahti); 4365; 491; 3874; 204; 1894; 1227; 549
+80770; Kontiolahti as (Kontiolahti); 504; 76; 428; 18; 234; 120; 56
+80780; Kontioniemi (Kontiolahti); 289; 38; 251; 10; 105; 102; 34
+80790; Kontioranta-Kontioniemi (Kontiolahti); 94; 11; 83; 5; 34; 27; 17
+80850; Paihola (Kontiolahti); 438; 55; 383; 10; 245; 98; 30
+80910; Kulho (Kontiolahti); 944; 130; 814; 33; 422; 233; 126
+81100; Kontiolahti (Kontiolahti); 2233; 434; 1799; 72; 1050; 480; 197
+81120; Katajaranta (Kontiolahti); 282; 43; 239; 8; 157; 51; 23
+81160; Romppala-Riihikangas (Kontiolahti); 184; 50; 134; 5; 101; 19; 9
+81200; Eno Keskus (Joensuu); 2160; 608; 1552; 39; 1084; 334; 95
+81210; Louhioja (Joensuu); 193; 37; 156; 5; 106; 36; 9
+81220; Jakokoski (Kontiolahti); 507; 54; 453; 16; 262; 135; 40
+81230; Mönni (Kontiolahti); 132; 27; 105; 4; 71; 19; 11
+81235; Lehtoi (Kontiolahti); 192; 33; 159; 4; 91; 43; 21
+81260; Ahveninen (Joensuu); 131; 29; 102; 2; 63; 25; 12
+81270; Paukkaja (Joensuu); 84; 27; 57; 2; 40; 10; 5
+81280; Uimaharju (Joensuu); 1265; 426; 839; 25; 638; 150; 26
+81290; Ukkola (Joensuu); 178; 56; 122; 4; 94; 19; 5
+81295; Haapalahti (Joensuu); 109; 38; 71; 0; 47; 21; 3
+81320; Kuismavaara (Joensuu); 24; ...; ...; ...; ...; ...; ...
+81330; Luhtapohja (Joensuu); 76; 29; 47; 4; 29; 13; 1
+81350; Tokrajärvi (Ilomantsi); 111; 32; 79; 6; 54; 18; 1
+81360; Sarvinki (Joensuu); 73; 23; 50; 0; 36; 13; 1
+81390; Revonkylä (Joensuu); 57; 21; 36; 0; 22; 11; 3
+81420; Tyrjänsaari (Ilomantsi); 59; 17; 42; 0; 24; 15; 3
+81430; Kivilahti (Ilomantsi); 73; 27; 46; 1; 40; 3; 2
+81450; Huhus-Käenkoski (Ilomantsi); 64; 23; 41; 0; 32; 8; 1
+81460; Käenkoski (Ilomantsi); 22; ...; ...; ...; ...; ...; ...
+81470; Naarva (Ilomantsi); 44; 19; 25; 0; 22; 3; 0
+81560; Vuonisjärvi (Lieksa); 136; 32; 104; 4; 84; 15; 1
+81570; Kelvä (Lieksa); 85; 23; 62; 1; 42; 16; 3
+81590; Vuonislahti (Lieksa); 124; 28; 96; 4; 59; 29; 4
+81650; Hattuvaara (Lieksa); 105; 37; 68; 0; 55; 11; 2
+81660; Lehmikylä (Lieksa); 9; ...; ...; ...; ...; ...; ...
+81700; Lieksa Keskus (Lieksa); 4497; 1391; 3106; 65; 2124; 712; 205
+81720; Mähkö-Timitra (Lieksa); 2123; 560; 1563; 51; 1024; 391; 97
+81750; Pankakoski (Lieksa); 686; 204; 482; 21; 339; 100; 22
+81810; Jamali (Lieksa); 233; 54; 179; 0; 132; 40; 7
+81820; Kylänlahti (Lieksa); 248; 72; 176; 7; 119; 38; 12
+81850; Mätäsvaara (Lieksa); 105; 39; 66; 1; 51; 11; 3
+81860; Viekijärvi (Lieksa); 273; 98; 175; 4; 142; 25; 4
+81950; Pankajärvi (Lieksa); 68; 15; 53; 1; 37; 11; 4
+81970; Jongunjoki-Pankajärvi (Lieksa); 115; 38; 77; 1; 57; 11; 8
+82110; Heinävaara (Joensuu); 732; 129; 603; 20; 382; 152; 49
+82120; Keskijärvi (Joensuu); 155; 29; 126; 4; 76; 36; 10
+82140; Kiihtelysvaara Keskus (Joensuu); 662; 171; 491; 12; 355; 92; 32
+82160; Oskola (Joensuu); 43; 17; 26; 0; 18; 7; 1
+82170; Uskali (Joensuu); 41; 11; 30; 3; 22; 5; 0
+82180; Huhtilampi (Joensuu); 66; 10; 56; 2; 37; 12; 5
+82200; Hammaslahti (Joensuu); 2298; 499; 1799; 64; 1216; 401; 118
+82210; Suhmura (Joensuu); 390; 86; 304; 10; 195; 75; 24
+82220; Niittylahti (Joensuu); 1441; 187; 1254; 54; 686; 392; 122
+82290; Nieminen (Rääkkylä); 316; 78; 238; 6; 163; 54; 15
+82300; Rääkkylä Keskus (Rääkkylä); 743; 238; 505; 12; 357; 108; 28
+82310; Oravisalo-Varpasalo (Rääkkylä); 197; 44; 153; 4; 101; 37; 11
+82335; Rasivaara (Rääkkylä); 491; 131; 360; 12; 280; 50; 18
+82350; Tikkala (Tohmajärvi); 267; 46; 221; 11; 132; 53; 25
+82360; Onkamo (Tohmajärvi); 311; 64; 247; 8; 162; 51; 26
+82380; Tolosenmäki (Kitee); 354; 95; 259; 6; 177; 61; 15
+82395; Haarajärvi (Kitee); 113; 25; 88; 1; 66; 18; 3
+82430; Puhos-Leinovaara (Kitee); 665; 174; 491; 14; 326; 119; 32
+82460; Hummovaara (Kitee); 83; 21; 62; 1; 47; 10; 4
+82490; Heinoniemi (Kitee); 101; 25; 76; 0; 48; 20; 8
+82500; Kitee Keskus (Kitee); 4815; 1372; 3443; 90; 2303; 793; 257
+82510; Kiteenlahti (Kitee); 198; 38; 160; 4; 111; 35; 10
+82580; Juurikka (Kitee); 284; 73; 211; 6; 147; 42; 16
+82590; Närsäkkälä (Kitee); 92; 26; 66; 3; 48; 11; 4
+82600; Tohmajärvi Keskus (Tohmajärvi); 2180; 626; 1554; 56; 1086; 323; 89
+82655; Värtsilä Keskus (Tohmajärvi); 228; 74; 154; 6; 103; 38; 7
+82660; Uusi-Värtsilä (Tohmajärvi); 162; 55; 107; 2; 74; 23; 8
+82670; Kaurila (Tohmajärvi); 85; 26; 59; 1; 46; 12; 0
+82675; Niirala-Jänisjoki (Tohmajärvi); 73; 23; 50; 1; 40; 7; 2
+82685; Littilä (Tohmajärvi); 149; 34; 115; 4; 81; 23; 7
+82710; Kovero (Joensuu); 352; 90; 262; 6; 174; 61; 21
+82730; Tuupovaara Keskus-Pirttiaho (Joensuu); 576; 207; 369; 6; 278; 73; 12
+82750; Öllölä (Joensuu); 90; 39; 51; 1; 37; 9; 4
+82760; Hoilola (Joensuu); 70; 14; 56; 0; 43; 9; 4
+82770; Kaustajärvi (Tohmajärvi); 18; ...; ...; ...; ...; ...; ...
+82815; Marjovaara (Joensuu); 101; 24; 77; 2; 58; 13; 4
+82820; Maukkula (Ilomantsi); 189; 50; 139; 5; 97; 29; 8
+82830; Haukivaara (Ilomantsi); 81; 31; 50; 0; 46; 2; 2
+82840; Pirttiaho (Joensuu); 27; ...; ...; ...; ...; ...; ...
+82850; Kinnasniemi (Joensuu); 55; 11; 44; 0; 33; 9; 2
+82865; Kokinvaara-Mannervaara (Joensuu); 39; 13; 26; 1; 15; 7; 3
+82870; Luutalahti (Joensuu); 27; ...; ...; ...; ...; ...; ...
+82880; Mannervaara (Joensuu); 16; ...; ...; ...; ...; ...; ...
+82900; Ilomantsi Keskus (Ilomantsi); 2888; 918; 1970; 45; 1409; 402; 114
+82915; Sonkaja (Ilomantsi); 141; 31; 110; 1; 75; 26; 8
+82960; Lehtovaara-Kuikkalampi (Ilomantsi); 93; 31; 62; 2; 48; 12; 0
+82967; Hattu (Ilomantsi); 59; 28; 31; 0; 27; 4; 0
+82980; Möhkö (Ilomantsi); 67; 15; 52; 0; 46; 4; 2
+83100; Liperi Keskus (Liperi); 1999; 511; 1488; 51; 967; 337; 133
+83130; Salokylä (Liperi); 287; 47; 240; 7; 133; 72; 28
+83140; Puromäki (Liperi); 107; 15; 92; 4; 59; 28; 1
+83150; Roukalahti (Liperi); 167; 30; 137; 7; 91; 30; 9
+83160; Tutjunniemi (Liperi); 114; 33; 81; 3; 51; 19; 8
+83320; Risti-Juojärvi (Liperi); 55; 12; 43; 0; 33; 9; 1
+83330; Kaatamo (Liperi); 166; 41; 125; 4; 92; 23; 6
+83340; Kaarnalampi (Liperi); 71; 19; 52; 1; 39; 10; 2
+83400; Viinijärvi (Liperi); 1144; 276; 868; 26; 613; 168; 61
+83430; Käsämä (Liperi); 441; 63; 378; 12; 224; 101; 41
+83450; Vaivio (Liperi); 274; 38; 236; 6; 145; 60; 25
+83460; Harinjärvi (Liperi); 239; 33; 206; 4; 104; 73; 25
+83480; Ahonkylä (Liperi); 144; 25; 119; 4; 82; 26; 7
+83500; Outokumpu Keskus (Outokumpu); 4684; 1245; 3439; 132; 2387; 717; 203
+83550; Kokonvaara (Outokumpu); 107; 14; 93; 2; 70; 20; 1
+83630; Kuusjärvi (Outokumpu); 323; 67; 256; 3; 196; 46; 11
+83660; Varislahti (Outokumpu); 220; 46; 174; 6; 109; 49; 10
+83700; Polvijärvi Keskus (Polvijärvi); 1906; 547; 1359; 37; 1011; 252; 59
+83720; Kuorevaara (Polvijärvi); 213; 38; 175; 4; 117; 42; 12
+83750; Sotkuma (Polvijärvi); 397; 60; 337; 8; 213; 90; 26
+83760; Sola (Polvijärvi); 60; 12; 48; 0; 41; 5; 2
+83780; Horsmanaho (Polvijärvi); 160; 37; 123; 7; 86; 21; 9
+83825; Kinahmo (Polvijärvi); 224; 68; 156; 7; 113; 27; 9
+83830; Hukkala (Polvijärvi); 93; 38; 55; 2; 42; 8; 3
+83835; Ruvaslahti (Polvijärvi); 168; 52; 116; 5; 85; 14; 12
+83840; Saarivaara (Polvijärvi); 42; 10; 32; 4; 23; 4; 1
+83855; Martonvaara-Sammakkovaara (Polvijärvi); 113; 37; 76; 1; 49; 19; 7
+83870; Polvela-Timovaara (Juuka); 154; 52; 102; 3; 82; 15; 2
+83880; Kajoo (Juuka); 133; 39; 94; 4; 71; 14; 5
+83900; Juuka Keskus (Juuka); 2773; 887; 1886; 62; 1297; 416; 111
+83910; Paalasmaa (Juuka); 65; 16; 49; 3; 35; 11; 0
+83915; Vihtasuo (Juuka); 6; ...; ...; ...; ...; ...; ...
+83940; Nunnanlahti (Juuka); 269; 74; 195; 6; 136; 33; 20
+83950; Ahmovaara (Juuka); 379; 112; 267; 8; 196; 48; 15
+83960; Koli (Lieksa); 214; 60; 154; 7; 102; 36; 9
+83985; Tuopanjoki (Juuka); 1; ...; ...; ...; ...; ...; ...
+84100; Ylivieska Keskus (Ylivieska); 10312; 2088; 8224; 408; 4771; 2333; 712
+84460; Tuomiperä (Ylivieska); 147; 31; 116; 3; 79; 32; 2
+84540; Vähäkangas (Ylivieska); 383; 69; 314; 9; 217; 71; 17
+84650; Kantokylä (Ylivieska); 168; 48; 120; 0; 97; 16; 7
+84770; Isokoski (Ylivieska); 69; 17; 52; 2; 35; 13; 2
+84880; Raudaskylä (Ylivieska); 465; 102; 363; 11; 244; 87; 21
+85100; Kalajoki Keskus (Kalajoki); 5551; 1239; 4312; 168; 2620; 1178; 346
+85120; Metsä (Kalajoki); 164; 53; 111; 3; 84; 20; 4
+85140; Tynkä (Kalajoki); 579; 142; 437; 24; 304; 98; 11
+85150; Typpö (Kalajoki); 207; 79; 128; 4; 95; 25; 4
+85160; Rautio (Kalajoki); 418; 109; 309; 9; 241; 48; 11
+85180; Rahja (Kalajoki); 334; 93; 241; 9; 168; 54; 10
+85200; Alavieska Keskus (Alavieska); 1496; 376; 1120; 31; 802; 234; 53
+85210; Kähtävä (Alavieska); 186; 31; 155; 6; 93; 44; 12
+85230; Talus (Alavieska); 188; 57; 131; 3; 104; 22; 2
+85310; Sievi Asemanseutu (Sievi); 342; 91; 251; 7; 172; 60; 12
+85320; Markkula (Sievi); 225; 54; 171; 11; 120; 34; 6
+85340; Jyrinki (Sievi); 415; 88; 327; 15; 232; 62; 18
+85410; Sievi Keskus (Sievi); 1407; 388; 1019; 49; 680; 215; 75
+85430; Koivisto (Sievi); 397; 90; 307; 11; 203; 77; 16
+85450; Joenkylä (Sievi); 161; 45; 116; 6; 87; 15; 8
+85470; Kiiskilampi (Sievi); 336; 84; 252; 12; 192; 32; 16
+85500; Nivala Keskus (Nivala); 5376; 1236; 4140; 132; 2815; 914; 279
+85540; Mönkö (Nivala); 348; 54; 294; 8; 210; 67; 9
+85560; Ainastalo (Nivala); 333; 57; 276; 6; 216; 42; 12
+85580; Karvoskylä (Nivala); 504; 133; 371; 12; 300; 51; 8
+85620; Sarja (Nivala); 181; 44; 137; 5; 104; 21; 7
+85630; Sarjanahde (Nivala); 345; 71; 274; 6; 188; 62; 18
+85640; Maliskylä (Nivala); 378; 84; 294; 9; 217; 58; 10
+85660; Ruuskankylä (Nivala); 123; 33; 90; 0; 66; 22; 2
+85710; Parkkila (Haapajärvi); 262; 80; 182; 6; 140; 30; 6
+85730; Tulppo (Haapajärvi); 102; 33; 69; 3; 35; 28; 3
+85800; Haapajärvi Keskus (Haapajärvi); 4039; 1114; 2925; 120; 1849; 736; 220
+85820; Oksava (Haapajärvi); 628; 144; 484; 5; 357; 105; 17
+85840; Kuona (Haapajärvi); 209; 64; 145; 4; 112; 27; 2
+85900; Reisjärvi Keskus (Reisjärvi); 1431; 429; 1002; 48; 647; 231; 76
+85930; Kangaskylä-Tolpankangas (Reisjärvi); 158; 44; 114; 7; 71; 29; 7
+85940; Räisälänmäki (Reisjärvi); 165; 52; 113; 4; 80; 24; 5
+85980; Köyhänperä (Reisjärvi); 242; 82; 160; 9; 116; 29; 6
+86100; Pyhäjoki Keskus (Pyhäjoki); 1398; 332; 1066; 46; 680; 269; 71
+86110; Parhalahti (Pyhäjoki); 286; 71; 215; 5; 148; 56; 6
+86160; Pirttikoski (Pyhäjoki); 253; 78; 175; 6; 124; 42; 3
+86170; Yppäri (Pyhäjoki); 379; 85; 294; 12; 206; 59; 17
+86210; Petäjäskoski (Oulainen); 124; 26; 98; 2; 73; 18; 5
+86220; Merijärvi Keskus (Merijärvi); 536; 157; 379; 14; 298; 56; 11
+86230; Ylipää (Merijärvi); 106; 44; 62; 1; 48; 13; 0
+86240; Pyhänkoski (Merijärvi); 147; 36; 111; 4; 72; 33; 2
+86300; Oulainen Keskus (Oulainen); 4982; 1194; 3788; 124; 2420; 994; 250
+86350; Kilpua (Oulainen); 85; 25; 60; 1; 42; 12; 5
+86360; Ilveskorpi (Raahe); 158; 34; 124; 5; 90; 24; 5
+86400; Vihanti Keskus (Raahe); 1233; 369; 864; 17; 654; 167; 26
+86440; Lampinsaari (Raahe); 186; 52; 134; 2; 95; 32; 5
+86460; Alpua (Raahe); 262; 73; 189; 7; 130; 41; 11
+86470; Lumimetsä (Raahe); 131; 39; 92; 3; 71; 16; 2
+86480; Karhukangas (Haapavesi); 40; 6; 34; 1; 28; 5; 0
+86510; Matkaniva (Oulainen); 201; 37; 164; 10; 105; 40; 9
+86530; Annonen (Haapavesi); 132; 24; 108; 4; 74; 25; 5
+86550; Mieluskylä (Haapavesi); 263; 55; 208; 4; 157; 40; 7
+86600; Haapavesi Keskus (Haapavesi); 3852; 955; 2897; 81; 2027; 604; 185
+86650; Kytökylä-Joutenniva (Haapavesi); 355; 96; 259; 6; 211; 39; 3
+86680; Vatjusjärvi (Haapavesi); 310; 78; 232; 3; 173; 44; 12
+86690; Karsikas (Haapavesi); 133; 51; 82; 1; 69; 10; 2
+86710; Kärsämäki Keskus (Kärsämäki); 1916; 550; 1366; 38; 1034; 232; 62
+86790; Venetpalo (Kärsämäki); 0; 0; 0; 0; 0; 0; 0
+86800; Pyhäsalmi (Pyhäjärvi); 3084; 911; 2173; 76; 1466; 490; 141
+86810; Pellikkaperä (Pyhäjärvi); 127; 24; 103; 3; 58; 29; 13
+86850; Hiidenniemi (Pyhäjärvi); 159; 53; 106; 5; 78; 20; 3
+86870; Vesikoski (Pyhäjärvi); 201; 73; 128; 2; 97; 26; 3
+86900; Pyhäkumpu (Pyhäjärvi); 374; 101; 273; 9; 191; 58; 15
+86980; Väliaho (Pyhäjärvi); 48; 15; 33; 1; 21; 10; 1
+87100; Kajaani Keskus (Kajaani); 5479; 1218; 4261; 469; 2125; 1242; 425
+87150; Purola (Kajaani); 1757; 331; 1426; 89; 794; 387; 156
+87200; Teppana (Kajaani); 3284; 607; 2677; 125; 1309; 843; 400
+87250; Kättö-Kätönlahti (Kajaani); 3242; 537; 2705; 92; 1480; 851; 282
+87300; Palokangas (Kajaani); 862; 201; 661; 66; 332; 192; 71
+87400; Petäisenniska (Kajaani); 1419; 254; 1165; 73; 700; 333; 59
+87500; Lehtikangas (Kajaani); 4415; 673; 3742; 171; 2023; 1179; 369
+87700; Lohtaja-Kettu (Kajaani); 3239; 679; 2560; 177; 1446; 710; 227
+87800; Vuoreslahti (Kajaani); 692; 91; 601; 19; 358; 169; 55
+87830; Nakertaja (Kajaani); 1069; 161; 908; 35; 517; 274; 82
+87850; Paltaniemi (Kajaani); 343; 50; 293; 11; 135; 103; 44
+87900; Karankalahti (Kajaani); 363; 68; 295; 4; 188; 83; 20
+87910; Linnantaus (Kajaani); 353; 43; 310; 12; 172; 96; 30
+87930; Salmijärvi (Kajaani); 241; 66; 175; 5; 91; 63; 16
+87950; Kuluntalahti (Kajaani); 625; 86; 539; 15; 311; 149; 64
+87970; Jormua (Kajaani); 330; 61; 269; 11; 170; 67; 21
+88120; Tuhkakylä (Sotkamo); 74; 19; 55; 3; 39; 11; 2
+88200; Otanmäki-Kytökoski (Kajaani); 859; 331; 528; 12; 369; 119; 28
+88270; Vuolijoki Keskus (Kajaani); 691; 181; 510; 3; 374; 111; 22
+88300; Paltamo Keskus (Paltamo); 1751; 469; 1282; 52; 845; 300; 85
+88310; Melalahti (Paltamo); 158; 40; 118; 4; 78; 24; 12
+88340; Manamansalo (Vaala); 76; 30; 46; 5; 25; 15; 1
+88350; Kivesjärvi (Paltamo); 88; 24; 64; 4; 46; 9; 5
+88380; Mieslahti (Paltamo); 186; 42; 144; 6; 79; 46; 13
+88400; Ristijärvi Keskus-Hiisijärvi (Ristijärvi); 943; 242; 701; 15; 452; 194; 40
+88440; Jokikylä (Ristijärvi); 60; 13; 47; 2; 27; 10; 8
+88460; Hiisijärvi (Ristijärvi); 35; 10; 25; 1; 15; 8; 1
+88470; Kontiomäki (Paltamo); 376; 99; 277; 0; 216; 54; 7
+88490; Pohjavaara (Sotkamo); 205; 34; 171; 10; 91; 47; 23
+88530; Paakki (Sotkamo); 74; 17; 57; 2; 34; 14; 7
+88600; Sotkamo Keskus (Sotkamo); 5280; 1260; 4020; 155; 2455; 1031; 379
+88610; Vuokatti (Sotkamo); 2043; 312; 1731; 108; 879; 505; 239
+88615; Vuokatin Urheiluopisto (Sotkamo); 1; ...; ...; ...; ...; ...; ...
+88620; Korholanmäki (Sotkamo); 368; 66; 302; 8; 171; 84; 39
+88640; Ontojoki (Sotkamo); 60; 11; 49; 2; 35; 10; 2
+88670; Juurikkalahti-Maanselkä (Sotkamo); 138; 28; 110; 5; 79; 23; 3
+88690; Maanselkä (Sotkamo); 32; 8; 24; 1; 18; 5; 0
+88730; Ylä-Vieksi (Kuhmo); 104; 33; 71; 2; 57; 11; 1
+88740; Härmänkylä-Iivantiira (Kuhmo); 56; 21; 35; 1; 28; 6; 0
+88760; Iivantiira (Kuhmo); 120; 37; 83; 3; 61; 16; 3
+88820; Katerma (Kuhmo); 5; ...; ...; ...; ...; ...; ...
+88900; Kuhmo Keskus (Kuhmo); 6146; 1553; 4593; 127; 3227; 955; 284
+88930; Lentiira-Kuumu (Kuhmo); 231; 81; 150; 5; 105; 31; 9
+88940; Kuumu (Kuhmo); 16; ...; ...; ...; ...; ...; ...
+89110; Törmänmäki (Puolanka); 45; 11; 34; 1; 26; 5; 2
+89140; Kotila-Törmänmäki (Puolanka); 74; 22; 52; 1; 38; 13; 0
+89200; Puolanka Keskus (Puolanka); 1760; 566; 1194; 29; 824; 272; 69
+89210; Puokiovaara (Puolanka); 48; 10; 38; 2; 25; 11; 0
+89320; Joukokylä (Puolanka); 91; 31; 60; 1; 47; 11; 1
+89330; Suolijärvi (Puolanka); 51; 15; 36; 0; 21; 10; 5
+89400; Hyrynsalmi Keskus (Hyrynsalmi); 1605; 507; 1098; 20; 789; 234; 55
+89430; Hoikka (Hyrynsalmi); 35; 6; 29; 0; 22; 7; 0
+89440; Sakara (Suomussalmi); 70; 13; 57; 2; 42; 10; 3
+89540; Moisiovaara (Hyrynsalmi); 161; 63; 98; 0; 85; 9; 4
+89560; Karhuvaara (Hyrynsalmi); 55; 26; 29; 1; 26; 2; 0
+89600; Ämmänsaari (Suomussalmi); 4170; 1059; 3111; 92; 2161; 696; 162
+89610; Jumaliskylä (Suomussalmi); 52; 22; 30; 2; 21; 6; 1
+89640; Pesiökylä (Suomussalmi); 85; 25; 60; 0; 48; 9; 3
+89660; Takalo (Suomussalmi); 82; 26; 56; 1; 52; 3; 0
+89670; Näljänkä (Suomussalmi); 155; 64; 91; 1; 77; 12; 1
+89680; Vaaranniva (Suomussalmi); 85; 36; 49; 0; 43; 5; 1
+89730; Ahjola (Suomussalmi); 27; ...; ...; ...; ...; ...; ...
+89740; Kianta (Suomussalmi); 42; 8; 34; 0; 25; 8; 1
+89760; Piispajärvi-Peranka-Kaikkoinen (Suomussalmi); 65; 24; 41; 2; 34; 4; 1
+89770; Peranka (Suomussalmi); 40; 15; 25; 1; 21; 3; 0
+89780; Kaikkonen (Suomussalmi); 48; 8; 40; 0; 31; 8; 1
+89800; Suomussalmi Keskus (Suomussalmi); 1113; 256; 857; 24; 584; 189; 60
+89830; Ala-Vuokki (Suomussalmi); 41; 20; 21; 0; 14; 4; 3
+89840; Yli-Vuokki (Suomussalmi); 55; 23; 32; 1; 25; 6; 0
+89920; Ruhtinansalmi (Suomussalmi); 253; 81; 172; 3; 141; 23; 5
+90100; Oulu Keskus (Oulu); 8927; 1470; 7457; 1750; 2311; 1979; 1417
+90120; Heinäpää (Oulu); 6509; 1128; 5381; 1003; 2122; 1450; 806
+90130; Raksila (Oulu); 5903; 938; 4965; 831; 1491; 1547; 1096
+90140; Karjasilta (Oulu); 3145; 479; 2666; 403; 835; 775; 653
+90150; Höyhtyä (Oulu); 5129; 886; 4243; 426; 1755; 1262; 800
+90220; Kontinkangas (Oulu); 706; 201; 505; 154; 198; 111; 42
+90230; Värttö-Maikkula (Oulu); 6033; 787; 5246; 584; 1408; 1670; 1584
+90240; Iinatti (Oulu); 4948; 655; 4293; 231; 1836; 1401; 825
+90250; Kaukovainio (Oulu); 5843; 1251; 4592; 477; 2428; 1205; 482
+90310; Madekoski (Oulu); 1923; 252; 1671; 85; 761; 488; 337
+90400; Äimärautio (Oulu); 1738; 240; 1498; 374; 545; 395; 184
+90410; Kaakkuri (Oulu); 3179; 370; 2809; 157; 1180; 943; 529
+90420; Metsokangas (Oulu); 7490; 949; 6541; 465; 2593; 2035; 1448
+90440; Kempele Keskus (Kempele); 7484; 1327; 6157; 309; 3286; 1855; 707
+90450; Honkanen (Kempele); 6227; 673; 5554; 265; 2304; 1845; 1140
+90460; Oulunsalo Keskus (Oulu); 6228; 900; 5328; 316; 2577; 1677; 758
+90470; Varjakka (Oulu); 741; 156; 585; 25; 371; 132; 57
+90480; Hailuoto (Hailuoto); 801; 145; 656; 23; 340; 229; 64
+90500; Tuira (Oulu); 8024; 1568; 6456; 1142; 2506; 1665; 1143
+90510; Hietasaari (Oulu); 1711; 232; 1479; 150; 489; 452; 388
+90520; Taskila-Toppila (Oulu); 7062; 1190; 5872; 1443; 2308; 1343; 778
+90530; Välivainio (Oulu); 5444; 834; 4610; 934; 1713; 1225; 738
+90540; Kuivasjärvi (Oulu); 8377; 807; 7570; 658; 2285; 2211; 2416
+90550; Pyykösjärvi-Puolivälinkangas (Oulu); 3411; 666; 2745; 325; 1146; 776; 498
+90560; Koskela-Oulu (Oulu); 2467; 438; 2029; 239; 873; 574; 343
+90570; Kaijonharju-Linnanmaa (Oulu); 7209; 1365; 5844; 1761; 1398; 1299; 1386
+90580; Rajakylä (Oulu); 3572; 780; 2792; 281; 1426; 671; 414
+90590; Teknologiakylä (Oulu); 32; 10; 22; 8; 1; 6; 7
+90600; Oulun rahtiterminaali (Oulu); 0; 0; 0; 0; 0; 0; 0
+90620; Rusko-Heikinharju (Oulu); 378; 75; 303; 10; 173; 86; 34
+90630; Korvensuora (Oulu); 5827; 660; 5167; 292; 1979; 1825; 1071
+90650; Haapalehto (Oulu); 8179; 1228; 6951; 470; 2735; 2176; 1570
+90660; Sanginsuu (Oulu); 499; 85; 414; 28; 205; 109; 72
+90670; Hiukkavaara (Oulu); 4052; 240; 3812; 223; 1109; 1403; 1077
+90800; Pateniemi (Oulu); 6150; 955; 5195; 256; 2347; 1580; 1012
+90810; Kiviniemi (Oulu); 2184; 279; 1905; 100; 831; 627; 347
+90820; Kello (Oulu); 2268; 360; 1908; 101; 997; 537; 273
+90830; Haukipudas Keskus (Oulu); 6115; 1077; 5038; 258; 2698; 1451; 631
+90840; Haukipudas Asemanseutu (Oulu); 1254; 201; 1053; 30; 593; 300; 130
+90850; Martinniemi (Oulu); 1563; 265; 1298; 54; 842; 315; 87
+90860; Halosenniemi (Oulu); 374; 69; 305; 17; 193; 74; 21
+90900; Kiiminki Keskus (Oulu); 4651; 780; 3871; 170; 2189; 1067; 445
+90910; Kontio (Oulu); 1026; 121; 905; 34; 494; 244; 133
+90940; Jääli (Oulu); 3816; 592; 3224; 142; 1584; 1063; 435
+91100; Ii Keskus (Ii); 4667; 859; 3808; 145; 2319; 1016; 328
+91110; Ii Asemanseutu (Ii); 635; 106; 529; 19; 329; 138; 43
+91140; Olhava (Ii); 294; 76; 218; 9; 153; 49; 7
+91150; Yli-Olhava (Ii); 125; 38; 87; 4; 65; 13; 5
+91200; Yli-Ii Keskus (Oulu); 857; 210; 647; 21; 493; 110; 23
+91210; Jakkukylä (Ii); 303; 57; 246; 5; 175; 49; 17
+91240; Tannila (Oulu); 164; 46; 118; 0; 94; 21; 3
+91260; Pahkakoski-Räinä (Oulu); 101; 27; 74; 2; 59; 13; 0
+91300; Ylikiiminki Keskus (Oulu); 2155; 553; 1602; 62; 1071; 355; 114
+91310; Arkala (Oulu); 157; 40; 117; 4; 82; 19; 12
+91410; Jokirinne (Muhos); 710; 98; 612; 27; 308; 202; 75
+91430; Leppiniemi (Muhos); 79; 9; 70; 6; 43; 17; 4
+91500; Muhos Keskus (Muhos); 5234; 1061; 4173; 181; 2576; 1078; 338
+91510; Rova (Muhos); 343; 48; 295; 10; 144; 90; 51
+91560; Kylmälänkylä (Muhos); 95; 21; 74; 2; 60; 10; 2
+91600; Utajärvi Keskus (Utajärvi); 1525; 399; 1126; 39; 815; 210; 62
+91620; Sanginkylä (Utajärvi); 128; 34; 94; 2; 71; 15; 6
+91630; Juorkuna (Utajärvi); 74; 30; 44; 0; 38; 5; 1
+91640; Särkijärvi (Utajärvi); 76; 27; 49; 1; 38; 8; 2
+91660; Ahmas (Utajärvi); 183; 39; 144; 6; 109; 26; 3
+91670; Rokua (Utajärvi); 8; ...; ...; ...; ...; ...; ...
+91700; Vaala Keskus-Oterma (Vaala); 1167; 350; 817; 30; 548; 175; 64
+91710; Jylhämä (Vaala); 37; 12; 25; 0; 17; 7; 1
+91720; Oterma (Vaala); 50; 10; 40; 1; 28; 9; 2
+91730; Kankari (Vaala); 94; 22; 72; 1; 46; 19; 6
+91740; Jaalanka-Liminpuro (Vaala); 89; 27; 62; 1; 44; 14; 3
+91750; Liminpuro (Vaala); 47; 12; 35; 1; 31; 1; 2
+91760; Säräisniemi (Vaala); 206; 52; 154; 3; 104; 37; 10
+91780; Neittävä (Vaala); 79; 18; 61; 3; 40; 17; 1
+91790; Nuojua (Vaala); 97; 19; 78; 2; 65; 9; 2
+91800; Tyrnävä (Tyrnävä); 3612; 658; 2954; 121; 1869; 707; 257
+91900; Liminka Keskus (Liminka); 4185; 667; 3518; 192; 1807; 1045; 474
+91910; Tupos (Liminka); 1922; 211; 1711; 94; 789; 554; 274
+91930; Ala-Temmes (Liminka); 294; 54; 240; 9; 132; 63; 36
+91950; Temmes (Tyrnävä); 501; 123; 378; 16; 261; 81; 20
+91980; Lumijoki (Lumijoki); 1348; 311; 1037; 32; 680; 250; 75
+92100; Raahe Keskus (Raahe); 3730; 932; 2798; 127; 1636; 769; 266
+92120; Ollinsaari-Mestauskallio (Raahe); 2181; 556; 1625; 50; 1105; 374; 96
+92130; Isoholmi-Antinkangas (Raahe); 2468; 479; 1989; 70; 1117; 598; 204
+92140; Pattijoki Keskus (Raahe); 4470; 791; 3679; 110; 2390; 947; 232
+92150; Kummatti-Junnilanmäki (Raahe); 1074; 365; 709; 28; 512; 131; 38
+92160; Saloinen (Raahe); 1276; 274; 1002; 23; 732; 218; 29
+92180; Lapaluoto (Raahe); 123; 37; 86; 0; 67; 15; 4
+92210; Arkkukari (Raahe); 518; 114; 404; 12; 269; 100; 23
+92220; Piehinki (Raahe); 481; 105; 376; 7; 268; 89; 12
+92230; Mattilanperä (Raahe); 153; 29; 124; 2; 86; 32; 4
+92240; Lasikangas (Raahe); 221; 44; 177; 5; 123; 43; 6
+92260; Kopsa (Raahe); 218; 53; 165; 7; 123; 29; 6
+92320; Siikajoki Keskus (Siikajoki); 687; 165; 522; 18; 354; 120; 30
+92330; Karinkanta (Siikajoki); 155; 50; 105; 1; 81; 20; 3
+92350; Revonlahti (Siikajoki); 489; 107; 382; 11; 259; 84; 28
+92400; Ruukki Keskus (Siikajoki); 1222; 299; 923; 29; 652; 194; 48
+92430; Paavola-Huumola (Siikajoki); 642; 157; 485; 14; 330; 105; 36
+92440; Saarikoski (Siikajoki); 29; ...; ...; ...; ...; ...; ...
+92450; Luohua (Siikajoki); 215; 51; 164; 6; 122; 31; 5
+92470; Tuomioja (Siikajoki); 187; 37; 150; 4; 108; 33; 5
+92500; Rantsila Keskus (Siikalatva); 1102; 325; 777; 29; 566; 152; 30
+92520; Sipola (Siikalatva); 59; 15; 44; 3; 31; 8; 2
+92530; Mankila (Siikalatva); 123; 22; 101; 3; 69; 25; 4
+92600; Pulkkila Keskus (Siikalatva); 862; 249; 613; 21; 425; 132; 35
+92610; Vorna (Siikalatva); 64; 20; 44; 1; 31; 11; 1
+92620; Piippola Keskus (Siikalatva); 685; 171; 514; 7; 385; 103; 19
+92640; Leskelä (Siikalatva); 156; 56; 100; 4; 79; 12; 5
+92650; Laakkola (Siikalatva); 129; 25; 104; 3; 76; 22; 3
+92700; Kestilä (Siikalatva); 922; 253; 669; 14; 507; 127; 21
+92810; Pelsonsuo (Vaala); 111; 40; 71; 2; 54; 14; 1
+92830; Veneheitto (Vaala); 192; 32; 160; 12; 109; 37; 2
+92910; Tavastkenkä (Pyhäntä); 219; 70; 149; 6; 111; 25; 7
+92920; Ahokylä (Pyhäntä); 56; 14; 42; 0; 37; 2; 3
+92930; Pyhäntä (Pyhäntä); 918; 274; 644; 41; 414; 152; 37
+93100; Pudasjärvi Keskus (Pudasjärvi); 3757; 1107; 2650; 80; 1821; 595; 154
+93140; Kipinä (Pudasjärvi); 330; 80; 250; 5; 181; 49; 15
+93160; Hetejärvi (Pudasjärvi); 183; 57; 126; 3; 101; 17; 5
+93170; Yli-Kollaja (Pudasjärvi); 75; 20; 55; 2; 40; 11; 2
+93180; Ikosenniemi (Pudasjärvi); 19; ...; ...; ...; ...; ...; ...
+93187; Ala-Siurua (Pudasjärvi); 117; 35; 82; 1; 74; 6; 1
+93190; Yli-Siurua-Ikosenniemi (Pudasjärvi); 92; 37; 55; 1; 45; 7; 2
+93195; Kokkokylä (Pudasjärvi); 51; 14; 37; 0; 31; 5; 1
+93220; Livo (Pudasjärvi); 73; 26; 47; 2; 36; 9; 0
+93225; Pärjänsuo (Pudasjärvi); 156; 52; 104; 3; 86; 11; 4
+93240; Rytinki (Pudasjärvi); 100; 40; 60; 2; 51; 5; 2
+93250; Sarajärvi (Pudasjärvi); 186; 61; 125; 3; 104; 13; 5
+93270; Sotkajärvi (Pudasjärvi); 330; 76; 254; 12; 164; 61; 17
+93277; Iinattijärvi (Pudasjärvi); 118; 35; 83; 2; 67; 12; 2
+93280; Syöte (Pudasjärvi); 192; 41; 151; 3; 104; 34; 10
+93290; Pintamo (Pudasjärvi); 60; 13; 47; 2; 35; 8; 2
+93350; Jaurakkajärvi (Pudasjärvi); 117; 39; 78; 2; 58; 16; 2
+93390; Puhoskylä (Pudasjärvi); 154; 58; 96; 1; 84; 10; 1
+93400; Taivalkoski Keskus (Taivalkoski); 2392; 626; 1766; 52; 1240; 372; 102
+93420; Jurmu (Taivalkoski); 187; 43; 144; 1; 119; 18; 6
+93440; Loukusa (Taivalkoski); 55; 9; 46; 1; 28; 15; 2
+93470; Inget (Taivalkoski); 103; 29; 74; 1; 56; 14; 3
+93540; Tyrövaara (Taivalkoski); 229; 62; 167; 11; 119; 29; 8
+93590; Vanhala (Taivalkoski); 153; 43; 110; 4; 90; 14; 2
+93600; Kuusamo (Kuusamo); 8062; 1876; 6186; 183; 3968; 1549; 486
+93700; Kurkijärvi - Oijusluoma (Kuusamo); 1200; 240; 960; 17; 702; 199; 42
+93800; Muojärvi (Kuusamo); 1677; 347; 1330; 32; 920; 302; 76
+93830; Rukatunturi (Kuusamo); 673; 124; 549; 19; 350; 138; 42
+93900; Oulangan kansallispuisto (Kuusamo); 586; 166; 420; 10; 304; 88; 18
+93999; Lososaari (Kuusamo); 0; 0; 0; 0; 0; 0; 0
+94100; Kemi Keskus (Kemi); 5177; 1416; 3761; 224; 2049; 1142; 346
+94200; Torvinen-Vainio (Kemi); 1739; 447; 1292; 44; 878; 308; 62
+94300; Pajusaari (Kemi); 228; 45; 183; 8; 123; 44; 8
+94400; Keminmaa Keskus (Keminmaa); 2082; 406; 1676; 59; 1002; 487; 128
+94430; Kaakamo (Tornio); 707; 138; 569; 18; 364; 151; 36
+94450; Lassila-Jokisuu (Keminmaa); 1763; 242; 1521; 57; 763; 544; 157
+94460; Ruottala (Tornio); 122; 39; 83; 1; 64; 13; 5
+94500; Lautiosaari (Keminmaa); 1583; 333; 1250; 32; 781; 360; 77
+94600; Ristikangas-Kivikko (Kemi); 2166; 357; 1809; 62; 1024; 544; 179
+94700; Takajärvi-Haukkari (Kemi); 4253; 925; 3328; 127; 2140; 867; 194
+94720; Peurasaari (Kemi); 776; 116; 660; 23; 387; 203; 47
+94800; Veitsiluoto (Kemi); 0; 0; 0; 0; 0; 0; 0
+94830; Pikku Berliini-Hepola (Kemi); 1428; 451; 977; 37; 689; 217; 34
+94900; Ajos (Kemi); 244; 57; 187; 5; 132; 41; 9
+95100; Kuivaniemi Keskus (Ii); 726; 237; 489; 6; 373; 93; 17
+95110; Kuivaniemi kk (Ii); 245; 61; 184; 1; 116; 60; 7
+95130; Hyryoja (Ii); 88; 30; 58; 1; 48; 8; 1
+95160; Oijärvi-Lamminperä (Ii); 160; 64; 96; 1; 77; 14; 4
+95200; Simo Keskus (Simo); 1005; 288; 717; 25; 494; 153; 45
+95210; Filpus (Simo); 203; 45; 158; 4; 92; 41; 21
+95220; Simoniemi (Simo); 234; 42; 192; 4; 115; 56; 17
+95225; Viantie (Simo); 164; 44; 120; 4; 80; 30; 6
+95230; Maksniemi (Simo); 601; 128; 473; 14; 287; 138; 34
+95255; Alaniemi (Simo); 60; 24; 36; 1; 20; 10; 5
+95260; Tainionjoki (Simo); 46; 10; 36; 1; 24; 9; 2
+95270; Yli-Kärppä-Tainionjoki (Simo); 70; 23; 47; 2; 38; 5; 2
+95300; Tervola Keskus (Tervola); 1311; 331; 980; 27; 655; 230; 68
+95310; Liedakkala (Keminmaa); 326; 63; 263; 6; 153; 84; 20
+95315; Törmä (Keminmaa); 155; 22; 133; 3; 84; 37; 9
+95325; Paakkola (Tervola); 119; 15; 104; 2; 67; 29; 6
+95330; Tervola (Tervola); 375; 92; 283; 5; 217; 48; 13
+95340; Loue (Tervola); 187; 38; 149; 4; 102; 35; 8
+95350; Peura (Tervola); 11; ...; ...; ...; ...; ...; ...
+95355; Koivu-Peura (Tervola); 189; 52; 137; 5; 96; 27; 9
+95365; Maula (Keminmaa); 207; 41; 166; 7; 85; 59; 15
+95370; Itäkoski (Keminmaa); 149; 20; 129; 2; 92; 28; 7
+95375; Yli-Paakkola (Tervola); 74; 15; 59; 1; 39; 18; 1
+95400; Tornio Keskus (Tornio); 2497; 716; 1781; 135; 977; 517; 152
+95410; Kiviranta (Tornio); 2337; 432; 1905; 50; 1134; 546; 175
+95420; Miukki-Palosaari-Luotomäki (Tornio); 2978; 709; 2269; 91; 1467; 548; 163
+95430; Suensaari (Tornio); 981; 201; 780; 49; 445; 212; 74
+95440; Kyläjoki (Tornio); 629; 129; 500; 16; 312; 127; 45
+95450; Kirkonmäki (Tornio); 2525; 304; 2221; 91; 1187; 652; 291
+95460; Kantojärvi (Tornio); 764; 143; 621; 31; 375; 170; 45
+95470; Pirkkiö-Röyttä (Tornio); 690; 125; 565; 7; 378; 146; 34
+95490; Terästehtaanalue (Tornio); 0; 0; 0; 0; 0; 0; 0
+95500; Vojakkala-Yli-Liakka (Tornio); 877; 162; 715; 32; 422; 206; 55
+95520; Kukkola (Tornio); 241; 54; 187; 2; 125; 48; 12
+95530; Karunki (Tornio); 567; 153; 414; 9; 295; 93; 17
+95540; Korpikylä (Tornio); 57; 12; 45; 1; 33; 8; 3
+95560; Aapajoki (Tornio); 138; 27; 111; 2; 79; 25; 5
+95590; Arpela (Tornio); 662; 159; 503; 8; 349; 117; 29
+95600; Ylitornio Keskus (Ylitornio); 1659; 474; 1185; 49; 741; 307; 88
+95610; Kainuunkylä (Ylitornio); 171; 48; 123; 5; 91; 20; 7
+95615; Pekanpää (Ylitornio); 81; 19; 62; 3; 43; 15; 1
+95620; Aavasaksa (Ylitornio); 320; 105; 215; 10; 149; 44; 12
+95630; Kuivakangas (Ylitornio); 103; 15; 88; 5; 54; 23; 6
+95635; Kaulinranta (Ylitornio); 195; 49; 146; 7; 89; 39; 11
+95640; Juoksenki (Pello); 171; 47; 124; 4; 80; 35; 5
+95645; Turtola (Pello); 215; 60; 155; 7; 95; 45; 8
+95655; Etelä-Portimojärvi (Ylitornio); 95; 34; 61; 1; 43; 14; 3
+95660; Kantomaanpää (Ylitornio); 134; 45; 89; 4; 63; 16; 6
+95670; Pessalompolo (Ylitornio); 84; 27; 57; 1; 48; 5; 3
+95675; Meltosjärvi (Ylitornio); 88; 34; 54; 0; 37; 13; 4
+95680; Lohijärvi (Ylitornio); 49; 11; 38; 0; 26; 8; 4
+95690; Mellakoski (Ylitornio); 144; 43; 101; 2; 84; 14; 1
+95700; Pello Keskus (Pello); 1837; 499; 1338; 37; 863; 332; 106
+95710; Naamijoki (Pello); 30; 3; 27; 3; 18; 6; 0
+95720; Jarhoinen (Pello); 32; 9; 23; 2; 16; 3; 2
+95750; Orajärvi (Pello); 86; 22; 64; 1; 51; 9; 3
+95760; Konttajärvi (Pello); 82; 21; 61; 5; 38; 17; 1
+95770; Lankojärvi (Pello); 144; 44; 100; 2; 74; 23; 1
+95780; Sirkkakoski (Pello); 87; 21; 66; 2; 49; 14; 1
+95790; Lampsijärvi (Pello); 78; 28; 50; 2; 39; 8; 1
+95800; Sieppijärvi-Taapajärvi (Kolari); 373; 108; 265; 9; 191; 47; 18
+95830; Vaattojärvi (Kolari); 138; 33; 105; 3; 88; 14; 0
+95840; Venejärvenkylä (Kolari); 47; 9; 38; 0; 31; 6; 1
+95850; Ruokojärvi (Kolari); 16; ...; ...; ...; ...; ...; ...
+95860; Pasmajärvi (Kolari); 29; ...; ...; ...; ...; ...; ...
+95900; Kolari Keskus (Kolari); 1431; 359; 1072; 42; 722; 238; 70
+95920; Saaripudas (Kolari); 133; 31; 102; 1; 75; 19; 7
+95930; Äkäsjoensuu (Kolari); 106; 33; 73; 2; 49; 17; 5
+95940; Tapojärvi (Muonio); 45; 11; 34; 2; 23; 8; 1
+95950; Kihlanki-Tapojärvi (Muonio); 35; 9; 26; 2; 19; 5; 0
+95970; Äkäslompolo (Kolari); 512; 83; 429; 35; 197; 141; 56
+95980; Ylläsjärvi (Kolari); 218; 21; 197; 14; 96; 62; 25
+95990; Kurtakko (Kolari); 59; 9; 50; 6; 31; 13; 0
+96100; Rovaniemi Keskus (Rovaniemi); 9798; 1744; 8054; 1016; 3560; 2409; 1069
+96190; Lapinrinne-Ahokangas (Rovaniemi); 3547; 409; 3138; 181; 1385; 1069; 503
+96200; Sahanperä-Ratantaus (Rovaniemi); 4364; 789; 3575; 401; 1560; 1084; 530
+96300; Niemelänkangas-Korvanniemi (Rovaniemi); 5165; 690; 4475; 917; 1773; 1200; 585
+96320; Teollisuuskylä (Rovaniemi); 9; ...; ...; ...; ...; ...; ...
+96400; Pullinranta-Kiiruna (Rovaniemi); 2942; 504; 2438; 211; 905; 759; 563
+96440; Ounasrinne (Rovaniemi); 2410; 489; 1921; 89; 1097; 504; 231
+96460; Pöykkölä (Rovaniemi); 2182; 188; 1994; 69; 735; 776; 414
+96500; Korkalovaara (Rovaniemi); 4641; 865; 3776; 178; 2189; 1042; 367
+96600; Koskenkylä (Rovaniemi); 918; 116; 802; 45; 333; 270; 154
+96700; Niskanperä (Rovaniemi); 566; 59; 507; 20; 263; 157; 67
+96800; Ylikylä-Patosaari (Rovaniemi); 1333; 170; 1163; 47; 546; 384; 186
+96900; Saarenkylä (Rovaniemi); 5498; 805; 4693; 195; 2132; 1538; 828
+96910; Syväsenvaara (Rovaniemi); 2213; 335; 1878; 55; 1071; 580; 172
+96930; Napapiiri Rovaniemi (Rovaniemi); 45; 9; 36; 1; 27; 8; 0
+96960; Someroharju (Rovaniemi); 88; 13; 75; 2; 55; 16; 2
+97110; Rautionsaari (Rovaniemi); 355; 51; 304; 11; 174; 81; 38
+97130; Hirvas (Rovaniemi); 660; 101; 559; 13; 329; 161; 56
+97140; Muurola (Rovaniemi); 916; 176; 740; 21; 496; 176; 47
+97145; Totonvaara (Rovaniemi); 12; ...; ...; ...; ...; ...; ...
+97160; Petäjäinen (Rovaniemi); 107; 12; 95; 3; 67; 24; 1
+97170; Jaatila (Rovaniemi); 128; 17; 111; 2; 77; 25; 7
+97220; Sinettä (Rovaniemi); 638; 99; 539; 15; 313; 150; 61
+97240; Sonka (Rovaniemi); 241; 62; 179; 4; 115; 49; 11
+97250; Raanujärvi (Ylitornio); 157; 45; 112; 1; 82; 24; 5
+97280; Tapio (Rovaniemi); 267; 65; 202; 2; 130; 55; 15
+97290; Marraskoski (Rovaniemi); 84; 18; 66; 1; 44; 16; 5
+97310; Patokoski (Rovaniemi); 123; 27; 96; 2; 73; 17; 4
+97320; Marrasjärvi (Rovaniemi); 62; 18; 44; 0; 30; 13; 1
+97330; Rattosjärvi (Pello); 38; 9; 29; 1; 19; 5; 4
+97335; Ruuhivaara (Pello); 58; 27; 31; 2; 24; 4; 1
+97340; Meltaus-Jääskö-Perttaus (Rovaniemi); 239; 67; 172; 4; 129; 32; 7
+97370; Unarin-Luusua (Sodankylä); 37; 9; 28; 0; 23; 4; 1
+97380; Kukasranta (Sodankylä); 18; ...; ...; ...; ...; ...; ...
+97390; Kierinki (Sodankylä); 100; 29; 71; 0; 60; 9; 2
+97420; Lohiniva (Kittilä); 332; 94; 238; 8; 193; 31; 6
+97430; Taapajärvi (Kolari); 4; ...; ...; ...; ...; ...; ...
+97470; Alakylä-Sailehto (Kittilä); 116; 31; 85; 3; 63; 14; 5
+97510; Vikajärvi (Rovaniemi); 139; 28; 111; 7; 71; 21; 12
+97520; Nampa (Rovaniemi); 44; 6; 38; 1; 29; 8; 0
+97530; Nampa-Yli-Nampa (Rovaniemi); 75; 23; 52; 1; 36; 11; 4
+97540; Tiainen (Rovaniemi); 93; 34; 59; 1; 38; 17; 3
+97580; Misi (Rovaniemi); 66; 16; 50; 2; 37; 10; 1
+97590; Raajärvi (Kemijärvi); 8; ...; ...; ...; ...; ...; ...
+97610; Oikarainen (Rovaniemi); 347; 63; 284; 5; 166; 81; 32
+97615; Tennirova (Rovaniemi); 31; 11; 20; 1; 13; 6; 0
+97620; Viiri-Tennirova (Rovaniemi); 63; 12; 51; 1; 31; 15; 4
+97625; Vanttauskoski (Rovaniemi); 258; 70; 188; 3; 143; 32; 10
+97630; Pekkala (Rovaniemi); 84; 29; 55; 1; 42; 9; 3
+97635; Juuniemi (Rovaniemi); 91; 32; 59; 2; 37; 16; 4
+97645; Juujärvi (Kemijärvi); 84; 23; 61; 3; 44; 12; 2
+97650; Juotas (Rovaniemi); 101; 26; 75; 1; 58; 16; 0
+97655; Autti (Rovaniemi); 124; 42; 82; 0; 63; 14; 5
+97665; Pohjasperä (Ranua); 138; 46; 92; 1; 76; 9; 6
+97670; Kivitaipale (Rovaniemi); 180; 38; 142; 4; 98; 35; 5
+97675; Narkaus-Kämät (Rovaniemi); 124; 21; 103; 1; 71; 26; 5
+97680; Saari-Kämä (Rovaniemi); 57; 13; 44; 0; 41; 3; 0
+97685; Siika-Kämä (Rovaniemi); 34; 13; 21; 0; 17; 4; 0
+97690; Sulaoja (Rovaniemi); 79; 19; 60; 0; 49; 8; 3
+97700; Ranua Keskus (Ranua); 2161; 641; 1520; 52; 1033; 325; 110
+97715; Raiskio (Ranua); 135; 44; 91; 2; 74; 13; 2
+97720; Yli-Simo-Raiskio (Ranua); 69; 15; 54; 4; 37; 9; 4
+97760; Saariharju (Ranua); 96; 20; 76; 1; 52; 20; 3
+97765; Kuha-Impiö-Itäranua (Ranua); 64; 18; 46; 1; 41; 3; 1
+97780; Kuukasjärvi-Petäjäjärvi (Ranua); 72; 17; 55; 2; 40; 7; 6
+97785; Kelankylä (Ranua); 52; 16; 36; 1; 28; 5; 2
+97810; Suorsa (Posio); 11; ...; ...; ...; ...; ...; ...
+97815; Pernu-Suorsa (Posio); 44; 8; 36; 1; 26; 8; 1
+97820; Perä-Posio (Posio); 73; 24; 49; 3; 38; 6; 2
+97840; Lehtiniemi (Posio); 74; 14; 60; 0; 47; 8; 5
+97850; Ristilä (Posio); 70; 31; 39; 2; 27; 10; 0
+97870; Jumisko (Posio); 29; ...; ...; ...; ...; ...; ...
+97880; Nolimo-Jumisko (Posio); 30; 12; 18; 2; 12; 4; 0
+97890; Karjalaisenniemi (Posio); 179; 48; 131; 0; 95; 28; 8
+97895; Mourujärvi (Posio); 88; 31; 57; 1; 41; 13; 2
+97900; Posio Keskus (Posio); 1481; 448; 1033; 31; 675; 259; 68
+97920; Suonnankylä (Posio); 74; 28; 46; 1; 38; 6; 1
+97925; Tolva (Posio); 55; 22; 33; 0; 25; 7; 1
+97940; Lohiranta (Posio); 63; 18; 45; 1; 34; 9; 1
+97950; Säikkä (Posio); 13; ...; ...; ...; ...; ...; ...
+97960; Kuloharju-Säikkä (Posio); 76; 25; 51; 2; 40; 7; 2
+97965; Kynsilä (Posio); 65; 24; 41; 0; 35; 5; 1
+97970; Sirniö (Posio); 59; 16; 43; 0; 34; 7; 2
+97980; Anetjärvi (Posio); 92; 28; 64; 2; 50; 10; 2
+97999; Köngäs (Kittilä); 0; 0; 0; 0; 0; 0; 0
+98100; Kemijärvi Keskus (Kemijärvi); 2250; 630; 1620; 44; 986; 456; 134
+98120; Särkikangas (Kemijärvi); 1366; 389; 977; 19; 686; 237; 35
+98230; Luusua-Karsimus (Kemijärvi); 158; 42; 116; 1; 84; 28; 3
+98310; Karvakko (Kemijärvi); 366; 77; 289; 13; 180; 77; 19
+98350; Tapionniemi (Kemijärvi); 119; 27; 92; 0; 70; 20; 2
+98360; Vuostimo (Kemijärvi); 118; 26; 92; 3; 58; 26; 5
+98400; Isokylä-Ryti-Lehtola (Kemijärvi); 491; 87; 404; 15; 264; 92; 33
+98420; Ryti-Lehtola (Kemijärvi); 102; 25; 77; 1; 60; 13; 3
+98440; Kallaanvaara (Kemijärvi); 622; 127; 495; 10; 323; 134; 28
+98450; Kostamo (Kemijärvi); 229; 56; 173; 5; 118; 43; 7
+98500; Pelkosenniemi Keskus (Pelkosenniemi); 383; 102; 281; 9; 192; 63; 17
+98510; Saunavaara (Pelkosenniemi); 42; 6; 36; 1; 24; 7; 4
+98530; Pyhätunturi (Pelkosenniemi); 225; 23; 202; 13; 101; 63; 25
+98550; Suvanto (Pelkosenniemi); 18; ...; ...; ...; ...; ...; ...
+98560; Kairala-Luiro (Pelkosenniemi); 72; 19; 53; 0; 37; 13; 3
+98570; Aapajärvi (Pelkosenniemi); 35; 10; 25; 0; 22; 3; 0
+98580; Luiro (Pelkosenniemi); 35; 12; 23; 0; 19; 4; 0
+98600; Kursu (Salla); 215; 65; 150; 4; 113; 26; 7
+98620; Pahkakumpu (Salla); 44; 10; 34; 1; 24; 8; 1
+98630; Ahvenselkä (Pelkosenniemi); 51; 15; 36; 0; 31; 5; 0
+98660; Salmivaara (Salla); 116; 36; 80; 2; 56; 15; 7
+98710; Joutsijärvi (Kemijärvi); 86; 18; 68; 2; 49; 13; 4
+98720; Suomutunturi (Kemijärvi); 79; 28; 51; 0; 38; 11; 2
+98760; Hirvasvaara-Paloperä (Salla); 53; 19; 34; 1; 27; 5; 1
+98770; Aholanvaara (Salla); 28; ...; ...; ...; ...; ...; ...
+98780; Maaninkavaara (Posio); 58; 14; 44; 0; 38; 5; 1
+98790; Paloperä (Salla); 35; 10; 25; 2; 17; 5; 1
+98800; Savukoski Keskus-Värriö (Savukoski); 455; 124; 331; 20; 207; 80; 24
+98810; Lunkkaus (Savukoski); 26; ...; ...; ...; ...; ...; ...
+98820; Värriö (Savukoski); 39; 6; 33; 1; 21; 7; 4
+98830; Martti-Ruuvaoja (Savukoski); 125; 29; 96; 6; 65; 20; 5
+98840; Ruuvaoja (Savukoski); 8; ...; ...; ...; ...; ...; ...
+98850; Kuosku (Savukoski); 106; 20; 86; 6; 53; 23; 4
+98900; Salla Keskus (Salla); 1775; 499; 1276; 40; 861; 290; 85
+98920; Kelloselkä (Salla); 124; 39; 85; 3; 62; 17; 3
+98930; Kotalankylä (Salla); 75; 22; 53; 2; 37; 9; 5
+98950; Saija (Salla); 101; 23; 78; 3; 45; 24; 6
+98960; Naruska (Salla); 41; 12; 29; 3; 19; 4; 3
+98970; Onkamojärvi (Salla); 65; 12; 53; 2; 30; 18; 3
+98980; Kallunki-Niemelä (Salla); 35; 9; 26; 3; 18; 4; 1
+98995; Hautajärvi (Salla); 193; 55; 138; 5; 112; 16; 5
+99100; Kittilä Keskus (Kittilä); 2188; 456; 1732; 74; 1092; 421; 145
+99110; Kaukonen (Kittilä); 279; 50; 229; 8; 148; 60; 13
+99120; Kallo (Kittilä); 109; 39; 70; 2; 58; 7; 3
+99130; Sirkka-Rauhala (Kittilä); 1006; 144; 862; 66; 467; 247; 82
+99135; Rauhala (Kittilä); 17; ...; ...; ...; ...; ...; ...
+99140; Köngäs-Hanhivaara (Kittilä); 201; 26; 175; 12; 103; 45; 15
+99150; Tepasto (Kittilä); 84; 17; 67; 3; 45; 16; 3
+99160; Lompolo-Pulju (Kittilä); 47; 19; 28; 0; 27; 0; 1
+99170; Pulju (Kittilä); 15; ...; ...; ...; ...; ...; ...
+99180; Rautusjärvi (Kittilä); 44; 15; 29; 0; 15; 10; 4
+99190; Hanhimaa (Kittilä); 30; 4; 26; 2; 22; 2; 0
+99195; Pokka (Kittilä); 10; ...; ...; ...; ...; ...; ...
+99230; Jeesiöjärvi (Kittilä); 38; 10; 28; 1; 24; 2; 1
+99240; Kuivasalmi (Kittilä); 28; ...; ...; ...; ...; ...; ...
+99250; Kiistala-Jeesiöjärvi (Kittilä); 64; 16; 48; 1; 39; 6; 2
+99270; Hormakumpu (Kittilä); 59; 13; 46; 6; 30; 7; 3
+99280; Tepsa (Kittilä); 61; 20; 41; 1; 32; 7; 1
+99290; Kelontekemä (Kittilä); 66; 17; 49; 5; 35; 8; 1
+99300; Muonio Keskus (Muonio); 1486; 319; 1167; 43; 700; 324; 100
+99310; Yli-Muonio (Muonio); 115; 23; 92; 2; 65; 16; 9
+99320; Kätkäsuvanto (Muonio); 95; 19; 76; 1; 48; 17; 10
+99330; Pallastunturi (Muonio); 1; ...; ...; ...; ...; ...; ...
+99340; Raattama-Pallastunturi (Kittilä); 111; 22; 89; 4; 64; 13; 8
+99360; Kangosjärvi (Muonio); 100; 20; 80; 3; 61; 14; 2
+99400; Enontekiö Keskus (Enontekiö); 548; 139; 409; 19; 246; 99; 45
+99410; Vuontisjärvi (Enontekiö); 90; 21; 69; 2; 44; 17; 6
+99420; Peltovuoma (Enontekiö); 131; 26; 105; 4; 73; 21; 7
+99430; Nunnanen (Enontekiö); 59; 12; 47; 2; 37; 4; 4
+99440; Leppäjärvi (Enontekiö); 107; 29; 78; 1; 62; 14; 1
+99450; Palojoensuu-Kuttanen (Enontekiö); 100; 28; 72; 1; 48; 21; 2
+99460; Kuttanen (Enontekiö); 49; 18; 31; 1; 22; 3; 5
+99470; Karesuvanto (Enontekiö); 221; 64; 157; 5; 103; 34; 15
+99490; Kilpisjärvi (Enontekiö); 151; 18; 133; 22; 62; 37; 12
+99510; Raudanjoki-Seipäjärvi (Sodankylä); 59; 13; 46; 0; 33; 7; 6
+99520; Seipäjärvi (Sodankylä); 21; ...; ...; ...; ...; ...; ...
+99530; Vuojärvi (Sodankylä); 62; 14; 48; 3; 31; 11; 3
+99540; Torvinen (Sodankylä); 103; 16; 87; 0; 63; 18; 6
+99550; Aska-Orakylä (Sodankylä); 70; 10; 60; 4; 32; 16; 8
+99555; Luosto (Sodankylä); 59; 9; 50; 3; 23; 18; 6
+99560; Orakylä (Sodankylä); 223; 32; 191; 6; 114; 54; 17
+99600; Sodankylä Keskus (Sodankylä); 4344; 912; 3432; 135; 2043; 928; 326
+99610; Siurunmaa (Sodankylä); 29; ...; ...; ...; ...; ...; ...
+99620; Kelujärvi (Sodankylä); 195; 45; 150; 1; 109; 34; 6
+99640; Tanhua (Savukoski); 71; 25; 46; 1; 32; 8; 5
+99645; Lokka (Sodankylä); 59; 15; 44; 1; 34; 6; 3
+99650; Sattanen (Sodankylä); 232; 43; 189; 7; 115; 50; 17
+99655; Sattasvaara (Sodankylä); 95; 34; 61; 3; 40; 13; 5
+99660; Kersilö (Sodankylä); 41; 18; 23; 3; 11; 7; 2
+99665; Moskuvaara (Sodankylä); 25; ...; ...; ...; ...; ...; ...
+99670; Petkula (Sodankylä); 33; 3; 30; 2; 17; 11; 0
+99690; Vuotso (Sodankylä); 215; 47; 168; 12; 116; 21; 19
+99695; Tankavaara (Sodankylä); 2; ...; ...; ...; ...; ...; ...
+99710; Vaalajärvi (Sodankylä); 217; 43; 174; 7; 123; 34; 10
+99720; Riipi (Sodankylä); 144; 42; 102; 2; 79; 17; 4
+99740; Syväjärvi (Sodankylä); 119; 26; 93; 2; 78; 13; 0
+99750; Sassali (Sodankylä); 43; 9; 34; 0; 33; 1; 0
+99760; Uimaniemi (Sodankylä); 25; ...; ...; ...; ...; ...; ...
+99770; Jeesiö (Sodankylä); 103; 33; 70; 1; 47; 16; 6
+99800; Ivalo (Inari); 3940; 890; 3050; 142; 1843; 792; 273
+99830; Saariselkä (Inari); 339; 102; 237; 24; 130; 60; 23
+99860; Nellim (Inari); 127; 35; 92; 3; 64; 18; 7
+99870; Inari Keskus-Lemmenjoki (Inari); 933; 206; 727; 55; 378; 172; 122
+99885; Lemmenjoki (Inari); 48; 13; 35; 4; 19; 6; 6
+99910; Kaamanen-Partakko (Inari); 133; 35; 98; 6; 62; 24; 6
+99930; Sevettijärvi-Näätämö (Inari); 195; 41; 154; 8; 107; 27; 12
+99940; Näätämö (Inari); 21; ...; ...; ...; ...; ...; ...
+99950; Karigasniemi (Utsjoki); 235; 64; 171; 17; 97; 44; 13
+99980; Utsjoki Keskus (Utsjoki); 570; 151; 419; 35; 206; 97; 81
+99990; Nuorgam (Utsjoki); 152; 44; 108; 6; 57; 31; 14
