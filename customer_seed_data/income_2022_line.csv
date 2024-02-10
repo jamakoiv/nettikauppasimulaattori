@@ -6,13 +6,13 @@
 # med: Asukkaiden mediaanitulot (HR)
 # low: Alimpaan tuloluokkaan kuuluvat asukkaat (HR)
 # mid: Keskimmäiseen tuloluokkaan kuuluvat asukkaat (HR)
-# upp Ylimpään tuloluokkaan kuuluvat asukkaat (HR)
+# upp: Ylimpään tuloluokkaan kuuluvat asukkaat (HR)
 # cum: Asukkaiden ostovoimakertymä (HR)
 #
 # CSV-Schema:
 # area_code, area_name, 18, avg, med, low, mid, upp, cum
 #
-00000; KOKO MAA; 4537778; 28055; 24203; 907557; 2722666; 907555; 127307689805
+
 00100; Helsinki keskusta - Etu-Töölö (Helsinki); 15997; 45302; 31186; 2794; 6556; 6647; 724691341
 00120; Punavuori - Bulevardi (Helsinki); 6209; 56441; 32491; 996; 2444; 2769; 350441463
 00130; Kaartinkaupunki (Helsinki); 1484; 77808; 35684; 275; 476; 733; 115467133

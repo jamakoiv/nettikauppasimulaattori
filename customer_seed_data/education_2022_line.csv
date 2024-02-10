@@ -11,7 +11,7 @@
 #
 # CSV-schema:
 # area_code, area_name, 18, pe, yht, yo, amk, akk, ykk
-
+#
 00100; Helsinki keskusta - Etu-Töölö (Helsinki); 15997; 1854; 14143; 2663; 1690; 3813; 5977
 00120; Punavuori - Bulevardi (Helsinki); 6209; 705; 5504; 1015; 761; 1460; 2268
 00130; Kaartinkaupunki (Helsinki); 1484; 192; 1292; 268; 142; 316; 566

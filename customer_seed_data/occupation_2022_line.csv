@@ -12,7 +12,6 @@
 # CSV-Schema:
 # area_code, area_name, yht, tyol, tyot, laps, opis, elak, muut
 # 
-00000; KOKO MAA; 5563970; 2423548; 257556; 840328; 413173; 1445115; 184250
 00100; Helsinki keskusta - Etu-Töölö (Helsinki); 18030; 9979; 630; 1656; 1559; 3437; 769
 00120; Punavuori - Bulevardi (Helsinki); 7192; 4018; 254; 800; 517; 1242; 361
 00130; Kaartinkaupunki (Helsinki); 1731; 938; 47; 196; 142; 297; 111
