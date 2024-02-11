@@ -7,25 +7,26 @@ def import_income(path: str | Path) -> pd.DataFrame:
     Column-labels:
         'code': Area code
         'area': Area name
-        '18':   N Persons over 18
+        'over_18':   N Persons over 18
         'avg':  Average income €
-        'med':  Median income €
+        'median':  Median income €
         'low':  N in lowest income bracket
-        'mid':  N in middle income bracket
-        'upp':  N in upper income bracket
-        'cum':  Cumulative purchasing power (?)
+        'middle':  N in middle income bracket
+        'upper':  N in upper income bracket
+        'cumulative':  Cumulative purchasing power (?)
     """
 
-    names = ['code', 'area', '18', 'avg', 'med', 'low', 'mid', 'upp', 'cum']
+    names = ['code', 'area', 'over_18', 'avg', 'median', 
+             'low', 'middle', 'upper', 'cumulative']
     dtypes = {'code': int,      
               'area': str,      
-              '18': 'Int64',    
+              'over_18': 'Int64',    
               'avg': 'Int64',   
-              'med': 'Int64',   
+              'median': 'Int64',   
               'low': 'Int64',   
-              'mid': 'Int64',   
-              'upp': 'Int64',   
-              'cum': 'Int64'}   
+              'middle': 'Int64',   
+              'upper': 'Int64',   
+              'cumulative': 'Int64'}   
 
     na_values = ['...', ' ...']
 
@@ -139,7 +140,7 @@ def import_education(path: str | Path) -> pd.DataFrame:
     Columns-labels:
         code:   Area code.
         area:   Area name.
-        18:     Population above age of 18.     
+        over_18:     Population above age of 18.     
         grade:  Finished grade school.
         educated: Finished education higher than grade school.
         high_school: Finished high school.
@@ -148,13 +149,13 @@ def import_education(path: str | Path) -> pd.DataFrame:
         higher_uni: Finished higher university class education.
     """
 
-    names =['code', 'area', '18', 'grade', 'educated', 
+    names =['code', 'area', 'over_18', 'grade', 'educated', 
             'high_school', 'vocational',
             'lower_uni', 'higher_uni']
     dtypes = {
             'code': int,
             'area': str, 
-            '18': 'Int64', 
+            'over_18': 'Int64', 
             'grade': 'Int64',
             'educated': 'Int64',
             'high_school': 'Int64',
@@ -179,3 +180,31 @@ if __name__ == "__main__":
     age = import_age("age_2022_line.csv")
     education = import_education("education_2022_line.csv")
     occupation = import_occupation("occupation_2022_line.csv")
+
+    income.dropna(inplace=True)
+    age.dropna(inplace=True)
+    education.dropna(inplace=True)
+    occupation.dropna(inplace=True)
+
+    income.set_index(income['code'], inplace=True)
+    age.set_index(age['code'], inplace=True)
+    education.set_index(education['code'], inplace=True)
+    occupation.set_index(occupation['code'], inplace=True)
+
+    age_frac = age.drop(['code', 'area', 'male', 'female', 'avg', 'pop'], 
+                        axis=1).div(age['pop'], axis=0)
+
+    education_frac = education.drop(['code', 'area', 'over_18', 'educated'], 
+                                    axis=1).div(education['over_18'], axis=0)
+
+    income_edu = pd.merge(income, education_frac, 
+                          left_index=True, right_index=True)
+
+    income_edu_melt = income_edu.melt(
+        id_vars=['code', 'area', 'avg', 'median', 'low', 'upper'], 
+        value_vars=['grade', 'high_school', 'vocational', 'lower_uni', 'higher_uni'], 
+        var_name='education_level', 
+        value_name='education_frac')
+
+
+
