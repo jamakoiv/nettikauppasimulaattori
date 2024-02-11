@@ -175,36 +175,46 @@ def import_education(path: str | Path) -> pd.DataFrame:
     return df
 
 
-if __name__ == "__main__":
+def import_all(dropna=True, index_code=True):
     income = import_income("income_2022_line.csv")
     age = import_age("age_2022_line.csv")
     education = import_education("education_2022_line.csv")
     occupation = import_occupation("occupation_2022_line.csv")
 
-    income.dropna(inplace=True)
-    age.dropna(inplace=True)
-    education.dropna(inplace=True)
-    occupation.dropna(inplace=True)
+    if dropna == True:
+        income.dropna(inplace=True)
+        age.dropna(inplace=True)
+        education.dropna(inplace=True)
+        occupation.dropna(inplace=True)
 
-    income.set_index(income['code'], inplace=True)
-    age.set_index(age['code'], inplace=True)
-    education.set_index(education['code'], inplace=True)
-    occupation.set_index(occupation['code'], inplace=True)
+    if index_code:
+        income.set_index(income['code'], inplace=True)
+        age.set_index(age['code'], inplace=True)
+        education.set_index(education['code'], inplace=True)
+        occupation.set_index(occupation['code'], inplace=True)
+
+    return income, age, education, occupation
+
+
+if __name__ == "__main__":
+    income, age, education, occupation = import_all()
 
     age_frac = age.drop(['code', 'area', 'male', 'female', 'avg', 'pop'], 
                         axis=1).div(age['pop'], axis=0)
 
-    education_frac = education.drop(['code', 'area', 'over_18', 'educated'], 
+    education_frac = education.drop(['code', 'area', 'over_18'], 
                                     axis=1).div(education['over_18'], axis=0)
 
-    income_edu = pd.merge(income, education_frac, 
-                          left_index=True, right_index=True)
+    occupation_frac = occupation.drop(['code', 'area', 'pop'], 
+                                      axis=1).div(occupation['pop'], axis=0)
 
-    income_edu_melt = income_edu.melt(
+    main_table = pd.merge(income, education_frac, 
+                         left_index=True, right_index=True)
+    main_table = pd.merge(main_table, occupation_frac,
+                         left_index=True, right_index=True)
+
+    income_edu_melt = main_table.melt(
         id_vars=['code', 'area', 'avg', 'median', 'low', 'upper'], 
         value_vars=['grade', 'high_school', 'vocational', 'lower_uni', 'higher_uni'], 
         var_name='education_level', 
         value_name='education_frac')
-
-
-
