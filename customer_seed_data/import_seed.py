@@ -1,6 +1,8 @@
 import pandas as pd
 from pathlib import Path
 
+from typing import Tuple
+
 def import_income(path: str | Path) -> pd.DataFrame:
     """Import income-stats as pandas DataFrame.
 
@@ -175,7 +177,17 @@ def import_education(path: str | Path) -> pd.DataFrame:
     return df
 
 
-def import_all(dropna=True, index_code=True):
+def import_all(dropna=True, index_code=True) -> Tuple[pd.DataFrame,
+                                                      pd.DataFrame,
+                                                      pd.DataFrame,
+                                                      pd.DataFrame]:
+    """Helper function for importing income-, age-, education-,
+    and occupation-tables in one call.
+
+    dropna: Call dropna() on each table. 
+    index_code: Replace generic table index with the area-code.
+    """
+
     income = import_income("income_2022_line.csv")
     age = import_age("age_2022_line.csv")
     education = import_education("education_2022_line.csv")
