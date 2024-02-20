@@ -11,17 +11,15 @@ def create_customers(N: int,
                      age: pd.DataFrame,
                      education: pd.DataFrame,
                      occupation: pd.DataFrame) -> pd.DataFrame:
-    """Create customers based on the provided income, 
-    age, education, and occupation statistics.
-    
+    """Create customers based on the provided income, age, education, and occupation statistics.
 
-    N: number of customers to create. 
-    income: DataFrame containing income data as returned by 'import_income'.
-    age: DataFrame containing age data as returned by 'import_age'.
-    education: DataFrame containing education data as returned by 'import_education'.
+    N:          Number of customers to create. 
+    income:     DataFrame containing income data as returned by 'import_income'.
+    age:        DataFrame containing age data as returned by 'import_age'.
+    education:  DataFrame containing education data as returned by 'import_education'.
     occupation: DataFrame containing occupation data as returned by 'import_occupation'.
 
-    -> DataFrame containing customer information.
+    returns:    DataFrame containing customer information.
     """
     # TODO: Very long function. Refactor to separate functions.
 
@@ -33,29 +31,22 @@ def create_customers(N: int,
 
     # Create weights for random.choices for picking correct distribution.
     # Divide amount of people in each category by the relevant total amount of people.
-    #
-    # NOTE: Depending on which is easier, we either select columns we want or
-    # drop columns which we do not want.
     code_labels = ['over_18']
-    code_weights = income[code_labels].div(income['over_18'].sum(), axis=0)
-
     income_labels = ['low', 'middle', 'upper']
-    income_weights = income[income_labels].div(income['over_18'], axis=0)
-
-    age_drop_labels = ['code', 'area', 'male', 'female', 'avg', 'pop']
-    age_labels = age.drop(age_drop_labels, axis=1).columns
-    age_weights = age.drop(age_drop_labels, axis=1).div(age['pop'], axis=0)
-
-    gender_labels = ['male', 'female']
-    gender_weights = age[gender_labels].div(age['pop'], axis=0)
-
     occupation_labels = ['employed', 'unemployed', 'students', 'retired', 'other']
-    occupation_weights = occupation[occupation_labels].div(occupation['pop'], axis=0)
-
+    age_labels = ['18_19', '20_24', '25_29', '30_34', '35_39',
+                  '40_44', '45_49', '50_54', '55_59', '60_64',
+                  '65_69', '70_74', '75_79', '80_84', '85_90']
+    gender_labels = ['male', 'female']
     education_labels = ['grade', 'high_school', 'vocational', 
                         'lower_uni', 'higher_uni']
-    education_weights = education[education_labels].div(education['over_18'], axis=0)
 
+    code_weights = income[code_labels].div(income['over_18'].sum(), axis=0)
+    income_weights = income[income_labels].div(income['over_18'], axis=0)
+    age_weights = age[age_labels].div(age['pop'], axis=0)
+    gender_weights = age[gender_labels].div(age['pop'], axis=0)
+    occupation_weights = occupation[occupation_labels].div(occupation['pop'], axis=0)
+    education_weights = education[education_labels].div(education['over_18'], axis=0)
 
     codes = random.choices(income.index.astype('int'), 
                            weights=code_weights.values.astype('float64'), 
@@ -83,6 +74,7 @@ def create_customers(N: int,
     educations = [random.choices(education_labels, education_weights.loc[code])[0]
                   for code in codes]
 
+    # Modulo forces values to range 0-24.
     most_active = np.random.normal(15.0, 6, size=N) % 24
 
 
@@ -105,6 +97,10 @@ def create_customers(N: int,
     })
 
     return res
+
+
+def get_weights():
+    ...
 
 
 def get_age(age: str) -> int:
