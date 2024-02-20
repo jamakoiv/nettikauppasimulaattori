@@ -23,7 +23,7 @@ def create_customers(N: int,
 
     -> DataFrame containing customer information.
     """
-    # TODO: Very long function...
+    # TODO: Very long function. Refactor to separate functions.
 
     # Protect original tables from getting mangled. 
     income = copy.copy(income)
@@ -52,6 +52,10 @@ def create_customers(N: int,
     occupation_labels = ['employed', 'unemployed', 'students', 'retired', 'other']
     occupation_weights = occupation[occupation_labels].div(occupation['pop'], axis=0)
 
+    education_labels = ['grade', 'high_school', 'vocational', 
+                        'lower_uni', 'higher_uni']
+    education_weights = education[education_labels].div(education['over_18'], axis=0)
+
 
     codes = random.choices(income.index.astype('int'), 
                            weights=code_weights.values.astype('float64'), 
@@ -76,12 +80,28 @@ def create_customers(N: int,
     occupations = [random.choices(occupation_labels, occupation_weights.loc[code])[0]
                    for code in codes]
 
+    educations = [random.choices(education_labels, education_weights.loc[code])[0]
+                  for code in codes]
+
+    most_active = np.random.normal(15.0, 6, size=N) % 24
+
+
+    # TODO: Too complicated for list comprehension.
+    incomes =  [get_income(income.loc[code], inc, edu, occ)
+                for code, inc, edu, occ in zip(codes, 
+                                               income_brackets, 
+                                               educations,
+                                               occupations) ]
+
     res = pd.DataFrame( {
         'code': pd.Series(codes, dtype='int'),
         'age': pd.Series(ages, dtype='int'),
         'gender': pd.Series(genders, dtype='str'),
         'occupation': pd.Series(occupations, dtype='str'),
-        'income_bracket': pd.Series(income_brackets, dtype='str')
+        'education': pd.Series(educations, dtype='str'),
+        'income_bracket': pd.Series(income_brackets, dtype='str'),
+        'income': pd.Series(incomes, dtype='float'),
+        'active_hour': pd.Series(most_active, dtype='float')
     })
 
     return res
@@ -93,6 +113,39 @@ def get_age(age: str) -> int:
     begin, end = [int(val) for val in age.split(sep='_')]
     res = np.random.randint(begin, end+1)
     return res
+
+def get_income(income: pd.DataFrame, 
+               income_bracket: str,
+               education: str, 
+               occupation: str) -> float:
+    """Modify income value depending on the education, occupation, 
+    and income_bracket. 
+    """
+    if income_bracket == 'low':
+        res = income['median'] * 0.80
+    elif income_bracket == 'middle':
+        res = income['median']
+    elif income_bracket == 'upper':
+        res = income['avg']
+
+    # These values are completely made up.
+    education_modifier = {'grade': 0.65,
+                          'high_school': 0.80,
+                          'vocational': 1.00,
+                          'lower_uni': 1.10,
+                          'higher_uni': 1.20}
+
+    occupation_modifier = {'employed': 1.25,
+                           'unemployed': 0.60,
+                           'students': 0.70,
+                           'retired': 0.85,
+                           'other': 1.00}
+
+    res *= education_modifier[education]
+    res *= occupation_modifier[occupation]
+
+    return res
+
 
 if __name__ == "__main__":
     income, age, education, occupation = import_all()
