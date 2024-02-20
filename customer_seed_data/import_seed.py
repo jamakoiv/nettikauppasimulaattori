@@ -58,9 +58,11 @@ def import_age(path: str | Path) -> pd.DataFrame:
         '85':       Pop. above age 85
     """
 
+    # NOTE: Label for over 85 years old is written as '85_90' 
+    # to force common pattern for all names.
     names = ['code', 'area', 'pop', 'male', 'female', 'avg', '18_19', '20_24', 
              '25_29', '30_34', '35_39', '40_44', '45_49', '50_54', '55_59',
-             '60_64', '65_69', '70_74', '75_79', '80_84', '85']
+             '60_64', '65_69', '70_74', '75_79', '80_84', '85_90']
     dtypes = {'code': int,      
               'area': str,      
               'pop': 'Int64',    
@@ -81,7 +83,7 @@ def import_age(path: str | Path) -> pd.DataFrame:
               '70_74': 'Int64',   
               '75_79': 'Int64',   
               '80_84': 'Int64',   
-              '85': 'Int64'}
+              '85_90': 'Int64'}
 
     na_values = ['...', ' ...']
 
