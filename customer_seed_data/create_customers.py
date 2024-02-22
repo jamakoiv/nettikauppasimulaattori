@@ -80,17 +80,34 @@ def create_customers(N: int,
                                   income = income
                                  )
 
-    code_input = list(split(codes, max_workers))
+    # code_input = list(split(codes, max_workers))
     with ProcessPoolExecutor(max_workers=max_workers) as exec:
-        results = exec.map(executable, code_input) 
+        results = exec.map(executable, codes) 
+    # breakpoint()
 
-    res = pd.concat(results)
+    column_labels = ['code', 'age', 'gender', 'occupation',
+                     'education', 'income_bracket', 'income', 'active_hour']
+    res = pd.DataFrame(np.array(list(results)),
+                       columns=column_labels)
+
+    # res = pd.concat(results)
+
+    # res = pd.DataFrame( {
+    #     'code': pd.Series(codes, dtype='int'),
+    #     'age': pd.Series(ages, dtype='int'),
+    #     'gender': pd.Series(genders, dtype='str'),
+    #     'occupation': pd.Series(occupations, dtype='str'),
+    #     'education': pd.Series(educations, dtype='str'),
+    #     'income_bracket': pd.Series(income_brackets, dtype='str'),
+    #     'income': pd.Series(incomes, dtype='float'),
+    #     'active_hour': pd.Series(most_active, dtype='float')
+    # })
 
     return res
 
 # TODO: Horrible amount of parameters for single function.
 # TODO: Change to take single code and output single customer.
-def get_customer_parameters(codes: list[int],
+def get_customer_parameters(code: int,
                             income_labels: list[str], income_weights: list[float],
                             age_labels: list[str], age_weights: list[float],
                             gender_labels: list[str], gender_weights: list[float],
@@ -100,43 +117,32 @@ def get_customer_parameters(codes: list[int],
                             ) -> pd.DataFrame:
     # NOTE: random.choices always returns list even when retrieving single value.
     # Hence the [0].
-    income_brackets = [random.choices(income_labels, income_weights.loc[code])[0]
-                       for code in codes]
+    income_bracket = random.choices(income_labels, income_weights.loc[code])[0]
 
-    ages = [get_age(random.choices(age_labels, age_weights.loc[code])[0])
-            for code in codes]
+    age = get_age(random.choices(age_labels, age_weights.loc[code])[0])
 
-    genders = [random.choices(gender_labels, gender_weights.loc[code])[0]
-               for code in codes]
+    gender = random.choices(gender_labels, gender_weights.loc[code])[0]
 
-    educations = [random.choices(education_labels, education_weights.loc[code])[0]
-                  for code in codes]
+    education = random.choices(education_labels, education_weights.loc[code])[0]
 
-    occupations = [random.choices(occupation_labels, occupation_weights.loc[code])[0]
-                   for code in codes]
+    occupation = random.choices(occupation_labels, occupation_weights.loc[code])[0]
 
     # Modulo forces values to range 0-24.
-    most_active = np.random.normal(15.0, 6, size=len(codes)) % 24
+    most_active = np.random.normal(15.0, 6) % 24
 
     # TODO: Too complicated for list comprehension.
-    incomes =  [get_income(income.loc[code], inc, edu, occ)
-                for code, inc, edu, occ in zip(codes, 
-                                               income_brackets, 
-                                               educations,
-                                               occupations) ]
+    actual_income =  get_income(income.loc[code], 
+                                income_bracket,
+                                education,
+                                occupation)
 
-    res = pd.DataFrame( {
-        'code': pd.Series(codes, dtype='int'),
-        'age': pd.Series(ages, dtype='int'),
-        'gender': pd.Series(genders, dtype='str'),
-        'occupation': pd.Series(occupations, dtype='str'),
-        'education': pd.Series(educations, dtype='str'),
-        'income_bracket': pd.Series(income_brackets, dtype='str'),
-        'income': pd.Series(incomes, dtype='float'),
-        'active_hour': pd.Series(most_active, dtype='float')
-    })
+    res = (code, age, gender, 
+           occupation, education, 
+           income_bracket, actual_income, 
+           most_active)
 
     return res
+
 
 def modify_education_weights():
     """Modify the weights for education classes based on person age.
@@ -218,5 +224,9 @@ def split(a, n):
 if __name__ == "__main__":
     income, age, education, occupation = import_all()
 
+    customers = timer(create_customers, 1000, income, age, education, occupation, 
+                      max_workers=4)
+    customers = timer(create_customers, 5000, income, age, education, occupation, 
+                      max_workers=4)
     customers = timer(create_customers, 10000, income, age, education, occupation, 
                       max_workers=4)
