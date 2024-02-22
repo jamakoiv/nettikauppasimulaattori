@@ -154,6 +154,11 @@ def modify_occupation_weights():
     ...
 
 
+def get_shopping_categories():
+    """Create shopping categories for customers. Either completely random or make some crude stereotypes..."""
+    ...
+
+
 def get_age(age: str) -> int:
     """Get random age from age-label in the form of '20_25'."""
 
