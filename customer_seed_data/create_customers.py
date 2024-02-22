@@ -26,7 +26,6 @@ def create_customers(N: int,
 
     returns:    DataFrame containing customer information.
     """
-    # TODO: Very long function. Refactor to separate functions.
 
     # Protect original tables from getting mangled. 
     income = copy.copy(income)
@@ -64,7 +63,6 @@ def create_customers(N: int,
     # old retirees), and easier to use in multiprocessing.map if we need
     # to create large amount of customers.
 
-    #breakpoint()
     executable = functools.partial(get_customer_parameters,
                                   income_labels = income_labels, 
                                   income_weights = income_weights,
@@ -79,30 +77,15 @@ def create_customers(N: int,
                                   income = income
                                  )
 
-    # breakpoint()
     code_input = list(split(codes, max_workers))
     with ProcessPoolExecutor(max_workers=max_workers) as exec:
         results = exec.map(executable, code_input) 
 
-    # breakpoint()
-    #res = get_customer_parameters(codes,
-    #                              income_labels, income_weights,
-    #                              age_labels, age_weights,
-    #                              gender_labels, gender_weights,
-    #                              education_labels, education_weights,
-    #                              occupation_labels, occupation_weights
-    #                             )
     res = pd.concat(results)
-    #breakpoint()
 
     return res
 
 
-def split(a, n):
-    """Split list to n parts. Stolen from stackoverflow."""
-
-    k, m = np.divmod(len(a), n)
-    return (a[i*k+min(i, m):(i+1)*k+min(i+1, m)] for i in range(n))
 
 
 # TODO: Horrible amount of parameters for single function.
@@ -203,18 +186,14 @@ def timer(f, *args, **kwargs):
     return res
 
 
+def split(a, n):
+    """Split list to n parts. Stolen from stackoverflow."""
+
+    k, m = np.divmod(len(a), n)
+    return (a[i*k+min(i, m):(i+1)*k+min(i+1, m)] for i in range(n))
+
+
 if __name__ == "__main__":
     income, age, education, occupation = import_all()
 
-    # customers = create_customers(100, income, age, education, occupation)
-    customers = timer(create_customers, 2000, income, age, education, occupation, 1)
-    customers = timer(create_customers, 2000, income, age, education, occupation, 2)
-    customers = timer(create_customers, 2000, income, age, education, occupation, 4)
-    
-    customers = timer(create_customers, 10000, income, age, education, occupation, 1)
-    customers = timer(create_customers, 10000, income, age, education, occupation, 2)
     customers = timer(create_customers, 10000, income, age, education, occupation, 4)
-
-    customers = timer(create_customers, 20000, income, age, education, occupation, 1)
-    customers = timer(create_customers, 20000, income, age, education, occupation, 2)
-    customers = timer(create_customers, 20000, income, age, education, occupation, 4)
