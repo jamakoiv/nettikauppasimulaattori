@@ -80,14 +80,15 @@ def create_customers(N: int,
                                   income = income
                                  )
 
-    # code_input = list(split(codes, max_workers))
+    code_input = list(split(codes, max_workers))
     with ProcessPoolExecutor(max_workers=max_workers) as exec:
-        results = exec.map(executable, codes) 
+        results = exec.map(executable, code_input) 
     # breakpoint()
 
     column_labels = ['code', 'age', 'gender', 'occupation',
                      'education', 'income_bracket', 'income', 'active_hour']
-    res = pd.DataFrame(np.array(list(results)),
+    results_array = np.concatenate( [np.array(x) for x in list(results) ], axis=0)
+    res = pd.DataFrame(results_array,
                        columns=column_labels)
 
     # res = pd.concat(results)
@@ -107,7 +108,7 @@ def create_customers(N: int,
 
 # TODO: Horrible amount of parameters for single function.
 # TODO: Change to take single code and output single customer.
-def get_customer_parameters(code: int,
+def get_customer_parameters(codes: list[int],
                             income_labels: list[str], income_weights: list[float],
                             age_labels: list[str], age_weights: list[float],
                             gender_labels: list[str], gender_weights: list[float],
@@ -117,29 +118,27 @@ def get_customer_parameters(code: int,
                             ) -> pd.DataFrame:
     # NOTE: random.choices always returns list even when retrieving single value.
     # Hence the [0].
-    income_bracket = random.choices(income_labels, income_weights.loc[code])[0]
 
-    age = get_age(random.choices(age_labels, age_weights.loc[code])[0])
+    res = list()
+    for code in codes:
+        income_bracket = random.choices(income_labels, income_weights.loc[code])[0]
+        age = get_age(random.choices(age_labels, age_weights.loc[code])[0])
+        gender = random.choices(gender_labels, gender_weights.loc[code])[0]
+        education = random.choices(education_labels, education_weights.loc[code])[0]
+        occupation = random.choices(occupation_labels, occupation_weights.loc[code])[0]
 
-    gender = random.choices(gender_labels, gender_weights.loc[code])[0]
+        # Modulo forces values to range 0-24.
+        most_active = np.random.normal(15.0, 6) % 24
 
-    education = random.choices(education_labels, education_weights.loc[code])[0]
+        actual_income =  get_income(income.loc[code], 
+                                    income_bracket,
+                                    education,
+                                    occupation)
 
-    occupation = random.choices(occupation_labels, occupation_weights.loc[code])[0]
-
-    # Modulo forces values to range 0-24.
-    most_active = np.random.normal(15.0, 6) % 24
-
-    # TODO: Too complicated for list comprehension.
-    actual_income =  get_income(income.loc[code], 
-                                income_bracket,
-                                education,
-                                occupation)
-
-    res = (code, age, gender, 
-           occupation, education, 
-           income_bracket, actual_income, 
-           most_active)
+        res.append((code, age, gender, 
+                   occupation, education, 
+                   income_bracket, actual_income, 
+                   most_active))
 
     return res
 
@@ -224,9 +223,13 @@ def split(a, n):
 if __name__ == "__main__":
     income, age, education, occupation = import_all()
 
-    customers = timer(create_customers, 1000, income, age, education, occupation, 
-                      max_workers=4)
     customers = timer(create_customers, 5000, income, age, education, occupation, 
                       max_workers=4)
     customers = timer(create_customers, 10000, income, age, education, occupation, 
+                      max_workers=4)
+    customers = timer(create_customers, 20000, income, age, education, occupation, 
+                      max_workers=4)
+    customers = timer(create_customers, 40000, income, age, education, occupation, 
+                      max_workers=4)
+    customers = timer(create_customers, 80000, income, age, education, occupation, 
                       max_workers=4)
