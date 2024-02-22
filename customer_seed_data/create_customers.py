@@ -6,9 +6,11 @@ import numpy as np
 import time
 
 from concurrent.futures import ProcessPoolExecutor
-
 from import_seed import import_all
 
+
+# TODO: There is too much parameter passthrough, maybe refactor
+# the functions into a class.
 
 def create_customers(N: int,
                      income: pd.DataFrame,
@@ -23,6 +25,7 @@ def create_customers(N: int,
     age:        DataFrame containing age data as returned by 'import_age'.
     education:  DataFrame containing education data as returned by 'import_education'.
     occupation: DataFrame containing occupation data as returned by 'import_occupation'.
+    max_workers: Maximum amount of multiprocessing workers. Passed to ProcesspoolExecutor.
 
     returns:    DataFrame containing customer information.
     """
@@ -84,9 +87,6 @@ def create_customers(N: int,
     res = pd.concat(results)
 
     return res
-
-
-
 
 # TODO: Horrible amount of parameters for single function.
 def get_customer_parameters(codes: list[int],
