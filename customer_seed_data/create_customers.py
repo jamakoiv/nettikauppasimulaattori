@@ -1,7 +1,11 @@
 import copy
 import random
+import functools
 import pandas as pd
 import numpy as np
+import time
+
+from concurrent.futures import ProcessPoolExecutor
 
 from import_seed import import_all
 
@@ -10,7 +14,8 @@ def create_customers(N: int,
                      income: pd.DataFrame,
                      age: pd.DataFrame,
                      education: pd.DataFrame,
-                     occupation: pd.DataFrame) -> pd.DataFrame:
+                     occupation: pd.DataFrame,
+                     max_workers: int = 2) -> pd.DataFrame:
     """Create customers based on the provided income, age, education, and occupation statistics.
 
     N:          Number of customers to create. 
@@ -48,6 +53,8 @@ def create_customers(N: int,
     occupation_weights = occupation[occupation_labels].div(occupation['pop'], axis=0)
     education_weights = education[education_labels].div(education['over_18'], axis=0)
 
+    # First we pick area code for each customer, then pick the rest of the 
+    # parameters based on the statistics for that area code.
     codes = random.choices(income.index.astype('int'), 
                            weights=code_weights.values.astype('float64'), 
                            k=N)
@@ -57,6 +64,56 @@ def create_customers(N: int,
     # old retirees), and easier to use in multiprocessing.map if we need
     # to create large amount of customers.
 
+    #breakpoint()
+    executable = functools.partial(get_customer_parameters,
+                                  income_labels = income_labels, 
+                                  income_weights = income_weights,
+                                  age_labels = age_labels, 
+                                  age_weights = age_weights,
+                                  gender_labels = gender_labels, 
+                                  gender_weights = gender_weights,
+                                  education_labels = education_labels, 
+                                  education_weights = education_weights,
+                                  occupation_labels = occupation_labels, 
+                                  occupation_weights = occupation_weights,
+                                  income = income
+                                 )
+
+    # breakpoint()
+    code_input = list(split(codes, max_workers))
+    with ProcessPoolExecutor(max_workers=max_workers) as exec:
+        results = exec.map(executable, code_input) 
+
+    # breakpoint()
+    #res = get_customer_parameters(codes,
+    #                              income_labels, income_weights,
+    #                              age_labels, age_weights,
+    #                              gender_labels, gender_weights,
+    #                              education_labels, education_weights,
+    #                              occupation_labels, occupation_weights
+    #                             )
+    res = pd.concat(results)
+    #breakpoint()
+
+    return res
+
+
+def split(a, n):
+    """Split list to n parts. Stolen from stackoverflow."""
+
+    k, m = np.divmod(len(a), n)
+    return (a[i*k+min(i, m):(i+1)*k+min(i+1, m)] for i in range(n))
+
+
+# TODO: Horrible amount of parameters for single function.
+def get_customer_parameters(codes: list[int],
+                            income_labels: list[str], income_weights: list[float],
+                            age_labels: list[str], age_weights: list[float],
+                            gender_labels: list[str], gender_weights: list[float],
+                            education_labels: list[str], education_weights: list[float],
+                            occupation_labels: list[str], occupation_weights: list[float],
+                            income: pd.DataFrame
+                            ) -> pd.DataFrame:
     # NOTE: random.choices always returns list even when retrieving single value.
     # Hence the [0].
     income_brackets = [random.choices(income_labels, income_weights.loc[code])[0]
@@ -68,15 +125,14 @@ def create_customers(N: int,
     genders = [random.choices(gender_labels, gender_weights.loc[code])[0]
                for code in codes]
 
-    occupations = [random.choices(occupation_labels, occupation_weights.loc[code])[0]
-                   for code in codes]
-
     educations = [random.choices(education_labels, education_weights.loc[code])[0]
                   for code in codes]
 
-    # Modulo forces values to range 0-24.
-    most_active = np.random.normal(15.0, 6, size=N) % 24
+    occupations = [random.choices(occupation_labels, occupation_weights.loc[code])[0]
+                   for code in codes]
 
+    # Modulo forces values to range 0-24.
+    most_active = np.random.normal(15.0, 6, size=len(codes)) % 24
 
     # TODO: Too complicated for list comprehension.
     incomes =  [get_income(income.loc[code], inc, edu, occ)
@@ -97,10 +153,6 @@ def create_customers(N: int,
     })
 
     return res
-
-
-def get_weights():
-    ...
 
 
 def get_age(age: str) -> int:
@@ -130,7 +182,6 @@ def get_income(income: pd.DataFrame,
                           'vocational': 1.00,
                           'lower_uni': 1.10,
                           'higher_uni': 1.20}
-
     occupation_modifier = {'employed': 1.25,
                            'unemployed': 0.60,
                            'students': 0.70,
@@ -143,8 +194,27 @@ def get_income(income: pd.DataFrame,
     return res
 
 
+def timer(f, *args, **kwargs): 
+    start = time.monotonic()
+    res = f(*args, **kwargs)
+    dt = time.monotonic() - start
+    print(f"{dt} s")
+
+    return res
+
+
 if __name__ == "__main__":
     income, age, education, occupation = import_all()
 
-    customers = create_customers(100, income, age, education, occupation)
+    # customers = create_customers(100, income, age, education, occupation)
+    customers = timer(create_customers, 2000, income, age, education, occupation, 1)
+    customers = timer(create_customers, 2000, income, age, education, occupation, 2)
+    customers = timer(create_customers, 2000, income, age, education, occupation, 4)
     
+    customers = timer(create_customers, 10000, income, age, education, occupation, 1)
+    customers = timer(create_customers, 10000, income, age, education, occupation, 2)
+    customers = timer(create_customers, 10000, income, age, education, occupation, 4)
+
+    customers = timer(create_customers, 20000, income, age, education, occupation, 1)
+    customers = timer(create_customers, 20000, income, age, education, occupation, 2)
+    customers = timer(create_customers, 20000, income, age, education, occupation, 4)
