@@ -89,6 +89,7 @@ def create_customers(N: int,
     return res
 
 # TODO: Horrible amount of parameters for single function.
+# TODO: Change to take single code and output single customer.
 def get_customer_parameters(codes: list[int],
                             income_labels: list[str], income_weights: list[float],
                             age_labels: list[str], age_weights: list[float],
@@ -137,6 +138,21 @@ def get_customer_parameters(codes: list[int],
 
     return res
 
+def modify_education_weights():
+    """Modify the weights for education classes based on person age.
+    Young people should have lower chance of having higher education
+    than 30+ people.
+    """
+    ...
+
+def modify_occupation_weights():
+    """Modify the weights for occupation classes based on person age and education.
+    Young people should have higher chance of being students or unemployed, older people should
+    have higher chance of being retired.
+    Educated people should have higher chance of being employed, and vice versa. 
+    """
+    ...
+
 
 def get_age(age: str) -> int:
     """Get random age from age-label in the form of '20_25'."""
@@ -144,6 +160,7 @@ def get_age(age: str) -> int:
     begin, end = [int(val) for val in age.split(sep='_')]
     res = np.random.randint(begin, end+1)
     return res
+
 
 def get_income(income: pd.DataFrame, 
                income_bracket: str,
@@ -196,4 +213,5 @@ def split(a, n):
 if __name__ == "__main__":
     income, age, education, occupation = import_all()
 
-    customers = timer(create_customers, 10000, income, age, education, occupation, 4)
+    customers = timer(create_customers, 10000, income, age, education, occupation, 
+                      max_workers=4)
