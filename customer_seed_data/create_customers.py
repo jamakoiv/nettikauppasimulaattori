@@ -8,16 +8,17 @@ import time
 from concurrent.futures import ProcessPoolExecutor
 from import_seed import import_all
 
+# TODO: How to test functions which are supposed to give random results
+# by design. Seed random number generator to certain initial state?
 
 # TODO: There is too much parameter passthrough, maybe refactor
 # the functions into a class.
-
 def create_customers(N: int,
                      income: pd.DataFrame,
                      age: pd.DataFrame,
                      education: pd.DataFrame,
                      occupation: pd.DataFrame,
-                     max_workers: int = 2) -> pd.DataFrame:
+                     max_workers: int | None = None) -> pd.DataFrame:
     """Create customers based on the provided income, age, education, and occupation statistics.
 
     N:          Number of customers to create. 
@@ -61,11 +62,6 @@ def create_customers(N: int,
                            weights=code_weights.values.astype('float64'), 
                            k=N)
 
-    # TODO: Make separate function for picking all the customer parameters.
-    # This way we can better control the results (don't want 18 years 
-    # old retirees), and easier to use in multiprocessing.map if we need
-    # to create large amount of customers.
-
     executable = functools.partial(get_customer_parameters,
                                   income_labels = income_labels, 
                                   income_weights = income_weights,
@@ -107,7 +103,6 @@ def create_customers(N: int,
     return res
 
 # TODO: Horrible amount of parameters for single function.
-# TODO: Change to take single code and output single customer.
 def get_customer_parameters(codes: list[int],
                             income_labels: list[str], income_weights: list[float],
                             age_labels: list[str], age_weights: list[float],
@@ -116,11 +111,11 @@ def get_customer_parameters(codes: list[int],
                             occupation_labels: list[str], occupation_weights: list[float],
                             income: pd.DataFrame
                             ) -> pd.DataFrame:
-    # NOTE: random.choices always returns list even when retrieving single value.
-    # Hence the [0].
 
     res = list()
     for code in codes:
+        # NOTE: random.choices always returns list even 
+        # when retrieving single value. Hence the [0].
         income_bracket = random.choices(income_labels, income_weights.loc[code])[0]
         age = get_age(random.choices(age_labels, age_weights.loc[code])[0])
         gender = random.choices(gender_labels, gender_weights.loc[code])[0]
