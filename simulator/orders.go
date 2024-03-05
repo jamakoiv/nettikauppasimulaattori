@@ -60,6 +60,9 @@ func nowInTimezone(timezone string) (time.Time, error) {
 	return t, err
 }
 
+// TODO: We can outsource all time-management to the SQL-server
+// with SQL time-functions (CURRENT_DATETIME etc.).
+
 func Time2SQLDatetime(t time.Time) string {
 	res := fmt.Sprintf("%d-%d-%d %d:%d:%d",
 		t.Year(), t.Month(), t.Day(),
@@ -76,6 +79,8 @@ func Time2SQLDate(t time.Time) string {
 }
 
 func (order *Order) init() {
+	// TODO: Have to replace generating order-ID with something better.
+	// Otherwise eventually we get two same order numbers.
 	order.id = uint64(rand.Uint32()) // Foolishly hope we don't get two same order IDs.
 	order.status = ORDER_EMPTY
 	order.delivery_type = rand.Intn(2)
