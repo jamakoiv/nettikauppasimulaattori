@@ -17,8 +17,7 @@
 {
     {n++}  # Counter for tracking lines.
 
-    # For first line of the data, output entire line 
-    # properly formatted.
+    # For first line of the data, output entire line properly formatted.
     if (n == 1) {
         ORS=""
         postal = substr($1, 2, 5)

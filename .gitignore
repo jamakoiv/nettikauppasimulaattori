@@ -4,3 +4,11 @@
 *.exe
 __pycache__
 .vscode
+
+customer_seed_data/*.csv
+customer_seed_data/*.parquet
+customer_seed_data/*.json
+
+simulator/main
+simulator/ap.json
+
