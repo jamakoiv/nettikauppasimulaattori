@@ -107,7 +107,8 @@ func (w *Worker) CheckIfWorking(t time.Time) bool {
 	cron_expr := cronexpr.MustParse(w.cron_line)
 	next_run := cron_expr.Next(t)
 
-	if time.Until(next_run) < run_frequency {
+	until_next_run := next_run.Sub(t)
+	if until_next_run <= run_frequency {
 		return true
 	} else {
 		return false
