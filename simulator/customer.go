@@ -2,98 +2,25 @@ package nettikauppasimulaattori
 
 import (
 	"errors"
-	"fmt"
 	"math"
 	"math/rand"
 	"time"
 
-	"encoding/csv"
-	"os"
-	"strconv"
-
-	"golang.org/x/exp/slog"
+	"github.com/parquet-go/parquet-go"
 )
 
 type Customer struct {
-	id                        int
-	first_name                string
-	last_name                 string
-	most_active               int
-	max_budget                int
-	base_purchase_probability float64
-	product_categories        []int
+	Id                        int     `parquet:"id"`
+	First_name                string  `parquet:"first_name"`
+	Last_name                 string  `parquet:"last_name"`
+	Most_active               int     `parquet:"most_active"`
+	Max_budget                int     `parquet:"max_budget"`
+	Base_purchase_probability float64 `parquet:"purchase_probability"`
+	Product_categories        []int   `parquet:"product_categories"`
 }
 
-var VALID_CSV_CUSTOMER_SIZE int = 7
-
-type CustomerCsvError struct {
-	length int
-}
-
-func (e *CustomerCsvError) Error() string {
-	return fmt.Sprintf("Received CSV-row with %v elements. Should be %v elements.",
-		e.length, VALID_CSV_CUSTOMER_SIZE)
-}
-
-func ReadCustomersCSV(file string) ([]Customer, error) {
-	var res []Customer
-
-	f, err := os.Open(file)
-	if err != nil {
-		return res, err
-	}
-
-	reader := csv.NewReader(f)
-	rows, err := reader.ReadAll()
-	if err != nil {
-		return res, err
-	}
-
-	for _, row := range rows {
-		row = CSVRemoveWhitespace(row)
-		customer, err := CSVRowToCustomer(row)
-		if err != nil {
-			slog.Error(fmt.Sprintf("Error parsing CSV input to Customer: %v", err))
-			continue
-		}
-		res = append(res, customer)
-	}
-
-	return res, nil
-}
-
-func CSVRowToCustomer(row []string) (Customer, error) {
-	var res Customer
-	var err error
-
-	if len(row) != VALID_CSV_CUSTOMER_SIZE {
-		return res, &CustomerCsvError{len(row)}
-	}
-
-	res.id, err = strconv.Atoi(row[0])
-	if err != nil {
-		return res, err
-	}
-
-	res.first_name = row[1]
-	res.last_name = row[2]
-
-	res.most_active, err = strconv.Atoi(row[3])
-	if err != nil {
-		return res, err
-	}
-
-	res.max_budget, err = strconv.Atoi(row[4])
-	if err != nil {
-		return res, err
-	}
-
-	res.base_purchase_probability, err = strconv.ParseFloat(row[5], 64)
-	if err != nil {
-		return res, err
-	}
-
-	res.product_categories, err = CSVSplitSerial2Int(row[6], "{}", ";")
+func ImportCustomers(file string) ([]Customer, error) {
+	res, err := parquet.ReadFile[Customer](file)
 	if err != nil {
 		return res, err
 	}
@@ -118,20 +45,18 @@ func calc_probability(x int, base_probability float64, target int, spread int) f
 }
 
 func (customer *Customer) ChanceToShop(t time.Time, day_var float64, week_var float64) float64 {
-
 	base_spread := 5
 	rand_spread := rand.Intn(5)
 
 	prob := calc_probability(t.Hour(),
-		customer.base_purchase_probability+day_var+week_var,
-		customer.most_active,
+		customer.Base_purchase_probability+day_var+week_var,
+		customer.Most_active,
 		base_spread+rand_spread)
 
 	return prob
 }
 
 func (customer *Customer) Shop(products []Product) (Order, error) {
-
 	// order := new(Order)
 	var order Order
 	order.init()
@@ -146,8 +71,8 @@ func (customer *Customer) Shop(products []Product) (Order, error) {
 	}
 
 	// Filter products by product category and customer budget.
-	products = FilterProductsByCategory(products, customer.product_categories)
-	products = FilterProductsByPrice(products, customer.max_budget)
+	products = FilterProductsByCategory(products, customer.Product_categories)
+	products = FilterProductsByPrice(products, customer.Max_budget)
 
 	// Customer picks randomly how many and which products to buy.
 	var money_remaining int
@@ -155,14 +80,14 @@ func (customer *Customer) Shop(products []Product) (Order, error) {
 	for i := 0; i < n; i++ {
 		order.AddItem(products[rand.Intn(len(products))])
 
-		money_remaining = customer.max_budget - order.TotalPrice()
+		money_remaining = customer.Max_budget - order.TotalPrice()
 		products = FilterProductsByPrice(products, money_remaining)
 		if len(products) == 0 {
 			break
 		}
 	}
 	order.status = ORDER_PENDING
-	order.customer_id = customer.id
+	order.customer_id = customer.Id
 
 	return order, nil
 }
