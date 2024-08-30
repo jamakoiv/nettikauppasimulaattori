@@ -45,13 +45,13 @@ func ReadWorkersCSV(file string) ([]Worker, error) {
 	}
 
 	reader := csv.NewReader(f)
+	reader.LazyQuotes = false
 	rows, err := reader.ReadAll()
 	if err != nil {
 		return res, err
 	}
 
 	for _, row := range rows {
-		row = CSVRemoveWhitespace(row)
 		worker, err := CSVRowToWorker(row)
 		if err != nil {
 			slog.Error(fmt.Sprintf("Error parsing CSV input to Customer: %v", err))
@@ -104,6 +104,7 @@ func (w *Worker) CheckIfWorking(t time.Time) bool {
 		slog.Error(fmt.Sprintf("Error parsing duration string %s", RUN_FREQUENCY))
 	}
 
+	slog.Debug(w.cron_line)
 	cron_expr := cronexpr.MustParse(w.cron_line)
 	next_run := cron_expr.Next(t)
 
