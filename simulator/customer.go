@@ -2,30 +2,79 @@ package nettikauppasimulaattori
 
 import (
 	"errors"
+	"fmt"
+	"log/slog"
 	"math"
 	"math/rand"
+	"strconv"
+	"strings"
 	"time"
 
 	"github.com/parquet-go/parquet-go"
 )
 
-type Customer struct {
+type customerRow struct {
 	Id                        int     `parquet:"id"`
 	First_name                string  `parquet:"first_name"`
 	Last_name                 string  `parquet:"last_name"`
 	Most_active               int     `parquet:"most_active"`
 	Max_budget                int     `parquet:"max_budget"`
 	Base_purchase_probability float64 `parquet:"purchase_probability"`
-	Product_categories        []int   `parquet:"product_categories"`
+	Raw_product_categories    string  `parquet:"product_categories"`
+}
+
+type Customer struct {
+	Id                        int
+	First_name                string
+	Last_name                 string
+	Most_active               int
+	Max_budget                int
+	Base_purchase_probability float64
+	Product_categories        []int
 }
 
 func ImportCustomers(file string) ([]Customer, error) {
-	res, err := parquet.ReadFile[Customer](file)
+	var res []Customer
+
+	rows, err := parquet.ReadFile[customerRow](file)
 	if err != nil {
 		return res, err
 	}
 
+	for _, row := range rows {
+		// fmt.Println(row)
+		res = append(res, row.ToCustomer())
+	}
+
 	return res, nil
+}
+
+func (c customerRow) ToCustomer() Customer {
+	var res Customer
+
+	res.Id = c.Id
+	res.First_name = c.First_name
+	res.Last_name = c.Last_name
+	res.Most_active = c.Most_active
+	res.Max_budget = c.Max_budget
+	res.Base_purchase_probability = c.Base_purchase_probability
+	res.Product_categories = rawToProductCategories(c.Raw_product_categories)
+
+	return res
+}
+
+func rawToProductCategories(raw string) []int {
+	var res []int
+	for _, s := range strings.Split(raw, ",") {
+		val, err := strconv.Atoi(s)
+		if err != nil {
+			slog.Error(fmt.Sprintf("Error converting %s to int", s))
+		}
+
+		res = append(res, val)
+	}
+
+	return res
 }
 
 func calc_probability(x int, base_probability float64, target int, spread int) float64 {

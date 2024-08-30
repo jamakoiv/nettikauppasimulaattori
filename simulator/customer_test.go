@@ -3,6 +3,7 @@ package nettikauppasimulaattori
 import (
 	"fmt"
 	"math"
+	"reflect"
 	"testing"
 	"time"
 )
@@ -16,7 +17,7 @@ func CreateTestCustomers() []Customer {
 	customerA.Most_active = 9
 	customerA.Max_budget = 25
 	customerA.Base_purchase_probability = 0.2
-	customerA.Product_categories = []int{3}
+	customerA.Product_categories = []int{1, 3}
 
 	customerB.Id = 14
 	customerB.First_name = "Liisa"
@@ -46,8 +47,8 @@ func CheckCustomerEqual(A, B Customer) bool {
 		return false
 	} else if A.Base_purchase_probability != B.Base_purchase_probability {
 		return false
-		// } else if !reflect.DeepEqual(A.Product_categories, B.Product_categories) {
-		// 	return false
+	} else if !reflect.DeepEqual(A.Product_categories, B.Product_categories) {
+		return false
 	} else {
 		return true
 	}
@@ -77,6 +78,6 @@ func TestImportCustomers(t *testing.T) {
 	}
 
 	if !CheckCustomerEqual(target[0], res[0]) {
-		t.Fatalf(fmt.Sprintf("Received %v, expected %v", target[0], res[0]))
+		t.Fatalf(fmt.Sprintf("Received %v, expected %v", res[0], target[0]))
 	}
 }
