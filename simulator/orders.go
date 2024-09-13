@@ -11,12 +11,12 @@ import (
 // Type for creating an order, adding products to it,
 // and sendind in to database.
 type Order struct {
-    id            uint64
-    customer_id   int
-    items         []Product
-    order_placed  time.Time
-    delivery_type int
-    status        int
+	id            uint64
+	customer_id   int
+	items         []Product
+	order_placed  time.Time
+	delivery_type int
+	status        int
 }
 type Orders []Order
 
@@ -24,26 +24,25 @@ type Orders []Order
 // NOTE: All variables have to be public or big-query library fails silently
 // when receiving data.
 type OrderReceiver struct {
-    ID            int
-    Customer_id   int
-    Delivery_type int
-    Status        int
-    // Order_placed  time.Time
+	ID            int
+	Customer_id   int
+	Delivery_type int
+	Status        int
+	// Order_placed  time.Time
 }
 
 const ( // Values for Order.status.
-    ORDER_PENDING = iota
-    ORDER_SHIPPED = iota
-    ORDER_EMPTY   = iota
+	ORDER_PENDING = iota
+	ORDER_SHIPPED = iota
+	ORDER_EMPTY   = iota
 )
 
 const ( // Values for Order.delivery_type.
-    SHIP_TO_CUSTOMER   = iota
-    COLLECT_FROM_STORE = iota
+	SHIP_TO_CUSTOMER   = iota
+	COLLECT_FROM_STORE = iota
 )
 
-var ErrorEmptyOrdersList = errors.New("List is empty.")
-
+var ErrorEmptyOrdersList = errors.New("list is empty")
 
 func nowInTimezone(timezone string) (time.Time, error) {
 	var t time.Time
@@ -61,6 +60,9 @@ func nowInTimezone(timezone string) (time.Time, error) {
 	return t, err
 }
 
+// TODO: We can outsource all time-management to the SQL-server
+// with SQL time-functions (CURRENT_DATETIME etc.).
+
 func Time2SQLDatetime(t time.Time) string {
 	res := fmt.Sprintf("%d-%d-%d %d:%d:%d",
 		t.Year(), t.Month(), t.Day(),
@@ -77,6 +79,8 @@ func Time2SQLDate(t time.Time) string {
 }
 
 func (order *Order) init() {
+	// TODO: Have to replace generating order-ID with something better.
+	// Otherwise eventually we get two same order numbers.
 	order.id = uint64(rand.Uint32()) // Foolishly hope we don't get two same order IDs.
 	order.status = ORDER_EMPTY
 	order.delivery_type = rand.Intn(2)
@@ -115,7 +119,7 @@ func (orders *Orders) Append(order Order) {
 
 func (orders *Orders) Pop() (Order, error) {
 	if len(*orders) == 0 {
-		return Order{}, ErrorEmptyOrdersList 
+		return Order{}, ErrorEmptyOrdersList
 	}
 
 	first := (*orders)[0]
@@ -123,7 +127,7 @@ func (orders *Orders) Pop() (Order, error) {
 	// [1:] panics if length is 1, se we create and return empty list
 	// if we pop last element out.
 	if len(*orders) == 1 {
-		orders = new(Orders) 
+		orders = new(Orders)
 	} else {
 		(*orders) = (*orders)[1:]
 	}
@@ -132,13 +136,13 @@ func (orders *Orders) Pop() (Order, error) {
 }
 
 func ConvertOrderReceiverToOrder(o OrderReceiver) Order {
-    var res Order
+	var res Order
 
-    res.id = uint64(o.ID)
-    res.customer_id = o.Customer_id
-    // res.order_placed = o.Order_placed
-    res.delivery_type = o.Delivery_type
-    res.status = o.Status
+	res.id = uint64(o.ID)
+	res.customer_id = o.Customer_id
+	// res.order_placed = o.Order_placed
+	res.delivery_type = o.Delivery_type
+	res.status = o.Status
 
-    return res
+	return res
 }

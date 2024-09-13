@@ -8,50 +8,76 @@ import (
 	"time"
 )
 
+func CreateTestCustomers() []Customer {
+	var customerA, customerB Customer
+
+	customerA.Id = 13
+	customerA.First_name = "Tero"
+	customerA.Last_name = "Teronen"
+	customerA.Most_active = 9
+	customerA.Max_budget = 25
+	customerA.Base_purchase_probability = 0.2
+	customerA.Product_categories = []int{1, 3}
+
+	customerB.Id = 14
+	customerB.First_name = "Liisa"
+	customerB.Last_name = "Peronen"
+	customerB.Most_active = 9
+	customerB.Max_budget = 150
+	customerB.Base_purchase_probability = 0.25
+	customerB.Product_categories = []int{4}
+
+	var res []Customer
+	res = append(res, customerA)
+	res = append(res, customerB)
+
+	return res
+}
+
+func CheckCustomerEqual(A, B Customer) bool {
+	if A.Id != B.Id {
+		return false
+	} else if A.First_name != B.First_name {
+		return false
+	} else if A.Last_name != B.Last_name {
+		return false
+	} else if A.Most_active != B.Most_active {
+		return false
+	} else if A.Max_budget != B.Max_budget {
+		return false
+	} else if A.Base_purchase_probability != B.Base_purchase_probability {
+		return false
+	} else if !reflect.DeepEqual(A.Product_categories, B.Product_categories) {
+		return false
+	} else {
+		return true
+	}
+}
 
 func TestDefault_ShoppingWeekVariation(t *testing.T) {
+	test_date := time.Date(2024, time.January, 30, 0, 0, 0, 0, time.UTC)
+	target := 0.004
+	allowed_error := 0.00001
 
-    test_date := time.Date(2024, time.January, 30, 0, 0, 0, 0, time.UTC)
-    target := 0.004
-    allowed_error := 0.00001
+	res := Default_ShoppingWeekVariation(test_date)
 
-    res := Default_ShoppingWeekVariation(test_date)
-    
-    if (math.Abs(res - target) > allowed_error) {
-        t.Fatalf("Wanted %v, got %v, which is not within allowed error of %v",
-            res, target, allowed_error)
-    }
+	if math.Abs(res-target) > allowed_error {
+		t.Fatalf("Wanted %v, got %v, which is not within allowed error of %v",
+			res, target, allowed_error)
+	}
 }
 
+func TestImportCustomers(t *testing.T) {
+	var test_customers_file string = "data/test_customers.parquet"
 
-func TestCSVRowToCustomer(t *testing.T) {
+	target := CreateTestCustomers()
 
-    test_row := [7]string{"1", "Jaska", "Jokunen", "10", "300", "0.25", "{1;2;3}"}
-    target := Customer{1, "Jaska", "Jokunen", 10, 300, 0.25, []int{1,2,3}}
-    
-    res, _ := CSVRowToCustomer(test_row[:])
+	res, err := ImportCustomers(test_customers_file)
+	if err != nil {
+		t.Fatalf(fmt.Sprintf("Received error %v", err))
+	}
 
-    if !reflect.DeepEqual(res, target) {
-        t.Fatalf("Input %v created object %v, which is incorrect.", test_row, res)
-    }
-}
-
-func TestReadCustomerCSV(t * testing.T) {
-
-    test_file := "test_data/customers_test.csv"
-    target := []Customer{
-        {10,  "Erkki",    "Nyrhinen"   , 6,  500, 0.15, []int{1,2} },
-        {11,  "Jaana",    "Lahtinen"   , 7,  250, 0.25, []int{2} },   
-        {12,  "Toni",     "Kuusisto"   , 8,  50 , 0.10, []int{1} },
-    }
-
-    res, err := ReadCustomersCSV(test_file)
-
-    if err != nil {
-        t.Fatalf(fmt.Sprint(err))
-    }
-
-    if !reflect.DeepEqual(res, target) {
-        t.Fatalf("Reading from file %v created object %v, which is incorrect.", test_file, res)
-    }
+	if !CheckCustomerEqual(target[0], res[0]) {
+		t.Fatalf(fmt.Sprintf("Received %v, expected %v", res[0], target[0]))
+	}
 }

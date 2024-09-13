@@ -3,8 +3,8 @@ package nettikauppasimulaattori
 import (
 	"context"
 	"fmt"
+	"os"
 	"time"
-        "os"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
 	"github.com/cloudevents/sdk-go/v2/event"
@@ -24,112 +24,132 @@ func init() {
 }
 
 func RunWorkers(db Database, workers []Worker) {
-    for _, worker := range workers {
-        slog.Debug(fmt.Sprintf("Running worker %d.", worker.id))
-        err := worker.Work(db)
-        if err != nil {
-            slog.Error(fmt.Sprint(err))
-        }
-    }
+	for _, worker := range workers {
+		slog.Debug(fmt.Sprintf("Running worker %d.", worker.id))
+		err := worker.Work(db)
+		if err != nil {
+			slog.Error(fmt.Sprint(err))
+		}
+	}
 }
 
 func RunCustomers(db Database, customers []Customer) {
-    orders_in_this_run := false
-    for _, customer := range customers {
-        slog.Debug(fmt.Sprintf("Running customer %d.", customer.id))
-        order, err := customer.Shop(Products)
-        if err != nil { continue } // If order is empty.
+	orders_in_this_run := false
+	for _, customer := range customers {
+		slog.Debug(fmt.Sprintf("Running customer %d.", customer.Id))
+		order, err := customer.Shop(Products)
+		if err != nil {
+			continue
+		} // If order is empty.
 
-        slog.Debug(fmt.Sprint(order))
-        err = db.SendOrder(order)
-        if err != nil { 
-            slog.Error(fmt.Sprintf("Error in sending order: %v", err))
-        }
+		slog.Debug(fmt.Sprint(order))
+		err = db.SendOrder(order)
+		if err != nil {
+			slog.Error(fmt.Sprintf("Error in sending order: %v", err))
+		}
 
-        orders_in_this_run = true
-    }
-    if !orders_in_this_run {
-        slog.Info("No orders placed this time.")
-    }
+		orders_in_this_run = true
+	}
+	if !orders_in_this_run {
+		slog.Info("No orders placed this time.")
+	}
 }
 
 // Entry point for running via google cloud functions.
 func Run_gcloud_functions(ctx context.Context, ev event.Event) error {
-    slog.Info(fmt.Sprintf("Program started with Run_gcloud_functions at %v", time.Now()))
+	slog.Info(fmt.Sprintf("Program started with Run_gcloud_functions at %v", time.Now()))
 
-    wd, _ := os.Getwd()
-    slog.Info(fmt.Sprintf("Working directory: %v", wd))
+	wd, _ := os.Getwd()
+	slog.Info(fmt.Sprintf("Working directory: %v", wd))
 
-    var db DatabaseBigQuery
-    err := db.Init(ctx, 
-            "nettikauppasimulaattori",
-            "store_operational",
-            "orders",
-            "order_items",
-            "Europe/Helsinki")
-    if err != nil { slog.Error("Database init failed.") }
-    defer db.Close()
+	var db DatabaseBigQuery
+	err := db.Init(ctx,
+		"nettikauppasimulaattori",
+		"store_operational",
+		"orders",
+		"order_items",
+		"Europe/Helsinki")
+	if err != nil {
+		slog.Error("Database init failed.")
+	}
+	defer db.Close()
 
-    customers, err := ReadCustomersCSV("./serverless_function_source_code/data/customers.csv")
-    if err != nil { slog.Error(fmt.Sprintf("Failed to read customers-data from file: %v", err)) }
+	customers, err := ImportCustomers("./serverless_function_source_code/data/customers.parquet")
+	if err != nil {
+		slog.Error(fmt.Sprintf("Failed to read customers-data from file: %v", err))
+	}
 
-    workers, err := ReadWorkersCSV("./serverless_function_source_code/data/workers.csv")
-    if err != nil { slog.Error(fmt.Sprintf("Failed to read workers-data from file: %v", err)) }
+	workers, err := ReadWorkersCSV("./serverless_function_source_code/data/workers.csv")
+	if err != nil {
+		slog.Error(fmt.Sprintf("Failed to read workers-data from file: %v", err))
+	}
 
-    RunCustomers(&db, customers)
-    RunWorkers(&db, workers)
+	RunCustomers(&db, customers)
+	RunWorkers(&db, workers)
 
-    return nil
+	return nil
 }
 
 // Entry point for running locally.
 func Run_prod() error {
-    slog.Info(fmt.Sprintf("Program started locally at %v", time.Now()))
+	slog.Info(fmt.Sprintf("Program started locally at %v", time.Now()))
 
-    var db DatabaseBigQuery
-    err := db.Init(context.Background(), 
-            "nettikauppasimulaattori",
-            "store_operational",
-            "orders",
-            "order_items",
-            "Europe/Helsinki")
-    if err != nil { slog.Error("Database init failed.") }
-    defer db.Close()
+	var db DatabaseBigQuery
+	err := db.Init(context.Background(),
+		"nettikauppasimulaattori",
+		"store_operational",
+		"orders",
+		"order_items",
+		"Europe/Helsinki")
+	if err != nil {
+		slog.Error("Database init failed.")
+	}
+	defer db.Close()
 
-    customers, err := ReadCustomersCSV("data/customers.csv")
-    if err != nil { slog.Error(fmt.Sprintf("Failed to read customers-data from file: %v", err)) }
+	customers, err := ImportCustomers("data/customers.parquet")
+	if err != nil {
+		slog.Error(fmt.Sprintf("Failed to read customers-data from file: %v", err))
+	}
 
-    workers, err := ReadWorkersCSV("data/workers.csv")
-    if err != nil { slog.Error(fmt.Sprintf("Failed to read workers-data from file: %v", err)) }
+	workers, err := ReadWorkersCSV("data/workers.csv")
+	if err != nil {
+		slog.Error(fmt.Sprintf("Failed to read workers-data from file: %v", err))
+	}
 
-    RunCustomers(&db, customers)
-    RunWorkers(&db, workers)
+	RunCustomers(&db, customers)
+	RunWorkers(&db, workers)
 
-    return nil
+	return nil
 }
 
 // Entry point for running test-run locally.
 func Run_test() error {
-    slog.Info(fmt.Sprintf("Dry run started locally at %v", time.Now()))
+	slog.Info(fmt.Sprintf("Dry run started locally at %v", time.Now()))
 
-    var db DatabaseBigQueryDummy
-    err := db.Init(context.Background(), 
-            "nettikauppasimulaattori",
-            "store_operational",
-            "orders",
-            "order_items",
-            "Europe/Helsinki")
-    if err != nil { slog.Error("Database init failed.") }
-    defer db.Close()
+	var db DatabaseBigQueryDummy
+	err := db.Init(context.Background(),
+		"nettikauppasimulaattori",
+		"store_operational",
+		"orders",
+		"order_items",
+		"Europe/Helsinki")
+	if err != nil {
+		slog.Error("Database init failed.")
+	}
+	defer db.Close()
 
-    customers, err := ReadCustomersCSV("data/customers.csv")
-    if err != nil { slog.Error(fmt.Sprintf("Failed to read customers-data from file: %v", err)) }
+	customers, err := ImportCustomers("data/customers.parquet")
+	if err != nil {
+		slog.Error(fmt.Sprintf("Failed to read customers-data from file: %v", err))
+	}
 
-    workers, err := ReadWorkersCSV("data/workers.csv")
-    if err != nil { slog.Error(fmt.Sprintf("Failed to read workers-data from file: %v", err)) }
+	workers, err := ReadWorkersCSV("data/workers.csv")
+	if err != nil {
+		slog.Error(fmt.Sprintf("Failed to read workers-data from file: %v", err))
+	}
 
-    RunCustomers(&db, customers)
-    RunWorkers(&db, workers)
+	RunCustomers(&db, customers)
+	RunWorkers(&db, workers)
 
-    return nil
+	return nil
 }
