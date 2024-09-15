@@ -5,9 +5,19 @@ PASS=$(cat passwd)
 CONN="mongodb+srv://$USER:$PASS@cosmos-mongo-testi.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000wtimeoutMS=0"
 DATABASE=reviews
 
+URL=$1
+SIGNATURE=reviewText # Some grep-line from the JSON which we want to capture.
+
 # Extract the product JSON-file from the website.
-JSON=$(curl -s https://www.verkkokauppa.com/fi/product/893623/FWD-HP-EliteBook-840-G5-14-kaytetty-kannettava-tietokone-B-l | grep reviewText)
-#JSON=UGUU
+JSON=$(curl -s $URL | grep $SIGNATURE)
+RES=$?
+if [ $RES -eq 1 ]; then
+  echo Error number $RES: probably grep did not find the SIGNATURE string it was looking for.
+  exit 10
+elif [ $RES -ne 0 ]; then
+  echo Error number $RES: probably retrieving the website '$URL' failed.
+  exit 11
+fi
 
 # NOTE: Trying to send the data using --eval=<command> usually fails due to
 # the JSON string exceeding command argument limit. That's why we make
@@ -20,9 +30,4 @@ echo "printjson(db.$DATABASE.find());" >>testi.js
 
 mongosh --file=testi.js $CONN
 
-rm testi.js
-
-# echo $CONN
-# echo $JSON
-
-# db = connect($CONN)
+# rm testi.js
