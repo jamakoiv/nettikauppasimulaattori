@@ -58,6 +58,10 @@ for URL in "${URLS[@]}"; do
   fi
   PRODUCT_ID=$
 
+  if [[ -z "$JSON" ]]; then
+    echo "Error: $URL returned empty JSON."
+    continue # mongodb insertMany throws error if empty entry is given.
+  fi
   echo "$JSON," >>upload.js
 
 done
