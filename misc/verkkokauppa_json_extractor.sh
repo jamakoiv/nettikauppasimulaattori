@@ -30,8 +30,12 @@ while [[ $# -gt 0 ]]; do
     ;;
   esac
 done
-echo ${URLS[@]}
 
+# NOTE: Trying to send the data using --eval=<command> usually fails due to
+# the JSON string exceeding command argument limit. That's why we make
+# a separate script file instead.
+
+# echo ${URLS[@]}
 # TODO: Horrible way to construct the upload.js file...
 echo "db = db.getSiblingDB('$DATABASE');" >upload.js
 echo "db.$COLLECTION.insertMany([$JSON" >>upload.js
@@ -71,9 +75,3 @@ if [ "$UPLOAD" = true ]; then
   mongosh --file=upload.js $CONN
   rm upload.js
 fi
-
-# NOTE: Trying to send the data using --eval=<command> usually fails due to
-# the JSON string exceeding command argument limit. That's why we make
-# a separate script file instead.
-
-# Create a mongosh-script for sending the JSON to the database.
