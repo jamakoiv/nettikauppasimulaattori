@@ -6,6 +6,7 @@ import re
 import sys
 import json
 
+from concurrent.futures import ThreadPoolExecutor
 from pymongo import MongoClient
 from urllib.parse import quote_plus
 
@@ -104,17 +105,17 @@ def save_json(json_str: str, url: str):
 mongo_upload_data = []
 url_extra_pages = []
 
-# Process URLs given from the command line.
-for url in args.urls:
-    resp = process_url(url)
-    json_str = extract_json_str(resp)
+# Process URLs from the command line
+with ThreadPoolExecutor(max_workers=8) as exec:
+    responses = exec.map(process_url, args.urls)
 
+for resp, url in zip(responses, args.urls):
+    json_str = extract_json_str(resp)
     json_dict = json.loads(json_str)
     mongo_upload_data.append(json_dict)
 
     # Check if there are more than one review page.
     n_reviews, reviews_per_page, n_pages = get_number_of_reviews(json_dict)
-
     for page in range(2, n_pages + 1):
         url_extra_pages.append(f"{url}reviews?page={page}")
 
@@ -122,9 +123,11 @@ for url in args.urls:
         save_json(json_str, url)
 
 
-# Process URLs containing review pages 2,3,4,etc.
-for url in url_extra_pages:
-    resp = process_url(url)
+# Process URLs from extra pages
+with ThreadPoolExecutor(max_workers=8) as exec:
+    responses = exec.map(process_url, url_extra_pages)
+
+for resp, url in zip(responses, args.urls):
     json_str = extract_json_str(resp)
     json_dict = json.loads(json_str)
     mongo_upload_data.append(json_dict)
@@ -132,11 +135,24 @@ for url in url_extra_pages:
     if args.save_json:
         save_json(json_str, url)
 
-
 # Upload data if requested
 if args.upload:
-    collection.insert_many(mongo_upload_data)
-    print("Data uploaded to MongoDB.")
+    # Slice into more manageable chunks for upload.
+    # Technically mongodb insertMany will handle any amount of data, but
+    # takes long time without any progress info.
+
+    print("Starting upload to MongoDB.")
+    N_slice = 30
+
+    for k, data in enumerate(
+        [
+            mongo_upload_data[i : i + N_slice]
+            for i in range(0, len(mongo_upload_data), N_slice)
+        ]
+    ):
+        collection.insert_many(data)
+        print("Uploaded records {} to {}".format(k * N_slice, k * N_slice + N_slice))
+    print("Done uploading data.")
 
 if not __name__ == "__main__":
     client.close()
