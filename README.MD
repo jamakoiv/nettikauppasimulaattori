@@ -16,6 +16,8 @@ transforming the raw data in the operational database to a form
 suitable for analyzing business-related values, such as weekly income etc.
 DBT related code can be found from the repository 
 [nettikauppasimulaattori-dbt](https://github.com/jamakoiv/nettikauppasimulaattori_dbt).
+Code related to the review text-analysis can be found from the repository
+[nettikauppasimulaattori-review](https://github.com/jamakoiv/nettikauppasimulaattori_reviews).
 
 Original motivation for the program came after using public datasets from
 [BigQuery](https://cloud.google.com/bigquery/public-data/) and
