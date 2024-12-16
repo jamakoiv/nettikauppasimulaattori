@@ -3,7 +3,7 @@ name: "Create docker image and zip."
 env:
   PROJECT_ID: nettikauppasimulaattori
   REGION: europe-north1
-  REPOSITORY: nettikauppasimulaattori
+  REPOSITORY: simulator
   IMAGE_TAG: nettikauppasimulaattori_simulator:latest
 
 on:
