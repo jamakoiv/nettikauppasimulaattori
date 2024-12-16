@@ -1,5 +1,5 @@
 # FROM alpine:latest
-FROM debian:bookworm-slim
+FROM golang:1.23-bookworm
 
 RUN apt-get update
 RUN apt-get install apt-transport-https ca-certificates gnupg curl -y 
@@ -15,5 +15,6 @@ ENV GOOGLE_APPLICATION_CREDENTIALS=/prog/ap.json
 
 WORKDIR /prog
 
+RUN go mod download && go build cmd/main.go
+
 CMD ["/prog/main", "-target=prod"]
-#CMD ["ls", "-la", "/prog"]
