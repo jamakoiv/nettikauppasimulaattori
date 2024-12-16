@@ -10,6 +10,8 @@ env:
   WIF_SERVICE_ACCOUNT: github-connection@nettikauppasimulaattori.iam.gserviceaccount.com
 
 on:
+  workflow_dispatch:
+
   push:
     branches:
       - main

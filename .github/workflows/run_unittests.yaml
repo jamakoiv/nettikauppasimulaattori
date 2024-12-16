@@ -1,6 +1,8 @@
 name: nettikauppasimulaattori automated testing
 
 on:
+  workflow_dispatch:
+
   push:
     branches:
       - "*"

@@ -1,6 +1,8 @@
 name: Create zip of simulator-source code and upload to google-cloud-storage.
 
 on:
+  workflow_dispatch:
+
   push:
     branches:
       - main
