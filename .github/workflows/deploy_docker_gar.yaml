@@ -4,8 +4,8 @@ name: "Create docker image and upload to GCloud."
 env:
   PROJECT_ID: nettikauppasimulaattori
   REGION: europe-north1
-  REPOSITORY: nettikauppasimulaattori
-  IMAGE_TAG: nettikauppasimulaattori_simulator:latest
+  REPOSITORY: simulator
+  IMAGE_TAG: run:latest
 
 on:
   workflow_dispatch:
