@@ -2,8 +2,10 @@ name: nettikauppasimulaattori automated testing
 
 on:
   push:
-    branches_ignore:
-      - main
+    branches:
+      - "*"
+      - "**"
+      - "!main"
 
 jobs:
   test_simulator:
@@ -15,21 +17,20 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup Go.
         uses: actions/setup-go@v4
         with:
           # working-directory does not work for these???
-          go-version-file: 'simulator/go.mod'
-          cache-dependency-path: 'simulator/go.sum'
+          go-version-file: "simulator/go.mod"
+          cache-dependency-path: "simulator/go.sum"
 
       # setup-go already displays version.
-      # - name: Check Go version. 
+      # - name: Check Go version.
       #   run: go version
 
       - name: Compile.
         run: go build
-        
+
       - name: Run tests.
         run: go test
-
