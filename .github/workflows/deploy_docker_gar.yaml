@@ -1,9 +1,9 @@
-name: "Create docker image and zip."
+name: "Create docker image and upload to GCloud."
 
 env:
   PROJECT_ID: nettikauppasimulaattori
   REGION: europe-north1
-  REPOSITORY: simulator
+  REPOSITORY: run
   IMAGE_TAG: nettikauppasimulaattori_simulator:latest
 
 on:
