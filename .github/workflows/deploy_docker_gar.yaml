@@ -43,7 +43,12 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Write secret to file
-        run: echo ${{ secrets.GCLOUD_BIGQUERY_FROM_DOCKER_KEY }} >> simulator/ap.json
+        uses: mobiledevops/secret-to-file-action@v1
+        with:
+          base64-encoded-secret: ${{ secrets.GCLOUD_BIGQUERY_FROM_DOCKER_KEY }}
+          filename: "ap.json"
+          is-executable: true
+          working-directory: "./simulator"
 
       - name: Build Docker-image.
         run: |
