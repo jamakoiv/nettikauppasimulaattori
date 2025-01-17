@@ -40,9 +40,7 @@ probably dependent value.
 Groups 0 and 1 are separated by their preferred product category, with
 group 1 preferring to mainly shop category 3 goods (groceries), while
 group 0 customers are more evenly shopping different product types.
-Groups 2 and 3 seem quite similar, so we should re-run the clustering with
-different amounts of clusters and check the clustering metrics 
-(e.g. Silhouette- and Davies-Bouldin- score) to find optimal amount of clusters.
+Groups 2 and 3 seem quite similar, hinting that there is more optimal cluster number which could be explored using the clustering metrics, e.g. Silhouette- or Davies-Bouldin-score.
 
 #### Review sentiment analysis
 
@@ -51,4 +49,9 @@ Review texts for various products were extracted from
 on Azure CosmosDB. The reviews are imported to and processed in Databricks.
 
 <img src="readme_assets/reviews_outline.svg" width="650">
+
+<img src="readme_assets/dataset_explore.png" width="650">
+
+<img src="readme_assets/ml_models.png" width="650">
+<img src="readme_assets/optuna.png" width="650">
 
