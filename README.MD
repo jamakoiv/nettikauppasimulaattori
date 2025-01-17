@@ -49,7 +49,8 @@ Review texts for various products were extracted from
 on Azure CosmosDB. The reviews are imported to and processed in Databricks.
 
 <img src="readme_assets/reviews_outline.svg" width="650">
-
+From about 1000 products in three different categories, we get approximately 7000 reviews. Of these majority are in Finnish language, as expected for a finnish store.
+The most obvious problem with the dataset is the very strong imbalance in the product ratings. Vast majority of the reviews are positive, rating 4 or 5, with only a small fraction being neutral or negative.
 <img src="readme_assets/dataset_explore.png" width="650">
 
 <img src="readme_assets/ml_models.png" width="650">
