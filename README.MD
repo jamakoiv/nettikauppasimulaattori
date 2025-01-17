@@ -1,4 +1,4 @@
-### Generate data for a simulated online-store. 
+## Generate data for a simulated online-store. 
 
 <img src="readme_assets/project_outline.svg" width="800"/>
 
@@ -42,7 +42,7 @@ group 1 preferring to mainly shop category 3 goods (groceries), while
 group 0 customers are more evenly shopping different product types.
 Groups 2 and 3 seem quite similar, hinting that there is more optimal cluster number which could be explored using the clustering metrics, e.g. Silhouette- or Davies-Bouldin-score.
 
-#### Review sentiment analysis
+### Review sentiment analysis
 
 Review texts for various products were extracted from 
 [verkkokauppa.com](https://www.verkkokauppa.com) and stored as raw JSON-files
@@ -67,7 +67,7 @@ The undersampling random forest classifiers give better results but tend to over
 
 Originally the logistic regression was included to highlight how simpler models fail with complicated datasets, but in this case it turned out to perform on par or better than the more complex random forest models.
 
-For the undersampling random forest classifier a hyperparameter optimization was performed using [Optuna](https://optuna.org/) and [MLFlow](https://mlflow.org/). 
+For the undersampling random forest classifier a hyperparameter optimization was performed using [Optuna](https://optuna.org/) and [MLFlow](https://mlflow.org/). The optimized model does improve the results slightly, but 
 
 <img src="readme_assets/ml_models_optimized.png" width="650">
 
