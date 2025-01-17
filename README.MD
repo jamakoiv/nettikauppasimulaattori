@@ -49,10 +49,24 @@ Review texts for various products were extracted from
 on Azure CosmosDB. The reviews are imported to and processed in Databricks.
 
 <img src="readme_assets/reviews_outline.svg" width="650">
-From about 1000 products in three different categories, we get approximately 7000 reviews. Of these majority are in Finnish language, as expected for a finnish store.
-The most obvious problem with the dataset is the very strong imbalance in the product ratings. Vast majority of the reviews are positive, rating 4 or 5, with only a small fraction being neutral or negative.
+From about 1000 products in three different categories, we get approximately 7000
+reviews. Of these majority are in Finnish language, as expected for a finnish store.
+The most obvious problem with the dataset is the very strong imbalance in 
+the product ratings. Vast majority of the reviews are positive, rating 4 or 5, 
+with only a small fraction being neutral or negative.
+We must make sure that this imbalance is preserved in every step or otherwise we might end up with e.g. training-set which has practically no negative reviews.
+
 <img src="readme_assets/dataset_explore.png" width="650">
 
+For classification we tried simple logistical regression and random forest classifier -models. To address the imbalanced dataset we tried using balanced class-weights, and undersampling the dataset positive and negative. Without any method to mitigate the imbalance, all models simply labeled every review positive. 
+
+In the confusion matrices we can visually see model accuracies with correctly predicted classes in the matrix diagonal (top-left to bottom-right) and incorrect predictions on the anti-diagonal (bottom-left to top-right).
 <img src="readme_assets/ml_models.png" width="650">
+Regular logistic regression model with balanced class-weights performs well for such a simple model. Meanwhile, with only class-weight balancing, the random forest classifier fails completely and labels the entire test set as positive.
+The undersampling random forest classifiers give better results but tend to overstate the minority negative class, leading in an increase in false negatives, especially when undersampling only the majority positive class (not.min.)
+
+Originally the logistic regression was included to highlight how simpler models fail with complicated datasets, but in this case it turned out to perform on par or better than the more complex random forest models.
+
 <img src="readme_assets/ml_models_optimized.png" width="650">
 
+A simple neural-net based classifier was also tried using PyTorch, but the performance was similar with the above models.
