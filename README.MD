@@ -67,6 +67,8 @@ The undersampling random forest classifiers give better results but tend to over
 
 Originally the logistic regression was included to highlight how simpler models fail with complicated datasets, but in this case it turned out to perform on par or better than the more complex random forest models.
 
+For the undersampling random forest classifier a hyperparameter optimization was performed using [Optuna](https://optuna.org/) and [MLFlow](https://mlflow.org/). 
+
 <img src="readme_assets/ml_models_optimized.png" width="650">
 
 A simple neural-net based classifier was also tried using PyTorch, but the performance was similar with the above models.
