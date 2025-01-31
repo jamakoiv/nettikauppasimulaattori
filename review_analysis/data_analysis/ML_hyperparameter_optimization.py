@@ -24,20 +24,27 @@ from optuna.integration.mlflow import MLflowCallback
 
 import mlflow
 import mlflow.sklearn
+from mlflow.models import infer_signature
 
 from scipy.stats import page_trend_test
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics import confusion_matrix
-from pyspark.sql import SparkSession
 from imblearn.ensemble import BalancedRandomForestClassifier
+from sklearn.metrics import confusion_matrix, precision_score, recall_score
 
+from pyspark.sql import SparkSession
 
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+# Disable autologging so we don't get extra runs.
+mlflow.autolog(disable=True)
+
+
 settings = get_settings(dbutils.widgets.get("TARGET"))
 n_trials = int(dbutils.widgets.get("N_TRIALS"))
+n_jobs = int(dbutils.widgets.get("N_JOBS"))
 run_name = str(dbutils.widgets.get("RUN_NAME"))
+
 
 gold_table = "verkkokauppa_reviews_gold" + settings["table_suffix"]
 df_gold = spark.table(gold_table)
@@ -108,16 +115,18 @@ class OptunaObjective:
 
     def __call__(self, trial: optuna.Trial):
         n_estimators = trial.suggest_int("n_estimators", 10, 500, step=10)
-        max_leaf_nodes = trial.suggest_categorical("max_leaf_nodes", [None])
-        max_depth = trial.suggest_categorical("max_depth", [None])
         min_samples_split = trial.suggest_int("min_samples_split", 2, 10, step=2)
         min_samples_leaf = trial.suggest_int("min_samples_leaf", 1, 10, step=1)
         max_features = trial.suggest_categorical("max_features", ["sqrt", "log2"])
 
+        max_leaf_nodes = None
+        max_depth = None
         criterion = "gini"
         bootstrap = True
         replacement = True
         sampling_strategy = "all"
+        # max_leaf_nodes = trial.suggest_categorical("max_leaf_nodes", [None])
+        # max_depth = trial.suggest_categorical("max_depth", [None])
         # criterion = trial.suggest_categorical("criterion", ["gini", "entropy"])
         # bootstrap = trial.suggest_categorical("bootstrap", [True, False])
         # replacement = trial.suggest_categorical("replacement", [True, False])
@@ -139,16 +148,24 @@ class OptunaObjective:
 
         with mlflow.start_run(nested=True, parent_run_id=self.parent_run_id):
             model = model.fit(self.X_train, self.z_train)
-            pred = model.predict(self.X_test)
-            print(confusion_matrix(z_test, pred))
+            z_pred = model.predict(self.X_test)
+            # print(confusion_matrix(z_test, z_pred))
 
             # Guard against models which give same label to all datapoints.
             # These might give best result if the data is imbalanced,
             # but are very uninformative.
-            if (pred == 0).all() or (pred == 1).all():
+            if (z_pred == 0).all() or (z_pred == 1).all():
                 score = 0.0
             else:
                 score = model.score(self.X_test, self.z_test)
+
+            mlflow.log_param("n_estimators", n_estimators)
+            mlflow.log_param("min_samples_split", min_samples_split)
+            mlflow.log_param("min_samples_leaf", min_samples_leaf)
+            mlflow.log_param("max_features", max_features)
+            mlflow.log_metric("precision", precision_score(self.z_test, z_pred))
+            mlflow.log_metric("recall", recall_score(self.z_test, z_pred))
+            mlflow.log_metric("score", score)
 
         return score
 
@@ -159,9 +176,6 @@ class OptunaObjective:
 # MAGIC NOTE: If you set up the MLFlowCallback, then it is best to disable the autologging. Otherwise it can get confusing and the logging system takes forever to run.
 
 # COMMAND ----------
-
-
-mlflow.autolog(disable=True)
 
 
 experiment_name = "/Users/jaakko.m.koivisto@gmail.com/reviews"
@@ -182,8 +196,8 @@ mlflow_callback = MLflowCallback(
 with mlflow.start_run(run_name=run_name, experiment_id=experiment_id) as parent_run:
     study = optuna.create_study(direction="maximize")
     obj = OptunaObjective(X_train, X_test, z_train, z_test)
-    obj.set_parent_run_id(parent_run)
-    study.optimize(obj, n_trials=n_trials, callbacks=[mlflow_callback])
+    obj.set_mlflow_parent_run_id(parent_run)
+    study.optimize(obj, n_trials=n_trials, callbacks=[mlflow_callback], njobs=n_jobs)
 
 
 # COMMAND ----------
@@ -196,22 +210,38 @@ with mlflow.start_run(run_name=run_name, experiment_id=experiment_id) as parent_
 print(study.best_trial.params)
 
 # COMMAND ----------
-
-mlflow.autolog(disable=True)
-
+#
 model_default = BalancedRandomForestClassifier(
     sampling_strategy="all", replacement=True
 )
 model_default = model_default.fit(X_train, z_train)
-pred_default = model_default.predict(X_test)
+z_pred = model_default.predict(X_test)
 
 model_optimized = BalancedRandomForestClassifier(**study.best_trial.params)
 model_optimized = model_optimized.fit(X_train, z_train)
-pred_optimized = model_optimized.predict(X_test)
+z_pred_optimized = model_optimized.predict(X_test)
+
+
+mlflow.set_tag("Info", "Train model for review sentiment classification.")
+mlflow.set_tag("Model", "")
+
+mlflow.log_param("n_estimators", study.best_params["n_estimators"])
+mlflow.log_param("min_samples_split", study.best_params["min_samples_split"])
+mlflow.log_param("min_samples_leaf", study.best_params["min_samples_leaf"])
+mlflow.log_param("max_features", study.best_params["max_features"])
+mlflow.log_metric("precision", precision_score(z_test, z_pred_optimized))
+mlflow.log_metric("recall", recall_score(z_test, z_pred_optimized))
+mlflow.log_metric("score", model_optimized.model_optimized(X_test, z_test))
+
+model_info = mlflow.sklearn.log_model(
+    sk_model=model_optimized,
+    artifact_path="review_sentiment_classifier",
+    signature=infer_signature(X_train, z_pred_optimized),
+    input_example=X_train,
+    registered_model_name="verkkokauppa_review_classifier",
+)
 
 # COMMAND ----------
-
-import seaborn as sns
 
 sns.set_theme()
 
@@ -219,8 +249,8 @@ fig = plt.figure(figsize=(8, 8))
 ax1 = fig.add_subplot(2, 2, 1)
 ax2 = fig.add_subplot(2, 2, 2)
 
-conf_mat_default = confusion_matrix(z_test, pred_default)
-conf_mat_optimized = confusion_matrix(z_test, pred_optimized)
+conf_mat_default = confusion_matrix(z_test, z_pred)
+conf_mat_optimized = confusion_matrix(z_test, z_pred_optimized)
 
 sns.heatmap(conf_mat_default, annot=True, fmt="d", cbar=False, cmap="flag", ax=ax1)
 sns.heatmap(conf_mat_optimized, annot=True, fmt="d", cbar=False, cmap="flag", ax=ax2)
