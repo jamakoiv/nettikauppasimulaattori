@@ -90,7 +90,8 @@ The contributions of different words to the model prediction can be analysed usi
 For binary classification model the SHAP analysis gives values for each feature on how much the feature is pushing the model towards positive or negative class, 
 with negative SHAP-value pushing the model towards negative class and positive SHAP-value pushing the model towards positive-class.
 In the above plot the feature value shows the occurance of the word with high occurance meaning the word occurs frequently.
-In simple terms, red on right of zero-line means the presence of the word pushes the model towards positive review, red on left of the zero-line pushes the model towards negative.
-
-
-
+In the above plot are 10 most significant words with their SHAP-values.
+We can quickly see that words with negative connotation, like "ei [no]" and "huono [bad]" give negative SHAP-values, and words like "hyvä [good]" and "helppo [easy]" give positive SHAP-values, as expected. 
+Some words like "ja [and]", "mutta [but]", "että [that]" are mostly neutral, but give sizable contribution in the model.
+Most words give strongly lopsided distributions, the presence of the word gives strong contribution to the model, but the absence of the word does not affect the model. 
+This is probably due to either the vocabulary being different in the positive and negative reviews, or the sample size being too small.
