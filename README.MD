@@ -73,17 +73,21 @@ Text vectorization and conversion from word counts to [term frequency-inverse do
 For classification we tried simple logistical regression and random forest classifier -models. To address the imbalanced dataset we tried using balanced class-weights, and undersampling the dataset positive and negative. Without any method to mitigate the imbalance, all models simply labeled every review positive. 
 
 In the confusion matrices we can visually see model accuracies with correctly predicted classes in the matrix diagonal (top-left to bottom-right) and incorrect predictions on the anti-diagonal (bottom-left to top-right).
+
 <img src="readme_assets/ml_models.png" width="700">
+
 Regular logistic regression model with balanced class-weights performs well for such a simple model. Meanwhile, with only class-weight balancing, the random forest classifier fails completely and labels the entire test set as positive.
 The undersampling random forest classifiers give better results but tend to overstate the minority negative class, leading in an increase in false negatives, especially when undersampling only the majority positive class (not.min.)
 
 Originally the logistic regression was included to highlight how simpler models fail with complicated datasets, but in this case it turned out to perform on par or better than the more complex random forest models.
 
-For the undersampling random forest classifier a hyperparameter optimization was performed using [Optuna](https://optuna.org/) and [MLFlow](https://mlflow.org/). The optimized model does improve the results slightly, giving less false negatives than with the default parameters, but there is no major difference between the results.
-
 <img src="readme_assets/ml_models_optimized.png" width="700">
+For the undersampling random forest classifier a hyperparameter optimization was performed using [Optuna](https://optuna.org/) and [MLFlow](https://mlflow.org/). The parameters selected for the optimization were number of estimators (_n\_estimators_), number of features to consider when splitting a node (_max\_features_), and the minimum impurity decrease when splitting a node (_min_impurity_decrease_), with target being to maximize model _accuracy_, _precision_, and _recall_. The optimized model does improve the results slightly, giving less false negatives than with the default parameters, but there is no major difference between the results.
 
-A simple neural-net based classifier was also tried using PyTorch, but the performance was similar with the above models.
+
+<img src="readme_assets/mlflow.png" width="700">
+Inspecting the results from individual optimization runs gives us insight to how each parameter affects the model results. We can immediately see the inverse relation with precision and recall, and that the model accuracy correlates with the recall value. The former indicates that the parameters mostly shift the predictions towards the positive or negative class without much overall improvement. The latter is simply an artifact of the strong class imbalance in our dataset. We can also see the grouping of results by the amount of features the model considers. High amount of features (_None_) pushes the model to prefer negative predictions, low amount of features (_log2_) to prefer positive predictions.
+The amount of estimators did not have any systematic effect on the model outcome, and has been omitted from the plot. The impurity decrease value also has only negligible effect to the model.
 
 <img src="readme_assets/reviews_shap.png" width="700">
 The contributions of different words to the model prediction can be analysed using [SHAP](https://shap.readthedocs.io/en/latest/index.html).
