@@ -82,14 +82,16 @@ The undersampling random forest classifiers give better results but tend to over
 Originally the logistic regression was included to highlight how simpler models fail with complicated datasets, but in this case it turned out to perform on par or better than the more complex random forest models.
 
 <img src="readme_assets/ml_models_optimized.png" width="700">
-For the undersampling random forest classifier a hyperparameter optimization was performed using [Optuna](https://optuna.org/) and [MLFlow](https://mlflow.org/). The parameters selected for the optimization were number of estimators (_n\_estimators_), number of features to consider when splitting a node (_max\_features_), and the minimum impurity decrease when splitting a node (_min_impurity_decrease_), with target being to maximize model _accuracy_, _precision_, and _recall_. The optimized model does improve the results slightly, giving less false negatives than with the default parameters, but there is no major difference between the results.
 
+For the undersampling random forest classifier a hyperparameter optimization was performed using [Optuna](https://optuna.org/) and [MLFlow](https://mlflow.org/). The parameters selected for the optimization were number of estimators *n_estimators*, number of features to consider when splitting a node *max_features*, and the minimum impurity decrease when splitting a node *min_impurity_decrease*), with target being to maximize model *accuracy*, [*precision*, and *recall*](https://en.wikipedia.org/wiki/Precision_and_recall). The optimized model does improve the results slightly, giving less false negatives than with the default parameters, but there is no major difference between the results.
 
-<img src="readme_assets/mlflow.png" width="700">
-Inspecting the results from individual optimization runs gives us insight to how each parameter affects the model results. We can immediately see the inverse relation with precision and recall, and that the model accuracy correlates with the recall value. The former indicates that the parameters mostly shift the predictions towards the positive or negative class without much overall improvement. The latter is simply an artifact of the strong class imbalance in our dataset. We can also see the grouping of results by the amount of features the model considers. High amount of features (_None_) pushes the model to prefer negative predictions, low amount of features (_log2_) to prefer positive predictions.
+<img src="readme_assets/mlflow.png" width="900">
+
+Inspecting the results from individual optimization runs gives us insight to how each parameter affects the model results. We can immediately see the inverse relation with precision and recall, and that the model accuracy correlates with the recall value. The former indicates that the parameters mostly shift the predictions towards the positive or negative class without much overall improvement. The latter is simply an artifact of the strong class imbalance in our dataset. We can also see the grouping of results by the amount of features the model considers. High amount of features (*None*) pushes the model to prefer negative predictions, low amount of features (*log2*) to prefer positive predictions.
 The amount of estimators did not have any systematic effect on the model outcome, and has been omitted from the plot. The impurity decrease value also has only negligible effect to the model.
 
 <img src="readme_assets/reviews_shap.png" width="700">
+
 The contributions of different words to the model prediction can be analysed using [SHAP](https://shap.readthedocs.io/en/latest/index.html).
 For binary classification model the SHAP analysis gives values for each feature on how much the feature is pushing the model towards positive or negative class, 
 with negative SHAP-value pushing the model towards negative class and positive SHAP-value pushing the model towards positive-class.
