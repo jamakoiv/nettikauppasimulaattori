@@ -51,7 +51,7 @@ Review texts for various products were extracted from
 [verkkokauppa.com](https://www.verkkokauppa.com) and stored as raw JSON-files
 on [Azure CosmosDB](https://learn.microsoft.com/en-us/azure/cosmos-db/). The reviews are imported to and processed in Databricks.
 
-<img src="readme_assets/reviews_outline.svg" width="700">
+<img src="readme_assets/reviews_outline.svg" width="600">
 
 #### Preprocessing
 
